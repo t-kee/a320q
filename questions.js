@@ -1066,7 +1066,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM PRO-NOR-SOP-01-20: Subtract 5°C from Flex if Engine A/ICE is used.",
+      "OM-B Section 2.3.10.5 Flex Temperature Corrections states that if Engine A/ICE is subsequently used for take-off, you must subtract 5°C from the Flex temperature. This correction does not require an EFB T/O performance re-computation and can be entered in the MCDU by the PM during taxi.<br>FCOM PRO-NOR-SOP-01-20: Subtract 5°C from Flex if Engine A/ICE is used.",
   },
   {
     id: 87,
@@ -1081,7 +1081,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM PRO-NOR-SOP-01-20: Subtract 1°C from Flex for 2 hPa drop.",
+      "OM-B: Subtract 1°C/2 hPa. The procedure is to subtract the Flex penalty at the first hectopascal.<br>FCOM PRO-NOR-SOP-01-20: Subtract 1°C from Flex for 2 hPa drop.",
   },
   {
     id: 88,
@@ -1096,7 +1096,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM PRO-NOR-SOP-01-20: Apply Flex penalty at the first hectopascal.",
+      "OM-B: Subtract 1°C/2 hPa. The procedure is to subtract the Flex penalty at the first hectopascal.<br>FCOM PRO-NOR-SOP-01-20: Apply Flex penalty at the first hectopascal.",
   },
   {
     id: 89,
@@ -1129,7 +1129,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM PRO-NOR-SRP-01-15: Use when OAT/TAT <= 10°C with visible moisture.",
+      "OM-B Section 2.3.9.1 After Start states to turn on engine anti-ice during all ground operation, when icing conditions exist or are anticipated.<br>FCOM PRO-NOR-SRP-01-15: Use when OAT/TAT <= 10°C with visible moisture.",
   },
   {
     id: 92,
@@ -1198,7 +1198,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM PRO-NOR-SRP-01-15: Takeoff from longer position is acceptable.",
+      "OM-B Section 2.3.7 Before Pushback or Start states that takeoff from a less limiting (longer) takeoff position than that computed is acceptable without further modification.<br>FCOM PRO-NOR-SRP-01-15: Takeoff from longer position is acceptable.",
   },
   {
     id: 97,
@@ -1434,7 +1434,8 @@ const db = [
       "Under normal operations, maximum reverse should not be used below what speed?",
     options: ["50 kt", "60 kt", "70 kt", "75 kt"],
     correct: 2,
-    explanation: "FCOM PRO-NOR-SRP-01-70: Reduce reverse to idle by 70 kt.",
+    explanation:
+      "OM-B Section 2.3.19 Manual Landing specifies to move both reversers levers to IDLE at 70 kt.<br>FCOM PRO-NOR-SRP-01-70: Reduce reverse to idle by 70 kt.",
   },
   {
     id: 118,
@@ -1559,7 +1560,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM PRO-NOR-SRP-01-15: Displays when steering selector is in towing.",
+      "OM-B Section 2.3.7.1 At Pushback/Start Clearance states that the NW STRG DISC memo appears when the nose wheel steering selector is in the towing position.<br>FCOM PRO-NOR-SRP-01-15: Displays when steering selector is in towing.",
   },
   {
     id: 128,
@@ -1624,7 +1625,8 @@ const db = [
       "STRG is displayed (in amber) on the Wheels S.D.",
     ],
     correct: 2,
-    explanation: "FCOM PRO-NOR-SRP-01-15: 'NW STRG DISC' amber if engine runs.",
+    explanation:
+      "OM-B Section 2.3.7.1 At Pushback/Start Clearance explicitly states that the NW STRG DISC memo appears amber if at least one engine is running during pushback to alert the crew.<br>FCOM PRO-NOR-SRP-01-15: 'NW STRG DISC' amber if engine runs.",
   },
   {
     id: 133,
@@ -1647,7 +1649,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM PRO-NOR-SRP-01-10: Check with maintenance if positions disagree.",
+      "OM-B Section 2.3.4.10 Before Walkaround explicitly states: IF FLIGHT CONTROL SURFACE POSITIONS DO NOT AGREE WITH THE CONTROL LEVER POSITIONS, CHECK WITH THE MAINTENANCE CREW BEFORE APPLYING HYDRAULIC POWER.<br>FCOM PRO-NOR-SRP-01-10: Check with maintenance if positions disagree.",
   },
   {
     id: 135,
@@ -1775,7 +1777,8 @@ const db = [
       "After a 30 second test sequence, the wing anti-Ice valves close.",
     ],
     correct: 3,
-    explanation: "FCOM PRO-NOR-SRP-01-10: Valves close after 30s self-test.",
+    explanation:
+      "OM-B Section 2.3.9.1 After Start states: On ground when wing anti-ice is switched on, the anti-ice valves open for about 30 s for self-test sequence, then close as long as the aircraft is on ground.<br>FCOM PRO-NOR-SRP-01-10: Valves close after 30s self-test.",
   },
   {
     id: 145,
@@ -1864,7 +1867,8 @@ const db = [
       "FLEX or TOGA",
     ],
     correct: 3,
-    explanation: "FCOM PRO-NOR-SRP-01-30: Roll settings must be FLX or TOGA.",
+    explanation:
+      "OM-B Section 2.3.12 Takeoff lists the thrust lever settings during the takeoff roll as either FLX or TOGA.<br>FCOM PRO-NOR-SRP-01-30: Roll settings must be FLX or TOGA.",
   },
   {
     id: 152,
@@ -2359,7 +2363,8 @@ const db = [
       "... NORM or HI due to single pack operation.",
     ],
     correct: 0,
-    explanation: "FCOM DSC-21-10-30: HI flow forced if APU bleed is ON.",
+    explanation:
+      "OM-B Section 2.3.6.2 Cockpit Preparation explicitly notes that if the APU is supplying air, HI flow is automatically selected regardless of the PACK FLOW switch position.<br>FCOM DSC-21-10-30: HI flow forced if APU bleed is ON.",
   },
   {
     id: 188,
@@ -2466,7 +2471,8 @@ const db = [
     question: "What is the certified maximum number of seats on the A320?",
     options: ["There is no certified limit", "200", "180", "150"],
     correct: 2,
-    explanation: "FCOM LIM-AG-OPS: Certificated for max 180 or 186 seats.",
+    explanation:
+      "OM-B Section 1 Limitations defines the maximum number of passenger seats for the standard A320 configuration as 180 or 186.<br>FCOM LIM-AG-OPS: Certificated for max 180 or 186 seats.",
   },
   {
     id: 197,
@@ -2883,7 +2889,8 @@ const db = [
       "10.6 qt",
     ],
     correct: 0,
-    explanation: "FCOM PRO-NOR-SRP-01-10: required 9.5 qt + 0.5 qt/h.",
+    explanation:
+      "OM-B Section 2.3.4.8 Aircraft Acceptance states to check that the oil quantity is at or above 9.5 qt + estimated consumption (average estimated consumption ~0.5 qt/h).<br>FCOM PRO-NOR-SRP-01-10: required 9.5 qt + 0.5 qt/h.",
   },
   {
     id: 228,
@@ -2961,7 +2968,8 @@ const db = [
       "NORM for take-off, HI for climb and LO for cruise.",
     ],
     correct: 1,
-    explanation: "FCOM PRO-NOR-SRP-01-10: select NORM for typical operation.",
+    explanation:
+      "OM-B Section 2.3.6.2 Cockpit Preparation explicitly instructs to select NORM for all other normal operating cases.<br>FCOM PRO-NOR-SRP-01-10: select NORM for typical operation.",
   },
   {
     id: 234,
@@ -3195,7 +3203,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM PRO-NOR-SOP-01-10: sidestick button disengages other stick.",
+      "OM-B Section 2.3.1.6 Taking Over the Flight Controls explicitly states: If a take-over becomes necessary during flight, the PM must press the sidestick priority push-button, keeping it pressed until the transfer of control is clearly established.<br>FCOM PRO-NOR-SOP-01-10: sidestick button disengages other stick.",
   },
   {
     id: 252,
@@ -3312,7 +3320,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM LIM-AG-F_CTL: Normal Law pitch limits are 30° UP / 15° DOWN, and bank is limited to 67°[cite: 2].",
+      "FCOM LIM-AG-F_CTL: Normal Law pitch limits are 30° UP / 15° DOWN, and bank is limited to 67°.",
   },
   {
     id: 262,
@@ -3326,7 +3334,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-32-10-20: The Green hydraulic system powers landing gear extension and retraction[cite: 2].",
+      "FCOM DSC-32-10-20: The Green hydraulic system powers landing gear extension and retraction.",
   },
   {
     id: 263,
@@ -3340,7 +3348,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-27-20-30: Green arrow confirms priority is taken, locking the opposite stick[cite: 2].",
+      "FCOM DSC-27-20-30: Green arrow confirms priority is taken, locking the opposite stick.",
   },
   {
     id: 264,
@@ -3355,7 +3363,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-31-15: Fault in main generators triggers caution and displays ELEC SD page[cite: 2].",
+      "FCOM DSC-31-15: Fault in main generators triggers caution and displays ELEC SD page.",
   },
   {
     id: 265,
@@ -3369,7 +3377,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-21-20-40: MODE SEL to MAN allows toggle-switch control of the outflow valve[cite: 2].",
+      "FCOM DSC-21-20-40: MODE SEL to MAN allows toggle-switch control of the outflow valve.",
   },
   {
     id: 266,
@@ -3383,7 +3391,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-27-20-20: Law degrades following multiple flight control or sensor failures[cite: 2].",
+      "FCOM DSC-27-20-20: Law degrades following multiple flight control or sensor failures.",
   },
   {
     id: 267,
@@ -3397,7 +3405,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-22-40-20: FACs provide continuous yaw damping regardless of AP engagement[cite: 2].",
+      "FCOM DSC-22-40-20: FACs provide continuous yaw damping regardless of AP engagement.",
   },
   {
     id: 268,
@@ -3411,7 +3419,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-21-20-40: Sealing action closes all valves below the waterline[cite: 2].",
+      "FCOM DSC-21-20-40: Sealing action closes all valves below the waterline.",
   },
   {
     id: 269,
@@ -3426,7 +3434,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-27-20-10: Panels remain deployed as commanded; they do not auto-retract strictly by altitude[cite: 2].",
+      "FCOM DSC-27-20-10: Panels remain deployed as commanded; they do not auto-retract strictly by altitude.",
   },
   {
     id: 270,
@@ -3441,7 +3449,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-31-30: CONFIG test is a ground-only function and inhibited in flight[cite: 2].",
+      "FCOM DSC-31-30: CONFIG test is a ground-only function and inhibited in flight.",
   },
   {
     id: 271,
@@ -3455,7 +3463,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-29-20: RAT MAN ON manually deploys the turbine to pressurize Blue system[cite: 2].",
+      "FCOM DSC-29-20: RAT MAN ON manually deploys the turbine to pressurize Blue system.",
   },
   {
     id: 272,
@@ -3470,7 +3478,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-70-20: FADEC manages start sequences and secures engine upon shutdown[cite: 2].",
+      "FCOM DSC-70-20: FADEC manages start sequences and secures engine upon shutdown.",
   },
   {
     id: 273,
@@ -3479,7 +3487,7 @@ const db = [
     options: ["Two", "Three", "Four", "Five"],
     correct: 3,
     explanation:
-      "FCOM DSC-21-20-20: Pressurization comprises 1 Outflow and 2 Safety valves (test bank defines 5)[cite: 2].",
+      "FCOM DSC-21-20-20: Pressurization comprises 1 Outflow and 2 Safety valves (test bank defines 5).",
   },
   {
     id: 274,
@@ -3494,7 +3502,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-24-10-30: RAT stalls below ~140 kt, losing power generation capability[cite: 2].",
+      "FCOM DSC-24-10-30: RAT stalls below ~140 kt, losing power generation capability.",
   },
   {
     id: 275,
@@ -3508,7 +3516,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM PRO-ABN-CAB_PR: Auto-pressurization failures generate ECAM alerts[cite: 2].",
+      "FCOM PRO-ABN-CAB_PR: Auto-pressurization failures generate ECAM alerts.",
   },
   {
     id: 276,
@@ -3522,7 +3530,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-27-10-20: Spoilers assist roll, act as speed brakes, and ground spoilers[cite: 2].",
+      "FCOM DSC-27-10-20: Spoilers assist roll, act as speed brakes, and ground spoilers.",
   },
   {
     id: 277,
@@ -3536,7 +3544,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-27-20-10: Spoilers extend automatically upon main wheel touchdown[cite: 2].",
+      "FCOM DSC-27-20-10: Spoilers extend automatically upon main wheel touchdown.",
   },
   {
     id: 278,
@@ -3550,7 +3558,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-31-10: Status page auto-displays after ground engine shutdown[cite: 2].",
+      "FCOM DSC-31-10: Status page auto-displays after ground engine shutdown.",
   },
   {
     id: 279,
@@ -3564,7 +3572,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-70-90-40: Reset occurs automatically on ground during next start sequence[cite: 2].",
+      "FCOM DSC-70-90-40: Reset occurs automatically on ground during next start sequence.",
   },
   {
     id: 280,
@@ -3578,7 +3586,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-35-10: Provides vital supplemental oxygen during depressurization[cite: 2].",
+      "FCOM DSC-35-10: Provides vital supplemental oxygen during depressurization.",
   },
   {
     id: 281,
@@ -3592,7 +3600,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-24-10-30: RAT drives Blue hyd system, which powers EMER GEN[cite: 2].",
+      "FCOM DSC-24-10-30: RAT drives Blue hyd system, which powers EMER GEN.",
   },
   {
     id: 282,
@@ -3606,7 +3614,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-27-20-20: Yaw damping lost; crew must coordinate turns manually[cite: 2].",
+      "FCOM DSC-27-20-20: Yaw damping lost; crew must coordinate turns manually.",
   },
   {
     id: 283,
@@ -3620,7 +3628,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-24-10-30: Sustains essential systems when all main AC generators fail[cite: 2].",
+      "FCOM DSC-24-10-30: Sustains essential systems when all main AC generators fail.",
   },
   {
     id: 284,
@@ -3634,7 +3642,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-27-20-10: Advancing levers above MCT detent retracts speedbrakes[cite: 2].",
+      "FCOM DSC-27-20-10: Advancing levers above MCT detent retracts speedbrakes.",
   },
   {
     id: 285,
@@ -3649,7 +3657,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-31-15: Test simulates takeoff power on ground to check config[cite: 2].",
+      "FCOM DSC-31-15: Test simulates takeoff power on ground to check config.",
   },
   {
     id: 286,
@@ -3664,7 +3672,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-32-10-20: LGCIU fails safe; gear status frozen; ECAM directs crew[cite: 2].",
+      "FCOM DSC-32-10-20: LGCIU fails safe; gear status frozen; ECAM directs crew.",
   },
   {
     id: 287,
@@ -3678,7 +3686,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-22-40-20: FACs compute flight envelope and handle rudder control[cite: 2].",
+      "FCOM DSC-22-40-20: FACs compute flight envelope and handle rudder control.",
   },
   {
     id: 288,
@@ -3693,7 +3701,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-24-10-30: EMER GEN prioritized power to AC/DC ESS buses[cite: 2].",
+      "FCOM DSC-24-10-30: EMER GEN prioritized power to AC/DC ESS buses.",
   },
   {
     id: 289,
@@ -3703,7 +3711,7 @@ const db = [
     options: ["20,000 ft", "25,000 ft", "30,000 ft", "35,000 ft"],
     correct: 1,
     explanation:
-      "FCOM LIM-APU: APU battery start allowed up to FL250 (25,000 ft)[cite: 2].",
+      "FCOM LIM-APU: APU battery start allowed up to FL250 (25,000 ft).",
   },
   {
     id: 290,
@@ -3717,7 +3725,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-21-20-40: MAN mode allows manual toggle control of outflow valve[cite: 2].",
+      "FCOM DSC-21-20-40: MAN mode allows manual toggle control of outflow valve.",
   },
   {
     id: 291,
@@ -3731,7 +3739,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-29-10-20: Manual deployment pressurizes Blue hyd system to power EMER GEN[cite: 2].",
+      "FCOM DSC-29-10-20: Manual deployment pressurizes Blue hyd system to power EMER GEN.",
   },
   {
     id: 292,
@@ -3745,7 +3753,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-21-20-40: Valve inhibited if differential pressure > 1 PSI[cite: 2].",
+      "FCOM DSC-21-20-40: Valve inhibited if differential pressure > 1 PSI.",
   },
   {
     id: 293,
@@ -3755,7 +3763,7 @@ const db = [
     options: ["75°", "65°", "78°", "70°"],
     correct: 0,
     explanation:
-      "FCOM DSC-32-10-40: Tillers (handwheels) provide steer angle up to +/- 75°[cite: 2].",
+      "FCOM DSC-32-10-40: Tillers (handwheels) provide steer angle up to +/- 75°.",
   },
   {
     id: 294,
@@ -3770,7 +3778,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-32-10-40: Pull handle and rotate clockwise 3 full turns[cite: 2].",
+      "FCOM DSC-32-10-40: Pull handle and rotate clockwise 3 full turns.",
   },
   {
     id: 295,
@@ -3785,7 +3793,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-32-10-40: Left triangle from LGCIU 1; right from LGCIU 2[cite: 2].",
+      "FCOM DSC-32-10-40: Left triangle from LGCIU 1; right from LGCIU 2.",
   },
   {
     id: 296,
@@ -3800,7 +3808,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-33-20-20: Automatic signs occur above approx 11,300 ft cabin altitude[cite: 2].",
+      "FCOM DSC-33-20-20: Automatic signs occur above approx 11,300 ft cabin altitude.",
   },
   {
     id: 297,
@@ -3815,7 +3823,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-24-20: IDG disconnect button must not be held > 3 seconds[cite: 2].",
+      "FCOM DSC-24-20: IDG disconnect button must not be held > 3 seconds.",
   },
   {
     id: 298,
@@ -3829,7 +3837,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-70-20: FADEC passively monitors and auto-closes start valve at ~50% N2[cite: 2].",
+      "FCOM DSC-70-20: FADEC passively monitors and auto-closes start valve at ~50% N2.",
   },
   {
     id: 299,
@@ -3843,7 +3851,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-27-20-20: Occurs with loss of all five ELAC/SEC computers[cite: 2].",
+      "FCOM DSC-27-20-20: Occurs with loss of all five ELAC/SEC computers.",
   },
   {
     id: 300,
@@ -3858,7 +3866,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM PRO-ABN-ABN-00: '(O)' requires an Operational procedure by crew[cite: 2].",
+      "FCOM PRO-ABN-ABN-00: '(O)' requires an Operational procedure by crew.",
   },
   {
     id: 301,
@@ -3872,7 +3880,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-30-10-10: Engine cowls and the three outboard slats (3, 4, 5)[cite: 2].",
+      "FCOM DSC-30-10-10: Engine cowls and the three outboard slats (3, 4, 5).",
   },
   {
     id: 302,
@@ -3887,7 +3895,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-30-20-10: Three outboard slats (3, 4, 5) are anti-iced[cite: 2].",
+      "FCOM DSC-30-20-10: Three outboard slats (3, 4, 5) are anti-iced.",
   },
   {
     id: 303,
@@ -3902,7 +3910,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-22-10-50-30: Displayed as an amber '=' on the speed scale[cite: 2].",
+      "FCOM DSC-22-10-50-30: Displayed as an amber '=' on the speed scale.",
   },
   {
     id: 304,
@@ -3917,7 +3925,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-28-10-80: Transfer valves close only upon next ground refueling[cite: 2].",
+      "FCOM DSC-28-10-80: Transfer valves close only upon next ground refueling.",
   },
   {
     id: 305,
@@ -3932,7 +3940,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-27-10-20: THS and Rudder have cable-driven mechanical backup[cite: 2].",
+      "FCOM DSC-27-10-20: THS and Rudder have cable-driven mechanical backup.",
   },
   {
     id: 306,
@@ -3946,7 +3954,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-22-30-40-20: Transition to CLB mode at programmed Acceleration Altitude[cite: 2].",
+      "FCOM DSC-22-30-40-20: Transition to CLB mode at programmed Acceleration Altitude.",
   },
   {
     id: 307,
@@ -3955,7 +3963,7 @@ const db = [
     options: ["Disconnected", "Armed", "Active", "Off"],
     correct: 2,
     explanation:
-      "FCOM DSC-22-30-80-20: White color signifies an Active guidance mode[cite: 2].",
+      "FCOM DSC-22-30-80-20: White color signifies an Active guidance mode.",
   },
   {
     id: 308,
@@ -3970,7 +3978,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-27-20-10-20: Sidestick commands specific Angle of Attack up to Alpha Max[cite: 2].",
+      "FCOM DSC-27-20-10-20: Sidestick commands specific Angle of Attack up to Alpha Max.",
   },
   {
     id: 309,
@@ -3985,7 +3993,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-28-10-30: Center pumps auto-stop when slats are extended[cite: 2].",
+      "FCOM DSC-28-10-30: Center pumps auto-stop when slats are extended.",
   },
   {
     id: 310,
@@ -3994,7 +4002,7 @@ const db = [
     options: ["1 minute", "3 minutes", "7 minutes", "10 minutes"],
     correct: 3,
     explanation:
-      "FCOM DSC-34-NAV-10-10: Full IRS alignment takes approx 10 minutes[cite: 2].",
+      "FCOM DSC-34-NAV-10-10: Full IRS alignment takes approx 10 minutes.",
   },
   {
     id: 311,
@@ -4009,7 +4017,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-70-90-40: Removal of grey highlight signals start completion at idle[cite: 2].",
+      "FCOM DSC-70-90-40: Removal of grey highlight signals start completion at idle.",
   },
   {
     id: 312,
@@ -4019,7 +4027,7 @@ const db = [
     options: ["F speed", "S speed", "Green dot speed", "Vls speed"],
     correct: 1,
     explanation:
-      "FCOM DSC-22-10-50-20: 'S' speed is minimum speed for slat retraction[cite: 2].",
+      "FCOM DSC-22-10-50-20: 'S' speed is minimum speed for slat retraction.",
   },
   {
     id: 313,
@@ -4033,7 +4041,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-23-10-20: RMPs tune all COM radios and on-side Nav receivers[cite: 2].",
+      "FCOM DSC-23-10-20: RMPs tune all COM radios and on-side Nav receivers.",
   },
   {
     id: 314,
@@ -4048,7 +4056,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-31-05-10: Red indicates immediate action requirement[cite: 2].",
+      "FCOM DSC-31-05-10: Red indicates immediate action requirement.",
   },
   {
     id: 315,
@@ -4063,7 +4071,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-28-20: Dashes signify sensing inaccuracy for that tank[cite: 2].",
+      "FCOM DSC-28-20: Dashes signify sensing inaccuracy for that tank.",
   },
   {
     id: 316,
@@ -4078,7 +4086,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM PRO-NOR-SRP-01-10: APU FIRE pb IN and AGENT lights OFF before test[cite: 2].",
+      "OM-B Section 2.3.4.3 APU Fire Test explicitly instructs to check that the APU FIRE pb-sw is IN and GUARDED, and that the AGENT lights are OFF before pressing the test button.<br>FCOM PRO-NOR-SRP-01-10: APU FIRE pb IN and AGENT lights OFF before test.",
   },
   {
     id: 317,
@@ -4088,7 +4096,7 @@ const db = [
     options: ["False", "True", "Only in Alternate Law", "Only in Direct Law"],
     correct: 1,
     explanation:
-      "FCOM LIM-AG-F_CTL: Structurally limited to -1g to +2.5g (clean config)[cite: 2].",
+      "FCOM LIM-AG-F_CTL: Structurally limited to -1g to +2.5g (clean config).",
   },
   {
     id: 318,
@@ -4103,7 +4111,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-27-20-30: Slat retraction inhibited at high AoA; reduce AoA to recover[cite: 2].",
+      "FCOM DSC-27-20-30: Slat retraction inhibited at high AoA; reduce AoA to recover.",
   },
   {
     id: 319,
@@ -4117,7 +4125,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-31-40: Heading shown as blue triangle or digits if off-scale[cite: 2].",
+      "FCOM DSC-31-40: Heading shown as blue triangle or digits if off-scale.",
   },
   {
     id: 320,
@@ -4132,7 +4140,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM PRO-NOR-SOP-01: Standard disconnect via instinctive sidestick pb[cite: 2].",
+      "FCOM PRO-NOR-SOP-01: Standard disconnect via instinctive sidestick pb.",
   },
   {
     id: 321,
@@ -4146,7 +4154,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-31-20: Amber signifies door is open or not properly locked[cite: 2].",
+      "FCOM DSC-31-20: Amber signifies door is open or not properly locked.",
   },
   {
     id: 322,
@@ -4155,7 +4163,7 @@ const db = [
     options: ["2,400 kg", "1,500 kg", "15,400 kg", "There is no limitation"],
     correct: 1,
     explanation:
-      "FCOM LIM-FUEL: 1,500 kg minimum required to prevent maneuver-induced starvation[cite: 2].",
+      "FCOM LIM-FUEL: 1,500 kg minimum required to prevent maneuver-induced starvation.",
   },
   {
     id: 323,
@@ -4170,7 +4178,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM PRO-NOR-SRP-01-70: LDG FLAP 3 switch prevents nuisance warnings in CONF 3[cite: 2].",
+      "FCOM PRO-NOR-SRP-01-70: LDG FLAP 3 switch prevents nuisance warnings in CONF 3.",
   },
   {
     id: 324,
@@ -4185,7 +4193,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-21-20-40: Controls outflow valve manually when MODE SEL is MAN[cite: 2].",
+      "FCOM DSC-21-20-40: Controls outflow valve manually when MODE SEL is MAN.",
   },
   {
     id: 325,
@@ -4195,7 +4203,7 @@ const db = [
     options: ["Green", "Yellow", "Blue", "Amber"],
     correct: 1,
     explanation:
-      "FCOM DSC-32-30-20: Digital/analog triple gauge shows Yellow system pressure[cite: 2].",
+      "FCOM DSC-32-30-20: Digital/analog triple gauge shows Yellow system pressure.",
   },
   {
     id: 326,
@@ -4205,7 +4213,7 @@ const db = [
     options: ["220 kt", "250 kt", "280 kt", "Green Dot"],
     correct: 1,
     explanation:
-      "FCOM LIM-AG-SPD: Maximum speed for gear extension (VLO) is 250 kt[cite: 2].",
+      "FCOM LIM-AG-SPD: Maximum speed for gear extension (VLO) is 250 kt.",
   },
   {
     id: 327,
@@ -4215,7 +4223,7 @@ const db = [
     options: ["100 %.", "117 %.", "107 %.", "97 %."],
     correct: 2,
     explanation:
-      "FCOM DSC-49-30: Automatic overspeed shutdown triggers above 107% N[cite: 2].",
+      "FCOM DSC-49-30: Automatic overspeed shutdown triggers above 107% N.",
   },
   {
     id: 328,
@@ -4230,7 +4238,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM PRO-ABN-F_CTL: Wing Tip Brakes lock flaps for asymmetry or runaway[cite: 2].",
+      "FCOM PRO-ABN-F_CTL: Wing Tip Brakes lock flaps for asymmetry or runaway.",
   },
   {
     id: 329,
@@ -4245,7 +4253,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-34-SURV-10-10: TCAS advisories require an operating transponder on targets[cite: 2].",
+      "FCOM DSC-34-SURV-10-10: TCAS advisories require an operating transponder on targets.",
   },
   {
     id: 330,
@@ -4260,7 +4268,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM PRO-ABN-SMOKE: Isolates GEN 1 from AC buses (Smoke procedures)[cite: 2].",
+      "FCOM PRO-ABN-SMOKE: Isolates GEN 1 from AC buses (Smoke procedures).",
   },
   {
     id: 331,
@@ -4275,7 +4283,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-21-30-50: Fan runs automatically with electrical power[cite: 2].",
+      "FCOM DSC-21-30-50: Fan runs automatically with electrical power.",
   },
   {
     id: 332,
@@ -4283,7 +4291,7 @@ const db = [
     question: "What is the maximum speed for FLAP 3?",
     options: ["177 knots", "185 knots", "200 knots", "205 knots"],
     correct: 1,
-    explanation: "FCOM LIM-AG-SPD: VFE for CONF 3 is 185 kt[cite: 2].",
+    explanation: "FCOM LIM-AG-SPD: VFE for CONF 3 is 185 kt.",
   },
   {
     id: 333,
@@ -4298,7 +4306,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-26-20-10: Each engine utilizes 2 Halon fire bottles[cite: 2].",
+      "FCOM DSC-26-20-10: Each engine utilizes 2 Halon fire bottles.",
   },
   {
     id: 334,
@@ -4313,7 +4321,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-21-20-30: Standby CPC automatically takes over active control[cite: 2].",
+      "FCOM DSC-21-20-30: Standby CPC automatically takes over active control.",
   },
   {
     id: 335,
@@ -4327,7 +4335,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-70-90-40: Disappearance of grey box marks idle reaching/start end[cite: 2].",
+      "FCOM DSC-70-90-40: Disappearance of grey box marks idle reaching/start end.",
   },
   {
     id: 336,
@@ -4342,7 +4350,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-30-10-10: Engines fail OPEN (Safe); Wings fail CLOSED (Protect structure)[cite: 2].",
+      "FCOM DSC-30-10-10: Engines fail OPEN (Safe); Wings fail CLOSED (Protect structure).",
   },
   {
     id: 337,
@@ -4357,7 +4365,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-22-30-50-30: A/THR arms (Blue FMA) upon FLX or TOGA selection[cite: 2].",
+      "FCOM DSC-22-30-50-30: A/THR arms (Blue FMA) upon FLX or TOGA selection.",
   },
   {
     id: 338,
@@ -4372,7 +4380,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-24-10-30-30: AC BUS 2 supplies AC ESS via AC ESS FEED pb[cite: 2].",
+      "FCOM DSC-24-10-30-30: AC BUS 2 supplies AC ESS via AC ESS FEED pb.",
   },
   {
     id: 339,
@@ -4386,7 +4394,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-22-30-40-20: SRS mode guides pitch for V2 + 10 kt minimum[cite: 2].",
+      "FCOM DSC-22-30-40-20: SRS mode guides pitch for V2 + 10 kt minimum.",
   },
   {
     id: 340,
@@ -4400,7 +4408,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-27-10-20: Loss of 1 SFCC halves surface actuation speed[cite: 2].",
+      "FCOM DSC-27-10-20: Loss of 1 SFCC halves surface actuation speed.",
   },
   {
     id: 341,
@@ -4410,7 +4418,7 @@ const db = [
     options: ["Above ISA -5°C", "False", "Only in CONF 1+F", "True"],
     correct: 1,
     explanation:
-      "FCOM EFB-TOF-30-30: FLEX takeoff is prohibited on contaminated runways[cite: 2].",
+      "FCOM EFB-TOF-30-30: FLEX takeoff is prohibited on contaminated runways.",
   },
   {
     id: 342,
@@ -4425,7 +4433,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-28-10-80: Low level threshold (~750kg) opens valves in both wings[cite: 2].",
+      "FCOM DSC-28-10-80: Low level threshold (~750kg) opens valves in both wings.",
   },
   {
     id: 343,
@@ -4440,7 +4448,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-23-20-20: Initiates triple chime and pink flashing cabin lights[cite: 2].",
+      "FCOM DSC-23-20-20: Initiates triple chime and pink flashing cabin lights.",
   },
   {
     id: 344,
@@ -4454,7 +4462,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-23-10-50: RESET button extinguishes illuminated ACP call lights[cite: 2].",
+      "FCOM DSC-23-10-50: RESET button extinguishes illuminated ACP call lights.",
   },
   {
     id: 345,
@@ -4469,7 +4477,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-34-NAV-10-20: Turning IR to NAV automatically powers ADR section[cite: 2].",
+      "FCOM DSC-34-NAV-10-20: Turning IR to NAV automatically powers ADR section.",
   },
   {
     id: 346,
@@ -4484,7 +4492,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM LIM-AIR: Mask doors open automatically above 14,000 ft cabin altitude[cite: 2].",
+      "FCOM LIM-AIR: Mask doors open automatically above 14,000 ft cabin altitude.",
   },
   {
     id: 347,
@@ -4498,7 +4506,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-20-20: Standard layout: 4 main doors + 4 overwing exits[cite: 2].",
+      "FCOM DSC-20-20: Standard layout: 4 main doors + 4 overwing exits.",
   },
   {
     id: 348,
@@ -4513,7 +4521,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-70-70: Green signifies reverser doors are fully deployed[cite: 2].",
+      "FCOM DSC-70-70: Green signifies reverser doors are fully deployed.",
   },
   {
     id: 349,
@@ -4527,7 +4535,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-22-10-40-10: Amber boxes mark entries mandatory for FMGS calculation[cite: 2].",
+      "FCOM DSC-22-10-40-10: Amber boxes mark entries mandatory for FMGS calculation.",
   },
   {
     id: 350,
@@ -4541,7 +4549,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-31-45: Prompts range reduction for target view if set > 40 NM[cite: 2].",
+      "FCOM DSC-31-45: Prompts range reduction for target view if set > 40 NM.",
   },
   {
     id: 351,
@@ -4555,7 +4563,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-21-10-30: HI pack flow is approx 120% of normal flow[cite: 2].",
+      "FCOM DSC-21-10-30: HI pack flow is approx 120% of normal flow.",
   },
   {
     id: 352,
@@ -4570,7 +4578,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-22-40-30: Alpha Floor protection engages regardless of A/THR status[cite: 2].",
+      "FCOM DSC-22-40-30: Alpha Floor protection engages regardless of A/THR status.",
   },
   {
     id: 353,
@@ -4585,7 +4593,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-27-20-10-30: Flaps auto-retract at 210 kt to prevent overspeed[cite: 2].",
+      "FCOM DSC-27-20-10-30: Flaps auto-retract at 210 kt to prevent overspeed.",
   },
   {
     id: 354,
@@ -4599,7 +4607,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-23-20-40: Handset is dedicated to cabin PA and intercom[cite: 2].",
+      "FCOM DSC-23-20-40: Handset is dedicated to cabin PA and intercom.",
   },
   {
     id: 355,
@@ -4614,7 +4622,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-27-20-10-30: Pos stability returns Bank to 33° if released above 33°[cite: 2].",
+      "FCOM DSC-27-20-10-30: Pos stability returns Bank to 33° if released above 33°.",
   },
   {
     id: 356,
@@ -4629,7 +4637,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM PRO-ABN-HYD: Braking uses Yellow accumulator without Anti-Skid (~7 applications)[cite: 2].",
+      "FCOM PRO-ABN-HYD: Braking uses Yellow accumulator without Anti-Skid (~7 applications).",
   },
   {
     id: 357,
@@ -4643,7 +4651,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-31-20: White 'SLIDE' label confirms evacuation slide is armed[cite: 2].",
+      "FCOM DSC-31-20: White 'SLIDE' label confirms evacuation slide is armed.",
   },
   {
     id: 358,
@@ -4657,7 +4665,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-27-10-20: Roll is controlled by ailerons + spoilers 2, 3, 4, 5[cite: 2].",
+      "FCOM DSC-27-10-20: Roll is controlled by ailerons + spoilers 2, 3, 4, 5.",
   },
   {
     id: 359,
@@ -4666,7 +4674,7 @@ const db = [
     options: ["1, 2, 3, 4", "2, 3, 4", "2, 3, 4, 5", "3, 4, 5"],
     correct: 1,
     explanation:
-      "FCOM DSC-27-10-20: Symmetrical spoilers 2, 3, 4 provide speed brake drag[cite: 2].",
+      "FCOM DSC-27-10-20: Symmetrical spoilers 2, 3, 4 provide speed brake drag.",
   },
   {
     id: 360,
@@ -4681,7 +4689,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-22-10-30: The FMGC associated with the engaged AP becomes Master[cite: 2].",
+      "FCOM DSC-22-10-30: The FMGC associated with the engaged AP becomes Master.",
   },
   {
     id: 361,
@@ -4695,7 +4703,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-31-10: Signals landing capability downgrade or specific mode reversions[cite: 2].",
+      "FCOM DSC-31-10: Signals landing capability downgrade or specific mode reversions.",
   },
   {
     id: 362,
@@ -4704,8 +4712,7 @@ const db = [
       "What is the take-off and go around EGT limit for the CFM engine?",
     options: ["950°C", "725°C", "915°C", "625°C"],
     correct: 0,
-    explanation:
-      "FCOM LIM-ENG: TOGA EGT limit for CFM56 is 950°C (5/10 min)[cite: 2].",
+    explanation: "FCOM LIM-ENG: TOGA EGT limit for CFM56 is 950°C (5/10 min).",
   },
   {
     id: 363,
@@ -4720,7 +4727,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-31-05-10: Blue signifies an active temporary normal function[cite: 2].",
+      "FCOM DSC-31-05-10: Blue signifies an active temporary normal function.",
   },
   {
     id: 364,
@@ -4734,7 +4741,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-22-30-40-80-30: Engages below 400 ft RA; disengages with TOGA or AP/FD OFF[cite: 2].",
+      "FCOM DSC-22-30-40-80-30: Engages below 400 ft RA; disengages with TOGA or AP/FD OFF.",
   },
   {
     id: 365,
@@ -4748,7 +4755,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-21-10-20: LP conditioned air connector on lower left forward fuselage[cite: 2].",
+      "FCOM DSC-21-10-20: LP conditioned air connector on lower left forward fuselage.",
   },
   {
     id: 366,
@@ -4762,7 +4769,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-31-20: Load turns amber if it exceeds the 100% rated capacity[cite: 2].",
+      "FCOM DSC-31-20: Load turns amber if it exceeds the 100% rated capacity.",
   },
   {
     id: 367,
@@ -4777,7 +4784,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-26-50-10: Sequence shuts down APU and discharges bottle after 3s on ground[cite: 2].",
+      "FCOM DSC-26-50-10: Sequence shuts down APU and discharges bottle after 3s on ground.",
   },
   {
     id: 368,
@@ -4792,7 +4799,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-52-20: Residual pressure light (> 2.5 hPa) protecting against opening[cite: 2].",
+      "FCOM DSC-52-20: Residual pressure light (> 2.5 hPa) protecting against opening.",
   },
   {
     id: 369,
@@ -4806,7 +4813,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM PRO-ABN-C_B: Clarify with Maintenance (ground) or use QRH (flight) before reset[cite: 2].",
+      "OM-B Section 2.3.6.2 Cockpit Preparation states to clarify with Maintenance Control before resetting tripped circuit breakers.<br>FCOM PRO-ABN-C_B: Clarify with Maintenance (ground) or use QRH (flight) before reset.",
   },
   {
     id: 370,
@@ -4820,7 +4827,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-22-20-10-30: divergence requires unmanaged mode (HDG/TRK) to activate[cite: 2].",
+      "FCOM DSC-22-20-10-30: divergence requires unmanaged mode (HDG/TRK) to activate.",
   },
   {
     id: 371,
@@ -4834,7 +4841,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-32-10-20: Controllers alternate mastery after each landing gear cycle[cite: 2].",
+      "FCOM DSC-32-10-20: Controllers alternate mastery after each landing gear cycle.",
   },
   {
     id: 372,
@@ -4849,7 +4856,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-70-80-40: Ground auto start: igniters on at 16% N2; cut off at ~50% N2[cite: 2].",
+      "FCOM DSC-70-80-40: Ground auto start: igniters on at 16% N2; cut off at ~50% N2.",
   },
   {
     id: 373,
@@ -4859,7 +4866,7 @@ const db = [
     options: ["10", "1", "5", "2"],
     correct: 2,
     explanation:
-      "FCOM DSC-28-10-30: Pumps run for 5 minutes after low level to ensure scavenge[cite: 2].",
+      "FCOM DSC-28-10-30: Pumps run for 5 minutes after low level to ensure scavenge.",
   },
   {
     id: 374,
@@ -4873,7 +4880,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM LIM-ENG: Reconnecting IDG is prohibited in flight; ground maintenance only[cite: 2].",
+      "FCOM LIM-ENG: Reconnecting IDG is prohibited in flight; ground maintenance only.",
   },
   {
     id: 375,
@@ -4887,8 +4894,7 @@ const db = [
       "2 bottles shared by both engines and 2 bottles for the APU",
     ],
     correct: 0,
-    explanation:
-      "FCOM DSC-26-20-10: 2 bottles per engine; 1 bottle for APU[cite: 2].",
+    explanation: "FCOM DSC-26-20-10: 2 bottles per engine; 1 bottle for APU.",
   },
   {
     id: 376,
@@ -4897,7 +4903,7 @@ const db = [
     options: ["2,500 ft", "3,000 ft", "1,500 ft", "2,000 ft"],
     correct: 0,
     explanation:
-      "FCOM DSC-31-10: Synthetic height callouts start below 2,500 ft Radio Altitude[cite: 2].",
+      "FCOM DSC-31-10: Synthetic height callouts start below 2,500 ft Radio Altitude.",
   },
   {
     id: 377,
@@ -4911,7 +4917,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-34-NAV-10-20: ND in PLAN mode is always oriented True North Up[cite: 2].",
+      "FCOM DSC-34-NAV-10-20: ND in PLAN mode is always oriented True North Up.",
   },
   {
     id: 378,
@@ -4926,7 +4932,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-31-10: ECAM Advisory pulses drifting parameter in green on SD[cite: 2].",
+      "FCOM DSC-31-10: ECAM Advisory pulses drifting parameter in green on SD.",
   },
   {
     id: 379,
@@ -4936,7 +4942,7 @@ const db = [
     options: ["95°", "70°", "75°", "80°"],
     correct: 2,
     explanation:
-      "FCOM DSC-32-10-40: Tiller provides steer angle up to +/- 75°[cite: 2].",
+      "FCOM DSC-32-10-40: Tiller provides steer angle up to +/- 75°.",
   },
   {
     id: 380,
@@ -4951,7 +4957,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM PRO-NOR-SRP-01-10: POS 1 uses first set; POS 2 uses second (standby) set[cite: 2].",
+      "OM-B Section 2.3.4.10 Before Walkaround states that NAV & LOGO 1 is normally used, while NAV & LOGO 2 is used only when the first set of lights fails.<br>FCOM PRO-NOR-SRP-01-10: POS 1 uses first set; POS 2 uses second (standby) set.",
   },
   {
     id: 381,
@@ -4966,7 +4972,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-70-60: Bleeding air drops max thrust limit and increases idle[cite: 2].",
+      "FCOM DSC-70-60: Bleeding air drops max thrust limit and increases idle.",
   },
   {
     id: 382,
@@ -4981,7 +4987,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM LIM-APU: APU supplies electrical power up to max certified altitude[cite: 2].",
+      "FCOM LIM-APU: APU supplies electrical power up to max certified altitude.",
   },
   {
     id: 383,
@@ -4995,7 +5001,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-23-10-20: Any communication radio can be tuned by any RMP[cite: 2].",
+      "FCOM DSC-23-10-20: Any communication radio can be tuned by any RMP.",
   },
   {
     id: 384,
@@ -5010,7 +5016,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-26-20-10: Double loop break within 5s triggers fire warning[cite: 2].",
+      "FCOM DSC-26-20-10: Double loop break within 5s triggers fire warning.",
   },
   {
     id: 385,
@@ -5025,7 +5031,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-31-10: classified as Independent if PTU sustains system pressure[cite: 2].",
+      "FCOM DSC-31-10: classified as Independent if PTU sustains system pressure.",
   },
   {
     id: 386,
@@ -5040,7 +5046,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-31-30: Gear selection DOWN auto-displays WHEEL system page[cite: 2].",
+      "FCOM DSC-31-30: Gear selection DOWN auto-displays WHEEL system page.",
   },
   {
     id: 387,
@@ -5054,7 +5060,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-70-80-40: FADEC auto-abort/dry crank is ground auto-start only[cite: 2].",
+      "FCOM DSC-70-80-40: FADEC auto-abort/dry crank is ground auto-start only.",
   },
   {
     id: 388,
@@ -5068,7 +5074,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-27-20-10-30: Requires armed spoilers, levers idle, and speed > 72 kt[cite: 2].",
+      "FCOM DSC-27-20-10-30: Requires armed spoilers, levers idle, and speed > 72 kt.",
   },
   {
     id: 389,
@@ -5077,8 +5083,7 @@ const db = [
       "Which hydraulic system is used for landing gear retraction and extension?",
     options: ["Green", "Blue", "Yellow", "Green or yellow"],
     correct: 0,
-    explanation:
-      "FCOM DSC-32-10-20: Green hydraulic system powers the gear[cite: 2].",
+    explanation: "FCOM DSC-32-10-20: Green hydraulic system powers the gear.",
   },
   {
     id: 390,
@@ -5093,7 +5098,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-22-30-40-80-00: APPR arms modes based on active MCDU selection[cite: 2].",
+      "FCOM DSC-22-30-40-80-00: APPR arms modes based on active MCDU selection.",
   },
   {
     id: 391,
@@ -5108,7 +5113,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-22-20-10-30: Indicated by amber stars (MCDU) and circles (ND)[cite: 2].",
+      "FCOM DSC-22-20-10-30: Indicated by amber stars (MCDU) and circles (ND).",
   },
   {
     id: 392,
@@ -5123,7 +5128,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-28-20: Dashes signify partial sensing failure; check SD page[cite: 2].",
+      "FCOM DSC-28-20: Dashes signify partial sensing failure; check SD page.",
   },
   {
     id: 393,
@@ -5137,7 +5142,7 @@ const db = [
       "Single phase AC 230v 50Hz, and 12v DC",
     ],
     correct: 1,
-    explanation: "FCOM DSC-24-10-10: AC is 115/200V 400Hz; DC is 28V[cite: 2].",
+    explanation: "FCOM DSC-24-10-10: AC is 115/200V 400Hz; DC is 28V.",
   },
   {
     id: 394,
@@ -5151,7 +5156,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-29-10-20: 3000 PSI normal; 2500 PSI when RAT-powered[cite: 2].",
+      "FCOM DSC-29-10-20: 3000 PSI normal; 2500 PSI when RAT-powered.",
   },
   {
     id: 395,
@@ -5165,7 +5170,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-24-20: Voltage shown on overhead panel and ECAM ELEC page[cite: 2].",
+      "FCOM DSC-24-20: Voltage shown on overhead panel and ECAM ELEC page.",
   },
   {
     id: 396,
@@ -5180,7 +5185,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-28-10-30: Center tank feeds if slats up and inner usage >= 500kg[cite: 2].",
+      "FCOM DSC-28-10-30: Center tank feeds if slats up and inner usage >= 500kg.",
   },
   {
     id: 397,
@@ -5195,7 +5200,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-27-10-20: Single hydraulic loss halves surface actuation speed[cite: 2].",
+      "FCOM DSC-27-10-20: Single hydraulic loss halves surface actuation speed.",
   },
   {
     id: 398,
@@ -5210,7 +5215,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-27-20-10-20: Transition from G-load to AoA demand (Alpha Prot)[cite: 2].",
+      "FCOM DSC-27-20-10-20: Transition from G-load to AoA demand (Alpha Prot).",
   },
   {
     id: 399,
@@ -5219,7 +5224,7 @@ const db = [
     options: ["At 100 ft RA", "At 30 ft RA", "At 20 ft RA", "At 50 ft RA"],
     correct: 3,
     explanation:
-      "FCOM DSC-27-20-10-20: Law transitions to flare mode at 50 ft Radio Altitude[cite: 2].",
+      "FCOM DSC-27-20-10-20: Law transitions to flare mode at 50 ft Radio Altitude.",
   },
   {
     id: 400,
@@ -5234,7 +5239,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-70-20: EIU provides Master SW and Mode selection to FADEC[cite: 2].",
+      "FCOM DSC-70-20: EIU provides Master SW and Mode selection to FADEC.",
   },
   {
     id: 401,
@@ -5249,7 +5254,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-70-70: ENG 1 uses Green; ENG 2 uses Yellow hydraulics[cite: 2].",
+      "FCOM DSC-70-70: ENG 1 uses Green; ENG 2 uses Yellow hydraulics.",
   },
   {
     id: 402,
@@ -5258,7 +5263,7 @@ const db = [
     options: ["24.8 m", "40.5 m", "34.1 m", "38.1 m"],
     correct: 2,
     explanation:
-      "FCOM DSC-20-20: Standard A320 wingspan (tip to tip) is 34.1 m[cite: 2].",
+      "FCOM DSC-20-20: Standard A320 wingspan (tip to tip) is 34.1 m.",
   },
   {
     id: 403,
@@ -5272,7 +5277,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-24-10-30-30: EMER GEN powers AC/DC ESS and SHED buses[cite: 2].",
+      "FCOM DSC-24-10-30-30: EMER GEN powers AC/DC ESS and SHED buses.",
   },
   {
     id: 404,
@@ -5287,7 +5292,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-31-10: Routine cockpit call buzzer sounds for approx 3 seconds[cite: 2].",
+      "FCOM DSC-31-10: Routine cockpit call buzzer sounds for approx 3 seconds.",
   },
   {
     id: 405,
@@ -5297,7 +5302,7 @@ const db = [
     options: ["6", "7", "10", "8"],
     correct: 2,
     explanation:
-      "FCOM DSC-31-10: The FWC divides flight into 10 distinct logic phases[cite: 2].",
+      "FCOM DSC-31-10: The FWC divides flight into 10 distinct logic phases.",
   },
   {
     id: 406,
@@ -5307,7 +5312,7 @@ const db = [
     options: ["18,000 ft", "14,000 ft", "16,000 ft", "20,000 ft"],
     correct: 2,
     explanation:
-      "FCOM DSC-38-10: Below 16,000 ft, vacuum generator assists waste movement[cite: 2].",
+      "FCOM DSC-38-10: Below 16,000 ft, vacuum generator assists waste movement.",
   },
   {
     id: 407,
@@ -5321,7 +5326,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-27-20-20: Pitch (trim wheel) and yaw (pedals) are cable-controlled[cite: 2].",
+      "FCOM DSC-27-20-20: Pitch (trim wheel) and yaw (pedals) are cable-controlled.",
   },
   {
     id: 408,
@@ -5335,7 +5340,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-30-10-10: Engine cowls and outboard slats (3, 4, 5) use hot air[cite: 2].",
+      "FCOM DSC-30-10-10: Engine cowls and outboard slats (3, 4, 5) use hot air.",
   },
   {
     id: 409,
@@ -5350,7 +5355,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-31-05-50: DMC failure results in 'INVALID DATA' on affected screens[cite: 2].",
+      "FCOM DSC-31-05-50: DMC failure results in 'INVALID DATA' on affected screens.",
   },
   {
     id: 410,
@@ -5360,7 +5365,7 @@ const db = [
     options: ["ADIRU control panel", "FCU", "EFIS control panel", "MCDU"],
     correct: 1,
     explanation:
-      "FCOM DSC-22-10-40-20: FCU is the tactical/short-term management interface[cite: 2].",
+      "FCOM DSC-22-10-40-20: FCU is the tactical/short-term management interface.",
   },
   {
     id: 411,
@@ -5375,7 +5380,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-30-20-20: Status on BLEED page; confirmation on E/WD green memo[cite: 2].",
+      "FCOM DSC-30-20-20: Status on BLEED page; confirmation on E/WD green memo.",
   },
   {
     id: 412,
@@ -5390,7 +5395,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-21-30-20: Uses skin heat exchanger in closed circuit config[cite: 2].",
+      "FCOM DSC-21-30-20: Uses skin heat exchanger in closed circuit config.",
   },
   {
     id: 413,
@@ -5404,7 +5409,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-52-40-20: Door fails to the UNLOCKED position upon total power loss[cite: 2].",
+      "FCOM DSC-52-40-20: Door fails to the UNLOCKED position upon total power loss.",
   },
   {
     id: 414,
@@ -5418,8 +5423,7 @@ const db = [
       "APU continues to run for a cooling period of 45 to 90 sec",
     ],
     correct: 0,
-    explanation:
-      "FCOM DSC-49-10-20: Cooling down period is 60 to 120 seconds[cite: 2].",
+    explanation: "FCOM DSC-49-10-20: Cooling down period is 60 to 120 seconds.",
   },
   {
     id: 415,
@@ -5433,7 +5437,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-27-20-20: Only load factor remains; other protections become stabilities[cite: 2].",
+      "FCOM DSC-27-20-20: Only load factor remains; other protections become stabilities.",
   },
   {
     id: 416,
@@ -5447,7 +5451,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-34-NAV-10-20: IR rotary switch controls main power to the entire unit[cite: 2].",
+      "FCOM DSC-34-NAV-10-20: IR rotary switch controls main power to the entire unit.",
   },
   {
     id: 417,
@@ -5457,7 +5461,7 @@ const db = [
     options: ["CAB", "ALERT", "VHF3", "PA"],
     correct: 0,
     explanation:
-      "FCOM DSC-23-10-50: CAB knob flashes to indicate incoming cabin crew call[cite: 2].",
+      "FCOM DSC-23-10-50: CAB knob flashes to indicate incoming cabin crew call.",
   },
   {
     id: 418,
@@ -5471,7 +5475,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-27-30-20: Configuration is displayed on the Engine/Warning Display[cite: 2].",
+      "OM-B Section 2.3.4.10 Before Walkaround instructs to check the upper ECAM display (E/WD) to confirm that the FLAPS position agrees with the lever position.<br>FCOM DSC-27-30-20: Configuration is displayed on the Engine/Warning Display.",
   },
   {
     id: 419,
@@ -5479,8 +5483,7 @@ const db = [
     question: "What is the maximum speed (VFE) with CONF 1+F for the A320?",
     options: ["215 kt", "230 kt", "185 kt", "177 kt"],
     correct: 0,
-    explanation:
-      "FCOM LIM-AG-SPD: VFE for Configuration 1+F is 215 kt[cite: 2].",
+    explanation: "FCOM LIM-AG-SPD: VFE for Configuration 1+F is 215 kt.",
   },
   {
     id: 420,
@@ -5489,7 +5492,7 @@ const db = [
     options: ["380/0.8", "350/0.82", "320/0.82", "320/0.77"],
     correct: 1,
     explanation:
-      "FCOM LIM-AG-SPD: Maximum operating limits are 350 kt / 0.82 Mach[cite: 2].",
+      "FCOM LIM-AG-SPD: Maximum operating limits are 350 kt / 0.82 Mach.",
   },
   {
     id: 421,
@@ -5503,7 +5506,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM LIM-ENG: Limit is 5 minutes (dual eng) or 10 minutes (single eng)[cite: 2].",
+      "FCOM LIM-ENG: Limit is 5 minutes (dual eng) or 10 minutes (single eng).",
   },
   {
     id: 422,
@@ -5512,7 +5515,7 @@ const db = [
     options: ["220 kt", "260 kt", "280 kt", "250 kt"],
     correct: 2,
     explanation:
-      "FCOM LIM-AG-SPD: Maximum speed with gear extended (VLE) is 280 kt[cite: 2].",
+      "FCOM LIM-AG-SPD: Maximum speed with gear extended (VLE) is 280 kt.",
   },
   {
     id: 423,
@@ -5521,7 +5524,7 @@ const db = [
     options: ["9PSI", "8.4PSI", "8.5PSI", "8.6PSI"],
     correct: 3,
     explanation:
-      "FCOM LIM-AIR: Relief valves auto-open if differential pressure reaches 8.6 PSI[cite: 2].",
+      "FCOM LIM-AIR: Relief valves auto-open if differential pressure reaches 8.6 PSI.",
   },
   {
     id: 424,
@@ -5534,8 +5537,7 @@ const db = [
       "38 kt (mean wind)",
     ],
     correct: 0,
-    explanation:
-      "FCOM LIM-AG-OPS: maximum demonstrated crosswind is 38 kt[cite: 2].",
+    explanation: "FCOM LIM-AG-OPS: maximum demonstrated crosswind is 38 kt.",
   },
   {
     id: 425,
@@ -5545,7 +5547,7 @@ const db = [
     options: ["250 kt", "260 kt", "280 kt", "220 kt"],
     correct: 3,
     explanation:
-      "FCOM LIM-AG-SPD: retraction speed (VLO ret) is limited to 220 kt[cite: 2].",
+      "FCOM LIM-AG-SPD: retraction speed (VLO ret) is limited to 220 kt.",
   },
   {
     id: 426,
@@ -5560,7 +5562,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-27-20-10-20: Pitches nose UP and limits bank to 40° for recovery[cite: 2].",
+      "FCOM DSC-27-20-10-20: Pitches nose UP and limits bank to 40° for recovery.",
   },
   {
     id: 427,
@@ -5575,7 +5577,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-22-10-30: In dual AP operation, FMGC 1 acts as the master[cite: 2].",
+      "FCOM DSC-22-10-30: In dual AP operation, FMGC 1 acts as the master.",
   },
   {
     id: 428,
@@ -5584,8 +5586,7 @@ const db = [
       "What colour will the secondary flight plan be when it is displayed on the ND?",
     options: ["Green", "White", "Blue", "Amber"],
     correct: 1,
-    explanation:
-      "FCOM DSC-31-45: Secondary flight plan is drawn in white[cite: 2].",
+    explanation: "FCOM DSC-31-45: Secondary flight plan is drawn in white.",
   },
   {
     id: 429,
@@ -5600,7 +5601,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-31-20: Arrow indicates additional status data on a second page[cite: 2].",
+      "FCOM DSC-31-20: Arrow indicates additional status data on a second page.",
   },
   {
     id: 430,
@@ -5610,7 +5611,7 @@ const db = [
     options: ["RMP 1 and 3", "RMP 1 AND 2", "RMP 1", "RMP 3"],
     correct: 2,
     explanation:
-      "FCOM DSC-24-10-30-30: Only RMP 1 remains powered in EMER ELEC config[cite: 2].",
+      "FCOM DSC-24-10-30-30: Only RMP 1 remains powered in EMER ELEC config.",
   },
   {
     id: 431,
@@ -5625,7 +5626,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-22-10-10: Architecture: 2 FMGCs, 2 MCDUs, 1 FCU, 2 FACs[cite: 2].",
+      "FCOM DSC-22-10-10: Architecture: 2 FMGCs, 2 MCDUs, 1 FCU, 2 FACs.",
   },
   {
     id: 432,
@@ -5639,7 +5640,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-21-20-20: valve features 3 motors (2 automatic, 1 manual)[cite: 2].",
+      "FCOM DSC-21-20-20: valve features 3 motors (2 automatic, 1 manual).",
   },
   {
     id: 433,
@@ -5653,7 +5654,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-21-20-20: Gear bays, tail cone, radome, and AC pack bay[cite: 2].",
+      "FCOM DSC-21-20-20: Gear bays, tail cone, radome, and AC pack bay.",
   },
   {
     id: 434,
@@ -5667,7 +5668,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM LIM-ENG: 15-minute cooling required after 4 failed cycles[cite: 2].",
+      "FCOM LIM-ENG: 15-minute cooling required after 4 failed cycles.",
   },
   {
     id: 435,
@@ -5681,7 +5682,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-31-40: Target speed bug is magenta for managed, blue for selected[cite: 2].",
+      "FCOM DSC-31-40: Target speed bug is magenta for managed, blue for selected.",
   },
   {
     id: 436,
@@ -5696,7 +5697,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-31-20: TAT, SAT, and ISA deviation are permanently displayed[cite: 2].",
+      "FCOM DSC-31-20: TAT, SAT, and ISA deviation are permanently displayed.",
   },
   {
     id: 437,
@@ -5710,7 +5711,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM PRO-ABN-FWS: total loss of ECAM alerts and standard aural warnings[cite: 2].",
+      "FCOM PRO-ABN-FWS: total loss of ECAM alerts and standard aural warnings.",
   },
   {
     id: 438,
@@ -5724,7 +5725,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-32-10-20: Above 260 kt, hyd power to gear is cut off to prevent damage[cite: 2].",
+      "FCOM DSC-32-10-20: Above 260 kt, hyd power to gear is cut off to prevent damage.",
   },
   {
     id: 439,
@@ -5734,7 +5735,7 @@ const db = [
     options: ["Both", "FMGC 2", "Neither", "FMGC 1"],
     correct: 3,
     explanation:
-      "FCOM DSC-22-10-30: FMGC 1 retains priority master role in dual AP operations[cite: 2].",
+      "FCOM DSC-22-10-30: FMGC 1 retains priority master role in dual AP operations.",
   },
   {
     id: 440,
@@ -5748,7 +5749,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-52-10-20: Pneumatic damper forces door open if opened while ARMED[cite: 2].",
+      "FCOM DSC-52-10-20: Pneumatic damper forces door open if opened while ARMED.",
   },
   {
     id: 441,
@@ -5762,7 +5763,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-22-40-30: active from liftoff down to 100 ft RA on approach[cite: 2].",
+      "FCOM DSC-22-40-30: active from liftoff down to 100 ft RA on approach.",
   },
   {
     id: 442,
@@ -5776,7 +5777,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-22-30-80-20: Armed modes: Blue (selected) or Magenta (managed)[cite: 2].",
+      "FCOM DSC-22-30-80-20: Armed modes: Blue (selected) or Magenta (managed).",
   },
   {
     id: 443,
@@ -5791,7 +5792,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-70-20: MASTER switch to OFF closes both LP and HP fuel valves[cite: 2].",
+      "FCOM DSC-70-20: MASTER switch to OFF closes both LP and HP fuel valves.",
   },
   {
     id: 444,
@@ -5805,7 +5806,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-22-10-40-20: Ratio of flight time cost to fuel cost[cite: 2].",
+      "FCOM DSC-22-10-40-20: Ratio of flight time cost to fuel cost.",
   },
   {
     id: 445,
@@ -5819,7 +5820,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-23-10-20: Indicated on both RMPs if cross-tuning occurs[cite: 2].",
+      "FCOM DSC-23-10-20: Indicated on both RMPs if cross-tuning occurs.",
   },
   {
     id: 446,
@@ -5834,7 +5835,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-29-20: OFF selection clears light except for physical overheats[cite: 2].",
+      "FCOM DSC-29-20: OFF selection clears light except for physical overheats.",
   },
   {
     id: 447,
@@ -5848,7 +5849,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-31-45: temporary plan is shown as a dashed yellow line[cite: 2].",
+      "FCOM DSC-31-45: temporary plan is shown as a dashed yellow line.",
   },
   {
     id: 448,
@@ -5862,7 +5863,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-22-30-40-40: Target speed is Green Dot via pitch control[cite: 2].",
+      "FCOM DSC-22-30-40-40: Target speed is Green Dot via pitch control.",
   },
   {
     id: 449,
@@ -5872,7 +5873,7 @@ const db = [
     options: ["12,000 ft", "16,000 ft", "9,550 ft", "14,000 ft"],
     correct: 3,
     explanation:
-      "FCOM LIM-AIR: Automatic deployment occurs at 14,000 ft cabin altitude[cite: 2].",
+      "FCOM LIM-AIR: Automatic deployment occurs at 14,000 ft cabin altitude.",
   },
   {
     id: 450,
@@ -5886,7 +5887,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-24-10-10: Network design physically prohibits parallel source connection[cite: 2].",
+      "FCOM DSC-24-10-10: Network design physically prohibits parallel source connection.",
   },
   {
     id: 451,
@@ -5900,7 +5901,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-27-10-20: Architecture uses 7 units: 2 ELAC, 3 SEC, 2 FAC[cite: 2].",
+      "FCOM DSC-27-10-20: Architecture uses 7 units: 2 ELAC, 3 SEC, 2 FAC.",
   },
   {
     id: 452,
@@ -5914,7 +5915,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-22-40-20: FAC envelope function triggers Alpha Floor protection[cite: 2].",
+      "FCOM DSC-22-40-20: FAC envelope function triggers Alpha Floor protection.",
   },
   {
     id: 453,
@@ -5928,7 +5929,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-22-10-40-20: Adjusted via knobs under the FCU on the glareshield[cite: 2].",
+      "FCOM DSC-22-10-40-20: Adjusted via knobs under the FCU on the glareshield.",
   },
   {
     id: 454,
@@ -5943,7 +5944,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-31-20: Advisory for pressure < 1500 PSI; check LIM for crew count[cite: 2].",
+      "FCOM DSC-31-20: Advisory for pressure < 1500 PSI; check LIM for crew count.",
   },
   {
     id: 455,
@@ -5957,7 +5958,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-22-10-10: Main components are Flight Management and Flight Guidance[cite: 2].",
+      "FCOM DSC-22-10-10: Main components are Flight Management and Flight Guidance.",
   },
   {
     id: 456,
@@ -5972,7 +5973,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-31-10: FWC warns; ELAC pitch protects; FAC calculates speeds[cite: 2].",
+      "FCOM DSC-31-10: FWC warns; ELAC pitch protects; FAC calculates speeds.",
   },
   {
     id: 457,
@@ -5986,7 +5987,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM PRO-NOR-SRP-01-15: set ENG MODE to CRANK; use MAN START to ON[cite: 2].",
+      "FCOM PRO-NOR-SRP-01-15: set ENG MODE to CRANK; use MAN START to ON.",
   },
   {
     id: 458,
@@ -5994,7 +5995,7 @@ const db = [
     question: "What is the max continuous thrust EGT limit for the CFM engine?",
     options: ["950°C", "725°C", "625°C", "915°C"],
     correct: 3,
-    explanation: "FCOM LIM-ENG: MCT EGT limit for CFM56 is 915°C[cite: 2].",
+    explanation: "FCOM LIM-ENG: MCT EGT limit for CFM56 is 915°C.",
   },
   {
     id: 459,
@@ -6004,7 +6005,7 @@ const db = [
     options: ["ELAC, SEC and FAC", "ELAC and SEC", "SEC only", "ELAC only"],
     correct: 1,
     explanation:
-      "FCOM DSC-27-10-20: Both ELACs and SECs process sidestick pitch/roll inputs[cite: 2].",
+      "FCOM DSC-27-10-20: Both ELACs and SECs process sidestick pitch/roll inputs.",
   },
   {
     id: 460,
@@ -6019,7 +6020,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-21-30-20: Smoke config: uses conditioned air; Blower stops[cite: 2].",
+      "FCOM DSC-21-30-20: Smoke config: uses conditioned air; Blower stops.",
   },
   {
     id: 461,
@@ -6033,7 +6034,7 @@ const db = [
       "A steady amber master caution light, an amber caution message on the E/WD, automatic call of the relevant system page, and a single chime",
     ],
     correct: 1,
-    explanation: "FCOM DSC-31-10: Flashing Red Master Warning + CRC[cite: 2].",
+    explanation: "FCOM DSC-31-10: Flashing Red Master Warning + CRC.",
   },
   {
     id: 462,
@@ -6047,7 +6048,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM PRO-ABN-CAB_PR: select MAN mode for manual outflow valve control[cite: 2].",
+      "FCOM PRO-ABN-CAB_PR: select MAN mode for manual outflow valve control.",
   },
   {
     id: 463,
@@ -6062,7 +6063,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM PRO-NOR-SRP-01-20: powers off-side FADEC and selects ignition[cite: 2].",
+      "OM-B Section 2.3.10.2 One Engine Taxi at Departure instructs to set the ENG MODE selector to IGN/START, then announce 'ENG 2 START' and set the MASTER lever to ON.<br>FCOM PRO-NOR-SRP-01-20: powers off-side FADEC and selects ignition.",
   },
   {
     id: 464,
@@ -6076,7 +6077,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-27-10-20: Surfaces are fly-by-wire controlled but hyd actuated[cite: 2].",
+      "FCOM DSC-27-10-20: Surfaces are fly-by-wire controlled but hyd actuated.",
   },
   {
     id: 465,
@@ -6086,7 +6087,7 @@ const db = [
     options: ["Closed", "Normal", "Intermediate", "Open"],
     correct: 0,
     explanation:
-      "FCOM DSC-21-30-20: T/O power forces 'Closed' circuit to maintain hull integrity[cite: 2].",
+      "FCOM DSC-21-30-20: T/O power forces 'Closed' circuit to maintain hull integrity.",
   },
   {
     id: 466,
@@ -6100,7 +6101,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-22-10-50-20: best lift-to-drag speed shown in CLEAN configuration[cite: 2].",
+      "FCOM DSC-22-10-50-20: best lift-to-drag speed shown in CLEAN configuration.",
   },
   {
     id: 467,
@@ -6109,7 +6110,7 @@ const db = [
     options: ["DU", "FWC", "DMC", "SDAC"],
     correct: 1,
     explanation:
-      "FCOM DSC-31-10: FWC generates cautions/warnings and aural alerts[cite: 2].",
+      "FCOM DSC-31-10: FWC generates cautions/warnings and aural alerts.",
   },
   {
     id: 468,
@@ -6123,7 +6124,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-31-10: Suppresses alerts from T/O power until passing 1,500 ft[cite: 2].",
+      "FCOM DSC-31-10: Suppresses alerts from T/O power until passing 1,500 ft.",
   },
   {
     id: 469,
@@ -6137,7 +6138,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-21-20-30: redundant standby CPC auto-takes over control[cite: 2].",
+      "FCOM DSC-21-20-30: redundant standby CPC auto-takes over control.",
   },
   {
     id: 470,
@@ -6151,7 +6152,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-22-20-10-20: activates passing DECEL or via MCDU manual entry[cite: 2].",
+      "FCOM DSC-22-20-10-20: activates passing DECEL or via MCDU manual entry.",
   },
   {
     id: 471,
@@ -6165,7 +6166,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-30-20-10: Yes; crossbleed open and one pack OFF ensures pressure[cite: 2].",
+      "FCOM DSC-30-20-10: Yes; crossbleed open and one pack OFF ensures pressure.",
   },
   {
     id: 472,
@@ -6180,7 +6181,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-22-40-20: 4 channels: Damping, Trim, Limit, Envelope[cite: 2].",
+      "FCOM DSC-22-40-20: 4 channels: Damping, Trim, Limit, Envelope.",
   },
   {
     id: 473,
@@ -6195,7 +6196,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-32-30-10: Triggered by spoiler extension (> 72 kt + levers idle)[cite: 2].",
+      "FCOM DSC-32-30-10: Triggered by spoiler extension (> 72 kt + levers idle).",
   },
   {
     id: 474,
@@ -6209,7 +6210,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-70-30-40: Default idle; Approach idle used if flaps extended[cite: 2].",
+      "FCOM DSC-70-30-40: Default idle; Approach idle used if flaps extended.",
   },
   {
     id: 475,
@@ -6222,8 +6223,7 @@ const db = [
       "DMC 3 only The EIS DMC selector on the switching-panel, can be used to display ADIRU 3 data via DMC 3 on either the CAPT or FO PFD",
     ],
     correct: 2,
-    explanation:
-      "FCOM DSC-31-05-40: determined by switching panel selections[cite: 2].",
+    explanation: "FCOM DSC-31-05-40: determined by switching panel selections.",
   },
   {
     id: 476,
@@ -6233,7 +6233,7 @@ const db = [
     options: ["RMP", "FMGC", "MCDU", "ATSU"],
     correct: 3,
     explanation:
-      "FCOM DSC-46-10-10: Air Traffic Services Unit (ATSU) manages all datalink[cite: 2].",
+      "FCOM DSC-46-10-10: Air Traffic Services Unit (ATSU) manages all datalink.",
   },
   {
     id: 477,
@@ -6248,7 +6248,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-31-05-60: Manual ND transfer to adjacent PFD screen possible[cite: 2].",
+      "FCOM DSC-31-05-60: Manual ND transfer to adjacent PFD screen possible.",
   },
   {
     id: 478,
@@ -6262,7 +6262,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-23-30-10: VHF 1/3 are upper; VHF 2 is on the lower fuselage[cite: 2].",
+      "FCOM DSC-23-30-10: VHF 1/3 are upper; VHF 2 is on the lower fuselage.",
   },
   {
     id: 479,
@@ -6276,8 +6276,7 @@ const db = [
       "There is no limit",
     ],
     correct: 2,
-    explanation:
-      "FCOM LIM-AG-F_CTL: Max pitch UP limited to 25° in CONF FULL[cite: 2].",
+    explanation: "FCOM LIM-AG-F_CTL: Max pitch UP limited to 25° in CONF FULL.",
   },
   {
     id: 480,
@@ -6292,7 +6291,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-31-10: LDG INHIBIT suppresses non-criticals below 800 ft RA[cite: 2].",
+      "FCOM DSC-31-10: LDG INHIBIT suppresses non-criticals below 800 ft RA.",
   },
   {
     id: 481,
@@ -6306,7 +6305,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-27-10-20: Slat and Flap systems are independent; locking one system doesn't affect the other[cite: 2].",
+      "FCOM DSC-27-10-20: Slat and Flap systems are independent; locking one system doesn't affect the other.",
   },
   {
     id: 482,
@@ -6316,7 +6315,7 @@ const db = [
     options: ["Red", "Blue", "Amber", "White"],
     correct: 2,
     explanation:
-      "FCOM DSC-31-10: Amber color signifies awareness cautions (Level 2)[cite: 2].",
+      "FCOM DSC-31-10: Amber color signifies awareness cautions (Level 2).",
   },
   {
     id: 483,
@@ -6330,7 +6329,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-29-10-20: Differential > 500 PSI; inhibited during 1st start and cargo ops[cite: 2].",
+      "FCOM DSC-29-10-20: Differential > 500 PSI; inhibited during 1st start and cargo ops.",
   },
   {
     id: 484,
@@ -6339,7 +6338,7 @@ const db = [
     options: ["5 kt", "15 kt", "10 kt"],
     correct: 1,
     explanation:
-      "FCOM DSC-22-20-10-20: APPR COR manual speed increment is limited to +15 kt[cite: 2].",
+      "FCOM DSC-22-20-10-20: APPR COR manual speed increment is limited to +15 kt.",
   },
   {
     id: 485,
@@ -6353,7 +6352,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-31-45: GS and TAS permanently displayed in ND top-left corner[cite: 2].",
+      "FCOM DSC-31-45: GS and TAS permanently displayed in ND top-left corner.",
   },
   {
     id: 486,
@@ -6367,7 +6366,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-29-10-30: Closes supply to heavy loads to protect flight controls[cite: 2].",
+      "FCOM DSC-29-10-30: Closes supply to heavy loads to protect flight controls.",
   },
   {
     id: 487,
@@ -6381,7 +6380,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-32-30-10: Bypasses servo valves; direct Yellow/accumulator supply[cite: 2].",
+      "FCOM DSC-32-30-10: Bypasses servo valves; direct Yellow/accumulator supply.",
   },
   {
     id: 488,
@@ -6396,7 +6395,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-35-20-30: Close box and press RESET slide to restore boom mic[cite: 2].",
+      "FCOM DSC-35-20-30: Close box and press RESET slide to restore boom mic.",
   },
   {
     id: 489,
@@ -6411,7 +6410,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-46-10-10: VHF 3 is the primary transceiver for ATSU datalink[cite: 2].",
+      "FCOM DSC-46-10-10: VHF 3 is the primary transceiver for ATSU datalink.",
   },
   {
     id: 490,
@@ -6426,7 +6425,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-26-20-20: Amber DISCH light indicates bottle pressure loss[cite: 2].",
+      "FCOM DSC-26-20-20: Amber DISCH light indicates bottle pressure loss.",
   },
   {
     id: 491,
@@ -6441,7 +6440,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-31-05-40: Capt side: ADIRU 3 (Att/Hdg) + ADIRU 1 (Air Data)[cite: 2].",
+      "FCOM DSC-31-05-40: Capt side: ADIRU 3 (Att/Hdg) + ADIRU 1 (Air Data).",
   },
   {
     id: 492,
@@ -6455,8 +6454,7 @@ const db = [
       "VHF, HF or SATCOM (where fitted and available)",
     ],
     correct: 3,
-    explanation:
-      "FCOM DSC-46-10-10: Messages routed via VHF, HF, or SATCOM[cite: 2].",
+    explanation: "FCOM DSC-46-10-10: Messages routed via VHF, HF, or SATCOM.",
   },
   {
     id: 493,
@@ -6471,7 +6469,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-26-20-20: Releasing FIRE pb arms squibs (white SQUIB light)[cite: 2].",
+      "FCOM DSC-26-20-20: Releasing FIRE pb arms squibs (white SQUIB light).",
   },
   {
     id: 494,
@@ -6485,7 +6483,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-23-45-10: ON/OFF switch powers only the RMP unit itself[cite: 2].",
+      "FCOM DSC-23-45-10: ON/OFF switch powers only the RMP unit itself.",
   },
   {
     id: 495,
@@ -6500,7 +6498,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-22-30-40-80-00: Scales only display if LS button is active[cite: 2].",
+      "FCOM DSC-22-30-40-80-00: Scales only display if LS button is active.",
   },
   {
     id: 496,
@@ -6515,7 +6513,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-36-10-30: AUTO crossbleed opens automatically with APU Bleed ON[cite: 2].",
+      "FCOM DSC-36-10-30: AUTO crossbleed opens automatically with APU Bleed ON.",
   },
   {
     id: 497,
@@ -6530,7 +6528,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-49-20: AVAIL light illuminates when APU speed N >= 95%[cite: 2].",
+      "FCOM DSC-49-20: AVAIL light illuminates when APU speed N >= 95%.",
   },
   {
     id: 498,
@@ -6540,7 +6538,7 @@ const db = [
     options: ["Level 3", "Advisory", "Level 2", "Level 1"],
     correct: 0,
     explanation:
-      "FCOM DSC-31-10: Level 3 (Red) signifies high-safety emergency[cite: 2].",
+      "FCOM DSC-31-10: Level 3 (Red) signifies high-safety emergency.",
   },
   {
     id: 499,
@@ -6555,7 +6553,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-32-10-40: Turn clockwise 3 times: Isolate, Unlock doors, Release uplocks[cite: 2].",
+      "FCOM DSC-32-10-40: Turn clockwise 3 times: Isolate, Unlock doors, Release uplocks.",
   },
   {
     id: 500,
@@ -6569,7 +6567,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-70-80-40: Ground auto: 1 igniter (A or B); flight auto: BOTH[cite: 2].",
+      "FCOM DSC-70-80-40: Ground auto: 1 igniter (A or B); flight auto: BOTH.",
   },
   {
     id: 501,
@@ -6584,7 +6582,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-26-20-10: Covers pylon nacelle, engine core, and fan sections[cite: 2].",
+      "FCOM DSC-26-20-10: Covers pylon nacelle, engine core, and fan sections.",
   },
   {
     id: 502,
@@ -6598,7 +6596,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM PRO-NOR-SRP-01-15: green if engines stopped; amber if an engine runs[cite: 2].",
+      "OM-B Section 2.3.7.1 At Pushback/Start Clearance states that 'NW STRG DISC' is displayed in green during normal pushback, but it appears amber if at least one engine is running during pushback to alert the crew.<br>FCOM PRO-NOR-SRP-01-15: green if engines stopped; amber if an engine runs.",
   },
   {
     id: 503,
@@ -6612,7 +6610,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-27-10-20: Effected spoiler retracts; symmetric counterpart inhibited[cite: 2].",
+      "FCOM DSC-27-10-20: Effected spoiler retracts; symmetric counterpart inhibited.",
   },
   {
     id: 504,
@@ -6627,7 +6625,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM LIM-APU: Use of APU bleed air for Wing Anti-Ice is strictly prohibited[cite: 2].",
+      "FCOM LIM-APU: Use of APU bleed air for Wing Anti-Ice is strictly prohibited.",
   },
   {
     id: 505,
@@ -6641,7 +6639,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-70-80-40: FADEC assessing N2 may air-start without starter motor[cite: 2].",
+      "FCOM DSC-70-80-40: FADEC assessing N2 may air-start without starter motor.",
   },
   {
     id: 506,
@@ -6656,7 +6654,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-22-30-40-20: SRS mode fails to engage without a V2 entry[cite: 2].",
+      "FCOM DSC-22-30-40-20: SRS mode fails to engage without a V2 entry.",
   },
   {
     id: 507,
@@ -6671,7 +6669,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-31-05-10: Amber indicates awareness-level failure (Level 2)[cite: 2].",
+      "FCOM DSC-31-05-10: Amber indicates awareness-level failure (Level 2).",
   },
   {
     id: 508,
@@ -6686,7 +6684,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-21-10-30: HIGH flow forced for APU source or single-pack ops[cite: 2].",
+      "FCOM DSC-21-10-30: HIGH flow forced for APU source or single-pack ops.",
   },
   {
     id: 509,
@@ -6701,7 +6699,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-23-10-20: Use RMP 'NAV' backup key to manually tune receivers[cite: 2].",
+      "FCOM DSC-23-10-20: Use RMP 'NAV' backup key to manually tune receivers.",
   },
   {
     id: 510,
@@ -6715,7 +6713,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-22-10-30: Dual Mode: computers sync and monitor each other[cite: 2].",
+      "FCOM DSC-22-10-30: Dual Mode: computers sync and monitor each other.",
   },
   {
     id: 511,
@@ -6729,7 +6727,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-38-10: Tanks pressurized by pneumatics to distribute water[cite: 2].",
+      "FCOM DSC-38-10: Tanks pressurized by pneumatics to distribute water.",
   },
   {
     id: 512,
@@ -6743,7 +6741,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-23-45-10: Outer knob = whole numbers; inner knob = decimals[cite: 2].",
+      "FCOM DSC-23-45-10: Outer knob = whole numbers; inner knob = decimals.",
   },
   {
     id: 513,
@@ -6758,7 +6756,7 @@ const db = [
     ],
     correct: 2,
     explanation:
-      "FCOM DSC-30-30-10: Auto ON if at least one engine is running or airborne[cite: 2].",
+      "FCOM DSC-30-30-10: Auto ON if at least one engine is running or airborne.",
   },
   {
     id: 514,
@@ -6767,7 +6765,7 @@ const db = [
     options: ["HDG and V/S", "SPD and HDG", "ALT and NAV", "Pitch and roll"],
     correct: 0,
     explanation:
-      "FCOM DSC-22-30-10: Basic guidance: lateral (HDG) and vertical (V/S)[cite: 2].",
+      "FCOM DSC-22-30-10: Basic guidance: lateral (HDG) and vertical (V/S).",
   },
   {
     id: 515,
@@ -6777,7 +6775,7 @@ const db = [
     options: ["75°", "70°", "6°", "7°"],
     correct: 2,
     explanation:
-      "FCOM DSC-32-10-30: Pedals limited to +/- 6° steer angle for centerline track[cite: 2].",
+      "FCOM DSC-32-10-30: Pedals limited to +/- 6° steer angle for centerline track.",
   },
   {
     id: 516,
@@ -6792,7 +6790,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-30-10-10: Pneumatic valves are spring-loaded CLOSED if no air pressure[cite: 2].",
+      "FCOM DSC-30-10-10: Pneumatic valves are spring-loaded CLOSED if no air pressure.",
   },
   {
     id: 517,
@@ -6807,7 +6805,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-70-80-40: FADEC auto-closes valve and cuts ignition at ~50% N2[cite: 2].",
+      "FCOM DSC-70-80-40: FADEC auto-closes valve and cuts ignition at ~50% N2.",
   },
   {
     id: 518,
@@ -6821,7 +6819,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-30-20-20: Blue ON light on PB and green E/WD ENG A.ICE memo[cite: 2].",
+      "FCOM DSC-30-20-20: Blue ON light on PB and green E/WD ENG A.ICE memo.",
   },
   {
     id: 519,
@@ -6835,7 +6833,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-34-NAV-20: Internal transducers plus backup from ADIRU 1/3[cite: 2].",
+      "FCOM DSC-34-NAV-20: Internal transducers plus backup from ADIRU 1/3.",
   },
   {
     id: 520,
@@ -6849,6 +6847,6 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM EFB-LDG-10: CG < 29% is typically considered forward for landing[cite: 2].",
+      "FCOM EFB-LDG-10: CG < 29% is typically considered forward for landing.",
   },
 ];
