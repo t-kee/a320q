@@ -107,6 +107,16 @@
         width: 100%;
         cursor: pointer;
       }
+      select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        font-family: inherit;
+        background-color: #fff;
+        cursor: pointer;
+      }
       .checkbox-group {
         display: flex;
         align-items: center;
@@ -269,6 +279,13 @@
         </p>
 
         <div class="setup-group">
+          <label for="theme-select">Select Theme:</label>
+          <select id="theme-select">
+            <option value="all">All Themes</option>
+          </select>
+        </div>
+
+        <div class="setup-group">
           <label for="question-count"
             >Number of questions: <span id="count-display">10</span></label
           >
@@ -397,6 +414,7 @@
       let currentCorrectDiv = null;
 
       // DOM Elements
+      const themeSelect = document.getElementById("theme-select");
       const countSlider = document.getElementById("question-count");
       const unseenCheckbox = document.getElementById("unseen-only");
       const pinnedCheckbox = document.getElementById("pinned-only");
@@ -407,6 +425,17 @@
       document.getElementById("seen-stats").innerText = seenQuestions.length;
       document.getElementById("pinned-stats").innerText =
         pinnedQuestions.length;
+
+      // Populate Themes Dropdown
+      if (db && db.length > 0) {
+        const uniqueThemes = [...new Set(db.map((q) => q.theme))].sort();
+        uniqueThemes.forEach((theme) => {
+          const option = document.createElement("option");
+          option.value = theme;
+          option.textContent = theme;
+          themeSelect.appendChild(option);
+        });
+      }
 
       // Checkbox exclusive logic & Slider dynamic max
       unseenCheckbox.addEventListener("change", () => {
@@ -419,6 +448,8 @@
         updateSliderMax();
       });
 
+      themeSelect.addEventListener("change", updateSliderMax);
+
       countSlider.addEventListener("input", (e) => {
         countDisplay.innerText = e.target.value;
       });
@@ -426,6 +457,13 @@
       function updateSliderMax() {
         let pool = db || [];
 
+        // Apply Theme filter
+        const selectedTheme = themeSelect.value;
+        if (selectedTheme !== "all") {
+          pool = pool.filter((q) => q.theme === selectedTheme);
+        }
+
+        // Apply Status filters
         if (unseenCheckbox.checked) {
           pool = pool.filter((q) => !seenQuestions.includes(q.id));
         } else if (pinnedCheckbox.checked) {
@@ -581,11 +619,21 @@
       function startQuiz() {
         let pool = db || [];
 
+        // Apply Theme filter
+        const selectedTheme = themeSelect.value;
+        if (selectedTheme !== "all") {
+          pool = pool.filter((q) => q.theme === selectedTheme);
+          if (pool.length === 0) {
+            alert("No questions available for this theme.");
+            return;
+          }
+        }
+
         if (unseenCheckbox.checked) {
           pool = pool.filter((q) => !seenQuestions.includes(q.id));
           if (pool.length === 0) {
             alert(
-              "You have already seen all the questions in the database! Uncheck the box to review.",
+              "You have already seen all the questions in this selection! Uncheck the box to review.",
             );
             return;
           }
@@ -593,7 +641,7 @@
           pool = pool.filter((q) => pinnedQuestions.includes(q.id));
           if (pool.length === 0) {
             alert(
-              "You don't have any pinned questions yet! Click the star icon during a test to pin a question.",
+              "You don't have any pinned questions in this selection! Click the star icon during a test to pin a question.",
             );
             return;
           }
