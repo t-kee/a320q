@@ -204,6 +204,57 @@
         line-height: 1.4;
       }
 
+      /* Quiz Navigator (Bottom circles) */
+      .navigator-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 2px solid #ecf0f1;
+      }
+      .nav-circle {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        border: 2px solid #bdc3c7;
+        color: #7f8c8d;
+        background: transparent;
+        transition: 0.2s;
+        padding: 0;
+      }
+      .nav-circle.current {
+        border-color: var(--primary);
+        color: var(--primary);
+        transform: scale(1.1);
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      }
+      .nav-circle.correct {
+        background-color: var(--correct);
+        border-color: var(--correct);
+        color: white;
+      }
+      .nav-circle.incorrect {
+        background-color: var(--incorrect);
+        border-color: var(--incorrect);
+        color: white;
+      }
+      .nav-circle:hover {
+        opacity: 0.8;
+      }
+      .nav-arrow {
+        width: auto;
+        padding: 0 12px;
+        border-radius: 18px;
+      }
+
       /* Result & Stats */
       .score-circle {
         width: 120px;
@@ -452,6 +503,7 @@
 
         <div id="options-container"></div>
         <div id="explanation" class="explanation-box hidden"></div>
+
         <button
           id="next-btn"
           class="action-btn hidden"
@@ -459,6 +511,18 @@
         >
           Next Question
         </button>
+
+        <!-- Navigator: Bubbles representing questions -->
+        <div id="quiz-navigator" class="navigator-container"></div>
+
+        <div style="text-align: center; margin-top: 15px">
+          <a
+            href="#"
+            onclick="endQuiz()"
+            style="color: #e74c3c; font-size: 14px; text-decoration: none"
+            >End training and see results</a
+          >
+        </div>
       </div>
 
       <!-- ECRAN: RESULTATS DU TEST -->
@@ -491,10 +555,12 @@
 
       let chartInstance = null;
 
+      // Quiz state variables
       let currentQuiz = [];
+      let userAnswers = []; // stores objects: { isCorrect: boolean, selectedIndex: int }
       let currentQuestionIndex = 0;
-      let score = 0;
-      let currentCorrectDiv = null;
+      let navPage = 0;
+      const navPageSize = 50;
 
       // DOM Elements
       const themeSelect = document.getElementById("theme-select");
@@ -783,6 +849,8 @@
         }
       }
 
+      // --- QUIZ LOGIC ---
+
       function startQuiz() {
         let pool = db || [];
 
@@ -817,11 +885,22 @@
         const nbQuestions = Math.min(parseInt(countSlider.value), pool.length);
         if (nbQuestions === 0) return; // Prevent starting a 0 question quiz
 
+        // Prepare the quiz pool and shuffle options once per test
         currentQuiz = pool
           .sort(() => 0.5 - Math.random())
-          .slice(0, nbQuestions);
+          .slice(0, nbQuestions)
+          .map((q) => {
+            let options = q.options.map((text, idx) => ({
+              text,
+              isCorrect: idx === q.correct,
+            }));
+            options.sort(() => Math.random() - 0.5); // Shuffle options
+            return { ...q, shuffledOptions: options };
+          });
+
+        userAnswers = new Array(nbQuestions).fill(null);
         currentQuestionIndex = 0;
-        score = 0;
+        navPage = 0;
 
         document.getElementById("tab-setup").classList.add("hidden");
         document.getElementById("main-nav").classList.add("hidden");
@@ -878,31 +957,66 @@
         const optionsContainer = document.getElementById("options-container");
         optionsContainer.innerHTML = "";
 
-        let mappedOptions = q.options.map((optText, originalIndex) => {
-          return { text: optText, isCorrect: originalIndex === q.correct };
-        });
+        const answeredData = userAnswers[currentQuestionIndex];
 
-        mappedOptions.sort(() => Math.random() - 0.5);
-
-        mappedOptions.forEach((opt) => {
+        q.shuffledOptions.forEach((opt, index) => {
           const div = document.createElement("div");
           div.className = "option";
           div.innerText = opt.text;
 
-          if (opt.isCorrect) currentCorrectDiv = div;
+          // If the user has already answered this question
+          if (answeredData) {
+            div.classList.add("disabled");
+            if (opt.isCorrect) {
+              div.classList.add("correct");
+            }
+            if (index === answeredData.selectedIndex && !opt.isCorrect) {
+              div.classList.add("incorrect");
+            }
+          } else {
+            // Not yet answered
+            div.onclick = () => selectAnswer(opt.isCorrect, div, index, q);
+          }
 
-          div.onclick = () => selectAnswer(opt.isCorrect, div, q);
           optionsContainer.appendChild(div);
         });
 
-        document.getElementById("explanation").classList.add("hidden");
-        document.getElementById("next-btn").classList.add("hidden");
+        const explDiv = document.getElementById("explanation");
+        const nextBtn = document.getElementById("next-btn");
+
+        if (answeredData) {
+          const title = answeredData.isCorrect ? "Correct!" : "Incorrect!";
+          explDiv.innerHTML = `<strong>${title}</strong><br><br>${q.explanation}`;
+          explDiv.classList.remove("hidden");
+
+          nextBtn.classList.remove("hidden");
+          if (currentQuestionIndex < currentQuiz.length - 1) {
+            nextBtn.innerText = "Next Question";
+          } else {
+            nextBtn.innerText = "Finish Training";
+          }
+        } else {
+          explDiv.classList.add("hidden");
+          nextBtn.classList.add("hidden");
+        }
+
+        renderNavigator();
       }
 
-      function selectAnswer(isCorrect, selectedDiv, questionData) {
-        const allOptions = document.querySelectorAll(".option");
-        allOptions.forEach((opt) => opt.classList.add("disabled"));
+      function selectAnswer(
+        isCorrect,
+        selectedDiv,
+        selectedIndex,
+        questionData,
+      ) {
+        if (userAnswers[currentQuestionIndex]) return; // Guard against double clicks
 
+        userAnswers[currentQuestionIndex] = {
+          isCorrect: isCorrect,
+          selectedIndex: selectedIndex,
+        };
+
+        // Record history of seen questions
         if (!seenQuestions.includes(questionData.id)) {
           seenQuestions.push(questionData.id);
           localStorage.setItem(
@@ -911,39 +1025,88 @@
           );
           document.getElementById("seen-stats").innerText =
             seenQuestions.length;
-          updateSliderMax(); // Sync the background logic
+          updateSliderMax();
         }
 
+        // Record stats per theme
         if (!themeStats[questionData.theme]) {
           themeStats[questionData.theme] = { correct: 0, total: 0 };
         }
         themeStats[questionData.theme].total++;
-
-        const explDiv = document.getElementById("explanation");
-
-        if (isCorrect) {
-          selectedDiv.classList.add("correct");
-          score++;
-          themeStats[questionData.theme].correct++;
-          explDiv.innerHTML = `<strong>Correct!</strong><br><br>${questionData.explanation}`;
-        } else {
-          selectedDiv.classList.add("incorrect");
-          currentCorrectDiv.classList.add("correct");
-          explDiv.innerHTML = `<strong>Incorrect!</strong><br><br>${questionData.explanation}`;
-        }
-
+        if (isCorrect) themeStats[questionData.theme].correct++;
         localStorage.setItem("a320_theme_stats", JSON.stringify(themeStats));
 
-        explDiv.classList.remove("hidden");
-        document.getElementById("next-btn").classList.remove("hidden");
+        showQuestion(); // Re-render to show correct/incorrect states and explanation
       }
 
       function nextQuestion() {
-        currentQuestionIndex++;
-        if (currentQuestionIndex < currentQuiz.length) {
+        if (currentQuestionIndex < currentQuiz.length - 1) {
+          currentQuestionIndex++;
           showQuestion();
         } else {
           endQuiz();
+        }
+      }
+
+      function renderNavigator() {
+        const navContainer = document.getElementById("quiz-navigator");
+        navContainer.innerHTML = "";
+
+        const totalPages = Math.ceil(currentQuiz.length / navPageSize);
+
+        // Auto-adjust page if currentQuestion is out of bounds of current navPage
+        const expectedPage = Math.floor(currentQuestionIndex / navPageSize);
+        if (navPage !== expectedPage && !window.manualNavPageChange) {
+          navPage = expectedPage;
+        }
+        window.manualNavPageChange = false;
+
+        const startIdx = navPage * navPageSize;
+        const endIdx = Math.min(startIdx + navPageSize, currentQuiz.length);
+
+        if (navPage > 0) {
+          const prevBtn = document.createElement("button");
+          prevBtn.className = "nav-circle nav-arrow";
+          prevBtn.innerText = "< Prev";
+          prevBtn.onclick = () => {
+            navPage--;
+            window.manualNavPageChange = true;
+            renderNavigator();
+          };
+          navContainer.appendChild(prevBtn);
+        }
+
+        for (let i = startIdx; i < endIdx; i++) {
+          const btn = document.createElement("button");
+          btn.className = "nav-circle";
+          btn.innerText = i + 1;
+
+          if (userAnswers[i]) {
+            if (userAnswers[i].isCorrect) btn.classList.add("correct");
+            else btn.classList.add("incorrect");
+          }
+
+          if (i === currentQuestionIndex) {
+            btn.classList.add("current");
+          }
+
+          btn.onclick = () => {
+            currentQuestionIndex = i;
+            showQuestion();
+          };
+          navContainer.appendChild(btn);
+        }
+
+        if (navPage < totalPages - 1) {
+          const nextBtn = document.createElement("button");
+          nextBtn.className = "nav-circle nav-arrow";
+          nextBtn.innerText = "Next >";
+          nextBtn.onclick = () => {
+            navPage++;
+            window.manualNavPageChange = true;
+            renderNavigator();
+          };
+          navContainer.appendChild(nextBtn);
         }
       }
 
@@ -951,14 +1114,18 @@
         document.getElementById("quiz-screen").classList.add("hidden");
         document.getElementById("result-screen").classList.remove("hidden");
 
-        const percentage = Math.round((score / currentQuiz.length) * 100);
+        // Calculate final score dynamically based on userAnswers
+        const finalScore = userAnswers.filter(
+          (ans) => ans && ans.isCorrect,
+        ).length;
+        const percentage = Math.round((finalScore / currentQuiz.length) * 100);
 
         const now = new Date();
         const dateString = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, "0")}-${now.getDate().toString().padStart(2, "0")} ${now.getHours().toString().padStart(2, "0")}:${now.getMinutes().toString().padStart(2, "0")}`;
 
         testHistory.push({
           date: dateString,
-          score: score,
+          score: finalScore,
           total: currentQuiz.length,
           percentage: percentage,
         });
@@ -969,7 +1136,7 @@
         const details = document.getElementById("result-details");
 
         circle.innerText = `${percentage}%`;
-        details.innerText = `You got ${score} correct answer(s) out of ${currentQuiz.length}.`;
+        details.innerText = `You got ${finalScore} correct answer(s) out of ${currentQuiz.length}.`;
 
         if (percentage >= 75) {
           circle.className = "score-circle pass";
