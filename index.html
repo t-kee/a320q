@@ -125,14 +125,14 @@
         margin-bottom: 10px;
       }
 
-      /* Quiz Screen */
+      /* Quiz & View Screens */
       .quiz-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 15px;
       }
-      #theme-badge {
+      .theme-badge {
         display: inline-block;
         background: #e1f0fa;
         color: var(--accent);
@@ -141,7 +141,7 @@
         font-size: 12px;
         font-weight: bold;
       }
-      #question-id-badge {
+      .question-id-badge {
         font-size: 12px;
         color: #bdc3c7;
         margin-left: 10px;
@@ -194,7 +194,7 @@
         opacity: 0.7;
       }
 
-      #explanation {
+      .explanation-box {
         margin-top: 15px;
         padding: 15px;
         background: #fff3cd;
@@ -257,6 +257,49 @@
         width: 100%;
         margin-bottom: 30px;
       }
+
+      /* Search Feature */
+      .search-input {
+        width: 100%;
+        padding: 12px;
+        border-radius: 6px;
+        border: 2px solid #ecf0f1;
+        font-size: 16px;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+        transition: border-color 0.2s;
+      }
+      .search-input:focus {
+        border-color: var(--accent);
+        outline: none;
+      }
+      .search-item {
+        background: #f8f9fa;
+        border: 2px solid #ecf0f1;
+        padding: 12px;
+        margin: 8px 0;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .search-item:hover {
+        border-color: var(--accent);
+      }
+      .search-item-id {
+        font-weight: bold;
+        color: var(--accent);
+        font-size: 12px;
+      }
+      .search-item-theme {
+        font-size: 12px;
+        color: #7f8c8d;
+        margin-left: 10px;
+      }
+      .search-item-text {
+        margin-top: 5px;
+        font-size: 14px;
+        color: var(--text-main);
+      }
     </style>
     <script src="questions.js"></script>
   </head>
@@ -269,6 +312,7 @@
         </button>
         <button class="nav-btn" onclick="switchTab('stats')">Statistics</button>
         <button class="nav-btn" onclick="switchTab('history')">History</button>
+        <button class="nav-btn" onclick="switchTab('search')">Search</button>
       </div>
 
       <!-- ECRAN: SETUP -->
@@ -342,12 +386,51 @@
         <div id="history-container"></div>
       </div>
 
+      <!-- ECRAN: SEARCH -->
+      <div id="tab-search" class="hidden">
+        <input
+          type="text"
+          id="search-input"
+          class="search-input"
+          placeholder="Search by ID, keyword, FCOM reference..."
+          autocomplete="off"
+        />
+        <div id="search-results"></div>
+      </div>
+
+      <!-- ECRAN: QUESTION VIEW (Read Only from Search) -->
+      <div id="tab-question-view" class="hidden">
+        <button
+          class="action-btn"
+          style="margin-top: 0; margin-bottom: 15px; background-color: #7f8c8d"
+          onclick="backToSearch()"
+        >
+          ← Back to Results
+        </button>
+        <div class="quiz-header">
+          <div>
+            <span id="view-theme-badge" class="theme-badge">Theme</span>
+            <span id="view-question-id-badge" class="question-id-badge"
+              >ID: 0</span
+            >
+          </div>
+        </div>
+        <h2
+          id="view-question-text"
+          style="text-align: left; font-size: 18px; margin-top: 5px"
+        >
+          Question ?
+        </h2>
+        <div id="view-options-container"></div>
+        <div id="view-explanation" class="explanation-box"></div>
+      </div>
+
       <!-- ECRAN: QUIZ -->
       <div id="quiz-screen" class="hidden">
         <div class="quiz-header">
           <div>
-            <span id="theme-badge">Theme</span>
-            <span id="question-id-badge">ID: 0</span>
+            <span id="theme-badge" class="theme-badge">Theme</span>
+            <span id="question-id-badge" class="question-id-badge">ID: 0</span>
           </div>
           <div style="display: flex; align-items: center">
             <button id="pin-btn" class="pin-btn unpinned" onclick="togglePin()">
@@ -368,7 +451,7 @@
         </h2>
 
         <div id="options-container"></div>
-        <div id="explanation" class="hidden"></div>
+        <div id="explanation" class="explanation-box hidden"></div>
         <button
           id="next-btn"
           class="action-btn hidden"
@@ -419,6 +502,8 @@
       const unseenCheckbox = document.getElementById("unseen-only");
       const pinnedCheckbox = document.getElementById("pinned-only");
       const countDisplay = document.getElementById("count-display");
+      const searchInput = document.getElementById("search-input");
+      const searchResults = document.getElementById("search-results");
 
       // Init UI
       document.getElementById("db-total").innerText = db ? db.length : 0;
@@ -492,16 +577,98 @@
         document.getElementById("tab-setup").classList.add("hidden");
         document.getElementById("tab-stats").classList.add("hidden");
         document.getElementById("tab-history").classList.add("hidden");
+        document.getElementById("tab-search").classList.add("hidden");
+        document.getElementById("tab-question-view").classList.add("hidden");
 
         const btns = document.querySelectorAll(".nav-btn");
         btns.forEach((btn) => btn.classList.remove("active"));
 
         document.getElementById(`tab-${tabId}`).classList.remove("hidden");
-        event.target.classList.add("active");
+
+        // Highlight active tab button if it exists
+        const clickedBtn = Array.from(btns).find((btn) =>
+          btn.innerText.toLowerCase().includes(tabId.replace("-view", "")),
+        );
+        if (clickedBtn) clickedBtn.classList.add("active");
 
         if (tabId === "stats") renderStats();
         if (tabId === "history") renderHistory();
+        if (tabId === "search") searchInput.focus();
       }
+
+      // --- SEARCH LOGIC ---
+      searchInput.addEventListener("input", function (e) {
+        const query = e.target.value.toLowerCase().trim();
+        searchResults.innerHTML = "";
+
+        if (query === "") return;
+
+        const results = db.filter((q) => {
+          const idStr = q.id.toString();
+          const idMatch = idStr.includes(query);
+          const textMatch =
+            q.question.toLowerCase().includes(query) ||
+            q.options.some((opt) => opt.toLowerCase().includes(query)) ||
+            q.explanation.toLowerCase().includes(query);
+          return idMatch || textMatch;
+        });
+
+        if (results.length === 0) {
+          searchResults.innerHTML =
+            '<p style="text-align:center; color:#7f8c8d;">No results found.</p>';
+          return;
+        }
+
+        results.forEach((q) => {
+          const div = document.createElement("div");
+          div.className = "search-item";
+          div.onclick = () => viewQuestion(q.id);
+          div.innerHTML = `
+                  <div>
+                      <span class="search-item-id">ID: ${q.id}</span>
+                      <span class="search-item-theme">${q.theme}</span>
+                  </div>
+                  <div class="search-item-text">${q.question}</div>
+              `;
+          searchResults.appendChild(div);
+        });
+      });
+
+      function viewQuestion(id) {
+        const q = db.find((x) => x.id === id);
+        if (!q) return;
+
+        document.getElementById("tab-search").classList.add("hidden");
+        document.getElementById("tab-question-view").classList.remove("hidden");
+
+        document.getElementById("view-theme-badge").innerText = q.theme;
+        document.getElementById("view-question-id-badge").innerText =
+          `ID: ${q.id}`;
+        document.getElementById("view-question-text").innerText = q.question;
+
+        const optsContainer = document.getElementById("view-options-container");
+        optsContainer.innerHTML = "";
+
+        // Display options in their original order for clarity in review mode
+        q.options.forEach((optText, index) => {
+          const div = document.createElement("div");
+          div.className = "option disabled"; // Cannot be clicked
+          div.innerText = optText;
+          if (index === q.correct) {
+            div.classList.add("correct");
+          }
+          optsContainer.appendChild(div);
+        });
+
+        const expl = document.getElementById("view-explanation");
+        expl.innerHTML = `<strong>Explanation:</strong><br><br>${q.explanation}`;
+      }
+
+      function backToSearch() {
+        document.getElementById("tab-question-view").classList.add("hidden");
+        document.getElementById("tab-search").classList.remove("hidden");
+      }
+      // --------------------
 
       function renderStats() {
         const container = document.getElementById("stats-container");
