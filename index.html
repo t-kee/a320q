@@ -1,0 +1,769 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A320 Training Quiz</title>
+
+    <!-- Chart.js for the progression graph -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+      :root {
+        --bg-color: #f4f7f6;
+        --card-bg: #ffffff;
+        --primary: #2c3e50;
+        --accent: #3498db;
+        --correct: #2ecc71;
+        --incorrect: #e74c3c;
+        --text-main: #333333;
+      }
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-main);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      #app {
+        background: var(--card-bg);
+        width: 100%;
+        max-width: 600px;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+      h1,
+      h2 {
+        color: var(--primary);
+        text-align: center;
+      }
+      .hidden {
+        display: none !important;
+      }
+
+      /* Navigation */
+      .nav-bar {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 25px;
+        border-bottom: 2px solid #ecf0f1;
+        padding-bottom: 15px;
+      }
+      .nav-btn {
+        flex: 1;
+        padding: 10px;
+        background: transparent;
+        color: var(--text-main);
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: 0.2s;
+      }
+      .nav-btn:hover {
+        background: #ecf0f1;
+      }
+      .nav-btn.active {
+        background: var(--primary);
+        color: white;
+      }
+
+      /* General Buttons */
+      .action-btn {
+        width: 100%;
+        padding: 12px;
+        background-color: var(--accent);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 15px;
+        transition: background 0.3s;
+        font-weight: bold;
+      }
+      .action-btn:hover {
+        background-color: #2980b9;
+      }
+
+      /* Setup Screen */
+      .setup-group {
+        margin: 20px 0;
+      }
+      label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 8px;
+      }
+      input[type="range"] {
+        width: 100%;
+        cursor: pointer;
+      }
+      .checkbox-group {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: normal;
+        margin-bottom: 10px;
+      }
+
+      /* Quiz Screen */
+      .quiz-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+      #theme-badge {
+        display: inline-block;
+        background: #e1f0fa;
+        color: var(--accent);
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: bold;
+      }
+      #question-id-badge {
+        font-size: 12px;
+        color: #bdc3c7;
+        margin-left: 10px;
+        font-weight: bold;
+      }
+
+      /* Pin Button */
+      .pin-btn {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        transition: 0.2s;
+        padding: 0 10px;
+      }
+      .pin-btn.pinned {
+        color: #f1c40f;
+      } /* Gold Star */
+      .pin-btn.unpinned {
+        color: #bdc3c7;
+      } /* Grey Star */
+      .pin-btn:hover {
+        transform: scale(1.2);
+      }
+
+      .option {
+        background: #f8f9fa;
+        border: 2px solid #e9ecef;
+        padding: 12px;
+        margin: 8px 0;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .option:hover {
+        border-color: var(--accent);
+      }
+      .option.correct {
+        background: var(--correct);
+        color: white;
+        border-color: var(--correct);
+      }
+      .option.incorrect {
+        background: var(--incorrect);
+        color: white;
+        border-color: var(--incorrect);
+      }
+      .option.disabled {
+        pointer-events: none;
+        opacity: 0.7;
+      }
+
+      #explanation {
+        margin-top: 15px;
+        padding: 15px;
+        background: #fff3cd;
+        border-left: 4px solid #ffc107;
+        border-radius: 4px;
+        font-size: 14px;
+        line-height: 1.4;
+      }
+
+      /* Result & Stats */
+      .score-circle {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 28px;
+        font-weight: bold;
+        margin: 20px auto;
+        color: white;
+      }
+      .pass {
+        background-color: var(--correct);
+      }
+      .fail {
+        background-color: var(--incorrect);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+      }
+      th,
+      td {
+        padding: 12px 8px;
+        text-align: left;
+        border-bottom: 1px solid #ecf0f1;
+      }
+      th {
+        color: #7f8c8d;
+        font-size: 14px;
+      }
+
+      .history-card {
+        background: #f8f9fa;
+        margin-bottom: 10px;
+        padding: 15px;
+        border-radius: 6px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      /* Chart Container */
+      .chart-container {
+        position: relative;
+        height: 250px;
+        width: 100%;
+        margin-bottom: 30px;
+      }
+    </style>
+    <script src="questions.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- NAVIGATION -->
+      <div class="nav-bar" id="main-nav">
+        <button class="nav-btn active" onclick="switchTab('setup')">
+          New Test
+        </button>
+        <button class="nav-btn" onclick="switchTab('stats')">Statistics</button>
+        <button class="nav-btn" onclick="switchTab('history')">History</button>
+      </div>
+
+      <!-- ECRAN: SETUP -->
+      <div id="tab-setup">
+        <h1>A320 Training</h1>
+        <p style="text-align: center">
+          Database: <span id="db-total">0</span> questions
+        </p>
+
+        <div class="setup-group">
+          <label for="question-count"
+            >Number of questions: <span id="count-display">10</span></label
+          >
+          <input type="range" id="question-count" min="1" max="50" value="10" />
+        </div>
+
+        <div class="setup-group checkbox-group">
+          <input type="checkbox" id="unseen-only" />
+          <label for="unseen-only" style="margin: 0; cursor: pointer"
+            >Only unseen questions</label
+          >
+        </div>
+
+        <div class="setup-group checkbox-group">
+          <input type="checkbox" id="pinned-only" />
+          <label for="pinned-only" style="margin: 0; cursor: pointer"
+            >Only pinned questions (★)</label
+          >
+        </div>
+
+        <button class="action-btn" onclick="startQuiz()">Start Training</button>
+
+        <p
+          style="
+            text-align: center;
+            font-size: 12px;
+            color: #7f8c8d;
+            margin-top: 20px;
+          "
+        >
+          <span id="seen-stats">0</span> questions seen |
+          <span id="pinned-stats">0</span> questions pinned <br /><br /><a
+            href="#"
+            onclick="resetProgress()"
+            style="color: #e74c3c; text-decoration: none"
+            >Reset all my progress</a
+          >
+        </p>
+      </div>
+
+      <!-- ECRAN: STATISTIQUES -->
+      <div id="tab-stats" class="hidden">
+        <h2>Average Score by Theme</h2>
+        <div id="stats-container"></div>
+      </div>
+
+      <!-- ECRAN: HISTORIQUE -->
+      <div id="tab-history" class="hidden">
+        <h2>Score Progression</h2>
+        <div class="chart-container" id="chart-wrapper">
+          <canvas id="historyChart"></canvas>
+        </div>
+        <h2>Session Details</h2>
+        <div id="history-container"></div>
+      </div>
+
+      <!-- ECRAN: QUIZ -->
+      <div id="quiz-screen" class="hidden">
+        <div class="quiz-header">
+          <div>
+            <span id="theme-badge">Theme</span>
+            <span id="question-id-badge">ID: 0</span>
+          </div>
+          <div style="display: flex; align-items: center">
+            <button id="pin-btn" class="pin-btn unpinned" onclick="togglePin()">
+              ☆
+            </button>
+            <span
+              id="progress-text"
+              style="font-size: 14px; color: #7f8c8d; margin-left: 5px"
+              >1/5</span
+            >
+          </div>
+        </div>
+        <h2
+          id="question-text"
+          style="text-align: left; font-size: 18px; margin-top: 5px"
+        >
+          Question ?
+        </h2>
+
+        <div id="options-container"></div>
+        <div id="explanation" class="hidden"></div>
+        <button
+          id="next-btn"
+          class="action-btn hidden"
+          onclick="nextQuestion()"
+        >
+          Next Question
+        </button>
+      </div>
+
+      <!-- ECRAN: RESULTATS DU TEST -->
+      <div id="result-screen" class="hidden">
+        <h1>Results</h1>
+        <div id="score-circle" class="score-circle">100%</div>
+        <h2 id="result-message">Congratulations!</h2>
+        <p id="result-details" style="text-align: center"></p>
+        <button class="action-btn" onclick="location.reload()">
+          Return to Menu
+        </button>
+      </div>
+    </div>
+
+    <script>
+      if (typeof db === "undefined") {
+        alert(
+          "Error: Cannot load questions.js. Make sure it is in the same folder.",
+        );
+      }
+
+      let seenQuestions =
+        JSON.parse(localStorage.getItem("a320_seen_questions")) || [];
+      let themeStats =
+        JSON.parse(localStorage.getItem("a320_theme_stats")) || {};
+      let testHistory =
+        JSON.parse(localStorage.getItem("a320_test_history")) || [];
+      let pinnedQuestions =
+        JSON.parse(localStorage.getItem("a320_pinned_questions")) || [];
+
+      let chartInstance = null;
+
+      let currentQuiz = [];
+      let currentQuestionIndex = 0;
+      let score = 0;
+      let currentCorrectDiv = null;
+
+      // DOM Elements
+      const countSlider = document.getElementById("question-count");
+      const unseenCheckbox = document.getElementById("unseen-only");
+      const pinnedCheckbox = document.getElementById("pinned-only");
+      const countDisplay = document.getElementById("count-display");
+
+      // Init UI
+      document.getElementById("db-total").innerText = db ? db.length : 0;
+      document.getElementById("seen-stats").innerText = seenQuestions.length;
+      document.getElementById("pinned-stats").innerText =
+        pinnedQuestions.length;
+
+      // Checkbox exclusive logic & Slider dynamic max
+      unseenCheckbox.addEventListener("change", () => {
+        if (unseenCheckbox.checked) pinnedCheckbox.checked = false;
+        updateSliderMax();
+      });
+
+      pinnedCheckbox.addEventListener("change", () => {
+        if (pinnedCheckbox.checked) unseenCheckbox.checked = false;
+        updateSliderMax();
+      });
+
+      countSlider.addEventListener("input", (e) => {
+        countDisplay.innerText = e.target.value;
+      });
+
+      function updateSliderMax() {
+        let pool = db || [];
+
+        if (unseenCheckbox.checked) {
+          pool = pool.filter((q) => !seenQuestions.includes(q.id));
+        } else if (pinnedCheckbox.checked) {
+          pool = pool.filter((q) => pinnedQuestions.includes(q.id));
+        }
+
+        const maxVal = pool.length;
+
+        // Prevent slider from breaking if maxVal is 0
+        countSlider.max = maxVal === 0 ? 1 : maxVal;
+
+        // Push value down if it exceeds the new maximum
+        if (parseInt(countSlider.value) > maxVal) {
+          countSlider.value = maxVal;
+        } else if (maxVal > 0 && parseInt(countSlider.value) === 0) {
+          countSlider.value = 1; // reset to at least 1 if it was stuck at 0
+        }
+
+        countDisplay.innerText = maxVal === 0 ? "0" : countSlider.value;
+      }
+
+      // Call once on load
+      if (db) updateSliderMax();
+
+      function switchTab(tabId) {
+        document.getElementById("tab-setup").classList.add("hidden");
+        document.getElementById("tab-stats").classList.add("hidden");
+        document.getElementById("tab-history").classList.add("hidden");
+
+        const btns = document.querySelectorAll(".nav-btn");
+        btns.forEach((btn) => btn.classList.remove("active"));
+
+        document.getElementById(`tab-${tabId}`).classList.remove("hidden");
+        event.target.classList.add("active");
+
+        if (tabId === "stats") renderStats();
+        if (tabId === "history") renderHistory();
+      }
+
+      function renderStats() {
+        const container = document.getElementById("stats-container");
+        if (Object.keys(themeStats).length === 0) {
+          container.innerHTML =
+            '<p style="text-align:center; color:#7f8c8d;">No data available. Take a few tests!</p>';
+          return;
+        }
+
+        let html =
+          "<table><tr><th>Theme</th><th>Seen</th><th>Average Score</th></tr>";
+        for (const [theme, data] of Object.entries(themeStats)) {
+          const percent = Math.round((data.correct / data.total) * 100);
+          const color =
+            percent >= 75
+              ? "var(--correct)"
+              : percent >= 50
+                ? "#f39c12"
+                : "var(--incorrect)";
+          html += `<tr>
+                <td style="font-weight: bold;">${theme}</td>
+                <td>${data.total}</td>
+                <td style="color: ${color}; font-weight: bold;">${percent}%</td>
+            </tr>`;
+        }
+        html += "</table>";
+        container.innerHTML = html;
+      }
+
+      function renderHistory() {
+        const container = document.getElementById("history-container");
+        const chartWrapper = document.getElementById("chart-wrapper");
+
+        if (testHistory.length === 0) {
+          container.innerHTML =
+            '<p style="text-align:center; color:#7f8c8d;">No tests recorded.</p>';
+          chartWrapper.classList.add("hidden");
+          return;
+        }
+
+        chartWrapper.classList.remove("hidden");
+
+        let html = "";
+        [...testHistory].reverse().forEach((test) => {
+          const color =
+            test.percentage >= 75 ? "var(--correct)" : "var(--incorrect)";
+          html += `<div class="history-card">
+                <div>
+                    <strong>Test from ${test.date}</strong><br>
+                    <span style="font-size: 12px; color: #7f8c8d;">${test.score} / ${test.total} correct</span>
+                </div>
+                <div style="font-size: 20px; font-weight: bold; color: ${color};">${test.percentage}%</div>
+            </div>`;
+        });
+        container.innerHTML = html;
+
+        const ctx = document.getElementById("historyChart").getContext("2d");
+        if (chartInstance) chartInstance.destroy();
+
+        const labels = testHistory.map((t) => t.date.split(" ")[0]);
+        const dataScores = testHistory.map((t) => t.percentage);
+        const thresholdLine = testHistory.map(() => 75);
+
+        chartInstance = new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: "Score Achieved (%)",
+                data: dataScores,
+                borderColor: "#3498db",
+                backgroundColor: "rgba(52, 152, 219, 0.2)",
+                fill: true,
+                tension: 0.3,
+                pointBackgroundColor: "#2980b9",
+              },
+              {
+                label: "Passing Threshold (75%)",
+                data: thresholdLine,
+                borderColor: "#e74c3c",
+                borderDash: [5, 5],
+                borderWidth: 2,
+                pointRadius: 0,
+                fill: false,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true,
+                max: 100,
+                ticks: { stepSize: 25 },
+              },
+            },
+            plugins: { legend: { position: "bottom" } },
+          },
+        });
+      }
+
+      function resetProgress() {
+        if (
+          confirm(
+            "Are you sure you want to clear all your history, including pinned questions?",
+          )
+        ) {
+          localStorage.clear();
+          location.reload();
+        }
+      }
+
+      function startQuiz() {
+        let pool = db || [];
+
+        if (unseenCheckbox.checked) {
+          pool = pool.filter((q) => !seenQuestions.includes(q.id));
+          if (pool.length === 0) {
+            alert(
+              "You have already seen all the questions in the database! Uncheck the box to review.",
+            );
+            return;
+          }
+        } else if (pinnedCheckbox.checked) {
+          pool = pool.filter((q) => pinnedQuestions.includes(q.id));
+          if (pool.length === 0) {
+            alert(
+              "You don't have any pinned questions yet! Click the star icon during a test to pin a question.",
+            );
+            return;
+          }
+        }
+
+        const nbQuestions = Math.min(parseInt(countSlider.value), pool.length);
+        if (nbQuestions === 0) return; // Prevent starting a 0 question quiz
+
+        currentQuiz = pool
+          .sort(() => 0.5 - Math.random())
+          .slice(0, nbQuestions);
+        currentQuestionIndex = 0;
+        score = 0;
+
+        document.getElementById("tab-setup").classList.add("hidden");
+        document.getElementById("main-nav").classList.add("hidden");
+        document.getElementById("quiz-screen").classList.remove("hidden");
+        showQuestion();
+      }
+
+      function togglePin() {
+        const q = currentQuiz[currentQuestionIndex];
+        const pinBtn = document.getElementById("pin-btn");
+
+        if (pinnedQuestions.includes(q.id)) {
+          pinnedQuestions = pinnedQuestions.filter((id) => id !== q.id);
+          pinBtn.className = "pin-btn unpinned";
+          pinBtn.innerHTML = "☆";
+          pinBtn.title = "Pin this question";
+        } else {
+          pinnedQuestions.push(q.id);
+          pinBtn.className = "pin-btn pinned";
+          pinBtn.innerHTML = "★";
+          pinBtn.title = "Unpin this question";
+        }
+
+        localStorage.setItem(
+          "a320_pinned_questions",
+          JSON.stringify(pinnedQuestions),
+        );
+        document.getElementById("pinned-stats").innerText =
+          pinnedQuestions.length;
+        updateSliderMax(); // Keep the background UI synced
+      }
+
+      function showQuestion() {
+        const q = currentQuiz[currentQuestionIndex];
+
+        document.getElementById("progress-text").innerText =
+          `${currentQuestionIndex + 1} / ${currentQuiz.length}`;
+        document.getElementById("theme-badge").innerText = q.theme;
+        document.getElementById("question-id-badge").innerText = `ID: ${q.id}`;
+        document.getElementById("question-text").innerText = q.question;
+
+        // Update Pin Button State
+        const pinBtn = document.getElementById("pin-btn");
+        if (pinnedQuestions.includes(q.id)) {
+          pinBtn.className = "pin-btn pinned";
+          pinBtn.innerHTML = "★";
+          pinBtn.title = "Unpin this question";
+        } else {
+          pinBtn.className = "pin-btn unpinned";
+          pinBtn.innerHTML = "☆";
+          pinBtn.title = "Pin this question";
+        }
+
+        const optionsContainer = document.getElementById("options-container");
+        optionsContainer.innerHTML = "";
+
+        let mappedOptions = q.options.map((optText, originalIndex) => {
+          return { text: optText, isCorrect: originalIndex === q.correct };
+        });
+
+        mappedOptions.sort(() => Math.random() - 0.5);
+
+        mappedOptions.forEach((opt) => {
+          const div = document.createElement("div");
+          div.className = "option";
+          div.innerText = opt.text;
+
+          if (opt.isCorrect) currentCorrectDiv = div;
+
+          div.onclick = () => selectAnswer(opt.isCorrect, div, q);
+          optionsContainer.appendChild(div);
+        });
+
+        document.getElementById("explanation").classList.add("hidden");
+        document.getElementById("next-btn").classList.add("hidden");
+      }
+
+      function selectAnswer(isCorrect, selectedDiv, questionData) {
+        const allOptions = document.querySelectorAll(".option");
+        allOptions.forEach((opt) => opt.classList.add("disabled"));
+
+        if (!seenQuestions.includes(questionData.id)) {
+          seenQuestions.push(questionData.id);
+          localStorage.setItem(
+            "a320_seen_questions",
+            JSON.stringify(seenQuestions),
+          );
+          document.getElementById("seen-stats").innerText =
+            seenQuestions.length;
+          updateSliderMax(); // Sync the background logic
+        }
+
+        if (!themeStats[questionData.theme]) {
+          themeStats[questionData.theme] = { correct: 0, total: 0 };
+        }
+        themeStats[questionData.theme].total++;
+
+        const explDiv = document.getElementById("explanation");
+
+        if (isCorrect) {
+          selectedDiv.classList.add("correct");
+          score++;
+          themeStats[questionData.theme].correct++;
+          explDiv.innerHTML = `<strong>Correct!</strong><br><br>${questionData.explanation}`;
+        } else {
+          selectedDiv.classList.add("incorrect");
+          currentCorrectDiv.classList.add("correct");
+          explDiv.innerHTML = `<strong>Incorrect!</strong><br><br>${questionData.explanation}`;
+        }
+
+        localStorage.setItem("a320_theme_stats", JSON.stringify(themeStats));
+
+        explDiv.classList.remove("hidden");
+        document.getElementById("next-btn").classList.remove("hidden");
+      }
+
+      function nextQuestion() {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < currentQuiz.length) {
+          showQuestion();
+        } else {
+          endQuiz();
+        }
+      }
+
+      function endQuiz() {
+        document.getElementById("quiz-screen").classList.add("hidden");
+        document.getElementById("result-screen").classList.remove("hidden");
+
+        const percentage = Math.round((score / currentQuiz.length) * 100);
+
+        const now = new Date();
+        const dateString = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, "0")}-${now.getDate().toString().padStart(2, "0")} ${now.getHours().toString().padStart(2, "0")}:${now.getMinutes().toString().padStart(2, "0")}`;
+
+        testHistory.push({
+          date: dateString,
+          score: score,
+          total: currentQuiz.length,
+          percentage: percentage,
+        });
+        localStorage.setItem("a320_test_history", JSON.stringify(testHistory));
+
+        const circle = document.getElementById("score-circle");
+        const msg = document.getElementById("result-message");
+        const details = document.getElementById("result-details");
+
+        circle.innerText = `${percentage}%`;
+        details.innerText = `You got ${score} correct answer(s) out of ${currentQuiz.length}.`;
+
+        if (percentage >= 75) {
+          circle.className = "score-circle pass";
+          msg.innerText = "Check passed!";
+        } else {
+          circle.className = "score-circle fail";
+          msg.innerText = "Training required";
+        }
+      }
+    </script>
+  </body>
+</html>
