@@ -562,6 +562,12 @@
       let navPage = 0;
       const navPageSize = 50;
 
+      // Telemetry variables
+      let sessionStartTime = null;
+      let questionStartTime = null;
+      let totalQuestionTime = 0;
+      let failedQuestionIds = [];
+
       // DOM Elements
       const themeSelect = document.getElementById("theme-select");
       const countSlider = document.getElementById("question-count");
@@ -902,6 +908,12 @@
         currentQuestionIndex = 0;
         navPage = 0;
 
+        // --- TELEMETRY ---
+        sessionStartTime = Date.now();
+        totalQuestionTime = 0;
+        failedQuestionIds = [];
+        // -----------------
+
         document.getElementById("tab-setup").classList.add("hidden");
         document.getElementById("main-nav").classList.add("hidden");
         document.getElementById("quiz-screen").classList.remove("hidden");
@@ -1001,6 +1013,10 @@
         }
 
         renderNavigator();
+
+        // --- TELEMETRY ---
+        questionStartTime = Date.now();
+        // -----------------
       }
 
       function selectAnswer(
@@ -1010,6 +1026,13 @@
         questionData,
       ) {
         if (userAnswers[currentQuestionIndex]) return; // Guard against double clicks
+
+        // --- TELEMETRY ---
+        totalQuestionTime += Date.now() - questionStartTime;
+        if (!isCorrect) {
+          failedQuestionIds.push(questionData.id);
+        }
+        // -----------------
 
         userAnswers[currentQuestionIndex] = {
           isCorrect: isCorrect,
@@ -1145,6 +1168,37 @@
           circle.className = "score-circle fail";
           msg.innerText = "Training required";
         }
+
+        // --- ENVOI DES DONNEES A GOOGLE SHEETS ---
+        const sessionDuration = Math.round(
+          (Date.now() - sessionStartTime) / 1000,
+        );
+        const avgTime =
+          currentQuiz.length > 0
+            ? Math.round(totalQuestionTime / currentQuiz.length / 1000)
+            : 0;
+
+        const payload = {
+          score: finalScore,
+          total: currentQuiz.length,
+          failedIds: failedQuestionIds,
+          pinnedIds: pinnedQuestions, // Envoie toutes les questions que l'utilisateur a gardé épinglées
+          sessionDuration: sessionDuration,
+          avgTimePerQuestion: avgTime,
+        };
+
+        const WEBHOOK_URL =
+          "https://script.google.com/macros/s/AKfycbxwDTAdUKfIFdcR-Piei4XtLV6uA8w4rYcucreJxc59dOeNRVj90pe0k9Dvlf3weH9qgg/exec";
+
+        fetch(WEBHOOK_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }).catch((err) => console.log("Telemetry send failed", err));
+        // ------------------------------------------
       }
     </script>
   </body>
