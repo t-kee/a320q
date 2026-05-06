@@ -353,7 +353,7 @@
         color: var(--text-main);
       }
     </style>
-    <script src="questions.js"></script>
+    <script src="questions.js?v=2.0"></script>
   </head>
   <body>
     <div id="app">
@@ -545,6 +545,29 @@
         );
       }
 
+      // --- USER ID GENERATION ---
+      let userId = localStorage.getItem("a320_user_id");
+      if (!userId) {
+        userId = "user_" + Math.random().toString(36).substr(2, 9);
+        localStorage.setItem("a320_user_id", userId);
+      }
+
+      // --- DEVICE DETECTION ---
+      function getDeviceType() {
+        const ua = navigator.userAgent;
+        if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+          return "Tablet";
+        }
+        if (
+          /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(
+            ua,
+          )
+        ) {
+          return "Mobile";
+        }
+        return "Desktop";
+      }
+
       let seenQuestions =
         JSON.parse(localStorage.getItem("a320_seen_questions")) || [];
       let themeStats =
@@ -717,7 +740,7 @@
         document.getElementById("view-theme-badge").innerText = q.theme;
         document.getElementById("view-question-id-badge").innerText =
           `ID: ${q.id}`;
-        document.getElementById("view-question-text").innerText = q.question;
+        document.getElementById("view-question-text").innerHTML = q.question;
 
         const optsContainer = document.getElementById("view-options-container");
         optsContainer.innerHTML = "";
@@ -726,7 +749,7 @@
         q.options.forEach((optText, index) => {
           const div = document.createElement("div");
           div.className = "option disabled"; // Cannot be clicked
-          div.innerText = optText;
+          div.innerHTML = optText;
           if (index === q.correct) {
             div.classList.add("correct");
           }
@@ -953,7 +976,7 @@
           `${currentQuestionIndex + 1} / ${currentQuiz.length}`;
         document.getElementById("theme-badge").innerText = q.theme;
         document.getElementById("question-id-badge").innerText = `ID: ${q.id}`;
-        document.getElementById("question-text").innerText = q.question;
+        document.getElementById("question-text").innerHTML = q.question;
 
         // Update Pin Button State
         const pinBtn = document.getElementById("pin-btn");
@@ -975,7 +998,7 @@
         q.shuffledOptions.forEach((opt, index) => {
           const div = document.createElement("div");
           div.className = "option";
-          div.innerText = opt.text;
+          div.innerHTML = opt.text;
 
           // If the user has already answered this question
           if (answeredData) {
@@ -1179,17 +1202,40 @@
             ? Math.round(totalQuestionTime / currentQuiz.length / 1000)
             : 0;
 
+        // Préparation des métriques avancées
+        const themeSelected = document.getElementById("theme-select").value;
+        const modeSelected = unseenCheckbox.checked
+          ? "unseen"
+          : pinnedCheckbox.checked
+            ? "pinned"
+            : "all";
+        const answeredCount = userAnswers.filter((a) => a !== null).length;
+        const failedDetailsString = userAnswers
+          .map((ans, idx) =>
+            ans && !ans.isCorrect
+              ? `${currentQuiz[idx].id}:${ans.selectedIndex}`
+              : null,
+          )
+          .filter((a) => a !== null)
+          .join(", ");
+
         const payload = {
           score: finalScore,
-          total: currentQuiz.length,
-          failedIds: failedQuestionIds,
-          pinnedIds: pinnedQuestions, // Envoie toutes les questions que l'utilisateur a gardé épinglées
+          totalRequested: currentQuiz.length,
+          failedIds: failedQuestionIds.join(", "),
+          pinnedIds: pinnedQuestions.join(", "),
           sessionDuration: sessionDuration,
           avgTimePerQuestion: avgTime,
+          userId: userId,
+          device: getDeviceType(),
+          theme: themeSelected,
+          mode: modeSelected,
+          answeredCount: answeredCount,
+          failedDetails: failedDetailsString,
         };
 
         const WEBHOOK_URL =
-          "https://script.google.com/macros/s/AKfycbxwDTAdUKfIFdcR-Piei4XtLV6uA8w4rYcucreJxc59dOeNRVj90pe0k9Dvlf3weH9qgg/exec";
+          "https://script.google.com/macros/s/AKfycbz9llmhQchZcEBy7WQ7yGk4RH3Yvxr0tOl79e4Sg07J5XAR91F_t46HpVspGSWK2XicIw/exec";
 
         fetch(WEBHOOK_URL, {
           method: "POST",
