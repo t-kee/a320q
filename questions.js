@@ -196,9 +196,9 @@ const db = [
     question:
       "What is the correct runway condition in EFB PERF for takeoff if the runway is damp?",
     options: ["Wet", "Dry", "Neither dry nor wet"],
-    correct: 1,
+    correct: 0,
     explanation:
-      "FCOM EFB-TOF-30-10: A damp runway is considered DRY for takeoff performance.",
+      "FCOM EFB-TOF-30-20: A damp runway is considered WET for takeoff performance.<br>⚠️ According to CAE Pelesys, right answer is sometimes 'Dry', sometimes 'Neither'... Good luck!",
   },
   {
     id: 19,
@@ -312,7 +312,8 @@ const db = [
       "For an in-flight landing calculation, what is the appropriate EFB input for RWY COND with 5 mm of water on the runway?",
     options: ["3-Medium", "2-Medium to Poor", "5-Good", "6-Dry"],
     correct: 1,
-    explanation: "FCOM EFB-LDG-30: > 3 mm standing water corresponds to RCC 2.",
+    explanation:
+      "FCOM EFB-LDG-30: > 3 mm standing water corresponds to RCC 2.<br>⚠️ According to CAE, SOMETIMES it is '3-Medium'.",
   },
   {
     id: 29,
@@ -1136,13 +1137,13 @@ const db = [
     theme: "Performance / EFB",
     question: "What is considered to be a 'forward' CG at takeoff?",
     options: [
-      "less than 29%",
+      "less than 30%",
       "less than or equal to 27%",
       "less than 27%",
       "less than or equal to 30%",
     ],
-    correct: 0,
-    explanation: "FCOM PRO-NOR-SOP-01-30: CG < 29% is considered forward.",
+    correct: 2,
+    explanation: "CAE Pelesys says it's not 'less than 30%'",
   },
   {
     id: 93,
@@ -1150,13 +1151,13 @@ const db = [
     question: "What is considered to be a 'standard' CG at takeoff?",
     options: [
       "More than 27%",
-      "More than or equal to 29%",
+      "More than or equal to 27%",
       "More than 30%",
       "More than or equal to 30%",
     ],
     correct: 1,
     explanation:
-      "FCOM PRO-NOR-SOP-01-30: CG >= 29% allows optimized performance.",
+      "⚠️ Need a reference but CAE Pelesys says it's not 'more than 27%' nor 'more than or equal to 30%'...",
   },
   {
     id: 94,
@@ -6845,8 +6846,21 @@ const db = [
       "less than 27%",
       "less than or equal to 30%",
     ],
-    correct: 0,
+    correct: 2,
     explanation:
-      "FCOM EFB-LDG-10: CG < 29% is typically considered forward for landing.",
+      "easyJet FS+ : CG < 29% is typically considered forward for landing.<br>BUT according to CAE Pelesys, right answer is : 'less than 27%'",
+  },
+  {
+    id: 521,
+    theme: "Performance / EFB",
+    question: "What is considered to be a 'standard' CG at landing?",
+    options: [
+      "more than 30%",
+      "more than or equal to 27%",
+      "more than 27%",
+      "more than or equal to 30%",
+    ],
+    correct: 1,
+    explanation: "CAE Pelesys...",
   },
 ];
