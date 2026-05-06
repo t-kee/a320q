@@ -205,10 +205,10 @@ const db = [
     theme: "Performance / EFB",
     question:
       "For an in-flight landing calculation, what is the maximum crosswind with compacted snow at -10°C?",
-    options: ["10 kts", "20 kts", "15 kts", "29 kts"],
-    correct: 3,
+    options: ["25 kts", "20 kts", "15 kts", "29 kts"],
+    correct: 0,
     explanation:
-      "FCOM EFB-LDG-30: Compacted snow at -10°C (RCC 4) allows max 29 knots.",
+      "FCOM EFB-LDG-30: Compacted snow at -10°C (RCC 3) allows max 25 knots.",
   },
   {
     id: 20,
