@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>A320 Training Quiz</title>
 
-    <!-- Chart.js for the progression graph -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
@@ -159,10 +158,10 @@
       }
       .pin-btn.pinned {
         color: #f1c40f;
-      } /* Gold Star */
+      }
       .pin-btn.unpinned {
         color: #bdc3c7;
-      } /* Grey Star */
+      }
       .pin-btn:hover {
         transform: scale(1.2);
       }
@@ -352,12 +351,46 @@
         font-size: 14px;
         color: var(--text-main);
       }
+
+      .keyboard-help {
+        text-align: center;
+        font-size: 12px;
+        color: #bdc3c7;
+        margin-top: 20px;
+      }
+
+      .postit {
+        background: #fffa90; /* Jaune post-it */
+        padding: 15px;
+        margin: 15px auto;
+        width: 90%;
+        border-radius: 2px;
+        box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.1);
+        position: relative;
+        transform: rotate(-1deg); /* Petit effet penché */
+        color: #333;
+        border-left: 5px solid #f1c40f;
+      }
+
+      .close-postit {
+        position: absolute;
+        top: 5px;
+        right: 8px;
+        background: none;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        color: #999;
+      }
+
+      .close-postit:hover {
+        color: #333;
+      }
     </style>
-    <script src="questions.js?v=2.0"></script>
+    <script src="questions.js"></script>
   </head>
   <body>
     <div id="app">
-      <!-- NAVIGATION -->
       <div class="nav-bar" id="main-nav">
         <button class="nav-btn active" onclick="switchTab('setup')">
           New Test
@@ -367,12 +400,24 @@
         <button class="nav-btn" onclick="switchTab('search')">Search</button>
       </div>
 
-      <!-- ECRAN: SETUP -->
       <div id="tab-setup">
         <h1>A320 Training</h1>
         <p style="text-align: center">
           Database: <span id="db-total">0</span> questions
         </p>
+
+        <div id="changelog-postit" class="postit hidden">
+          <button class="close-postit" onclick="closeChangelog()">
+            &times;
+          </button>
+          <strong>V1.3 : What's new?</strong>
+          <ul style="margin: 5px 0; padding-left: 15px; font-size: 13px">
+            <li>Keyboard shortcuts (A, B, C, D, ⬅️, ➡️) ⌨️</li>
+            <li>Save tests for later ⏸ (max history size : 50 tests)</li>
+            <li>Review finished tests 🔍</li>
+            <li>Fixed questions : 47, 8, 172, 426 & 19</li>
+          </ul>
+        </div>
 
         <div class="setup-group">
           <label for="theme-select">Select Theme:</label>
@@ -422,13 +467,11 @@
         </p>
       </div>
 
-      <!-- ECRAN: STATISTIQUES -->
       <div id="tab-stats" class="hidden">
         <h2>Average Score by Theme</h2>
         <div id="stats-container"></div>
       </div>
 
-      <!-- ECRAN: HISTORIQUE -->
       <div id="tab-history" class="hidden">
         <h2>Score Progression</h2>
         <div class="chart-container" id="chart-wrapper">
@@ -438,7 +481,6 @@
         <div id="history-container"></div>
       </div>
 
-      <!-- ECRAN: SEARCH -->
       <div id="tab-search" class="hidden">
         <input
           type="text"
@@ -450,7 +492,6 @@
         <div id="search-results"></div>
       </div>
 
-      <!-- ECRAN: QUESTION VIEW (Read Only from Search) -->
       <div id="tab-question-view" class="hidden">
         <button
           class="action-btn"
@@ -477,7 +518,6 @@
         <div id="view-explanation" class="explanation-box"></div>
       </div>
 
-      <!-- ECRAN: QUIZ -->
       <div id="quiz-screen" class="hidden">
         <div class="quiz-header">
           <div>
@@ -513,26 +553,50 @@
           Next Question
         </button>
 
-        <!-- Navigator: Bubbles representing questions -->
         <div id="quiz-navigator" class="navigator-container"></div>
 
-        <div style="text-align: center; margin-top: 15px">
+        <div
+          style="
+            text-align: center;
+            margin-top: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+          "
+        >
           <a
             href="#"
+            id="save-exit-btn"
+            onclick="saveQuiz()"
+            style="
+              color: #f39c12;
+              font-size: 14px;
+              text-decoration: none;
+              font-weight: bold;
+            "
+            >⏸ Save this test to resume later</a
+          >
+          <a
+            href="#"
+            id="end-quiz-btn"
             onclick="endQuiz()"
             style="color: #e74c3c; font-size: 14px; text-decoration: none"
-            >End training and see results</a
+            >⏹ End training and see results</a
           >
+        </div>
+
+        <div class="keyboard-help" id="keyboard-help">
+          ⌨️ Shortcuts: A, B, C, D to answer • ← → to navigate
         </div>
       </div>
 
-      <!-- ECRAN: RESULTATS DU TEST -->
       <div id="result-screen" class="hidden">
         <h1>Results</h1>
         <div id="score-circle" class="score-circle">100%</div>
         <h2 id="result-message">Congratulations!</h2>
         <p id="result-details" style="text-align: center"></p>
-        <button class="action-btn" onclick="location.reload()">
+        <button class="action-btn" onclick="returnToMenu()">
           Return to Menu
         </button>
       </div>
@@ -580,6 +644,8 @@
       let chartInstance = null;
 
       // Quiz state variables
+      let activeHistoryId = null;
+      let isReviewMode = false;
       let currentQuiz = [];
       let userAnswers = []; // stores objects: { isCorrect: boolean, selectedIndex: int }
       let currentQuestionIndex = 0;
@@ -638,13 +704,11 @@
       function updateSliderMax() {
         let pool = db || [];
 
-        // Apply Theme filter
         const selectedTheme = themeSelect.value;
         if (selectedTheme !== "all") {
           pool = pool.filter((q) => q.theme === selectedTheme);
         }
 
-        // Apply Status filters
         if (unseenCheckbox.checked) {
           pool = pool.filter((q) => !seenQuestions.includes(q.id));
         } else if (pinnedCheckbox.checked) {
@@ -652,21 +716,16 @@
         }
 
         const maxVal = pool.length;
-
-        // Prevent slider from breaking if maxVal is 0
         countSlider.max = maxVal === 0 ? 1 : maxVal;
 
-        // Push value down if it exceeds the new maximum
         if (parseInt(countSlider.value) > maxVal) {
           countSlider.value = maxVal;
         } else if (maxVal > 0 && parseInt(countSlider.value) === 0) {
-          countSlider.value = 1; // reset to at least 1 if it was stuck at 0
+          countSlider.value = 1;
         }
-
         countDisplay.innerText = maxVal === 0 ? "0" : countSlider.value;
       }
 
-      // Call once on load
       if (db) updateSliderMax();
 
       function switchTab(tabId) {
@@ -675,13 +734,14 @@
         document.getElementById("tab-history").classList.add("hidden");
         document.getElementById("tab-search").classList.add("hidden");
         document.getElementById("tab-question-view").classList.add("hidden");
+        document.getElementById("result-screen").classList.add("hidden");
+        document.getElementById("quiz-screen").classList.add("hidden");
 
         const btns = document.querySelectorAll(".nav-btn");
         btns.forEach((btn) => btn.classList.remove("active"));
 
         document.getElementById(`tab-${tabId}`).classList.remove("hidden");
 
-        // Highlight active tab button if it exists
         const clickedBtn = Array.from(btns).find((btn) =>
           btn.innerText.toLowerCase().includes(tabId.replace("-view", "")),
         );
@@ -745,10 +805,9 @@
         const optsContainer = document.getElementById("view-options-container");
         optsContainer.innerHTML = "";
 
-        // Display options in their original order for clarity in review mode
         q.options.forEach((optText, index) => {
           const div = document.createElement("div");
-          div.className = "option disabled"; // Cannot be clicked
+          div.className = "option disabled";
           div.innerHTML = optText;
           if (index === q.correct) {
             div.classList.add("correct");
@@ -809,63 +868,84 @@
 
         let html = "";
         [...testHistory].reverse().forEach((test) => {
-          const color =
-            test.percentage >= 75 ? "var(--correct)" : "var(--incorrect)";
+          const isSaved = test.status === "saved";
+          const color = isSaved
+            ? "#f39c12"
+            : test.percentage >= 75
+              ? "var(--correct)"
+              : "var(--incorrect)";
+          const statusBadge = isSaved
+            ? `<span style="background:#f39c12; color:white; padding:2px 6px; border-radius:4px; font-size:10px; margin-left:5px;">PAUSED</span>`
+            : "";
+
+          let actionBtn = "";
+          if (test.quizData) {
+            if (isSaved) {
+              actionBtn = `<button class="action-btn" style="margin-top:0; padding:6px 12px; font-size:12px;" onclick="resumeTest(${test.id})">Resume</button>`;
+            } else {
+              actionBtn = `<button class="action-btn" style="margin-top:0; padding:6px 12px; font-size:12px; background-color:#7f8c8d;" onclick="reviewTest(${test.id})">Review</button>`;
+            }
+          }
+
           html += `<div class="history-card">
-                <div>
-                    <strong>Test from ${test.date}</strong><br>
+                <div style="flex: 1;">
+                    <strong>Test from ${test.date}</strong> ${statusBadge}<br>
                     <span style="font-size: 12px; color: #7f8c8d;">${test.score} / ${test.total} correct</span>
                 </div>
-                <div style="font-size: 20px; font-weight: bold; color: ${color};">${test.percentage}%</div>
+                <div style="margin-right: 15px; font-size: 20px; font-weight: bold; color: ${color};">${isSaved ? "--" : test.percentage}%</div>
+                <div>${actionBtn}</div>
             </div>`;
         });
         container.innerHTML = html;
 
+        const finishedTests = testHistory.filter((t) => t.status !== "saved");
         const ctx = document.getElementById("historyChart").getContext("2d");
         if (chartInstance) chartInstance.destroy();
 
-        const labels = testHistory.map((t) => t.date.split(" ")[0]);
-        const dataScores = testHistory.map((t) => t.percentage);
-        const thresholdLine = testHistory.map(() => 75);
+        if (finishedTests.length > 0) {
+          const labels = finishedTests.map((t) => t.date.slice(5));
+          const dataScores = finishedTests.map((t) => t.percentage);
+          const thresholdLine = finishedTests.map(() => 75);
 
-        chartInstance = new Chart(ctx, {
-          type: "line",
-          data: {
-            labels: labels,
-            datasets: [
-              {
-                label: "Score Achieved (%)",
-                data: dataScores,
-                borderColor: "#3498db",
-                backgroundColor: "rgba(52, 152, 219, 0.2)",
-                fill: true,
-                tension: 0.3,
-                pointBackgroundColor: "#2980b9",
-              },
-              {
-                label: "Passing Threshold (75%)",
-                data: thresholdLine,
-                borderColor: "#e74c3c",
-                borderDash: [5, 5],
-                borderWidth: 2,
-                pointRadius: 0,
-                fill: false,
-              },
-            ],
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-              y: {
-                beginAtZero: true,
-                max: 100,
-                ticks: { stepSize: 25 },
-              },
+          chartInstance = new Chart(ctx, {
+            type: "line",
+            data: {
+              labels: labels,
+              datasets: [
+                {
+                  label: "Score Achieved (%)",
+                  data: dataScores,
+                  borderColor: "#3498db",
+                  backgroundColor: "rgba(52, 152, 219, 0.2)",
+                  fill: true,
+                  tension: 0.3,
+                  pointBackgroundColor: "#2980b9",
+                },
+                {
+                  label: "Passing Threshold (75%)",
+                  data: thresholdLine,
+                  borderColor: "#e74c3c",
+                  borderDash: [5, 5],
+                  borderWidth: 2,
+                  pointRadius: 0,
+                  fill: false,
+                },
+              ],
             },
-            plugins: { legend: { position: "bottom" } },
-          },
-        });
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  max: 100,
+                  ticks: { stepSize: 25 },
+                },
+              },
+              plugins: { legend: { position: "bottom" } },
+            },
+          });
+        }
       }
 
       function resetProgress() {
@@ -874,9 +954,92 @@
             "Are you sure you want to clear all your history, including pinned questions?",
           )
         ) {
-          localStorage.clear();
+          Object.keys(localStorage)
+            .filter((key) => key.startsWith("a320_") && key !== "a320_user_id")
+            .forEach((key) => localStorage.removeItem(key));
+
           location.reload();
         }
+      }
+
+      // --- RESUME & REVIEW LOGIC ---
+      function loadTestState(id, mode) {
+        const test = testHistory.find((t) => t.id === id);
+        if (!test) return;
+
+        activeHistoryId = test.id;
+        isReviewMode = mode === "review";
+        const hasValidQuizData =
+          Array.isArray(test.quizData) &&
+          test.quizData.length > 0 &&
+          test.quizData.every(
+            (lightQ) =>
+              lightQ &&
+              Number.isInteger(lightQ.id) &&
+              Array.isArray(lightQ.order),
+          );
+
+        if (!hasValidQuizData) {
+          alert(
+            "This saved test uses an older or invalid format and cannot be resumed or reviewed.",
+          );
+          returnToMenu();
+          return;
+        }
+        // Réhydratation du squelette allégé
+        currentQuiz = test.quizData
+          .map((lightQ) => {
+            const fullQ = db.find((db_q) => db_q.id === lightQ.id);
+            if (!fullQ) return null;
+
+            return {
+              ...fullQ,
+              shuffledOptions: lightQ.order.map((origIdx) => ({
+                text: fullQ.options[origIdx],
+                isCorrect: origIdx === fullQ.correct,
+                originalIndex: origIdx,
+              })),
+            };
+          })
+          .filter((q) => q !== null);
+        if (currentQuiz.length === 0) {
+          alert(
+            "This saved test is no longer valid because the question database was updated.",
+          );
+          returnToMenu();
+          return;
+        }
+        userAnswers = test.answersData;
+        currentQuestionIndex = mode === "resume" ? test.currentIndex : 0;
+        navPage = 0;
+
+        sessionStartTime = Date.now() - (test.timeData.elapsedSessionTime || 0);
+        totalQuestionTime = test.timeData.totalQuestionTime || 0;
+        failedQuestionIds = test.failedIds || [];
+
+        document.getElementById("tab-history").classList.add("hidden");
+        document.getElementById("main-nav").classList.add("hidden");
+        document.getElementById("quiz-screen").classList.remove("hidden");
+
+        if (isReviewMode) {
+          document.getElementById("save-exit-btn").classList.add("hidden");
+          document.getElementById("end-quiz-btn").innerText = "Close Review";
+          document.getElementById("keyboard-help").classList.add("hidden");
+        } else {
+          document.getElementById("save-exit-btn").classList.remove("hidden");
+          document.getElementById("end-quiz-btn").innerText =
+            "End training and see results";
+          document.getElementById("keyboard-help").classList.remove("hidden");
+        }
+
+        showQuestion();
+      }
+
+      function resumeTest(id) {
+        loadTestState(id, "resume");
+      }
+      function reviewTest(id) {
+        loadTestState(id, "review");
       }
 
       // --- QUIZ LOGIC ---
@@ -884,7 +1047,6 @@
       function startQuiz() {
         let pool = db || [];
 
-        // Apply Theme filter
         const selectedTheme = themeSelect.value;
         if (selectedTheme !== "all") {
           pool = pool.filter((q) => q.theme === selectedTheme);
@@ -897,25 +1059,20 @@
         if (unseenCheckbox.checked) {
           pool = pool.filter((q) => !seenQuestions.includes(q.id));
           if (pool.length === 0) {
-            alert(
-              "You have already seen all the questions in this selection! Uncheck the box to review.",
-            );
+            alert("You have already seen all the questions in this selection!");
             return;
           }
         } else if (pinnedCheckbox.checked) {
           pool = pool.filter((q) => pinnedQuestions.includes(q.id));
           if (pool.length === 0) {
-            alert(
-              "You don't have any pinned questions in this selection! Click the star icon during a test to pin a question.",
-            );
+            alert("You don't have any pinned questions in this selection!");
             return;
           }
         }
 
         const nbQuestions = Math.min(parseInt(countSlider.value), pool.length);
-        if (nbQuestions === 0) return; // Prevent starting a 0 question quiz
+        if (nbQuestions === 0) return;
 
-        // Prepare the quiz pool and shuffle options once per test
         currentQuiz = pool
           .sort(() => 0.5 - Math.random())
           .slice(0, nbQuestions)
@@ -923,20 +1080,26 @@
             let options = q.options.map((text, idx) => ({
               text,
               isCorrect: idx === q.correct,
+              originalIndex: idx, // <-- Mémorisation de la position
             }));
-            options.sort(() => Math.random() - 0.5); // Shuffle options
+            options.sort(() => Math.random() - 0.5);
             return { ...q, shuffledOptions: options };
           });
 
+        activeHistoryId = Date.now();
+        isReviewMode = false;
         userAnswers = new Array(nbQuestions).fill(null);
         currentQuestionIndex = 0;
         navPage = 0;
 
-        // --- TELEMETRY ---
         sessionStartTime = Date.now();
         totalQuestionTime = 0;
         failedQuestionIds = [];
-        // -----------------
+
+        document.getElementById("save-exit-btn").classList.remove("hidden");
+        document.getElementById("end-quiz-btn").innerText =
+          "End training and see results";
+        document.getElementById("keyboard-help").classList.remove("hidden");
 
         document.getElementById("tab-setup").classList.add("hidden");
         document.getElementById("main-nav").classList.add("hidden");
@@ -966,7 +1129,7 @@
         );
         document.getElementById("pinned-stats").innerText =
           pinnedQuestions.length;
-        updateSliderMax(); // Keep the background UI synced
+        updateSliderMax();
       }
 
       function showQuestion() {
@@ -978,7 +1141,6 @@
         document.getElementById("question-id-badge").innerText = `ID: ${q.id}`;
         document.getElementById("question-text").innerHTML = q.question;
 
-        // Update Pin Button State
         const pinBtn = document.getElementById("pin-btn");
         if (pinnedQuestions.includes(q.id)) {
           pinBtn.className = "pin-btn pinned";
@@ -1000,7 +1162,6 @@
           div.className = "option";
           div.innerHTML = opt.text;
 
-          // If the user has already answered this question
           if (answeredData) {
             div.classList.add("disabled");
             if (opt.isCorrect) {
@@ -1010,7 +1171,6 @@
               div.classList.add("incorrect");
             }
           } else {
-            // Not yet answered
             div.onclick = () => selectAnswer(opt.isCorrect, div, index, q);
           }
 
@@ -1038,32 +1198,24 @@
 
         renderNavigator();
 
-        // --- TELEMETRY ---
-        questionStartTime = Date.now();
-        // -----------------
+        if (!isReviewMode) {
+          questionStartTime = Date.now();
+        }
       }
 
-      function selectAnswer(
-        isCorrect,
-        selectedDiv,
-        selectedIndex,
-        questionData,
-      ) {
-        if (userAnswers[currentQuestionIndex]) return; // Guard against double clicks
+      function selectAnswer(isCorrect, _unused, selectedIndex, questionData) {
+        if (userAnswers[currentQuestionIndex] || isReviewMode) return;
 
-        // --- TELEMETRY ---
         totalQuestionTime += Date.now() - questionStartTime;
         if (!isCorrect) {
           failedQuestionIds.push(questionData.id);
         }
-        // -----------------
 
         userAnswers[currentQuestionIndex] = {
           isCorrect: isCorrect,
           selectedIndex: selectedIndex,
         };
 
-        // Record history of seen questions
         if (!seenQuestions.includes(questionData.id)) {
           seenQuestions.push(questionData.id);
           localStorage.setItem(
@@ -1075,7 +1227,6 @@
           updateSliderMax();
         }
 
-        // Record stats per theme
         if (!themeStats[questionData.theme]) {
           themeStats[questionData.theme] = { correct: 0, total: 0 };
         }
@@ -1083,7 +1234,7 @@
         if (isCorrect) themeStats[questionData.theme].correct++;
         localStorage.setItem("a320_theme_stats", JSON.stringify(themeStats));
 
-        showQuestion(); // Re-render to show correct/incorrect states and explanation
+        showQuestion();
       }
 
       function nextQuestion() {
@@ -1101,7 +1252,6 @@
 
         const totalPages = Math.ceil(currentQuiz.length / navPageSize);
 
-        // Auto-adjust page if currentQuestion is out of bounds of current navPage
         const expectedPage = Math.floor(currentQuestionIndex / navPageSize);
         if (navPage !== expectedPage && !window.manualNavPageChange) {
           navPage = expectedPage;
@@ -1157,11 +1307,61 @@
         }
       }
 
-      function endQuiz() {
-        document.getElementById("quiz-screen").classList.add("hidden");
-        document.getElementById("result-screen").classList.remove("hidden");
+      // --- KEYBOARD SHORTCUTS ---
+      document.addEventListener("keydown", (e) => {
+        const quizScreen = document.getElementById("quiz-screen");
+        if (quizScreen.classList.contains("hidden")) return;
 
-        // Calculate final score dynamically based on userAnswers
+        if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA")
+          return;
+
+        if (e.key === "ArrowRight") {
+          if (currentQuestionIndex < currentQuiz.length - 1) {
+            currentQuestionIndex++;
+            showQuestion();
+          }
+        } else if (e.key === "ArrowLeft") {
+          if (currentQuestionIndex > 0) {
+            currentQuestionIndex--;
+            showQuestion();
+          }
+        }
+
+        if (!isReviewMode && !userAnswers[currentQuestionIndex]) {
+          const keyMap = { a: 0, b: 1, c: 2, d: 3 };
+          const key = e.key.toLowerCase();
+
+          if (keyMap[key] !== undefined) {
+            const idx = keyMap[key];
+            const q = currentQuiz[currentQuestionIndex];
+            if (idx < q.shuffledOptions.length) {
+              const isCorrect = q.shuffledOptions[idx].isCorrect;
+              selectAnswer(isCorrect, null, idx, q);
+            }
+          }
+        }
+      });
+
+      // --- FINISHING & SAVING TESTS ---
+      function saveQuiz() {
+        processQuizEnd(true);
+      }
+
+      function endQuiz() {
+        if (isReviewMode) {
+          activeHistoryId = null;
+          isReviewMode = false;
+          document.getElementById("quiz-screen").classList.add("hidden"); // <-- C'est cette ligne qui manquait !
+          document.getElementById("main-nav").classList.remove("hidden");
+          switchTab("history");
+          return;
+        }
+        processQuizEnd(false);
+      }
+
+      function processQuizEnd(isSaved) {
+        document.getElementById("quiz-screen").classList.add("hidden");
+
         const finalScore = userAnswers.filter(
           (ans) => ans && ans.isCorrect,
         ).length;
@@ -1170,14 +1370,61 @@
         const now = new Date();
         const dateString = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, "0")}-${now.getDate().toString().padStart(2, "0")} ${now.getHours().toString().padStart(2, "0")}:${now.getMinutes().toString().padStart(2, "0")}`;
 
-        testHistory.push({
+        const elapsedSessionTime = Date.now() - sessionStartTime;
+
+        // Création du squelette ultra-léger (quelques octets par question)
+        const lightweightQuiz = currentQuiz.map((q) => ({
+          id: q.id,
+          order: q.shuffledOptions.map((opt) => opt.originalIndex),
+        }));
+
+        const testRecord = {
+          id: activeHistoryId,
+          status: isSaved ? "saved" : "finished",
           date: dateString,
           score: finalScore,
           total: currentQuiz.length,
           percentage: percentage,
-        });
+          quizData: lightweightQuiz, // <-- On stocke le squelette ici
+          answersData: userAnswers,
+          currentIndex: currentQuestionIndex,
+          timeData: {
+            elapsedSessionTime: elapsedSessionTime,
+            totalQuestionTime: totalQuestionTime,
+          },
+          failedIds: failedQuestionIds,
+          themeSelected: document.getElementById("theme-select").value,
+          modeSelected: unseenCheckbox.checked
+            ? "unseen"
+            : pinnedCheckbox.checked
+              ? "pinned"
+              : "all",
+        };
+
+        const existingIdx = testHistory.findIndex(
+          (t) => t.id === activeHistoryId,
+        );
+        if (existingIdx >= 0) {
+          testHistory[existingIdx] = testRecord;
+        } else {
+          testHistory.push(testRecord);
+        }
+
+        // --- Limite glissante : On ne garde que les 50 derniers tests ---
+        while (testHistory.length > 50) {
+          testHistory.shift();
+        }
+
         localStorage.setItem("a320_test_history", JSON.stringify(testHistory));
 
+        if (isSaved) {
+          activeHistoryId = null;
+          document.getElementById("main-nav").classList.remove("hidden");
+          switchTab("history");
+          return;
+        }
+
+        document.getElementById("result-screen").classList.remove("hidden");
         const circle = document.getElementById("score-circle");
         const msg = document.getElementById("result-message");
         const details = document.getElementById("result-details");
@@ -1193,23 +1440,12 @@
           msg.innerText = "Training required";
         }
 
-        // --- ENVOI DES DONNEES A GOOGLE SHEETS ---
-        const sessionDuration = Math.round(
-          (Date.now() - sessionStartTime) / 1000,
-        );
+        const answeredCount = userAnswers.filter((a) => a !== null).length;
         const avgTime =
-          currentQuiz.length > 0
-            ? Math.round(totalQuestionTime / currentQuiz.length / 1000)
+          answeredCount > 0
+            ? Math.round(totalQuestionTime / answeredCount / 1000)
             : 0;
 
-        // Préparation des métriques avancées
-        const themeSelected = document.getElementById("theme-select").value;
-        const modeSelected = unseenCheckbox.checked
-          ? "unseen"
-          : pinnedCheckbox.checked
-            ? "pinned"
-            : "all";
-        const answeredCount = userAnswers.filter((a) => a !== null).length;
         const failedDetailsString = userAnswers
           .map((ans, idx) =>
             ans && !ans.isCorrect
@@ -1224,12 +1460,12 @@
           totalRequested: currentQuiz.length,
           failedIds: failedQuestionIds.join(", "),
           pinnedIds: pinnedQuestions.join(", "),
-          sessionDuration: sessionDuration,
+          sessionDuration: Math.round(elapsedSessionTime / 1000),
           avgTimePerQuestion: avgTime,
           userId: userId,
           device: getDeviceType(),
-          theme: themeSelected,
-          mode: modeSelected,
+          theme: testRecord.themeSelected,
+          mode: testRecord.modeSelected,
           answeredCount: answeredCount,
           failedDetails: failedDetailsString,
         };
@@ -1245,7 +1481,43 @@
           },
           body: JSON.stringify(payload),
         }).catch((err) => console.log("Telemetry send failed", err));
-        // ------------------------------------------
+
+        activeHistoryId = null;
+      }
+
+      // Identifiant de la version du changelog
+      const CHANGELOG_VERSION = "v1.3_features";
+
+      function checkChangelog() {
+        const postit = document.getElementById("changelog-postit");
+        const hasSeen = localStorage.getItem("a320_changelog_seen");
+
+        // Si la version enregistrée est différente de la version actuelle, on l'affiche
+        if (hasSeen !== CHANGELOG_VERSION) {
+          postit.classList.remove("hidden");
+        }
+      }
+
+      function closeChangelog() {
+        document.getElementById("changelog-postit").classList.add("hidden");
+        // On enregistre que cette version a été vue
+        localStorage.setItem("a320_changelog_seen", CHANGELOG_VERSION);
+      }
+
+      // Appelle checkChangelog() au chargement de la page
+      window.addEventListener("load", checkChangelog);
+
+      function returnToMenu() {
+        activeHistoryId = null;
+        isReviewMode = false;
+        currentQuiz = [];
+        userAnswers = [];
+        currentQuestionIndex = 0;
+
+        document.getElementById("result-screen").classList.add("hidden");
+        document.getElementById("main-nav").classList.remove("hidden");
+
+        switchTab("setup");
       }
     </script>
   </body>
