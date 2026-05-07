@@ -587,7 +587,7 @@
         </div>
 
         <div class="keyboard-help" id="keyboard-help">
-          ⌨️ Shortcuts: A, B, C, D to answer • ← → to navigate
+          ⌨️ Shortcuts: A, B, C, D to answer • ← → to navigate • F to ☆
         </div>
       </div>
 
@@ -1325,6 +1325,8 @@
             currentQuestionIndex--;
             showQuestion();
           }
+        } else if (e.key.toLowerCase() === "f") {
+          togglePin();
         }
 
         if (!isReviewMode && !userAnswers[currentQuestionIndex]) {
