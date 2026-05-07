@@ -2157,7 +2157,7 @@ const db = [
       "ILS receiver No. 2 signals and the map.",
     ],
     correct: 2,
-    explanation: "FCOM DSC-31-45: Capt ND displays signals from ILS 1.",
+    explanation: "FCOM DSC-31-45: Capt ND displays signals from ILS 2.",
   },
   {
     id: 173,
@@ -5559,7 +5559,7 @@ const db = [
       "High speed protection is 1 of 5 protections in normal law, and is the only protection available in alternate law",
       "High speed protection will activate at VMO + 16 kt / MMO + 0.04, a permanent nose-up order is applied to aid recovery back towards normal flight conditions. The airspeed will settle at or below VMO even with full forward sidestick input",
       "High speed protection will not allow the aircraft to overshoot VMO/MMO unless forward sidestick input is applied. In this case the airspeed will never exceed VMO+16 / MMO + 0.04. When the sidestick is released the bank angle is maintained, the maximum AoB is reduced to 45°",
-      "High speed protection is activated at or above VMO/MMO (depending on the flight conditions), a permanent nose-up order is applied to aid recovery back towards normal flight conditions. With no sidestick input the aircraft will not to wings level, and the maximum bank angle is reduced to 40°",
+      "High speed protection is activated at or above VMO/MMO (depending on the flight conditions), a permanent nose-up order is applied to aid recovery back towards normal flight conditions. With no sidestick input the aircraft will go to wings level, and the maximum bank angle is reduced to 40°",
     ],
     correct: 3,
     explanation:
