@@ -3654,11 +3654,11 @@ const db = [
       "When the aircraft is on the ground.",
       "When the aircraft is in flight.",
       "When the aircraft reaches 100 knots.",
-      "When the aircraft is in the landing configuration.",
+      "Never.",
     ],
-    correct: 0,
+    correct: 3,
     explanation:
-      "FCOM DSC-31-15: Test simulates takeoff power on ground to check config.",
+      "⚠️ Manually changed the answer from the bank because it is wrong. The T.O. CONFIG TEST pb does not inhibit any warnings, on the contrary it triggers them if the T.O. config is good.<br>FCOM DSC-31-15: Test simulates takeoff power on ground to check config.",
   },
   {
     id: 286,
