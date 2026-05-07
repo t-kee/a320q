@@ -66,14 +66,13 @@ const db = [
     question:
       "What are the minimum and maximum cabin differential pressure limits?",
     options: [
-      "-0.8 to 9.0 PSI",
-      "-0.5 to 9.1 PSI",
-      "0 to 9.0 PSI",
-      "-0.4 to 9.0 PSI",
+      "+8.6 to -1 PSI",
+      "+8.5 to -1 PSI",
+      "+8.5 to -0.4 PSI",
+      "+9 to -1 PSI",
     ],
     correct: 3,
-    explanation:
-      "FCOM LIM-AIR: Differential pressure limits are -0.4 PSI to +9.0 PSI.",
+    explanation: "FCOM LIM-AIR: Max +9.0 PSI and -1.0 PSI.",
   },
   {
     id: 9,
