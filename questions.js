@@ -846,9 +846,9 @@ const db = [
       "Engine sensors",
       "Thrust lever angle",
     ],
-    correct: 2,
+    correct: 0,
     explanation:
-      "FCOM DSC-70-20: EIU passes thrust lever angle data to the FADEC.",
+      "FCOM DSC-70-20: EIU provides Master SW and Mode selection to FADEC. TLA & Engine sensors are directly fed to the FADEC.",
   },
   {
     id: 71,
@@ -5240,7 +5240,7 @@ const db = [
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-70-20: EIU provides Master SW and Mode selection to FADEC.",
+      "FCOM DSC-70-20: EIU provides Master SW and Mode selection to FADEC. TLA & Engine sensors are directly fed to the FADEC.",
   },
   {
     id: 401,
