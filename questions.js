@@ -3441,7 +3441,7 @@ const db = [
     id: 270,
     theme: "Landing Gear",
     question:
-      "When the landing gear is down, what happens to the T.O. CONFIG TEST pushbutton?",
+      "When the landing gear is up, what happens to the T.O. CONFIG TEST pushbutton?",
     options: [
       "The T.O. CONFIG TEST pushbutton is inhibited.",
       "The T.O. CONFIG TEST pushbutton remains active.",
@@ -3450,7 +3450,7 @@ const db = [
     ],
     correct: 0,
     explanation:
-      "FCOM DSC-31-30: CONFIG test is a ground-only function and inhibited in flight.",
+      "FCOM DSC-31-30: CONFIG test is a ground-only function (phases 2 to 3) and inhibited in flight (from phase 4).",
   },
   {
     id: 271,
@@ -6862,5 +6862,20 @@ const db = [
     ],
     correct: 1,
     explanation: "CAE Pelesys...",
+  },
+  {
+    id: 522,
+    theme: "Landing Gear",
+    question:
+      "While the aircraft is on the ground with engines running, the T.O. CONFIG TEST pushbutton is:",
+    options: [
+      "Inhibited",
+      "Active and allows configuration simulation",
+      "Only active when slats are retracted",
+      "Used to reset the FWC",
+    ],
+    correct: 1,
+    explanation:
+      "FCOM DSC-31-30: CONFIG test is a ground-only function (phases 2 to 3) and inhibited in flight (from phase 4).",
   },
 ];
