@@ -549,9 +549,10 @@ const db = [
     question:
       "Which of the following options contains only managed AP / FD modes?",
     options: [
-      "NAV, LOC, G/S, RWY, RWY TRK, GA TRK, FLA",
-      "NAV, APP NAV, LOC, RWY, RWY TRK, G/S, GA TRK, FLA",
+      "NAV, LOC, G/S, RWY, RWY TRK, GA TRK, FPA",
+      "NAV, APPR NAV, LOC, RWY, RWY TRK, GA TRK",
       "NAV, HDG, LOC, RWY, RWY TRK",
+      "NAV, OP CLB, OP DES, LOC, RWY, RWY TRK, GA TRK",
     ],
     correct: 1,
     explanation:
