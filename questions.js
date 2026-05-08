@@ -7511,9 +7511,9 @@ const db = [
       "The cockpit windows can be opened from both inside and outside",
       "Each escape rope can only be used on the side where they are installed",
     ],
-    correct: 2,
+    correct: 1,
     explanation:
-      "FCOM DSC-52-10-40: The sliding windows feature an external push-button allowing ground crews to open them from the outside.",
+      "FCOM DSC-52-10-30: A small compartment, located above each window, contains an escape rope that is long enough to reach the ground when lowered through either sliding window. The cockpit windows can only be opened from inside.",
   },
   {
     id: 571,
@@ -7558,7 +7558,7 @@ const db = [
     theme: "Communications",
     question: "Which panel is used to select a VHF transceiver?",
     options: ["RMP", "AMU", "ACP", "ACARS"],
-    correct: 0,
+    correct: 2,
     explanation:
       "FCOM DSC-23-10-20: The Radio Management Panel (RMP) is used to select and tune frequencies. *Note: The question is highly ambiguous. You use the RMP to select a radio for tuning, but you use the Audio Control Panel (ACP) to select a radio for actual transmission/reception.*",
   },
