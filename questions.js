@@ -7042,7 +7042,7 @@ const db = [
   },
   {
     id: 535,
-    theme: "Auto Flight",
+    theme: "Auto Flight / FMS",
     question: "How many legs can a flight plan contain?",
     options: ["125", "200", "150", "250"],
     correct: 1,
@@ -7051,7 +7051,7 @@ const db = [
   },
   {
     id: 536,
-    theme: "Auto Flight",
+    theme: "Auto Flight / FMS",
     question: "What unit is used for short-term interface?",
     options: ["ADIRU control panel", "EFIS control panel", "FCU", "MCDU"],
     correct: 2,
@@ -7060,7 +7060,7 @@ const db = [
   },
   {
     id: 537,
-    theme: "Auto Flight",
+    theme: "Auto Flight / FMS",
     question: "How is a temporary Flight Plan indicated on the ND?",
     options: [
       "A dotted magenta line",
@@ -7074,7 +7074,7 @@ const db = [
   },
   {
     id: 538,
-    theme: "Auto Flight",
+    theme: "Auto Flight / FMS",
     question: "What color indicates a secondary flight plan in PLAN mode?",
     options: ["Green", "White", "Amber", "Blue"],
     correct: 1,
@@ -7083,7 +7083,7 @@ const db = [
   },
   {
     id: 539,
-    theme: "Auto Flight",
+    theme: "Auto Flight / FMS",
     question:
       "If AP 2 is engaged, which FMGC is master and controls the A/THR?",
     options: [
