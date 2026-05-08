@@ -387,7 +387,7 @@
         color: #333;
       }
     </style>
-    <script src="questions.js"></script>
+    <script src="questions.js?v=1.4"></script>
   </head>
   <body>
     <div id="app">
@@ -410,12 +410,10 @@
           <button class="close-postit" onclick="closeChangelog()">
             &times;
           </button>
-          <strong>V1.3 : What's new?</strong>
+          <strong>V1.4 : What's new?</strong>
           <ul style="margin: 5px 0; padding-left: 15px; font-size: 13px">
-            <li>Keyboard shortcuts (A, B, C, D, ⬅️, ➡️) ⌨️</li>
-            <li>Save tests for later ⏸ (max history size : 50 tests)</li>
-            <li>Review finished tests 🔍</li>
-            <li>Fixed questions : 47, 8, 172, 426 & 19</li>
+            <li>New keyboard shortcut : F to ☆ ⌨️</li>
+            <li>80 new questions directly from the CAE bank.</li>
           </ul>
         </div>
 
@@ -1488,7 +1486,7 @@
       }
 
       // Identifiant de la version du changelog
-      const CHANGELOG_VERSION = "v1.3_features";
+      const CHANGELOG_VERSION = "v1.4_features";
 
       function checkChangelog() {
         const postit = document.getElementById("changelog-postit");

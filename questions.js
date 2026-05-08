@@ -6878,4 +6878,1071 @@ const db = [
     explanation:
       "FCOM DSC-31-30: CONFIG test is a ground-only function (phases 2 to 3) and inhibited in flight (from phase 4).",
   },
+  {
+    id: 523,
+    theme: "Aircraft General",
+    question:
+      "What cargo compartment can handle containers if the aircraft has that option?",
+    options: [
+      "Both FWD and AFT cargo compartments",
+      "AFT cargo compartment only",
+      "FWD cargo compartment only",
+      "Bulk cargo compartment",
+    ],
+    correct: 0,
+    explanation:
+      "FCOM DSC-20-20: Both forward and aft cargo compartments can be fitted to handle LD3-45W containers.",
+  },
+  {
+    id: 524,
+    theme: "Aircraft General",
+    question: "Where is the external power receptacle located?",
+    options: [
+      "At the r/h refueling connector",
+      "In front of the nose landing gear",
+      "Behind the FWD cargo door",
+      "Behind the nose landing gear",
+    ],
+    correct: 1,
+    explanation:
+      "FCOM DSC-24-10-20: The external electrical power receptacle is located on the fuselage in front of the nose landing gear.",
+  },
+  {
+    id: 525,
+    theme: "Aircraft General",
+    question: "What is the total length of the A320?",
+    options: ["34.5m", "38.7m", "37.57m", "34.1m"],
+    correct: 2,
+    explanation:
+      "FCOM DSC-20-20: The total overall length of the standard A320 aircraft is 37.57 meters.",
+  },
+  {
+    id: 526,
+    theme: "Indicating and Recording",
+    question:
+      "In normal operation, what displays are receiving information from DMC 1?",
+    options: [
+      "PFD 1 and ND 2",
+      "E/WD and SD",
+      "PFD 1, ND 1 and E/WD",
+      "PFD 1 and ND 1",
+    ],
+    correct: 2,
+    explanation:
+      "FCOM DSC-31-05-40: In normal configuration, DMC 1 supplies data to the Captain's PFD and ND, as well as the upper ECAM display (E/WD).",
+  },
+  {
+    id: 527,
+    theme: "Indicating and Recording",
+    question:
+      "The ECAM display uses a colour code that indicates the importance of the failure or the indication. What colour indicates crew should be aware but need not take immediate action?",
+    options: ["Red", "White", "Blue", "Amber"],
+    correct: 3,
+    explanation:
+      "FCOM DSC-31-10: Amber indicates an abnormal configuration or failure requiring crew awareness (Level 2), but not immediate action.",
+  },
+  {
+    id: 528,
+    theme: "Indicating and Recording",
+    question: "How are Primary and Secondary failures indicated?",
+    options: [
+      "Displayed in Amber only",
+      "Primary boxed, Secondary indicated by a star",
+      "Underlined",
+      "Primary white, Secondary blue",
+    ],
+    correct: 1,
+    explanation:
+      "FCOM DSC-31-10: On the ECAM, a primary failure is boxed, and resulting secondary failures are indicated with an asterisk (*).",
+  },
+  {
+    id: 529,
+    theme: "Indicating and Recording",
+    question: "What happens if the upper ECAM display fails?",
+    options: [
+      "E/WD is lost for the rest of the flight",
+      "The E/WD page automatically replaces the ND 1",
+      "The E/WD page automatically replaces the system/status page on the lower ECAM DU",
+      "The E/WD page automatically replaces the PFD 1",
+    ],
+    correct: 2,
+    explanation:
+      "FCOM DSC-31-05-60: If the upper display fails, the Engine/Warning Display (E/WD) automatically drops down to replace the System/Status display on the lower screen.",
+  },
+  {
+    id: 530,
+    theme: "Indicating and Recording",
+    question: "Where is the Flap/Slat position displayed?",
+    options: [
+      "On the Flap/Slat indicator",
+      "ECAM E/WD",
+      "On ECAM SD",
+      "On both PFD's",
+    ],
+    correct: 1,
+    explanation:
+      "FCOM DSC-27-30-20: The current configuration of the slats and flaps is continuously displayed on the Engine/Warning Display (E/WD).",
+  },
+  {
+    id: 531,
+    theme: "Electrical Systems",
+    question:
+      "In normal configuration, what sources can supply power to the AC system when the aircraft is on ground?",
+    options: [
+      "Emergency Generator",
+      "GEN 1, GEN 2 and External Power",
+      "GEN 1 and GEN 2",
+      "GEN 1, GEN 2, External Power and APU GEN",
+    ],
+    correct: 3,
+    explanation:
+      "FCOM DSC-24-10-30: On the ground, the entire electrical network can be powered by either engine generator (GEN 1/2), the APU generator, or an External Power source.",
+  },
+  {
+    id: 532,
+    theme: "Electrical Systems",
+    question: "What happens if GEN 1 is inoperative?",
+    options: [
+      "AC BUS 1 receives power from AC BUS 2 automatically",
+      "AC BUS 1 can be used if EMERG GEN is connected to it",
+      "AC BUS 1 is powerless",
+      "AC BUS 1 is in this case supplied by the STATIC INVERTER",
+    ],
+    correct: 0,
+    explanation:
+      "FCOM DSC-24-10-30: If GEN 1 fails, the bus tie contactors automatically close to allow GEN 2 (via AC BUS 2) to power AC BUS 1.",
+  },
+  {
+    id: 533,
+    theme: "Electrical Systems",
+    question: "What's the purpose of the TR's?",
+    options: [
+      "To limit the current from the batteries",
+      "To transform D/C to A/C",
+      "To Transform and Rectify A/C power to D/C power",
+      "To avoid a power shift when selecting another electrical source",
+    ],
+    correct: 2,
+    explanation:
+      "FCOM DSC-24-10-20: Transformer Rectifiers (TRs) convert 115V AC power into 28V DC power for the aircraft's direct current network.",
+  },
+  {
+    id: 534,
+    theme: "Electrical Systems",
+    question: "Why are some Circuit Breakers (C/Bs) green instead of black?",
+    options: [
+      "Different manufacturers",
+      "They identify more important systems",
+      "They are monitored and will show up on the ECAM approx. 1 minute after being triggered",
+      "If they are in normal IN position, the aircraft is ready for departure",
+    ],
+    correct: 2,
+    explanation:
+      "FCOM DSC-24-20: Green circuit breakers are monitored. If one pops, it triggers an ECAM C/B TRIPPED caution after a short delay.",
+  },
+  {
+    id: 535,
+    theme: "Auto Flight",
+    question: "How many legs can a flight plan contain?",
+    options: ["125", "200", "150", "250"],
+    correct: 1,
+    explanation:
+      "FCOM DSC-22-10-30: Depending on the specific standard, the FMS flight plan can typically hold up to 200 waypoints/legs. *Note: While 200 is the expected legacy exam answer, modern FMS standards (Thales/Honeywell) can handle significantly more waypoints.*",
+  },
+  {
+    id: 536,
+    theme: "Auto Flight",
+    question: "What unit is used for short-term interface?",
+    options: ["ADIRU control panel", "EFIS control panel", "FCU", "MCDU"],
+    correct: 2,
+    explanation:
+      "FCOM DSC-22-10-40-20: The Flight Control Unit (FCU) is the primary interface for short-term/tactical guidance commands.",
+  },
+  {
+    id: 537,
+    theme: "Auto Flight",
+    question: "How is a temporary Flight Plan indicated on the ND?",
+    options: [
+      "A dotted magenta line",
+      "A solid amber line",
+      "A solid blue line",
+      "A dotted yellow line",
+    ],
+    correct: 3,
+    explanation:
+      "FCOM DSC-31-45: A temporary flight plan modification is drawn on the Navigation Display as a dashed/dotted yellow line.",
+  },
+  {
+    id: 538,
+    theme: "Auto Flight",
+    question: "What color indicates a secondary flight plan in PLAN mode?",
+    options: ["Green", "White", "Amber", "Blue"],
+    correct: 1,
+    explanation:
+      "FCOM DSC-31-45: The secondary flight plan route is depicted with a solid white line on the ND.",
+  },
+  {
+    id: 539,
+    theme: "Auto Flight",
+    question:
+      "If AP 2 is engaged, which FMGC is master and controls the A/THR?",
+    options: [
+      "A/THR never use information from the FMGS",
+      "Both FMGC always work in parallel and therefore share this task",
+      "No. 2",
+      "No. 1",
+    ],
+    correct: 2,
+    explanation:
+      "FCOM DSC-22-10-30: The FMGC corresponding to the engaged autopilot (AP2 = FMGC2) assumes the Master role and drives the autothrust.",
+  },
+  {
+    id: 540,
+    theme: "Navigation",
+    question:
+      "With the Predictive Windshear (PWS) switch in AUTO, below what height is data displayed on the ND?",
+    options: ["1500 feet RA", "2000 feet RA", "2300 feet RA", "2500 feet RA"],
+    correct: 0,
+    explanation:
+      "FCOM DSC-34-SURV-30-20: Predictive windshear icons and data are displayed on the ND when the aircraft is below 1500 ft AGL. *Note: 1500 ft is the expected legacy exam answer. In reality, modern PWS scans below 2300 ft and generates actual alerts below 1200 ft.*",
+  },
+  {
+    id: 541,
+    theme: "Navigation",
+    question:
+      "If ALL / N is selected on the ATC/TCAS panel, what is the altitude range of intruders that are displayed?",
+    options: [
+      "2700 feet above and 9900 feet below the aircraft",
+      "9900 feet above and 9900 feet below the aircraft",
+      "9900 feet above and 2700 feet below the aircraft",
+      "2700 feet above and 2700 feet below the aircraft",
+    ],
+    correct: 3,
+    explanation:
+      "FCOM DSC-34-SURV-10-20: The ALL (Normal) mode displays traffic from 2700 ft below to 2700 ft above the aircraft's altitude.",
+  },
+  {
+    id: 542,
+    theme: "Navigation",
+    question: "Below what height do the FWC's generate height announcements?",
+    options: ["2500 feet", "1500 feet", "3000 feet", "2000 feet"],
+    correct: 0,
+    explanation:
+      "FCOM DSC-31-10: The Flight Warning Computers trigger synthetic voice altitude callouts starting from 2500 ft radio altitude.",
+  },
+  {
+    id: 543,
+    theme: "Navigation",
+    question:
+      "How long must the RESET p/b on the ISIS be pressed to reset the attitude indication?",
+    options: [
+      "For at least 1 second",
+      "Momentarily",
+      "For at least 5 seconds",
+      "For at least 2 seconds",
+    ],
+    correct: 3,
+    explanation:
+      "FCOM DSC-34-NAV-20: The ISIS reset pushbutton must be held for at least 2 seconds to initiate an attitude reset.",
+  },
+  {
+    id: 544,
+    theme: "Navigation",
+    question:
+      "How many GPS receivers are connected to the IR part of the ADIRUs?",
+    options: [
+      "One",
+      "Three independent receivers",
+      "Two independent receivers",
+      "Two integrated receivers",
+    ],
+    correct: 2,
+    explanation:
+      "FCOM DSC-34-NAV-10-10: Two independent Multimode Receivers (MMR) provide GPS data to the three ADIRUs.",
+  },
+  {
+    id: 545,
+    theme: "APU",
+    question: "Which fuel feed line supplies the APU?",
+    options: [
+      "The Right fuel feed line supplies the APU",
+      "The Left fuel feed line supplies the APU",
+      "The Right or the left fuel feed line supply the APU",
+      "The APU fuel feed line from the APU fuel tank supplies the APU",
+    ],
+    correct: 1,
+    explanation:
+      "FCOM DSC-28-10-70: The APU draws its fuel directly from the left engine fuel feed line.",
+  },
+  {
+    id: 546,
+    theme: "APU",
+    question: "What causes amber XX in the BLEED indication on APU SD page?",
+    options: [
+      "ADIRS 1 or 2 are not available or selected OFF, or the data from the ECB are invalid or not transmitted",
+      "Bleed air pressure is below 25 PSI",
+      "APU bleed is not selected",
+      "Bleed air overheat",
+    ],
+    correct: 0,
+    explanation:
+      "FCOM DSC-31-20: Amber crosses (XX) indicate a loss of valid data from the ADIRS or the Electronic Control Box (ECB).",
+  },
+  {
+    id: 547,
+    theme: "APU",
+    question: "What is the ECB in the APU system?",
+    options: [
+      "The Electronic Control Box (ECB) is used to control the cabin pressure in case of emergency",
+      "The Electronic Control Box (ECB) is the bleed air temperature controller for the APU",
+      "The Electronic Control Box (ECB) is a backup device if electrical power is lost",
+      "The Electronic Control Box (ECB) is a full-authority digital electronic controller",
+    ],
+    correct: 3,
+    explanation:
+      "FCOM DSC-49-20: The ECB is the dedicated digital controller managing all APU operations (start, bleed, shutdown).",
+  },
+  {
+    id: 548,
+    theme: "Pneumatic",
+    question: "What controls and monitors the Pneumatic system?",
+    options: [
+      "Three Bleed Monitoring Computers",
+      "Two Bleed Monitoring Computers",
+      "One Bleed Monitoring Computer",
+      "Two Bleed Valve Computers",
+    ],
+    correct: 1,
+    explanation:
+      "FCOM DSC-36-10-60: Two Bleed Monitoring Computers (BMC 1 and 2) control and monitor the pneumatic bleed system.",
+  },
+  {
+    id: 549,
+    theme: "Pneumatic",
+    question:
+      "What happens when the pressure and temperature are not sufficient to supply the corresponding engine bleed valve?",
+    options: [
+      "The HP valve opens and the IP stage remains in the same configuration",
+      "The HP valve opens and the IP stage closes",
+      "The LP valve closes",
+      "The over-pressure valve closes",
+    ],
+    correct: 0,
+    explanation:
+      "FCOM DSC-36-10-20: When IP pressure is too low, the HP valve opens to supply adequate pressure. *Note: The bank's answer says the IP stage 'remains in the same configuration'. Technically, this is flawed: when the HP valve opens, the IP check valve is forced closed by the reverse high pressure to protect the IP stage.*",
+  },
+  {
+    id: 550,
+    theme: "Pneumatic",
+    question:
+      "The air bleed system supplies the aircraft with high pressure air, and uses it for:",
+    options: [
+      "Engine Starting and Water System Pressurisation only",
+      "Air Conditioning and Water System Pressurisation only",
+      "Air conditioning and Engine Starting only",
+      "Air conditioning, Engine Starting, Water System Pressurisation, Wing anti-icing and Hydraulic reservoir pressurisation",
+    ],
+    correct: 3,
+    explanation:
+      "FCOM DSC-36-10-10: Pneumatic air feeds AC, engine start, wing anti-ice, water pressurization, and hydraulic reservoir pressurization.",
+  },
+  {
+    id: 551,
+    theme: "Air Condition/Press/Vent",
+    question: "The Pressurization system is normally controlled in what way?",
+    options: [
+      "Fully automatic",
+      "Manually controlled by the flight crew",
+      "Semi-automatic",
+      "Manually controlled by the cabin crew",
+    ],
+    correct: 0,
+    explanation:
+      "FCOM DSC-21-20-10: Normal pressurization control is completely automatic via the two Cabin Pressure Controllers (CPC).",
+  },
+  {
+    id: 552,
+    theme: "Air Condition/Press/Vent",
+    question:
+      "How are the Pack Flow Control valves controlled during engine start?",
+    options: [
+      "Is not affected during engine start",
+      "Automatic if APU bleed air is used",
+      "Must manually be set to OFF",
+      "Close automatically",
+    ],
+    correct: 3,
+    explanation:
+      "FCOM DSC-21-10-30: To direct all available pneumatic pressure to the starter motor, the pack flow control valves close automatically.",
+  },
+  {
+    id: 553,
+    theme: "Air Condition/Press/Vent",
+    question: "How many air condition zones do we have on an Airbus A320?",
+    options: [
+      "One for the whole aircraft",
+      "2, cockpit and cabin",
+      "3, cockpit, FWD and AFT zone",
+      "2, one for upper deck and one for the lower deck",
+    ],
+    correct: 2,
+    explanation:
+      "FCOM DSC-21-10-10: The aircraft is divided into 3 independently controlled temperature zones: Cockpit, FWD cabin, and AFT cabin.",
+  },
+  {
+    id: 554,
+    theme: "Air Condition/Press/Vent",
+    question: "When does the hot air valve close automatically?",
+    options: [
+      "When the temperature in the cockpit is okay",
+      "When a duct overheat or absence of pneumatic pressure exists",
+      "When the trim air valves operates",
+      "Below FL180",
+    ],
+    correct: 1,
+    explanation:
+      "FCOM DSC-21-10-40: The hot air pressure regulating valve closes automatically if a duct overheat is detected or if upstream pressure is lost.",
+  },
+  {
+    id: 555,
+    theme: "Hydraulics",
+    question: "When does the Blue electrical pump operate automatically?",
+    options: [
+      "If AC power is available and in flight, or on the ground, if one engine is running",
+      "When the Slats extend",
+      "As soon as the pressure in the Blue system is below 2000 PSI",
+      "When the Emergency Generator commands it to on",
+    ],
+    correct: 0,
+    explanation:
+      "FCOM DSC-29-10-20: In AUTO, the blue electric pump starts automatically if AC power is available and at least one engine is operating.",
+  },
+  {
+    id: 556,
+    theme: "Hydraulics",
+    question:
+      "Which hydraulic systems have a pump that is driven by an engine?",
+    options: ["Green and yellow", "Blue only", "Green only", "Yellow only"],
+    correct: 0,
+    explanation:
+      "FCOM DSC-29-10-10: The Green system is powered by Engine 1, and the Yellow system is powered by Engine 2.",
+  },
+  {
+    id: 557,
+    theme: "Hydraulics",
+    question: "What is the normal operating hydraulic pressure?",
+    options: [
+      "2900 PSI from all pumps, including RAT",
+      "3000 PSI (2500 PSI when powered by the RAT)",
+      "2500 PSI from all pumps, including RAT",
+      "3000 PSI from all pumps, including RAT",
+    ],
+    correct: 1,
+    explanation:
+      "FCOM DSC-29-10-20: Normal system pressure is 3000 PSI. If the system is powered by the RAT, the pressure drops slightly to 2500 PSI.",
+  },
+  {
+    id: 558,
+    theme: "Hydraulics",
+    question:
+      "Can the PTU operate and pressurize the Green system without an engine running?",
+    options: [
+      "Yes, by selecting the YELLOW ELEC pump to ON, PTU switch to AUTO and differential pressure >500 PSI",
+      "Yes, by selecting the BLUE ELEC pump to ON and PTU switch to AUTO",
+      "No",
+      "Only for cargo door operation",
+    ],
+    correct: 0,
+    explanation:
+      "FCOM DSC-29-10-20: Activating the Yellow Electric Pump creates a pressure differential that automatically engages the PTU to pressurize the Green system.",
+  },
+  {
+    id: 559,
+    theme: "Flight Controls",
+    question: "Which Flight Control Computer normally operates the ailerons?",
+    options: ["SEC 3", "SEC 1", "ELAC 2", "ELAC 1"],
+    correct: 3,
+    explanation:
+      "FCOM DSC-27-10-20: ELAC 1 is the primary computer responsible for operating the ailerons (with ELAC 2 as backup).",
+  },
+  {
+    id: 560,
+    theme: "Flight Controls",
+    question: "Is mechanical control of the THS always available?",
+    options: [
+      "Yes, if both green and yellow hydraulic systems are functioning",
+      "Yes always, regardless of the status of the hydraulic systems",
+      "Yes, if either the green or yellow hydraulic systems are functioning",
+      "No, only on ground with both engines running",
+    ],
+    correct: 2,
+    explanation:
+      "FCOM DSC-27-20-20: Mechanical control requires hydraulic power to actuate the stabilizer (provided by either the Green or Yellow system).",
+  },
+  {
+    id: 561,
+    theme: "Flight Controls",
+    question:
+      "Side Stick control orders are sent to which flight control computer?",
+    options: ["ELAC only", "SEC only", "ELAC and SEC", "FAC only"],
+    correct: 2,
+    explanation:
+      "FCOM DSC-27-10-20: Both ELACs (pitch/roll) and SECs (roll/spoilers) receive and process sidestick inputs.",
+  },
+  {
+    id: 562,
+    theme: "Flight Controls",
+    question:
+      "In normal law, what happens if the pilot holds full lateral side stick deflection?",
+    options: [
+      "If the pilot releases the side stick at a bank angle greater than 33°, the bank angle automatically reduces to 33°",
+      "The bank angle goes to 67° and no further",
+      "The bank angle goes to 60° and no further",
+      "The bank angle goes to 33° and no further",
+    ],
+    correct: 1,
+    explanation:
+      "FCOM DSC-27-20-10: In Normal Law, hard envelope protections physically limit the maximum achievable bank angle to 67°.",
+  },
+  {
+    id: 563,
+    theme: "Water and Waste",
+    question: "Where will you find the water and waste control panel?",
+    options: [
+      "On the forward attendant control panel",
+      "On the midship attendant control panel",
+      "On the aft attendant control panel",
+      "In the forward lavatory",
+    ],
+    correct: 0,
+    explanation:
+      "FCOM DSC-38-10: The panel allowing the crew to check water/waste levels is situated on the FWD Attendant Panel.",
+  },
+  {
+    id: 564,
+    theme: "Water and Waste",
+    question:
+      "On the ground and below 16,000 ft, how is the necessary differential pressure produced to force waste from the toilet bowls into the storage tank?",
+    options: [
+      "You do not need differential pressure, at low altitudes and on ground, waste will go by gravity",
+      "A vacuum generator produces the necessary pressure differential",
+      "You need to have the APU running and vaccum is produced by the surge valve",
+      "A hand pump besides the toilet bowl",
+    ],
+    correct: 1,
+    explanation:
+      "FCOM DSC-38-10: Below 16,000 ft, cabin differential pressure is insufficient, so a dedicated vacuum generator activates to move the waste.",
+  },
+  {
+    id: 565,
+    theme: "Lights",
+    question: "Which statement is correct regarding the STROBE switch in AUTO?",
+    options: [
+      "The strobe lights come on automatically when both engines are started",
+      "The strobe lights come on automatically when aircraft lines up on the runway",
+      "The strobe lights come on automatically when the nose landing gear is decompressed",
+      "The strobe lights come on automatically when the main gear strut is not compressed",
+    ],
+    correct: 3,
+    explanation:
+      "FCOM DSC-33-10-30: In AUTO, strobes turn on automatically upon liftoff (when main gear shock absorbers are uncompressed).",
+  },
+  {
+    id: 566,
+    theme: "Lights",
+    question:
+      "How is the NO SMOKING sign controlled when the switch is in AUTO position?",
+    options: [
+      "NO SMOKING light will illuminate when the cargo smoke detection is active",
+      "NO SMOKING light will illuminate only when the flaps/slats are extended to CONF 3 or FULL",
+      "NO SMOKING light will illuminate when either the landing gear is extended, or flaps/slats are extended (position 1,2,3 or FULL)",
+      "NO SMOKING light will illuminate when cabin is ready for landing",
+    ],
+    correct: 2,
+    explanation:
+      "FCOM DSC-33-20-20: The AUTO position triggers the signs based on landing gear extension or flap/slat deployment.",
+  },
+  {
+    id: 567,
+    theme: "Lights",
+    question:
+      "The NAV & LOGO switch has two positions, 1 and 2. What is the difference between the two positions?",
+    options: [
+      "Position 2 is for emergency use only",
+      "Position 1 turns on the logo lights and the first set of navigation lights, position 2 turns on the logo lights and the second set of navigation lights",
+      "Position 1 is for emergency use only",
+      "Brightness intensity where 1 is brightest",
+    ],
+    correct: 1,
+    explanation:
+      "FCOM DSC-33-10-20: The aircraft is equipped with dual redundant navigation bulbs; the switch selects between the primary (1) and backup (2) set.",
+  },
+  {
+    id: 568,
+    theme: "Doors",
+    question: "How many passenger doors are fitted on an A320?",
+    options: ["2", "3", "4", "1"],
+    correct: 2,
+    explanation:
+      "FCOM DSC-52-10-10: The standard A320 has 4 main passenger entry/service doors (two forward, two aft).",
+  },
+  {
+    id: 569,
+    theme: "Doors",
+    question:
+      'What is the purpose of the white "SLIDE ARMED" light installed on the passenger doors?',
+    options: [
+      "Illuminates when the slides on all four doors are armed",
+      "Always on when the slide is armed",
+      "Illuminates if the control handle is operated when the slide is armed",
+      "Indicates low pressure in the slide bottle",
+    ],
+    correct: 2,
+    explanation:
+      "FCOM DSC-52-10-20: It warns the operator that lifting the door handle will trigger the pneumatic deployment of the escape slide.",
+  },
+  {
+    id: 570,
+    theme: "Doors",
+    question: "What is true regarding the cockpit sliding windows?",
+    options: [
+      "The sliding windows are for ventilation only",
+      "Each escape rope is long enough to reach the ground from any window",
+      "The cockpit windows can be opened from both inside and outside",
+      "Each escape rope can only be used on the side where they are installed",
+    ],
+    correct: 2,
+    explanation:
+      "FCOM DSC-52-10-40: The sliding windows feature an external push-button allowing ground crews to open them from the outside.",
+  },
+  {
+    id: 571,
+    theme: "Communication",
+    question: "Which VHF transceiver functions in EMER ELEC CONFIG?",
+    options: ["2", "None", "3", "1"],
+    correct: 3,
+    explanation:
+      "FCOM DSC-24-10-30: In Emergency Electrical Configuration, only VHF 1 (and RMP 1) remains powered by the Essential network.",
+  },
+  {
+    id: 572,
+    theme: "Communication",
+    question: "What does the SEL indicator on the RMP indicate?",
+    options: [
+      "Only selected frequencies are available",
+      "Frequency selection completed",
+      "A SELCAL has been received",
+      "Comes on when a transceiver normally associated with one RMP is tuned by another",
+    ],
+    correct: 3,
+    explanation:
+      "FCOM DSC-23-10-20: The white SEL light illuminates to indicate cross-tuning (e.g., Captain tuning VHF 2 via RMP 1).",
+  },
+  {
+    id: 573,
+    theme: "Communication",
+    question:
+      "What Interphone system is used for the ground mechanic jack on the external power panel?",
+    options: [
+      "Service interphone",
+      "Ground service interphone",
+      "Flight crew interphone",
+      "Cabin interphone",
+    ],
+    correct: 2,
+    explanation:
+      "FCOM DSC-23-20-10: The external ground jack routes directly into the Flight Crew Interphone system for pushback communication.",
+  },
+  {
+    id: 574,
+    theme: "Communication",
+    question: "Which panel is used to select a VHF transceiver?",
+    options: [
+      "RMP",
+      "AMU",
+      "ACP",
+      "ACARS"
+    ],
+    correct: 0,
+    explanation: "FCOM DSC-23-10-20: The Radio Management Panel (RMP) is used to select and tune frequencies. *Note: The question is highly ambiguous. You use the RMP to select a radio for tuning, but you use the Audio Control Panel (ACP) to select a radio for actual transmission/reception.*"
+  }
+  {
+    id: 575,
+    theme: "Fire Protection",
+    question:
+      "How many smoke detectors, in total, are installed in FWD and AFT cargo compartment?",
+    options: ["12", "9", "6", "3"],
+    correct: 2,
+    explanation:
+      "FCOM DSC-26-40-10: A standard configuration has 2 detectors in the FWD cargo and 4 in the AFT cargo, totaling 6 detectors.",
+  },
+  {
+    id: 576,
+    theme: "Fire Protection",
+    question: "Can an engine fire be detected if one loop is faulty?",
+    options: [
+      "Yes, but only if the aircraft is airborne",
+      "No",
+      "Yes",
+      "Yes, if the operating loop is manually selected",
+    ],
+    correct: 2,
+    explanation:
+      "FCOM DSC-26-20-10: The system reverts to single-loop operation, meaning if the good loop detects a fire, it will trigger the warning.",
+  },
+  {
+    id: 577,
+    theme: "Fire Protection",
+    question:
+      "How many engine fire extinguisher bottles are totally installed on an Airbus 320?",
+    options: ["5", "6", "2", "4"],
+    correct: 3,
+    explanation:
+      "FCOM DSC-26-20-10: Each engine has two dedicated extinguisher bottles, making a total of 4 for the engines.",
+  },
+  {
+    id: 578,
+    theme: "Fire Protection",
+    question:
+      "If the system detects an APU fire while the aircraft is on the ground, what happens?",
+    options: [
+      "Nothing",
+      "APU shutdown is automatic after a 20 seconds time delay, discharge of extinguishing agent is manual",
+      "APU shutdown is automatic, discharge of extinguishing agent is manual",
+      "The system shuts down the APU automatically and discharges extinguishing agent",
+    ],
+    correct: 3,
+    explanation:
+      "FCOM DSC-26-50-10: On the ground, an APU fire triggers an automatic shutdown sequence and automatically fires the extinguisher bottle.",
+  },
+  {
+    id: 579,
+    theme: "Fire Protection",
+    question: 'On the ENG FIRE PANEL, what does amber "DISCH" indication mean?',
+    options: [
+      "Discharge inhibit due to a bad squib",
+      "Its associated fire extinguisher bottle has lost pressure",
+      "Discharge inhibit due to FOD in the plumbing",
+      "Discharge in progress",
+    ],
+    correct: 1,
+    explanation:
+      "FCOM DSC-26-20-20: Amber DISCH confirms that the bottle has effectively discharged and is no longer pressurized.",
+  },
+  {
+    id: 580,
+    theme: "Oxygen",
+    question:
+      "When the masks in the cabin are released, the passenger address system automatically broadcasts pre-recorded instructions for their use",
+    options: [
+      "FALSE",
+      "True, but only if manually released",
+      "True, but only if automatically released",
+      "TRUE",
+    ],
+    correct: 3,
+    explanation:
+      "FCOM DSC-35-20-10: Deployment of masks triggers a pre-recorded emergency PA instructing passengers on how to use them.",
+  },
+  {
+    id: 581,
+    theme: "Oxygen",
+    question:
+      "On the overhead maintenance panel what is the function of the TMR RESET pushbutton?",
+    options: [
+      "The maintenance crew uses this pushbutton to check the control circuit, before each flight",
+      "The flight timer for the passenger oxygen needs to be reset after every flight, this pushbutton is the control for this",
+      "The maintenance crew uses this pushbutton to test the system, it simulates a depressurized cabin",
+      "The maintenance crew uses this pushbutton to reset the control circuit, after the system has operated",
+    ],
+    correct: 3,
+    explanation:
+      "FCOM DSC-35-20-10: Once deployed, the oxygen system doors remain open and circuits latched. This button resets the control logic.",
+  },
+  {
+    id: 582,
+    theme: "Oxygen",
+    question:
+      "HI ALT SET memo id displayed on the ECAM, what does it indicate?",
+    options: [
+      "It indicates that the crew set the HI ALT LANDING pushbutton to ON and in this case the masks will not drop automatically but have to be manually released by the crew",
+      "It indicates that the cabin crew have adjusted the mask realease and in this case they will release at 18.000 ft",
+      "It indicates that the cabin altitude is increased by 2000 ft and subsequently the mask release is also increased by 2000 ft",
+      "It indicates that the crew set the HI ALT LANDING pushbutton to ON and in this case the masks drop if the cabin pressure exceeds 16.000 ft",
+    ],
+    correct: 3,
+    explanation:
+      "FCOM DSC-35-20-20: Used for high elevation airports to prevent masks from dropping at 14,000 ft, raising the threshold to 16,000 ft.",
+  },
+  {
+    id: 583,
+    theme: "Power Plant",
+    question:
+      "Some of the fuel flowing out of the Hydromechanical Unit (HMU) cools the oil systems of the IDG and:",
+    options: [
+      "It is unusuable for the rest of the flight",
+      "It is vented overboard",
+      "Then returns to the tank or fuel pump unit",
+      "Stops flowing when fuel temperature in the wing tank in flight is below 52.5°C",
+    ],
+    correct: 2,
+    explanation:
+      "FCOM DSC-70-40-10: Recirculated fuel acts as a coolant for the IDG and is then routed back to the fuel tanks/pumps.",
+  },
+  {
+    id: 584,
+    theme: "Power Plant",
+    question:
+      "When should the ENG MODE selector be set to NORM during a Manual Engine Start?",
+    options: [
+      "When N2 > 50%",
+      "When N1 reaches 22%",
+      "When N1 reaches 50%",
+      "When N2 reaches 22%",
+    ],
+    correct: 0,
+    explanation:
+      "FCOM PRO-NOR-SRP-01-15: At 50% N2, the start valve closes. The mode selector is then returned to NORM to finish the sequence.",
+  },
+  {
+    id: 585,
+    theme: "Power Plant",
+    question: "Regarding FADEC, which statement is true:",
+    options: [
+      "Each FADEC has only 1 channel",
+      "Each FADEC has 2 channels, one of which is active and the other is in standby",
+      "Each FADEC has 2 channels working simultaneously",
+      "Each FADEC has 2 channels that alternate after each engine start",
+    ],
+    correct: 1,
+    explanation:
+      "FCOM DSC-70-20: The FADEC is dual-channel. One channel actively controls the engine while the other acts as an active standby.",
+  },
+  {
+    id: 586,
+    theme: "Power Plant",
+    question: "Single engine, what is the maximum time limit in TOGA power?",
+    options: [
+      "Time limitation varies according Operator policy",
+      "No limitation",
+      "5 min.",
+      "10 min.",
+    ],
+    correct: 3,
+    explanation:
+      "FCOM LIM-ENG: TOGA thrust is limited to 5 minutes with all engines running, or 10 minutes in the event of an engine failure.",
+  },
+  {
+    id: 587,
+    theme: "Power Plant",
+    question:
+      "If the ENG1 or ENG 2 MASTER switch are set to OFF, which fuel shut off valves are affected?",
+    options: [
+      "The LP fuel valve",
+      "The LP and HP fuel valves",
+      "Only the FIRE pushbutton closes the HP valve",
+      "The HP fuel valve",
+    ],
+    correct: 1,
+    explanation:
+      "FCOM DSC-70-20: Switching the Engine Master to OFF electrically closes both the Low Pressure (LP) and High Pressure (HP) fuel valves.",
+  },
+  {
+    id: 588,
+    theme: "Power Plant",
+    question:
+      "If the ENG MODE SEL is selected to IGN/START and the MAN START pushbutton is pressed, the START valve opens:",
+    options: [
+      "Yes, but in flight only",
+      "No, the ENG MODE SEL must be in NORM",
+      "No, external AC power is required",
+      "Yes, according to FCOM proceedures",
+    ],
+    correct: 3,
+    explanation:
+      "FCOM DSC-70-80: Pressing the MAN START button physically opens the start valve (provided pneumatic pressure is available), initiating the crank.",
+  },
+  {
+    id: 589,
+    theme: "Ice and Rain",
+    question: "Is it possible to select Wing-Anti-Ice on ground?",
+    options: [
+      "No",
+      "Only if an Ice Detection System is installed",
+      "Yes, the wing anti-icing control valves open for 30 s only (test sequence)",
+      "Yes due to the overheat detection system",
+    ],
+    correct: 2,
+    explanation:
+      "FCOM DSC-30-20-10: On the ground, selecting Wing Anti-Ice triggers a 30-second self-test where valves open before closing automatically.",
+  },
+  {
+    id: 590,
+    theme: "Ice and Rain",
+    question: "Which surfaces are protected with hot air?",
+    options: [
+      "Sensors, pitot probes and static ports",
+      "Flight compartment windows",
+      "Three outboard leading-edge slats of each wing and engine air intakes",
+      "Waste-water drain mast",
+    ],
+    correct: 2,
+    explanation:
+      "FCOM DSC-30-10-10: The pneumatic system routes hot bleed air to the engine nacelles and the 3 outboard slats on each wing.",
+  },
+  {
+    id: 591,
+    theme: "Ice and Rain",
+    question: "How many sections of the Slat system are anti-iced?",
+    options: [
+      "All sections",
+      "1 (section 5)",
+      "2 (section 4-5)",
+      "3 (section 3-4-5)",
+    ],
+    correct: 3,
+    explanation:
+      "FCOM DSC-30-20-10: Only the three outermost slats (slats 3, 4, and 5) receive hot air for anti-icing.",
+  },
+  {
+    id: 592,
+    theme: "Ice and Rain",
+    question:
+      "How many PHC's (Probe Heat Computers) are installed on an Airbus 320?",
+    options: ["2", "4", "6", "3"],
+    correct: 3,
+    explanation:
+      "FCOM DSC-30-30-10: There are 3 PHCs managing the heating of the Captain, First Officer, and Standby probes/sensors.",
+  },
+  {
+    id: 593,
+    theme: "Fuel",
+    question:
+      "When will fuel automatically transfer from the outer to the inner wing tanks?",
+    options: [
+      "When the any inner tank fuel reaches 550 kg",
+      "When the any inner tank fuel reaches 700 kg",
+      "When the any inner tank fuel reaches 800 kg",
+      "When the any inner tank fuel reaches 750 kg",
+    ],
+    correct: 3,
+    explanation:
+      "FCOM DSC-28-10-80: The transfer valves latch open when the fuel level in an inner tank drops below approx 750 kg.",
+  },
+  {
+    id: 594,
+    theme: "Fuel",
+    question: "What is the purpose of the Fuel Recirculation System?",
+    options: [
+      "To mix old fuel with new",
+      "To cool the fuel pumps",
+      "To remove water from the fuel tanks",
+      "This operation ensures the IDG cooling",
+    ],
+    correct: 3,
+    explanation:
+      "FCOM DSC-28-10-30: By routing fuel back to the tanks after it passes the IDG heat exchanger, the system maintains IDG cooling efficiency.",
+  },
+  {
+    id: 595,
+    theme: "Fuel",
+    question: "Where is the external refueling panel located?",
+    options: [
+      "On the side of the fuselage beneath the AFT cargo door",
+      "On the side of the fuselage beneath the FWD cargo door",
+      "On the side of the fuselage beneath the right wing",
+      "On the side of the fuselage beneath the left wing",
+    ],
+    correct: 2,
+    explanation:
+      "FCOM DSC-28-20: The external refuel control panel is situated under the right wing/fuselage fairing.",
+  },
+  {
+    id: 596,
+    theme: "Fuel",
+    question: "When is the LO LVL warning displayed on the ECAM?",
+    options: [
+      "When the fuel quantity in one wing tank goes below 700 kg",
+      "When the fuel quantity in one wing tank goes below 750 kg",
+      "When the fuel quantity in one wing tank goes below 200 kg",
+      "When the fuel quantity in one wing tank goes below 550 kg",
+    ],
+    correct: 1,
+    explanation:
+      "FCOM DSC-28-10-80: ECAM LO LVL triggers precisely when sensors detect less than 750 kg remaining in an inner tank.",
+  },
+  {
+    id: 597,
+    theme: "Fuel",
+    question:
+      "Will the center pumps, if commanded ON, operate if slats are extended?",
+    options: [
+      "Yes, if no engine is started and CTR TK MODE SEL in AUTO",
+      "Yes, if CTR TK MODE SEL is set to MAN",
+      "No never",
+      "Yes, if more than 2 minutes has elapsed after engine start and CTR TK MODE SEL in AUTO",
+    ],
+    correct: 1,
+    explanation:
+      "FCOM DSC-28-10-30: In AUTO mode, center pumps are inhibited with slats extended. Manual mode (MAN) overrides this logic.",
+  },
+  {
+    id: 598,
+    theme: "Landing Gear",
+    question:
+      "What would be the consequence if the pilots'respective handwheels were turned in the same direction but a different rates?",
+    options: [
+      "Orders are added algebraically",
+      "There is only one handwheel on an Airbus A320",
+      "The first input becomes master",
+      "The aircraft will follow the captain's handwheel orders",
+    ],
+    correct: 0,
+    explanation:
+      "FCOM DSC-32-10-30: Similar to the sidesticks, inputs from both the Captain and F/O steering tillers are summed algebraically.",
+  },
+  {
+    id: 599,
+    theme: "Landing Gear",
+    question:
+      "What is the maximum deflection of the nose wheel if controlled by the rudder pedals?",
+    options: ["3 deg.", "12 deg.", "6 deg", "75 deg."],
+    correct: 2,
+    explanation:
+      "FCOM DSC-32-10-30: Steering authority via the rudder pedals is mechanically limited to +/- 6 degrees for high-speed tracking.",
+  },
+  {
+    id: 600,
+    theme: "Landing Gear",
+    question: "Wicht hydraulic system is used for gear retraction/extension?",
+    options: ["Yellow", "Green", "Green and Yellow as a backup", "Blue"],
+    correct: 1,
+    explanation:
+      "FCOM DSC-32-10-20: The primary actuation of the landing gear sequence relies exclusively on the Green hydraulic system.",
+  },
+  {
+    id: 601,
+    theme: "Landing Gear",
+    question:
+      "What is the purpose of the red DOWN arrow located next to the landing gear lever?",
+    options: [
+      "To indicate that the LDG Gear is in transit",
+      "To indicate that the landing gear is not locked down when the aircraft is in the landing configuration",
+      "To indicate that the landing gear shortening mechanism has failed",
+      "To indicate a disagreement between handle and gear position",
+    ],
+    correct: 1,
+    explanation:
+      "FCOM DSC-32-10-40: The red arrow illuminates to warn pilots if the gear is not locked down when conditions suggest it should be (e.g. low altitude/flaps).",
+  },
+  {
+    id: 602,
+    theme: "Landing Gear",
+    question:
+      "Which computer controls the Landing Gear indicator panel lights?",
+    options: ["LGCIU 1 and 2", "LGCIU 2 only", "DMC 3", "LGCIU 1 only"],
+    correct: 3,
+    explanation:
+      "FCOM DSC-32-10-20: Unlike the ECAM wheel page which uses both LGCIUs, the hardwired indicator panel receives signals strictly from LGCIU 1.",
+  },
 ];
