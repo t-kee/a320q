@@ -6985,7 +6985,7 @@ const db = [
   },
   {
     id: 531,
-    theme: "Electrical Systems",
+    theme: "Systems - Elec",
     question:
       "In normal configuration, what sources can supply power to the AC system when the aircraft is on ground?",
     options: [
@@ -7000,7 +7000,7 @@ const db = [
   },
   {
     id: 532,
-    theme: "Electrical Systems",
+    theme: "Systems - Elec",
     question: "What happens if GEN 1 is inoperative?",
     options: [
       "AC BUS 1 receives power from AC BUS 2 automatically",
@@ -7014,7 +7014,7 @@ const db = [
   },
   {
     id: 533,
-    theme: "Electrical Systems",
+    theme: "Systems - Elec",
     question: "What's the purpose of the TR's?",
     options: [
       "To limit the current from the batteries",
@@ -7028,7 +7028,7 @@ const db = [
   },
   {
     id: 534,
-    theme: "Electrical Systems",
+    theme: "Systems - Elec",
     question: "Why are some Circuit Breakers (C/Bs) green instead of black?",
     options: [
       "Different manufacturers",
@@ -7204,7 +7204,7 @@ const db = [
   },
   {
     id: 548,
-    theme: "Pneumatic",
+    theme: "Systems - Air/Press",
     question: "What controls and monitors the Pneumatic system?",
     options: [
       "Three Bleed Monitoring Computers",
@@ -7218,7 +7218,7 @@ const db = [
   },
   {
     id: 549,
-    theme: "Pneumatic",
+    theme: "Systems - Air/Press",
     question:
       "What happens when the pressure and temperature are not sufficient to supply the corresponding engine bleed valve?",
     options: [
@@ -7233,7 +7233,7 @@ const db = [
   },
   {
     id: 550,
-    theme: "Pneumatic",
+    theme: "Systems - Air/Press",
     question:
       "The air bleed system supplies the aircraft with high pressure air, and uses it for:",
     options: [
@@ -7248,7 +7248,7 @@ const db = [
   },
   {
     id: 551,
-    theme: "Air Condition/Press/Vent",
+    theme: "Systems - Air/Press",
     question: "The Pressurization system is normally controlled in what way?",
     options: [
       "Fully automatic",
@@ -7262,7 +7262,7 @@ const db = [
   },
   {
     id: 552,
-    theme: "Air Condition/Press/Vent",
+    theme: "Systems - Air/Press",
     question:
       "How are the Pack Flow Control valves controlled during engine start?",
     options: [
@@ -7277,7 +7277,7 @@ const db = [
   },
   {
     id: 553,
-    theme: "Air Condition/Press/Vent",
+    theme: "Systems - Air/Press",
     question: "How many air condition zones do we have on an Airbus A320?",
     options: [
       "One for the whole aircraft",
@@ -7291,7 +7291,7 @@ const db = [
   },
   {
     id: 554,
-    theme: "Air Condition/Press/Vent",
+    theme: "Systems - Air/Press",
     question: "When does the hot air valve close automatically?",
     options: [
       "When the temperature in the cockpit is okay",
@@ -7435,7 +7435,7 @@ const db = [
   },
   {
     id: 565,
-    theme: "Lights",
+    theme: "Aircraft General",
     question: "Which statement is correct regarding the STROBE switch in AUTO?",
     options: [
       "The strobe lights come on automatically when both engines are started",
@@ -7449,7 +7449,7 @@ const db = [
   },
   {
     id: 566,
-    theme: "Lights",
+    theme: "Aircraft General",
     question:
       "How is the NO SMOKING sign controlled when the switch is in AUTO position?",
     options: [
@@ -7464,7 +7464,7 @@ const db = [
   },
   {
     id: 567,
-    theme: "Lights",
+    theme: "Aircraft General",
     question:
       "The NAV & LOGO switch has two positions, 1 and 2. What is the difference between the two positions?",
     options: [
@@ -7479,7 +7479,7 @@ const db = [
   },
   {
     id: 568,
-    theme: "Doors",
+    theme: "Aircraft General",
     question: "How many passenger doors are fitted on an A320?",
     options: ["2", "3", "4", "1"],
     correct: 2,
@@ -7488,7 +7488,7 @@ const db = [
   },
   {
     id: 569,
-    theme: "Doors",
+    theme: "Aircraft General",
     question:
       'What is the purpose of the white "SLIDE ARMED" light installed on the passenger doors?',
     options: [
@@ -7503,7 +7503,7 @@ const db = [
   },
   {
     id: 570,
-    theme: "Doors",
+    theme: "Aircraft General",
     question: "What is true regarding the cockpit sliding windows?",
     options: [
       "The sliding windows are for ventilation only",
@@ -7517,7 +7517,7 @@ const db = [
   },
   {
     id: 571,
-    theme: "Communication",
+    theme: "Communications",
     question: "Which VHF transceiver functions in EMER ELEC CONFIG?",
     options: ["2", "None", "3", "1"],
     correct: 3,
@@ -7526,7 +7526,7 @@ const db = [
   },
   {
     id: 572,
-    theme: "Communication",
+    theme: "Communications",
     question: "What does the SEL indicator on the RMP indicate?",
     options: [
       "Only selected frequencies are available",
@@ -7540,7 +7540,7 @@ const db = [
   },
   {
     id: 573,
-    theme: "Communication",
+    theme: "Communications",
     question:
       "What Interphone system is used for the ground mechanic jack on the external power panel?",
     options: [
@@ -7555,7 +7555,7 @@ const db = [
   },
   {
     id: 574,
-    theme: "Communication",
+    theme: "Communications",
     question: "Which panel is used to select a VHF transceiver?",
     options: ["RMP", "AMU", "ACP", "ACARS"],
     correct: 0,
@@ -7672,7 +7672,7 @@ const db = [
   },
   {
     id: 583,
-    theme: "Power Plant",
+    theme: "Powerplant",
     question:
       "Some of the fuel flowing out of the Hydromechanical Unit (HMU) cools the oil systems of the IDG and:",
     options: [
@@ -7687,7 +7687,7 @@ const db = [
   },
   {
     id: 584,
-    theme: "Power Plant",
+    theme: "Powerplant",
     question:
       "When should the ENG MODE selector be set to NORM during a Manual Engine Start?",
     options: [
@@ -7702,7 +7702,7 @@ const db = [
   },
   {
     id: 585,
-    theme: "Power Plant",
+    theme: "Powerplant",
     question: "Regarding FADEC, which statement is true:",
     options: [
       "Each FADEC has only 1 channel",
@@ -7716,7 +7716,7 @@ const db = [
   },
   {
     id: 586,
-    theme: "Power Plant",
+    theme: "Powerplant",
     question: "Single engine, what is the maximum time limit in TOGA power?",
     options: [
       "Time limitation varies according Operator policy",
@@ -7730,7 +7730,7 @@ const db = [
   },
   {
     id: 587,
-    theme: "Power Plant",
+    theme: "Powerplant",
     question:
       "If the ENG1 or ENG 2 MASTER switch are set to OFF, which fuel shut off valves are affected?",
     options: [
@@ -7745,7 +7745,7 @@ const db = [
   },
   {
     id: 588,
-    theme: "Power Plant",
+    theme: "Powerplant",
     question:
       "If the ENG MODE SEL is selected to IGN/START and the MAN START pushbutton is pressed, the START valve opens:",
     options: [
@@ -7760,7 +7760,7 @@ const db = [
   },
   {
     id: 589,
-    theme: "Ice and Rain",
+    theme: "Ice & Rain Protection",
     question: "Is it possible to select Wing-Anti-Ice on ground?",
     options: [
       "No",
@@ -7774,7 +7774,7 @@ const db = [
   },
   {
     id: 590,
-    theme: "Ice and Rain",
+    theme: "Ice & Rain Protection",
     question: "Which surfaces are protected with hot air?",
     options: [
       "Sensors, pitot probes and static ports",
@@ -7788,7 +7788,7 @@ const db = [
   },
   {
     id: 591,
-    theme: "Ice and Rain",
+    theme: "Ice & Rain Protection",
     question: "How many sections of the Slat system are anti-iced?",
     options: [
       "All sections",
@@ -7802,7 +7802,7 @@ const db = [
   },
   {
     id: 592,
-    theme: "Ice and Rain",
+    theme: "Ice & Rain Protection",
     question:
       "How many PHC's (Probe Heat Computers) are installed on an Airbus 320?",
     options: ["2", "4", "6", "3"],
