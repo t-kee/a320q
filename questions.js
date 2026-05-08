@@ -7557,15 +7557,11 @@ const db = [
     id: 574,
     theme: "Communication",
     question: "Which panel is used to select a VHF transceiver?",
-    options: [
-      "RMP",
-      "AMU",
-      "ACP",
-      "ACARS"
-    ],
+    options: ["RMP", "AMU", "ACP", "ACARS"],
     correct: 0,
-    explanation: "FCOM DSC-23-10-20: The Radio Management Panel (RMP) is used to select and tune frequencies. *Note: The question is highly ambiguous. You use the RMP to select a radio for tuning, but you use the Audio Control Panel (ACP) to select a radio for actual transmission/reception.*"
-  }
+    explanation:
+      "FCOM DSC-23-10-20: The Radio Management Panel (RMP) is used to select and tune frequencies. *Note: The question is highly ambiguous. You use the RMP to select a radio for tuning, but you use the Audio Control Panel (ACP) to select a radio for actual transmission/reception.*",
+  },
   {
     id: 575,
     theme: "Fire Protection",
