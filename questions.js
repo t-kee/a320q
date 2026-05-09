@@ -2441,9 +2441,9 @@ const db = [
       "and pulses GREEN if the alignment of at least one IRS is faulty",
       "when two IRS's are in disagreement regarding the aircraft position",
     ],
-    correct: 0,
+    correct: 1,
     explanation:
-      "FCOM DSC-34-NAV-10-30: Alignment during engine run triggers memo.",
+      "FCOM DSC-34-NAV-10-20: Alignment during engine run triggers memo.",
   },
   {
     id: 194,
