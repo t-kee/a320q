@@ -2998,7 +2998,8 @@ const db = [
       "... two Air Conditioning Units on the A320 and two additional emergency ram air inlets.",
     ],
     correct: 3,
-    explanation: "FCOM DSC-21-10-10: Two packs plus emergency ram air inlet.",
+    explanation:
+      "FCOM DSC-21-10-10: Two packs plus an emergency ram air inlet.<br>⚠️ Note : There is only one ram air supply but since they play on the words, there are actually two ram air INLETS on the belly of the fuselage.",
   },
   {
     id: 236,
@@ -3092,7 +3093,8 @@ const db = [
       "FPV in amber; FD and FMA in green.",
     ],
     correct: 2,
-    explanation: "FCOM DSC-31-40: FMA shows amber box for degraded laws.",
+    explanation:
+      "FCOM DSC-31-40: FMA shows amber box for degraded laws.<br>⚠️ Very flawed question... In Direct Law there's no FD. And FPV is magenta when a specific target is being tracked. The only good option is FMA amber.",
   },
   {
     id: 243,
@@ -3754,7 +3756,7 @@ const db = [
     ],
     correct: 1,
     explanation:
-      "FCOM DSC-21-20-40: Valve inhibited if differential pressure > 1 PSI.",
+      "FCOM DSC-21-10-20: Valve inhibited if differential pressure > 1 PSI.",
   },
   {
     id: 293,
@@ -7752,7 +7754,7 @@ const db = [
       "Yes, but in flight only",
       "No, the ENG MODE SEL must be in NORM",
       "No, external AC power is required",
-      "Yes, according to FCOM proceedures",
+      "Yes, according to FCOM procedures",
     ],
     correct: 3,
     explanation:
@@ -7816,14 +7818,14 @@ const db = [
     question:
       "When will fuel automatically transfer from the outer to the inner wing tanks?",
     options: [
-      "When the any inner tank fuel reaches 550 kg",
-      "When the any inner tank fuel reaches 700 kg",
-      "When the any inner tank fuel reaches 800 kg",
-      "When the any inner tank fuel reaches 750 kg",
+      "When the inner tank fuel reaches 550 kg",
+      "When the inner tank fuel reaches 700 kg",
+      "When the inner tank fuel reaches 800 kg",
+      "When the inner tank fuel reaches 750 kg",
     ],
     correct: 3,
     explanation:
-      "FCOM DSC-28-10-80: The transfer valves latch open when the fuel level in an inner tank drops below approx 750 kg.",
+      "FCOM DSC-28-10-30: The transfer valves latch open when the fuel level in an inner tank drops below approx 750 kg.",
   },
   {
     id: 594,
@@ -7910,7 +7912,7 @@ const db = [
   {
     id: 600,
     theme: "Landing Gear",
-    question: "Wicht hydraulic system is used for gear retraction/extension?",
+    question: "Which hydraulic system is used for gear retraction/extension?",
     options: ["Yellow", "Green", "Green and Yellow as a backup", "Blue"],
     correct: 1,
     explanation:

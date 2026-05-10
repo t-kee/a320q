@@ -505,6 +505,13 @@
               >ID: 0</span
             >
           </div>
+          <button
+            id="view-pin-btn"
+            class="pin-btn unpinned"
+            onclick="togglePinById(currentViewedQuestionId)"
+          >
+            ☆
+          </button>
         </div>
         <h2
           id="view-question-text"
@@ -655,6 +662,7 @@
       let questionStartTime = null;
       let totalQuestionTime = 0;
       let failedQuestionIds = [];
+      let currentViewedQuestionId = null;
 
       // DOM Elements
       const themeSelect = document.getElementById("theme-select");
@@ -792,12 +800,24 @@
         const q = db.find((x) => x.id === id);
         if (!q) return;
 
+        currentViewedQuestionId = id;
+
         document.getElementById("tab-search").classList.add("hidden");
         document.getElementById("tab-question-view").classList.remove("hidden");
 
         document.getElementById("view-theme-badge").innerText = q.theme;
         document.getElementById("view-question-id-badge").innerText =
           `ID: ${q.id}`;
+        const viewPinBtn = document.getElementById("view-pin-btn");
+        if (pinnedQuestions.includes(q.id)) {
+          viewPinBtn.className = "pin-btn pinned";
+          viewPinBtn.innerHTML = "★";
+          viewPinBtn.title = "Unpin this question";
+        } else {
+          viewPinBtn.className = "pin-btn unpinned";
+          viewPinBtn.innerHTML = "☆";
+          viewPinBtn.title = "Pin this question";
+        }
         document.getElementById("view-question-text").innerHTML = q.question;
 
         const optsContainer = document.getElementById("view-options-container");
@@ -1127,6 +1147,32 @@
         );
         document.getElementById("pinned-stats").innerText =
           pinnedQuestions.length;
+        updateSliderMax();
+      }
+
+      function togglePinById(questionId) {
+        const viewPinBtn = document.getElementById("view-pin-btn");
+
+        if (pinnedQuestions.includes(questionId)) {
+          pinnedQuestions = pinnedQuestions.filter((id) => id !== questionId);
+          viewPinBtn.className = "pin-btn unpinned";
+          viewPinBtn.innerHTML = "☆";
+          viewPinBtn.title = "Pin this question";
+        } else {
+          pinnedQuestions.push(questionId);
+          viewPinBtn.className = "pin-btn pinned";
+          viewPinBtn.innerHTML = "★";
+          viewPinBtn.title = "Unpin this question";
+        }
+
+        localStorage.setItem(
+          "a320_pinned_questions",
+          JSON.stringify(pinnedQuestions),
+        );
+
+        document.getElementById("pinned-stats").innerText =
+          pinnedQuestions.length;
+
         updateSliderMax();
       }
 
