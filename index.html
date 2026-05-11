@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>A320 Training Quiz</title>
+    <title>A320 Monkey Clicking</title>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -104,6 +104,52 @@
       }
       input[type="range"] {
         width: 100%;
+        cursor: pointer;
+      }
+
+      input[type="range"].monkey-slider {
+        -webkit-appearance: none;
+        appearance: none;
+        height: 28px;
+        background: transparent;
+      }
+
+      input[type="range"].monkey-slider::-webkit-slider-runnable-track {
+        height: 8px;
+        background: #dfe6e9;
+        border-radius: 999px;
+      }
+
+      input[type="range"].monkey-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 34px;
+        height: 34px;
+        margin-top: -13px;
+        border: none;
+        background-color: transparent;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='34' viewBox='0 0 34 34'%3E%3Ctext x='17' y='25' text-anchor='middle' font-size='27'%3E%F0%9F%90%92%3C/text%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        cursor: pointer;
+      }
+
+      input[type="range"].monkey-slider::-moz-range-track {
+        height: 8px;
+        background: #dfe6e9;
+        border-radius: 999px;
+      }
+
+      input[type="range"].monkey-slider::-moz-range-thumb {
+        width: 34px;
+        height: 34px;
+        border: none;
+        background-color: transparent;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='34' viewBox='0 0 34 34'%3E%3Ctext x='17' y='25' text-anchor='middle' font-size='27'%3E%F0%9F%90%92%3C/text%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
         cursor: pointer;
       }
       select {
@@ -401,7 +447,7 @@
       </div>
 
       <div id="tab-setup">
-        <h1>A320 Training</h1>
+        <h1>A320 Monkey Training</h1>
         <p style="text-align: center">
           Database: <span id="db-total">0</span> questions
         </p>
@@ -639,6 +685,43 @@
 
       let seenQuestions =
         JSON.parse(localStorage.getItem("a320_seen_questions")) || [];
+
+      function migrateLegacyThemeStats() {
+        const migrationKey = "a320_theme_stats_migration_v2_done";
+        if (localStorage.getItem(migrationKey) === "true") return;
+
+        const oldStats =
+          JSON.parse(localStorage.getItem("a320_theme_stats")) || {};
+        const migratedStats = {};
+
+        // Keep categories that still exist, and merge the old EFB name into the new one.
+        if (oldStats["Limitations"]) {
+          migratedStats["Limitations"] = oldStats["Limitations"];
+        }
+
+        const efbStats = [
+          oldStats["EFB / Performances"],
+          oldStats["Performance / EFB"],
+        ]
+          .filter(Boolean)
+          .reduce(
+            (acc, stats) => ({
+              correct: acc.correct + (stats.correct || 0),
+              total: acc.total + (stats.total || 0),
+            }),
+            { correct: 0, total: 0 },
+          );
+
+        if (efbStats.total > 0) {
+          migratedStats["EFB / Performances"] = efbStats;
+        }
+
+        localStorage.setItem("a320_theme_stats", JSON.stringify(migratedStats));
+        localStorage.setItem(migrationKey, "true");
+      }
+
+      migrateLegacyThemeStats();
+
       let themeStats =
         JSON.parse(localStorage.getItem("a320_theme_stats")) || {};
       let testHistory =
@@ -705,6 +788,12 @@
 
       countSlider.addEventListener("input", (e) => {
         countDisplay.innerText = e.target.value;
+
+        if (parseInt(e.target.value) >= 101) {
+          countSlider.classList.add("monkey-slider");
+        } else {
+          countSlider.classList.remove("monkey-slider");
+        }
       });
 
       function updateSliderMax() {
@@ -730,9 +819,17 @@
           countSlider.value = 1;
         }
         countDisplay.innerText = maxVal === 0 ? "0" : countSlider.value;
+        if (parseInt(countSlider.value) >= 101) {
+          countSlider.classList.add("monkey-slider");
+        } else {
+          countSlider.classList.remove("monkey-slider");
+        }
       }
 
       if (db) updateSliderMax();
+      if (parseInt(countSlider.value) >= 101) {
+        countSlider.classList.add("monkey-slider");
+      }
 
       function switchTab(tabId) {
         document.getElementById("tab-setup").classList.add("hidden");
@@ -853,7 +950,11 @@
 
         let html =
           "<table><tr><th>Theme</th><th>Seen</th><th>Average Score</th></tr>";
-        for (const [theme, data] of Object.entries(themeStats)) {
+        const sortedThemes = Object.entries(themeStats).sort(([a], [b]) =>
+          a.localeCompare(b),
+        );
+
+        for (const [theme, data] of sortedThemes) {
           const percent = Math.round((data.correct / data.total) * 100);
           const color =
             percent >= 75
@@ -1091,7 +1192,7 @@
         const nbQuestions = Math.min(parseInt(countSlider.value), pool.length);
         if (nbQuestions === 0) return;
 
-        currentQuiz = pool
+        currentQuiz = [...pool]
           .sort(() => 0.5 - Math.random())
           .slice(0, nbQuestions)
           .map((q) => {

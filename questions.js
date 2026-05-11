@@ -113,7 +113,7 @@ const db = [
   },
   {
     id: 12,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question: "What is the screen height for a wet runway?",
     options: ["10 ft", "25 ft", "15 ft", "30 ft"],
     correct: 2,
@@ -122,7 +122,7 @@ const db = [
   },
   {
     id: 13,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question: "What is the screen height for a dry runway?",
     options: ["30 ft", "10 ft", "15 ft", "35 ft"],
     correct: 3,
@@ -131,7 +131,7 @@ const db = [
   },
   {
     id: 14,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "After a landing performance calculation, Flysmart generates amber figures in the computations area. What does this mean?",
     options: [
@@ -146,7 +146,7 @@ const db = [
   },
   {
     id: 15,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "A 'contaminated runway' describes a surface where a certain percentage of the runway is covered by what depth of contaminant?",
     options: [
@@ -161,7 +161,7 @@ const db = [
   },
   {
     id: 16,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "In the event of a QNH reduction by 1 hPa on taxi-out, what correction must be applied?",
     options: [
@@ -176,7 +176,7 @@ const db = [
   },
   {
     id: 17,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "In the event of a last minute decision to use engine bleed to supply packs, what correction must be applied?",
     options: [
@@ -191,7 +191,7 @@ const db = [
   },
   {
     id: 18,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "What is the correct runway condition in EFB PERF for takeoff if the runway is damp?",
     options: ["Wet", "Dry", "Neither dry nor wet"],
@@ -201,7 +201,7 @@ const db = [
   },
   {
     id: 19,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "For an in-flight landing calculation, what is the maximum crosswind with compacted snow at -10°C?",
     options: ["25 kts", "20 kts", "15 kts", "29 kts"],
@@ -211,7 +211,7 @@ const db = [
   },
   {
     id: 20,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "Where can the 'maximum' acceleration altitude be found on the EFB TO PERF page?",
     options: [
@@ -226,7 +226,7 @@ const db = [
   },
   {
     id: 21,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "Engine anti-ice must be included in takeoff performance calculation if planned to be used below what altitude?",
     options: ["THR RED", "EOACC", "MSA", "ACC"],
@@ -236,7 +236,7 @@ const db = [
   },
   {
     id: 22,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "During a flex takeoff, the thrust reduction must not exceed _____ of flat-rated thrust.",
     options: ["25%", "20%", "No restrictions"],
@@ -246,7 +246,7 @@ const db = [
   },
   {
     id: 23,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "What is the standard operating procedure for the EOSID stop altitude?",
     options: ["SID stop altitude", "No procedure specified", "MHA", "MSA"],
@@ -256,7 +256,7 @@ const db = [
   },
   {
     id: 24,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "On the EFB T.O PERF page, how can MEL items be added to assure performance requirements are met?",
     options: [
@@ -271,7 +271,7 @@ const db = [
   },
   {
     id: 25,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "For sample aircraft G-EZGY, find the minimum control speed at landing – assume sea level, ISA conditions:",
     options: ["113 kt", "116 kt", "110 kt", "114 kt"],
@@ -281,7 +281,7 @@ const db = [
   },
   {
     id: 26,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "If a runway is wet and NOTAMed 'slippery when wet', what is the correct EFB to PERF input for RWY COND?",
     options: ['WATER 1/4"', "DRY", "ICY", "WET"],
@@ -291,7 +291,7 @@ const db = [
   },
   {
     id: 27,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "In EFB LDG PERF, how do we correctly adjust for a NOTAMed shortening of a runway?",
     options: [
@@ -306,7 +306,7 @@ const db = [
   },
   {
     id: 28,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "For an in-flight landing calculation, what is the appropriate EFB input for RWY COND with 5 mm of water on the runway?",
     options: ["3-Medium", "2-Medium to Poor", "5-Good", "6-Dry"],
@@ -316,7 +316,7 @@ const db = [
   },
   {
     id: 29,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "For an in-flight landing calculation, what is the appropriate EFB input for RWY COND with 'Wet' runway?",
     options: ["6-Dry", "3-Medium", "4-Good to Medium", "5-Good"],
@@ -326,7 +326,7 @@ const db = [
   },
   {
     id: 30,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question: "OPT CONF selection for takeoff ensures what?",
     options: [
       "Always produces CONF 3 takeoff",
@@ -339,7 +339,7 @@ const db = [
   },
   {
     id: 31,
-    theme: "Performance / EFB",
+    theme: "70 : Power Plant",
     question: "What is the TREF value for an Airbus A320-214?",
     options: ["ISA+29", "ISA", "ISA+15", "ISA+25"],
     correct: 0,
@@ -348,7 +348,7 @@ const db = [
   },
   {
     id: 32,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "Which of these is an appropriate wind entry for a METAR reading VRB03KT?",
     options: ["TVRB", "TL03", "HD03", "0/0"],
@@ -358,7 +358,7 @@ const db = [
   },
   {
     id: 33,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "What are the standard second and final segment gross climb gradients on takeoff?",
     options: ["2.4% and 1.2%", "1% and 2.2%", "2.4% and 4.8%"],
@@ -368,7 +368,7 @@ const db = [
   },
   {
     id: 34,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "On the EFB, how can the GA gradient be modified to ensure compliance?",
     options: [
@@ -383,7 +383,7 @@ const db = [
   },
   {
     id: 35,
-    theme: "Systems - Elec",
+    theme: "24 : Electrical",
     question:
       "What is the normal order of priority for supplying power to AC BUS 1?",
     options: [
@@ -397,7 +397,7 @@ const db = [
   },
   {
     id: 36,
-    theme: "Systems - Elec",
+    theme: "24 : Electrical",
     question:
       "Which of the following AC busses can be powered by the emergency generator?",
     options: [
@@ -412,7 +412,7 @@ const db = [
   },
   {
     id: 37,
-    theme: "Systems - Elec",
+    theme: "24 : Electrical",
     question:
       "During a routine flight, which of the following would result after the loss of GEN 2 and the subsequent start of the APU?",
     options: [
@@ -426,7 +426,7 @@ const db = [
   },
   {
     id: 38,
-    theme: "Systems - Elec",
+    theme: "24 : Electrical",
     question:
       "The aircraft is on the ground with external power plugged into the aircraft, and the APU running. How can the APU generator be connected to the electrical system?",
     options: [
@@ -440,7 +440,7 @@ const db = [
   },
   {
     id: 39,
-    theme: "Systems - Elec",
+    theme: "24 : Electrical",
     question: "What is the function of the GEN 1 LINE push button?",
     options: [
       "GEN 1 LINE contactor opens. GEN 1 powers all AC busses",
@@ -453,7 +453,7 @@ const db = [
   },
   {
     id: 40,
-    theme: "Systems - Elec",
+    theme: "24 : Electrical",
     question:
       "The MAINT BUS switch is used to supply only ground services. Where is it located?",
     options: [
@@ -468,7 +468,7 @@ const db = [
   },
   {
     id: 41,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question: "The Air Conditioning System Controller 1 (ACSC 1):",
     options: [
       "Is the primary controller",
@@ -482,7 +482,7 @@ const db = [
   },
   {
     id: 42,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question:
       "What impact does a single lane failure of ACSC 2 have on the air conditioning system?",
     options: [
@@ -496,7 +496,7 @@ const db = [
   },
   {
     id: 43,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question: "What happens if the DITCHING push button is selected ON?",
     options: [
       "A close signal will be sent to the outflow valve, avionics ventilation inlet and extract, emergency ram air valve, and pack flow control valves.",
@@ -509,7 +509,7 @@ const db = [
   },
   {
     id: 44,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question: "The MIXER Unit is connected to:",
     options: [
       "Packs, re-circulated cabin air, emergency ram air inlet, and LP ground connector",
@@ -522,7 +522,7 @@ const db = [
   },
   {
     id: 45,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question: "What will trigger the CAB PR LDG ELEV FAULT (amber) alert?",
     options: [
       "The failure of CPC 1 or 2",
@@ -535,7 +535,7 @@ const db = [
   },
   {
     id: 46,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question:
       "On the ground, which configuration would you expect the avionics ventilation system to select if the OAT is 3°C on an overcast day?",
     options: ["Closed", "Intermediate", "Open"],
@@ -545,7 +545,7 @@ const db = [
   },
   {
     id: 47,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question:
       "Which of the following options contains only managed AP / FD modes?",
     options: [
@@ -560,7 +560,7 @@ const db = [
   },
   {
     id: 48,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question:
       "What happens if the EXPED button is pushed when the FCU selected altitude is above the current altitude?",
     options: [
@@ -574,7 +574,7 @@ const db = [
   },
   {
     id: 49,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question:
       "What happens if the EXPED button is pushed when the FCU selected altitude is below the current altitude?",
     options: [
@@ -587,7 +587,7 @@ const db = [
   },
   {
     id: 50,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question:
       "What will happen to the flight guidance modes when the altitude knob is pulled on the FCU?",
     options: [
@@ -601,7 +601,7 @@ const db = [
   },
   {
     id: 51,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question:
       "When does the FMGS automatically switch from takeoff to climb phase?",
     options: [
@@ -615,7 +615,7 @@ const db = [
   },
   {
     id: 52,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question: "What are the basic modes of the AP / FD?",
     options: ["Pitch and roll", "HDG and V/S", "SPD and HDG"],
     correct: 1,
@@ -624,7 +624,7 @@ const db = [
   },
   {
     id: 53,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question: "Cost Index = 0 (zero) corresponds to:",
     options: [
       "Best ratio between the flight time cost and the fuel cost",
@@ -637,7 +637,7 @@ const db = [
   },
   {
     id: 54,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question: "ALPHA FLOOR is available from:",
     options: [
       "Lift-off until the aircraft reaches 100 ft RA on approach",
@@ -650,17 +650,17 @@ const db = [
   },
   {
     id: 55,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question:
       "Which system/computer provides the reactive windshear detection function?",
-    options: ["The weather radar", "ADIRU 1", "FAC"],
+    options: ["The weather radar", "ADIRU 1", "FAC", "SDAC"],
     correct: 2,
     explanation:
       "FCOM DSC-22-40-40: Flight Augmentation Computers (FAC) detect windshear.",
   },
   {
     id: 56,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question: "When the ND is set to the PLAN mode, how is the map oriented?",
     options: ["To aircraft heading", "To true north", "To magnetic north"],
     correct: 1,
@@ -669,7 +669,7 @@ const db = [
   },
   {
     id: 57,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question: "What is the standard method for disconnecting the A/THR?",
     options: [
       "The flight crew press the A/THR instinctive disconnect pushbutton, or set both thrust levers to the IDLE detent.",
@@ -682,7 +682,7 @@ const db = [
   },
   {
     id: 58,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question:
       "After engine start, which MCDU page should be used to modify ZFW and ZFWCG?",
     options: [
@@ -696,7 +696,7 @@ const db = [
   },
   {
     id: 59,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       "Which C/Bs have red caps on them to prevent them from being reset?",
     options: ["FMGEC 1 and 2", "WTB's", "ELAC 1"],
@@ -706,7 +706,7 @@ const db = [
   },
   {
     id: 60,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "Typically when will direct law be active?",
     options: [
       "Direct law is the flare mode for normal law",
@@ -719,7 +719,7 @@ const db = [
   },
   {
     id: 61,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "How many channels does a SFCC have?",
     options: [
       "2 identical channels for redundancy",
@@ -732,7 +732,7 @@ const db = [
   },
   {
     id: 62,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       "What order is used by the flight control computers when both sidesticks are moved at the same time?",
     options: [
@@ -746,7 +746,7 @@ const db = [
   },
   {
     id: 63,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       "After a takeoff in CONF 1+F, what would happen if FLAP 0 is not selected as the aircraft accelerates?",
     options: [
@@ -760,7 +760,7 @@ const db = [
   },
   {
     id: 64,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question:
       "When will the blue hydraulic system be pressurized on the ground?",
     options: [
@@ -774,7 +774,7 @@ const db = [
   },
   {
     id: 65,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question: "When will the PTU pushbutton FAULT (amber) light illuminate?",
     options: [
       "When there is an overheat, low pressure or low fluid level in either green or yellow reservoirs.",
@@ -787,7 +787,7 @@ const db = [
   },
   {
     id: 66,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question: "Select the correct statement about an engine in flight:",
     options: [
       "Automatic start is unavailable in flight",
@@ -800,7 +800,7 @@ const db = [
   },
   {
     id: 67,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question:
       "Which hydraulic systems are used to actuate engine reverser doors?",
     options: [
@@ -813,19 +813,20 @@ const db = [
   },
   {
     id: 68,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question: "What does REV in GREEN on the N1/EPR gauge on the E/WD mean?",
     options: [
       "The thrust reverser is unlocked",
-      "The thrust reverser is fully deployed",
-      "Reverse thrust has been selected",
+      "The thrust reverser system is fully deployed",
+      "Reverse thrust has been selected and there is sufficient hydraulic pressure to actuate the thrust reverser system",
+      "The reverse system is fully deployed and the engine has achieved at least 80% of the REV MAX thrust setting",
     ],
     correct: 1,
     explanation: "FCOM DSC-70-90-40: Green indicates doors are fully deployed.",
   },
   {
     id: 69,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question: "Select the correct starter limitation for the CFM engines:",
     options: [
       "A 60 minute cooling period is required following 3 consecutive start attempts",
@@ -838,7 +839,7 @@ const db = [
   },
   {
     id: 70,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question:
       "The Engine Interface Unit (EIU) fails. What information does the FADEC lose access to?",
     options: [
@@ -852,7 +853,7 @@ const db = [
   },
   {
     id: 71,
-    theme: "Fuel",
+    theme: "28 : Fuel",
     question:
       "What does an amber half box around the FOB on the E/WD indicate?",
     options: [
@@ -866,7 +867,7 @@ const db = [
   },
   {
     id: 72,
-    theme: "Fuel",
+    theme: "28 : Fuel",
     question:
       "Which of the following statements best describes the operation of the fuel transfer valves?",
     options: [
@@ -880,7 +881,7 @@ const db = [
   },
   {
     id: 73,
-    theme: "Fuel",
+    theme: "28 : Fuel",
     question: "When does the FUEL L (R) WING TK LO LVL ECAM alert trigger?",
     options: [
       "When the associated inner and outer tank quantity on the same wing is below 750 kg",
@@ -893,7 +894,7 @@ const db = [
   },
   {
     id: 74,
-    theme: "Fuel",
+    theme: "28 : Fuel",
     question:
       "What do two dashes across the last two digits of the fuel quantity indicator mean?",
     options: [
@@ -906,7 +907,7 @@ const db = [
   },
   {
     id: 75,
-    theme: "Fuel",
+    theme: "28 : Fuel",
     question: "The cross feed valve (X FEED) is:",
     options: [
       "Controlled by a single motor",
@@ -919,7 +920,7 @@ const db = [
   },
   {
     id: 76,
-    theme: "ECAM / Displays",
+    theme: "31 : Indicating/Recording Systems",
     question:
       "Which of the following statements best describes a level 3 ECAM alert?",
     options: [
@@ -933,7 +934,7 @@ const db = [
   },
   {
     id: 77,
-    theme: "ECAM / Displays",
+    theme: "31 : Indicating/Recording Systems",
     question: "Regarding ECAM, which of the following statements is true?",
     options: [
       "An amber message on the E/WD is always accompanied by a Master Caution",
@@ -946,7 +947,7 @@ const db = [
   },
   {
     id: 78,
-    theme: "ECAM / Displays",
+    theme: "31 : Indicating/Recording Systems",
     question:
       "If a system page push button fails on the ECAM control panel, can the corresponding system page still be viewed?",
     options: [
@@ -960,7 +961,7 @@ const db = [
   },
   {
     id: 79,
-    theme: "ECAM / Displays",
+    theme: "31 : Indicating/Recording Systems",
     question:
       "If the upper ECAM DU fails, or is switched off, how can a system or status page be displayed for review?",
     options: [
@@ -974,7 +975,7 @@ const db = [
   },
   {
     id: 80,
-    theme: "ECAM / Displays",
+    theme: "31 : Indicating/Recording Systems",
     question:
       "Both ECAM screens have failed. Can the E/WD be displayed on any of the remaining display units?",
     options: [
@@ -988,7 +989,7 @@ const db = [
   },
   {
     id: 81,
-    theme: "ECAM / Displays",
+    theme: "31 : Indicating/Recording Systems",
     question:
       "On the PFD, what causes the indicated barometric altitude to change colour (digital value)?",
     options: [
@@ -1002,7 +1003,7 @@ const db = [
   },
   {
     id: 82,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "If engine anti-ice is planned to be used during takeoff, until reaching which altitude should it be considered to be ON?",
     options: ["MSA", "ACC", "EOACC", "THRRED"],
@@ -1012,7 +1013,7 @@ const db = [
   },
   {
     id: 83,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "Which of the following is NOT an SOP while taking off on a contaminated runway?",
     options: [
@@ -1026,7 +1027,7 @@ const db = [
   },
   {
     id: 84,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "On an EFB PERF page, where can the ISA value be located (to calculate TREF for example)?",
     options: [
@@ -1041,7 +1042,7 @@ const db = [
   },
   {
     id: 85,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "In the event of an LMC of 200 kg, what is the appropriate response?",
     options: [
@@ -1056,7 +1057,7 @@ const db = [
   },
   {
     id: 86,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "In the event of a last-minute decision to use engine anti-ice, what correction must be applied?",
     options: [
@@ -1071,7 +1072,7 @@ const db = [
   },
   {
     id: 87,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "In the event of a QNH reduction by 2 hPa on taxi-out, what correction must be applied?",
     options: [
@@ -1086,7 +1087,7 @@ const db = [
   },
   {
     id: 88,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "In the event of a QNH reduction by 3 hPa on taxi-out, what correction must be applied?",
     options: [
@@ -1101,7 +1102,7 @@ const db = [
   },
   {
     id: 89,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "Where is the correct place to find RWY COND EFB entry for takeoff?",
     options: ["QRH", "OM-B", "OM-A", "EFB MORE app"],
@@ -1111,7 +1112,7 @@ const db = [
   },
   {
     id: 90,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "Where is the correct place to find RWY COND EFB entry in flight for landing?",
     options: ["OM-A", "QRH", "EFB MORE app", "OM-B"],
@@ -1120,7 +1121,7 @@ const db = [
   },
   {
     id: 91,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question: "Under which conditions must engine anti-ice be used?",
     options: [
       "With rain falling",
@@ -1134,7 +1135,7 @@ const db = [
   },
   {
     id: 92,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question: "What is considered to be a 'forward' CG at takeoff?",
     options: [
       "less than 30%",
@@ -1147,7 +1148,7 @@ const db = [
   },
   {
     id: 93,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question: "What is considered to be a 'standard' CG at takeoff?",
     options: [
       "More than 27%",
@@ -1161,9 +1162,9 @@ const db = [
   },
   {
     id: 94,
-    theme: "Performance / EFB",
+    theme: "27 : Flight Controls",
     question:
-      "Which of these statements is NOT true regarding a CONF 1 +F takeoff instead of other configurations?",
+      "Which of these statements is NOT true regarding a CONF 1+F takeoff instead of other configurations?",
     options: [
       "Takeoff run is longer",
       "It produces the best climb gradient",
@@ -1174,7 +1175,7 @@ const db = [
   },
   {
     id: 95,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question: "When is a rolling takeoff not permitted due to performance?",
     options: [
       "A TOGA takeoff",
@@ -1188,7 +1189,7 @@ const db = [
   },
   {
     id: 96,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "If departing from an intersection with a longer TORA than planned, what is required?",
     options: [
@@ -1203,7 +1204,7 @@ const db = [
   },
   {
     id: 97,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question: "If following an EOSID, what obstacle clearance is guaranteed?",
     options: [
       "None",
@@ -1216,7 +1217,7 @@ const db = [
   },
   {
     id: 98,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "How can the maximum acceleration altitude be found on the EFB TO PERF page?",
     options: [
@@ -1230,7 +1231,7 @@ const db = [
   },
   {
     id: 99,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "On the EFB, how can MEL items be added to assure performance requirements are met?",
     options: [
@@ -1245,7 +1246,7 @@ const db = [
   },
   {
     id: 100,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "For an in-flight landing calculation, what is the maximum crosswind with compacted snow at -16°C?",
     options: ["15 kts", "10 kts", "38 kts", "29 kts"],
@@ -1254,7 +1255,7 @@ const db = [
   },
   {
     id: 101,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "For an in-flight landing calculation, what is the maximum crosswind with 5 mm of water?",
     options: ["20 kts", "10 kts", "15 kts", "29 kts"],
@@ -1263,7 +1264,7 @@ const db = [
   },
   {
     id: 102,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "For an in-flight landing calculation, what is the maximum crosswind with compacted snow at -13°C?",
     options: ["29 kts", "25 kts", "38 kts", "10 kts"],
@@ -1272,7 +1273,7 @@ const db = [
   },
   {
     id: 103,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "If using Reverse Idle, what is the correct choice in the EFB LDG PERF?",
     options: ["Yes", "No"],
@@ -1282,7 +1283,7 @@ const db = [
   },
   {
     id: 104,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "In EFB LDG PERF, how do we correctly adjust for a NOTAMed shortening of a runway?",
     options: [
@@ -1297,7 +1298,7 @@ const db = [
   },
   {
     id: 105,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "What takeoff performance limit codes indicate performance limiting takeoff when using TOGA thrust?",
     options: ["RWY and OBS", "RWY only", "OBS only", "RWY, OBS, and VMC"],
@@ -1306,7 +1307,7 @@ const db = [
   },
   {
     id: 106,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "Required landing distance figures include what factors for a 'dry'/'wet' runway?",
     options: ["1.25/1.5", "1.5/2.0", "1.67/1.92"],
@@ -1316,7 +1317,7 @@ const db = [
   },
   {
     id: 107,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "If below 10°C and 'wet' runway only, is anti-ice legally required for take-off?",
     options: ["Yes", "No"],
@@ -1326,7 +1327,7 @@ const db = [
   },
   {
     id: 108,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "How many 'negligible' CDL items can be carried without applying a performance penalty?",
     options: ["3", "2", "1", "4"],
@@ -1335,7 +1336,7 @@ const db = [
   },
   {
     id: 109,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question: "What is Vpilot in the context of EFB landing calculations?",
     options: [
       "Added margin for manual landing",
@@ -1346,7 +1347,7 @@ const db = [
   },
   {
     id: 110,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "At landing, what is included in EFB calculations but NOT in QRH calculations?",
     options: [
@@ -1360,7 +1361,7 @@ const db = [
   },
   {
     id: 111,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "What is an indicator that 'stop margin' figures have additional factors added?",
     options: [
@@ -1374,7 +1375,7 @@ const db = [
   },
   {
     id: 112,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "Where is the correct place to find RWY COND EFB entry at landing dispatch?",
     options: ["EFB MORE app", "OM-A", "QRH", "OM-B"],
@@ -1383,7 +1384,7 @@ const db = [
   },
   {
     id: 113,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "Which of these is not an appropriate wind entry for a METAR reading VRB03KT?",
     options: ["T03", "TL03", "H03", "0/0"],
@@ -1393,7 +1394,7 @@ const db = [
   },
   {
     id: 114,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "A 'contaminated runway' describes a surface where a certain depth of contaminant is covering what percentage of runway area?",
     options: ["More than 25%", "More than 50%", "25% or more", "50% or more"],
@@ -1402,7 +1403,7 @@ const db = [
   },
   {
     id: 115,
-    theme: "Systems - Air/Press",
+    theme: "35 : Oxygen",
     question: "Which is true regarding the EMERGENCY pressure selector?",
     options: [
       "It delivers 100% oxygen to the mask when pushed",
@@ -1416,7 +1417,7 @@ const db = [
   },
   {
     id: 116,
-    theme: "Systems - Air/Press",
+    theme: "35 : Oxygen",
     question:
       "What is the effect of pressing the RESET control slide, after the oxygen mask has been used?",
     options: [
@@ -1440,7 +1441,7 @@ const db = [
   },
   {
     id: 118,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question:
       "Which of the following correctly completes this statement? 'The pressurization system includes ...'",
     options: [
@@ -1468,7 +1469,7 @@ const db = [
   },
   {
     id: 120,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question: "When does the lavatory/galley extract fan operate?",
     options: [
       "Only in flight",
@@ -1482,7 +1483,7 @@ const db = [
   },
   {
     id: 121,
-    theme: "Systems - Elec",
+    theme: "30 : Ice and Rain Protection",
     question: "In the event of electrical power supply loss ...",
     options: [
       "The engine anti ice valves will open automatically, anti icing is assured",
@@ -1495,7 +1496,7 @@ const db = [
   },
   {
     id: 122,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question: "When is HYD PRESS 3,000 +/- 200 PSI?",
     options: [
       "Under Normal Conditions and when the RAT is providing system pressure",
@@ -1516,7 +1517,7 @@ const db = [
   },
   {
     id: 124,
-    theme: "ECAM / Displays",
+    theme: "34 : Navigation",
     question: "The aural alerts of the Predictive Windshear System (PWS) ...",
     options: [
       "Have priority over TCAS, GPWS and other FWC aural warnings",
@@ -1538,7 +1539,7 @@ const db = [
   },
   {
     id: 126,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question: "Minimum oil temperature for start is?",
     options: [
       "-10°C",
@@ -1551,7 +1552,7 @@ const db = [
   },
   {
     id: 127,
-    theme: "Landing Gear",
+    theme: "32 : Landing Gear",
     question: "What does the NW STRG DISC memo on the E/WD indicate?",
     options: [
       "The nose wheel steering has been disconnected by ground personnel",
@@ -1565,7 +1566,7 @@ const db = [
   },
   {
     id: 128,
-    theme: "Systems - Elec",
+    theme: "24 : Electrical",
     question: "The AC ESS BUS is normally supplied by:",
     options: [
       "AC BUS 2",
@@ -1578,7 +1579,7 @@ const db = [
   },
   {
     id: 129,
-    theme: "APU",
+    theme: "49 : APU",
     question:
       "The APU has been switched off, but it has not stopped. Which of the following would cause this?",
     options: [
@@ -1593,7 +1594,7 @@ const db = [
   },
   {
     id: 130,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question: "What is the normal operating pressure in the hydraulic system?",
     options: ["500 psi", "1000 psi", "2000 psi", "3000 psi"],
     correct: 3,
@@ -1601,7 +1602,7 @@ const db = [
   },
   {
     id: 131,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "What is the maximum runway pressure altitude for takeoff and landing",
     options: [
@@ -1616,7 +1617,7 @@ const db = [
   },
   {
     id: 132,
-    theme: "Landing Gear",
+    theme: "32 : Landing Gear",
     question:
       "What indication occurs during a pushback (including engine start), with the steering selector in the TOWING position?",
     options: [
@@ -1639,7 +1640,7 @@ const db = [
   },
   {
     id: 134,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       "During your preliminary cockpit preparation you notice that the FLAPS lever is in the ZERO position but the E/WD shows the FLAPS extended. What should you do?",
     options: [
@@ -1654,7 +1655,7 @@ const db = [
   },
   {
     id: 135,
-    theme: "Navigation",
+    theme: "34 : Navigation",
     question: "Navaids are normally autotuned by?",
     options: ["ADIRU", "RMP", "MCDU", "FMGC"],
     correct: 3,
@@ -1662,7 +1663,7 @@ const db = [
   },
   {
     id: 136,
-    theme: "Communications",
+    theme: "23 : Communications",
     question: "With the AUDIO SWITCHING knob in the CAPT 3 position:",
     options: [
       "The Captain uses his acoustic equipment on ACP 3",
@@ -1675,7 +1676,7 @@ const db = [
   },
   {
     id: 137,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       "When does the F/CTL page appear on the flight deck during the flight control check?",
     options: [
@@ -1689,7 +1690,7 @@ const db = [
   },
   {
     id: 138,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       "In ALTERNATE LAW, how do the indications change at the bottom of the speed scale?",
     options: [
@@ -1713,7 +1714,7 @@ const db = [
   },
   {
     id: 140,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question: "After take-off the A/THR will not become active until...",
     options: [
       "The autopilot is engaged",
@@ -1726,7 +1727,7 @@ const db = [
   },
   {
     id: 141,
-    theme: "Systems - Elec",
+    theme: "24 : Electrical",
     question: "The Emergency Generator will power which busses?",
     options: [
       "AC Bus 1 and AC Bus 2",
@@ -1739,7 +1740,7 @@ const db = [
   },
   {
     id: 142,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       "If both pilots simultaneously deflect their side sticks fully back ...",
     options: [
@@ -1754,7 +1755,7 @@ const db = [
   },
   {
     id: 143,
-    theme: "APU",
+    theme: "49 : APU",
     question:
       'Which of the following correctly completes this statement? "Provided not on batteries only, the APU may be started ...',
     options: [
@@ -1768,7 +1769,7 @@ const db = [
   },
   {
     id: 144,
-    theme: "Ice & Rain Protection",
+    theme: "30 : Ice and Rain Protection",
     question:
       "Following a Wing Anti-Ice (WAI) test on the ground, what happens if the WAI switch is left ON?",
     options: [
@@ -1783,7 +1784,7 @@ const db = [
   },
   {
     id: 145,
-    theme: "Fire Protection",
+    theme: "26 : Fire Protection",
     question: "When is the engine fire extinguishing squib armed?",
     options: [
       "When both loops fail within 5 seconds of each other",
@@ -1797,7 +1798,7 @@ const db = [
   },
   {
     id: 146,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question: "Which of the following is true about the FADEC system?",
     options: [
       "It is continuously powered from the moment the aircraft receives AC power.",
@@ -1820,7 +1821,7 @@ const db = [
   },
   {
     id: 148,
-    theme: "Fire Protection",
+    theme: "26 : Fire Protection",
     question:
       "The FIRE light on the pedestal illuminates, what does this indicate?",
     options: [
@@ -1844,7 +1845,7 @@ const db = [
   },
   {
     id: 150,
-    theme: "Systems - Air/Press",
+    theme: "33 : Lights",
     question:
       "What happens to the cabin lights in the event of excessive cabin altitude?",
     options: [
@@ -1859,7 +1860,7 @@ const db = [
   },
   {
     id: 151,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question: "What are the thrust settings you can take off with?",
     options: [
       "Any manual setting",
@@ -1873,7 +1874,7 @@ const db = [
   },
   {
     id: 152,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question:
       "Following an overheat and shut down of a hydraulic pump, how long will the FAULT light on the overhead panel remain illuminated?",
     options: [
@@ -1887,7 +1888,7 @@ const db = [
   },
   {
     id: 153,
-    theme: "Navigation",
+    theme: "34 : Navigation",
     question:
       "What information is given at the top right of the Nav Display in the ARC mode?",
     options: [
@@ -1901,7 +1902,7 @@ const db = [
   },
   {
     id: 154,
-    theme: "Systems - Elec",
+    theme: "24 : Electrical",
     question: "What happens if the BUS TIE pb is set to AUTO position?",
     options: [
       "Both bus tie contactors open",
@@ -1915,7 +1916,7 @@ const db = [
   },
   {
     id: 155,
-    theme: "Limitations",
+    theme: "22 : Auto Flight",
     question:
       'On the Speed Tape on the PFD, what does the "F" speed represent at take-off?',
     options: [
@@ -1930,7 +1931,7 @@ const db = [
   },
   {
     id: 156,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question: "The FLEX temperature must not be lower than the actual OAT.",
     options: [
       "True",
@@ -1943,7 +1944,7 @@ const db = [
   },
   {
     id: 157,
-    theme: "Ice & Rain Protection",
+    theme: "30 : Ice and Rain Protection",
     question: "The engine ANTI ICE system ...",
     options: [
       "Operates only in flight and is fully automatic in case of icing conditions",
@@ -1956,7 +1957,7 @@ const db = [
   },
   {
     id: 158,
-    theme: "Systems - Elec",
+    theme: "24 : Electrical",
     question: "In what case are the batteries connected to the DC BAT BUS?",
     options: [
       "On the ground with loss of AC BUS 1 and 2 when speed is above 140 kt",
@@ -1969,7 +1970,7 @@ const db = [
   },
   {
     id: 159,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question: "When is selection of reverse thrust in flight allowed?",
     options: [
       "It is permitted below WX minima on WET RWY",
@@ -1982,7 +1983,7 @@ const db = [
   },
   {
     id: 160,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       "What will be the result if, after selecting FLAPS 2 in flight, asymmetric flap travel occurs?",
     options: [
@@ -1996,7 +1997,7 @@ const db = [
   },
   {
     id: 161,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       "What are the pitch and roll limits in Normal Law Configuration 0?",
     options: [
@@ -2010,7 +2011,7 @@ const db = [
   },
   {
     id: 162,
-    theme: "Landing Gear",
+    theme: "32 : Landing Gear",
     question:
       "With the aircraft on the ground, which of the following is true with regard to the gear lever?",
     options: [
@@ -2024,7 +2025,7 @@ const db = [
   },
   {
     id: 163,
-    theme: "Systems - Elec",
+    theme: "24 : Electrical",
     question:
       "What is the effect of selecting the GEN 1 LINE switch to OFF on the EMER ELEC PWR panel?",
     options: [
@@ -2038,7 +2039,7 @@ const db = [
   },
   {
     id: 164,
-    theme: "Landing Gear",
+    theme: "33 : Lights",
     question:
       "The STROBE lights selector is set to AUTO. In this position when do they stop flashing?",
     options: [
@@ -2052,7 +2053,7 @@ const db = [
   },
   {
     id: 165,
-    theme: "Landing Gear",
+    theme: "32 : Landing Gear",
     question: "What is maximum altitude that the landing gear may be extended?",
     options: [
       "10,000 ft",
@@ -2065,7 +2066,7 @@ const db = [
   },
   {
     id: 166,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "What are the correct maximum acceleration (G) limits?",
     options: [
       "Slats and flaps extended, 0 g to +2 g",
@@ -2078,7 +2079,7 @@ const db = [
   },
   {
     id: 167,
-    theme: "Landing Gear",
+    theme: "33 : Lights",
     question:
       "When the gear is retracted, which exterior lights extinguish automatically?",
     options: [
@@ -2092,7 +2093,7 @@ const db = [
   },
   {
     id: 168,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question:
       "You are performing a takeoff with the thrust levers in the FLEX position. Which of the following statements is true?",
     options: [
@@ -2106,7 +2107,7 @@ const db = [
   },
   {
     id: 169,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question:
       "When on an intercept heading, to join an ILS localizer, the Flight Path Vector (FPV) will be lined up with the ...",
     options: [
@@ -2120,7 +2121,7 @@ const db = [
   },
   {
     id: 170,
-    theme: "Communications",
+    theme: "23 : Communications",
     question: "In case of RMP1 failure ...",
     options: [
       "RMP1 no longer controls the selected receiver and should be switched OFF",
@@ -2147,7 +2148,7 @@ const db = [
   },
   {
     id: 172,
-    theme: "Navigation",
+    theme: "34 : Navigation",
     question:
       "What does the left (captain's) ND show when selected to ROSE ILS?",
     options: [
@@ -2161,7 +2162,7 @@ const db = [
   },
   {
     id: 173,
-    theme: "Landing Gear",
+    theme: "32 : Landing Gear",
     question:
       "What does a red UNLK light indicate on the Landing Gear Indicator Panel?",
     options: [
@@ -2176,7 +2177,7 @@ const db = [
   },
   {
     id: 174,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question:
       "You are about to perform a takeoff. You have not inserted a FLEX temperature. Can you still take-off?",
     options: [
@@ -2191,7 +2192,7 @@ const db = [
   },
   {
     id: 175,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question:
       "When does the bidirectional power transfer unit (PTU) enable the yellow system to pressurize the green system and vice versa?",
     options: [
@@ -2206,7 +2207,7 @@ const db = [
   },
   {
     id: 176,
-    theme: "Ice & Rain Protection",
+    theme: "30 : Ice and Rain Protection",
     question:
       "If one engine ANTI ICE system fails the second one takes over and provides anti icing for both the engines.",
     options: [
@@ -2220,7 +2221,7 @@ const db = [
   },
   {
     id: 177,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       "In Normal law, if one side stick is rapidly pulled fully back, can the aircraft's maximum allowable G load be exceeded?",
     options: [
@@ -2235,7 +2236,7 @@ const db = [
   },
   {
     id: 178,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question: "Which hydraulic systems have fluid shutoff valves and why?",
     options: [
       "Green and Yellow (operated by the engine fire switches) to isolate fluid from a fire.",
@@ -2248,7 +2249,7 @@ const db = [
   },
   {
     id: 179,
-    theme: "Landing Gear",
+    theme: "32 : Landing Gear",
     question:
       "What is the maximum brake temperature for takeoff (brake fans off)?",
     options: ["720°C", "520°C", "300°C", "330°C"],
@@ -2257,7 +2258,7 @@ const db = [
   },
   {
     id: 180,
-    theme: "Communications",
+    theme: "23 : Communications",
     question:
       "On the overhead panel, when should the AUDIO SWITCHING be selected to CAPT 3?",
     options: [
@@ -2271,7 +2272,7 @@ const db = [
   },
   {
     id: 181,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question: "With either AP engaged, which statement is true?",
     options: [
       "Both side sticks are locked. The lock cannot be overridden",
@@ -2284,7 +2285,7 @@ const db = [
   },
   {
     id: 182,
-    theme: "Navigation",
+    theme: "34 : Navigation",
     question:
       "When RMP tuning of the NAVAIDS is in operation, which of the following statements is true?",
     options: [
@@ -2298,7 +2299,7 @@ const db = [
   },
   {
     id: 183,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question: "Which of the following is true with regard to the PTU?",
     options: [
       "It is inhibited between engine starts.",
@@ -2312,7 +2313,7 @@ const db = [
   },
   {
     id: 184,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question:
       "On an approach to land, which of the following statements is true?",
     options: [
@@ -2326,7 +2327,7 @@ const db = [
   },
   {
     id: 185,
-    theme: "APU",
+    theme: "49 : APU",
     question:
       "Which statement is correct when the APU FIRE pb is pushed to release it?",
     options: [
@@ -2340,7 +2341,7 @@ const db = [
   },
   {
     id: 186,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question:
       "During a MANUAL START, when should the engine master switch be selected ON?",
     options: [
@@ -2354,7 +2355,7 @@ const db = [
   },
   {
     id: 187,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question:
       "With the PACK FLOW controller selected to LO, the actual pack flow may be ...",
     options: [
@@ -2369,7 +2370,7 @@ const db = [
   },
   {
     id: 188,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question:
       "On the HYD overhead panel, which of the following is true of any pump FAULT light?",
     options: [
@@ -2383,7 +2384,7 @@ const db = [
   },
   {
     id: 189,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "What is the maximum speed for each flap configuration?",
     options: ["V stall speed.", "Green dot speed", "Vfe speed", "Vis speed"],
     correct: 2,
@@ -2391,7 +2392,7 @@ const db = [
   },
   {
     id: 190,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question: "What aircraft compartments are unpressurized?",
     options: [
       "Forward and aft cargo compartments",
@@ -2404,7 +2405,7 @@ const db = [
   },
   {
     id: 191,
-    theme: "Systems - Air/Press",
+    theme: "36 : Pneumatic",
     question: "What happens in the event of BMC 1 failure?",
     options: [
       "BMC 2 takes over all functions.",
@@ -2418,7 +2419,7 @@ const db = [
   },
   {
     id: 192,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question:
       "Regarding the pressurization system ... How are the safety valves controlled?",
     options: [
@@ -2432,7 +2433,7 @@ const db = [
   },
   {
     id: 193,
-    theme: "Navigation",
+    theme: "34 : Navigation",
     question:
       "IRS IN ALIGN ECAM memo display becomes amber during an IR alignment if engines are running ...",
     options: [
@@ -2447,7 +2448,7 @@ const db = [
   },
   {
     id: 194,
-    theme: "Landing Gear",
+    theme: "32 : Landing Gear",
     question: "What triggers the autobrake system after landing?",
     options: [
       "Selection of reverse thrust.",
@@ -2460,7 +2461,7 @@ const db = [
   },
   {
     id: 195,
-    theme: "Systems - Elec",
+    theme: "24 : Electrical",
     question: "What is the maximum continuous load per generator?",
     options: ["85%.", "50%.", "75%.", "100%."],
     correct: 3,
@@ -2477,7 +2478,7 @@ const db = [
   },
   {
     id: 197,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "In normal flight, what does sidestick deflection demand?",
     options: [
       "load factor in pitch and proportional aileron and spoiler deflection in roll.",
@@ -2490,7 +2491,7 @@ const db = [
   },
   {
     id: 198,
-    theme: "Navigation",
+    theme: "34 : Navigation",
     question:
       "What is signified by 'ILS APPR' being displayed at the top center of the ND?",
     options: [
@@ -2504,7 +2505,7 @@ const db = [
   },
   {
     id: 199,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question:
       "For what areas does the Avionics ventilation system provide cooling?",
     options: [
@@ -2519,7 +2520,7 @@ const db = [
   },
   {
     id: 200,
-    theme: "Systems - Air/Press",
+    theme: "36 : Pneumatic",
     question:
       "Which of the following correctly describes the cross-bleed valve operation?",
     options: [
@@ -2534,7 +2535,7 @@ const db = [
   },
   {
     id: 201,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question:
       "On ground, with the BLUE hydraulic pump switch at AUTO and with the AC POWER available, when will the pump operate?",
     options: [
@@ -2548,7 +2549,7 @@ const db = [
   },
   {
     id: 202,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question:
       "The flight management part of the FMGC includes the following elements:",
     options: [
@@ -2562,7 +2563,7 @@ const db = [
   },
   {
     id: 203,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question:
       "Is it permissible to use reverse thrust to power back on the ground?",
     options: [
@@ -2576,7 +2577,7 @@ const db = [
   },
   {
     id: 204,
-    theme: "APU",
+    theme: "49 : APU",
     question:
       "What is the maximum altitude for APU single pack bleed air operation?",
     options: ["39,100 ft", "30,000 ft", "22,500 ft", "15,000 ft"],
@@ -2585,7 +2586,7 @@ const db = [
   },
   {
     id: 205,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question: "Which of the following defines Icing conditions?",
     options: [
       "Before T/O: OAT 15°C or below, contaminated runway.",
@@ -2598,7 +2599,7 @@ const db = [
   },
   {
     id: 206,
-    theme: "Navigation",
+    theme: "34 : Navigation",
     question: "How is a rapid IRS alignment carried out?",
     options: [
       "On all transit stops by recycling the IR selectors OFF/ON.",
@@ -2611,7 +2612,7 @@ const db = [
   },
   {
     id: 207,
-    theme: "Landing Gear",
+    theme: "32 : Landing Gear",
     question:
       "After takeoff, you retract the landing gear and get this ECAM caution: SHOCK ABSORBER FAULT. What does it mean?",
     options: [
@@ -2625,7 +2626,7 @@ const db = [
   },
   {
     id: 208,
-    theme: "APU",
+    theme: "49 : APU",
     question:
       "The APU may be started and operated, even if the LOW OIL LEVEL ECAM advisory is displayed.",
     options: [
@@ -2639,7 +2640,7 @@ const db = [
   },
   {
     id: 209,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question: "When does the ECAM E/WD memo REFUELG appear?",
     options: [
       "When the END Light illuminates steady green.",
@@ -2652,7 +2653,7 @@ const db = [
   },
   {
     id: 210,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question:
       "What is the purpose of the safety valves in the pressurization system?",
     options: [
@@ -2667,7 +2668,7 @@ const db = [
   },
   {
     id: 211,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question: "Under what conditions will the Autopilot disconnect?",
     options: [
       "Bank Angle exceeds 45°, at Vmo / Mmo, if the speed reaches Alpha Prot +1°",
@@ -2681,7 +2682,7 @@ const db = [
   },
   {
     id: 212,
-    theme: "APU",
+    theme: "49 : APU",
     question: "APU air bleed extraction for wing anti-ice is permitted.",
     options: [
       "False",
@@ -2694,7 +2695,7 @@ const db = [
   },
   {
     id: 213,
-    theme: "APU",
+    theme: "49 : APU",
     question: "What occurs when the APU MASTER switch is selected to ON?",
     options: [
       "The APU air intake flap opens and the starter motor engages immediately.",
@@ -2707,7 +2708,7 @@ const db = [
   },
   {
     id: 214,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       "If a spoiler has failed, how does the system compensate for undesirable yaw?",
     options: [
@@ -2721,7 +2722,7 @@ const db = [
   },
   {
     id: 215,
-    theme: "Fire Protection",
+    theme: "26 : Fire Protection",
     question: "Which of the following conditions will trigger a fire warning?",
     options: [
       "loops A and B failure within 7 seconds of each other (Engine)",
@@ -2734,7 +2735,7 @@ const db = [
   },
   {
     id: 216,
-    theme: "Communications",
+    theme: "23 : Communications",
     question: "How could you turn off RMP 1?",
     options: [
       "Via ON/OFF switch on RMP panel.",
@@ -2747,7 +2748,7 @@ const db = [
   },
   {
     id: 217,
-    theme: "Navigation",
+    theme: "34 : Navigation",
     question:
       "What could be the cause if, during a pre-flight check, the IRS ALIGN lights are seen to be flashing?",
     options: [
@@ -2762,7 +2763,7 @@ const db = [
   },
   {
     id: 218,
-    theme: "Hydraulics",
+    theme: "24 : Electrical",
     question: "What is the correct statement about the RAT?",
     options: [
       "The RAT is able to pressurize the GREEN or the YELLOW systems",
@@ -2775,7 +2776,7 @@ const db = [
   },
   {
     id: 219,
-    theme: "Landing Gear",
+    theme: "32 : Landing Gear",
     question:
       "If both nosewheel steering handwheels are offset at the same time, which of the following is true?",
     options: [
@@ -2789,7 +2790,7 @@ const db = [
   },
   {
     id: 220,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question:
       "Regarding the Avionics Ventilation system, which of the following statements is true?",
     options: [
@@ -2803,7 +2804,7 @@ const db = [
   },
   {
     id: 221,
-    theme: "APU",
+    theme: "49 : APU",
     question:
       "Which of the following statements is correct with regard to the APU?",
     options: [
@@ -2817,7 +2818,7 @@ const db = [
   },
   {
     id: 222,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question: "What does FADEC compute the thrust rating based on?",
     options: [
       "The measured thrust lever angle",
@@ -2830,7 +2831,7 @@ const db = [
   },
   {
     id: 223,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question:
       "On the Engine Panel, what does an illuminated FAULT light indicate?",
     options: [
@@ -2844,7 +2845,7 @@ const db = [
   },
   {
     id: 224,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       "In Normal Law, what is the maximum bank angle you can reach with the side stick fully deflected?",
     options: ["There is no bank angle limitation", "33°", "67°", "50°"],
@@ -2867,7 +2868,7 @@ const db = [
   },
   {
     id: 226,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question:
       "When is the FUEL USED indication (on the ECAM SD) reset to zero?",
     options: [
@@ -2881,7 +2882,7 @@ const db = [
   },
   {
     id: 227,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question: "What is the minimum oil quantity for dispatch?",
     options: [
       "9.5 qt + 0.5 qt per hour estimated flight time",
@@ -2895,7 +2896,7 @@ const db = [
   },
   {
     id: 228,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question:
       "In the event of a hydraulic system overheat, the affected system will be indicated by a ...",
     options: [
@@ -2910,7 +2911,7 @@ const db = [
   },
   {
     id: 229,
-    theme: "Fire Protection",
+    theme: "26 : Fire Protection",
     question:
       "Which of the following lists the correct actions to be carried out when performing a BLOWDOWN bottle test?",
     options: [
@@ -2924,7 +2925,7 @@ const db = [
   },
   {
     id: 230,
-    theme: "APU",
+    theme: "49 : APU",
     question:
       "What is the maximum altitude for APU start using aircraft batteries only?",
     options: ["FL200", "FL100", "FL150", "FL250"],
@@ -2933,7 +2934,7 @@ const db = [
   },
   {
     id: 231,
-    theme: "Systems - Air/Press",
+    theme: "36 : Pneumatic",
     question: "After engine start, how can the flight crew reset the BMC?",
     options: [
       "By setting the BLEED pushbutton OFF then ON.",
@@ -2946,7 +2947,7 @@ const db = [
   },
   {
     id: 232,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question:
       'Which of the following correctly completes the statement? "In the event of a loss of the green system, the alternate braking is powered by the yellow system and ...',
     options: [
@@ -2960,7 +2961,7 @@ const db = [
   },
   {
     id: 233,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question: "What is the normal position of the PACK FLOW switch?",
     options: [
       "Hi for all operations",
@@ -2974,7 +2975,7 @@ const db = [
   },
   {
     id: 234,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       'Which of the following correctly completes this statement? "The aircraft rudder travel is limited as a function of ...',
     options: [
@@ -2988,7 +2989,7 @@ const db = [
   },
   {
     id: 235,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question:
       'Which of the following correctly completes this statement? "There are ...',
     options: [
@@ -3003,7 +3004,7 @@ const db = [
   },
   {
     id: 236,
-    theme: "Auto Flight / FMS",
+    theme: "31 : Indicating/Recording Systems",
     question: "When are the PFD and ND decluttered?",
     options: [
       "The PFD when passing 150 feet RA and the ND when passing 1500 feet RA.",
@@ -3016,7 +3017,7 @@ const db = [
   },
   {
     id: 237,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question:
       "In the event of a complete loss of braking, which of the following lists the correct actions to be taken?",
     options: [
@@ -3030,7 +3031,7 @@ const db = [
   },
   {
     id: 238,
-    theme: "Systems - Elec",
+    theme: "24 : Electrical",
     question: "What is the normal power source for the IRS's?",
     options: [
       "AC Bus 1 and AC Bus 2",
@@ -3043,7 +3044,7 @@ const db = [
   },
   {
     id: 239,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question:
       "What do you have to do to obtain 100% oxygen when using the oxygen mask?",
     options: [
@@ -3057,7 +3058,7 @@ const db = [
   },
   {
     id: 240,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question: "In a fuel leak scenario, the fuel transfer system ...",
     options: [
       "... will automatically start transferring fuel.",
@@ -3070,7 +3071,7 @@ const db = [
   },
   {
     id: 241,
-    theme: "APU",
+    theme: "36 : Pneumatic",
     question: "When does the APU bleed valve close automatically?",
     options: [
       "When the APU is shut down.",
@@ -3083,7 +3084,7 @@ const db = [
   },
   {
     id: 242,
-    theme: "Auto Flight / FMS",
+    theme: "31 : Indicating/Recording Systems",
     question:
       "When the aircraft is in alternate or direct law, what are the normal color of the PFD FPV, FD and FMA indications?",
     options: [
@@ -3098,7 +3099,7 @@ const db = [
   },
   {
     id: 243,
-    theme: "ECAM / Displays",
+    theme: "31 : Indicating/Recording Systems",
     question: "When does the ECAM warning display the status page?",
     options: [
       "Immediately following engine shutdown.",
@@ -3111,7 +3112,7 @@ const db = [
   },
   {
     id: 244,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question:
       "On take-off, when the thrust levers are set to the FLEX detent, which of the following thrust modes will be displayed on the FMA?",
     options: ["MAN THR", "MAN FLEX", "THR CLB", "THR FLX"],
@@ -3120,7 +3121,7 @@ const db = [
   },
   {
     id: 245,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question: "What is the meaning of the white arc on the N1 indication?",
     options: [
       "Thrust command for active mode",
@@ -3133,7 +3134,7 @@ const db = [
   },
   {
     id: 246,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "When are the speed brakes inhibited in flight?",
     options: [
       "Flaps in config 2",
@@ -3146,7 +3147,7 @@ const db = [
   },
   {
     id: 247,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question: "How is a pack overheat indicated?",
     options: [
       "By an amber FAULT light on the AIR COND panel",
@@ -3159,7 +3160,7 @@ const db = [
   },
   {
     id: 248,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: 'What do you understand by the term "Normal Law"?',
     options: [
       "Pitch attitude, load factor and low speed stabilities are the main protection features",
@@ -3172,7 +3173,7 @@ const db = [
   },
   {
     id: 249,
-    theme: "Navigation",
+    theme: "34 : Navigation",
     question:
       "After IRS realignment, the aircraft's position is automatically updated by ...",
     options: ["GPS only.", "FMGC only.", "DME only.", "GPIRS."],
@@ -3181,7 +3182,7 @@ const db = [
   },
   {
     id: 250,
-    theme: "ECAM / Displays",
+    theme: "23 : Communications",
     question:
       "What happens when the Evacuation Command pushbutton switch is pressed?",
     options: [
@@ -3195,7 +3196,7 @@ const db = [
   },
   {
     id: 251,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       "Which of the following is the correct statement? The Side Stick Take Over pushbutton ...",
     options: [
@@ -3210,7 +3211,7 @@ const db = [
   },
   {
     id: 252,
-    theme: "APU",
+    theme: "49 : APU",
     question:
       "What is the maximum altitude for APU two-pack bleed air operation?",
     options: ["15,000 ft", "20,000 ft", "22,500 ft", "18,000 ft"],
@@ -3219,7 +3220,7 @@ const db = [
   },
   {
     id: 253,
-    theme: "Powerplant",
+    theme: "36 : Pneumatic",
     question:
       "At what temperature do the engine bleed valves close automatically?",
     options: ["100°C", "200°C", "85°C", "185°C"],
@@ -3228,7 +3229,7 @@ const db = [
   },
   {
     id: 254,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       "If the slats and/or flaps are not in the expected configuration ...",
     options: [
@@ -3242,7 +3243,7 @@ const db = [
   },
   {
     id: 255,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "When is the side-stick priority indication seen?",
     options: [
       "When there is simultaneous input to the side-sticks.",
@@ -3256,7 +3257,7 @@ const db = [
   },
   {
     id: 256,
-    theme: "Landing Gear",
+    theme: "32 : Landing Gear",
     question: "What is the maximum altitude for landing gear operation?",
     options: ["25,000 ft", "22,500 ft", "20,000 ft", "15,000 ft"],
     correct: 0,
@@ -3264,7 +3265,7 @@ const db = [
   },
   {
     id: 257,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "When an ELAC fails, what happens to the THS?",
     options: [
       "THS is frozen.",
@@ -3277,7 +3278,7 @@ const db = [
   },
   {
     id: 258,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question: "What is the function of the Ram Air Turbine (RAT)?",
     options: [
       "To provide AC power during an emergency.",
@@ -3291,7 +3292,7 @@ const db = [
   },
   {
     id: 259,
-    theme: "APU",
+    theme: "49 : APU",
     question: "What is the maximum altitude for APU bleed air extraction?",
     options: ["30,000 ft", "20,000 ft", "25,000 ft", "22,500 ft"],
     correct: 1,
@@ -3299,7 +3300,7 @@ const db = [
   },
   {
     id: 260,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question: "On the fuel control panel, when will the transfer valves open?",
     options: [
       "When the outer wing tanks are full.",
@@ -3327,7 +3328,7 @@ const db = [
   },
   {
     id: 262,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question: "Which hydraulic system operates the landing gear?",
     options: [
       "Green system.",
@@ -3341,7 +3342,7 @@ const db = [
   },
   {
     id: 263,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "If the sidestick priority indication shows green only ...",
     options: [
       "... the other side-stick has been disengaged.",
@@ -3355,7 +3356,7 @@ const db = [
   },
   {
     id: 264,
-    theme: "ECAM / Displays",
+    theme: "31 : Indicating/Recording Systems",
     question:
       "What will the ECAM display when you disconnect the engine generators?",
     options: [
@@ -3370,7 +3371,7 @@ const db = [
   },
   {
     id: 265,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question: "How can the flight crew select manual pressurization?",
     options: [
       "By placing the DITCHING pushbutton to ON.",
@@ -3384,7 +3385,7 @@ const db = [
   },
   {
     id: 266,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "When will the aircraft automatically enter ALTERNATE LAW?",
     options: [
       "When multiple system failures occur.",
@@ -3398,7 +3399,7 @@ const db = [
   },
   {
     id: 267,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "When does the Flight Augmentation Computer (FAC) become active?",
     options: [
       "Only during manual flight.",
@@ -3412,7 +3413,7 @@ const db = [
   },
   {
     id: 268,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question: "What happens when the DITCHING pushbutton is selected ON?",
     options: [
       "All valves below the water line are closed.",
@@ -3426,7 +3427,7 @@ const db = [
   },
   {
     id: 269,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       "What happens to the speed brake panels when the aircraft descends below 10,000 ft?",
     options: [
@@ -3441,7 +3442,7 @@ const db = [
   },
   {
     id: 270,
-    theme: "Landing Gear",
+    theme: "32 : Landing Gear",
     question:
       "When the landing gear is up, what happens to the T.O. CONFIG TEST pushbutton?",
     options: [
@@ -3456,7 +3457,7 @@ const db = [
   },
   {
     id: 271,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question: "What happens when the RAT MAN ON pushbutton is pressed?",
     options: [
       "The RAT is manually deployed.",
@@ -3470,7 +3471,7 @@ const db = [
   },
   {
     id: 272,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question:
       'Which of the following correctly completes the statement? "The engine control system is designed to ...',
     options: [
@@ -3485,7 +3486,7 @@ const db = [
   },
   {
     id: 273,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question: "How many valves does the aircraft pressurization system have?",
     options: ["Two", "Three", "Four", "Five"],
     correct: 3,
@@ -3494,7 +3495,7 @@ const db = [
   },
   {
     id: 274,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question:
       "What happens to the RAT if the aircraft speed drops below 140 kt?",
     options: [
@@ -3509,7 +3510,7 @@ const db = [
   },
   {
     id: 275,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question: "How is an automatic pressurization system fault indicated?",
     options: [
       "By an amber fault light on the overhead panel.",
@@ -3523,7 +3524,7 @@ const db = [
   },
   {
     id: 276,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "What is the role of the spoiler panels?",
     options: [
       "They are used for roll control and ground spoilers.",
@@ -3537,7 +3538,7 @@ const db = [
   },
   {
     id: 277,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "What happens to the spoilers during an automatic landing?",
     options: [
       "They are automatically retracted.",
@@ -3551,7 +3552,7 @@ const db = [
   },
   {
     id: 278,
-    theme: "ECAM / Displays",
+    theme: "31 : Indicating/Recording Systems",
     question: "When are the ECAM status and recall pages displayed?",
     options: [
       "Immediately following an engine failure.",
@@ -3565,7 +3566,7 @@ const db = [
   },
   {
     id: 279,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question: "When does the FUEL USED indication reset to zero?",
     options: [
       "When the associated MASTER SW is selected OFF.",
@@ -3579,7 +3580,7 @@ const db = [
   },
   {
     id: 280,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question: "What is the purpose of the oxygen system?",
     options: [
       "To provide supplemental oxygen for the crew and passengers.",
@@ -3593,7 +3594,7 @@ const db = [
   },
   {
     id: 281,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question: "What happens to the aircraft systems when the RAT is deployed?",
     options: [
       "The aircraft systems are powered by the main battery.",
@@ -3607,7 +3608,7 @@ const db = [
   },
   {
     id: 282,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "What happens to the rudder when the aircraft is in direct law?",
     options: [
       "The rudder remains in the last commanded position.",
@@ -3621,7 +3622,7 @@ const db = [
   },
   {
     id: 283,
-    theme: "Systems - Elec",
+    theme: "24 : Electrical",
     question: "What is the function of the emergency electrical configuration?",
     options: [
       "To provide power to the essential systems during an emergency.",
@@ -3635,7 +3636,7 @@ const db = [
   },
   {
     id: 284,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "When do the speed brakes automatically retract?",
     options: [
       "When the aircraft reaches 10,000 ft.",
@@ -3649,7 +3650,7 @@ const db = [
   },
   {
     id: 285,
-    theme: "ECAM / Displays",
+    theme: "31 : Indicating/Recording Systems",
     question:
       "When does the T.O. CONFIG TEST pushbutton inhibit the take-off configuration warnings?",
     options: [
@@ -3664,7 +3665,7 @@ const db = [
   },
   {
     id: 286,
-    theme: "Landing Gear",
+    theme: "32 : Landing Gear",
     question:
       "What happens to the landing gear when the LGCIU detects a fault?",
     options: [
@@ -3679,7 +3680,7 @@ const db = [
   },
   {
     id: 287,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "What is the role of the FACs in the flight control system?",
     options: [
       "To provide flight envelope protection and rudder control.",
@@ -3693,7 +3694,7 @@ const db = [
   },
   {
     id: 288,
-    theme: "Systems - Elec",
+    theme: "24 : Electrical",
     question:
       "What happens to the aircraft's electrical system when the emergency generator is operating?",
     options: [
@@ -3708,7 +3709,7 @@ const db = [
   },
   {
     id: 289,
-    theme: "APU",
+    theme: "49 : APU",
     question:
       "What is the maximum altitude for APU start using battery power only?",
     options: ["20,000 ft", "25,000 ft", "30,000 ft", "35,000 ft"],
@@ -3718,7 +3719,7 @@ const db = [
   },
   {
     id: 290,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question: "What happens when the MODE SEL pushbutton is selected to MAN?",
     options: [
       "The pressurization system operates automatically.",
@@ -3732,7 +3733,7 @@ const db = [
   },
   {
     id: 291,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question: "What happens when the RAT is manually deployed?",
     options: [
       "The aircraft systems are powered by the main battery.",
@@ -3746,7 +3747,7 @@ const db = [
   },
   {
     id: 292,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question: "What is the limiting factor for opening the Ram Air Valve?",
     options: [
       "Aircraft altitude at or below 10,000 ft.",
@@ -3760,7 +3761,7 @@ const db = [
   },
   {
     id: 293,
-    theme: "Landing Gear",
+    theme: "32 : Landing Gear",
     question:
       "The nosewheel steering tillers can turn the nosewheel up to how many degrees?",
     options: ["75°", "65°", "78°", "70°"],
@@ -3770,7 +3771,7 @@ const db = [
   },
   {
     id: 294,
-    theme: "Landing Gear",
+    theme: "32 : Landing Gear",
     question:
       "In order to perform a L/G gravity extension of the landing gear, what must the crew do?",
     options: [
@@ -3785,7 +3786,7 @@ const db = [
   },
   {
     id: 295,
-    theme: "Landing Gear",
+    theme: "32 : Landing Gear",
     question:
       "There are two triangles for each gear on the ECAM WHEEL page. What do they represent?",
     options: [
@@ -3800,7 +3801,7 @@ const db = [
   },
   {
     id: 296,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question:
       "Which of the following conditions will cause the cabin signs and lighting to illuminate?",
     options: [
@@ -3815,7 +3816,7 @@ const db = [
   },
   {
     id: 297,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question:
       "What is important to remember to avoid damaging the IDG disconnection mechanism?",
     options: [
@@ -3830,7 +3831,7 @@ const db = [
   },
   {
     id: 298,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question: "During a manual start, what function does the FADEC perform?",
     options: [
       "Passive monitoring of the start sequence, to close the start valve and cut off the ignition on the ground",
@@ -3844,7 +3845,7 @@ const db = [
   },
   {
     id: 299,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "Under what circumstances will MECHANICAL BACK-UP occur?",
     options: [
       "Loss of all flight control computers: aircraft is controlled using stabilizer and rudder.",
@@ -3858,7 +3859,7 @@ const db = [
   },
   {
     id: 300,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "In the MEL 'Remarks or Exceptions' column, what is signified by (O)?",
     options: [
@@ -3873,7 +3874,7 @@ const db = [
   },
   {
     id: 301,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "Which surfaces of the aircraft are anti-iced?",
     options: [
       "Outboard wing leading edge, stabilizer leading edge and engine air intake.",
@@ -3887,7 +3888,7 @@ const db = [
   },
   {
     id: 302,
-    theme: "Ice & Rain Protection",
+    theme: "30 : Ice and Rain Protection",
     question:
       "Which slats in each wing can be heated with hot air from the pneumatic system?",
     options: [
@@ -3902,7 +3903,7 @@ const db = [
   },
   {
     id: 303,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       "Which of the following correctly completes the statement? 'VFE NEXT is...",
     options: [
@@ -3917,7 +3918,7 @@ const db = [
   },
   {
     id: 304,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question:
       "Once opened, when do the fuel transfer valves close automatically?",
     options: [
@@ -3932,7 +3933,7 @@ const db = [
   },
   {
     id: 305,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       "The control surfaces are electrically controlled, but are there any that have a mechanical backup?",
     options: [
@@ -3947,7 +3948,7 @@ const db = [
   },
   {
     id: 306,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question: "After T/O, when does SRS (FMA) change to CLB?",
     options: [
       "When the thrust levers are placed in the climb detent.",
@@ -3961,7 +3962,7 @@ const db = [
   },
   {
     id: 307,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question: "Regarding the FMA: A/THR in white means it is...",
     options: ["Disconnected", "Armed", "Active", "Off"],
     correct: 2,
@@ -3970,7 +3971,7 @@ const db = [
   },
   {
     id: 308,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       "In alpha protection, what does the movement of the sidestick between neutral and fully aft control?",
     options: [
@@ -3985,7 +3986,7 @@ const db = [
   },
   {
     id: 309,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question:
       "With all the tanks full and the MODE SEL in AUTO, which of the following is correct?",
     options: [
@@ -4000,7 +4001,7 @@ const db = [
   },
   {
     id: 310,
-    theme: "Auto Flight / FMS",
+    theme: "34 : Navigation",
     question: "Approximately how long do the ADIRS take for a full alignment?",
     options: ["1 minute", "3 minutes", "7 minutes", "10 minutes"],
     correct: 3,
@@ -4009,7 +4010,7 @@ const db = [
   },
   {
     id: 311,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question:
       "During an engine start sequence there is a grey background on N2 indication which disappears at a certain N2 value. What does this indicate?",
     options: [
@@ -4024,7 +4025,7 @@ const db = [
   },
   {
     id: 312,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       "At take off (or go around), what is the minimum speed at which the slats may be retracted from CONF 1+F to CONF 0?",
     options: ["F speed", "S speed", "Green dot speed", "Vls speed"],
@@ -4034,7 +4035,7 @@ const db = [
   },
   {
     id: 313,
-    theme: "Communications",
+    theme: "23 : Communications",
     question: "Which of the following can be tuned by RMP No. 1?",
     options: [
       "Any radio communication equipment and any onside radio navigation receivers.",
@@ -4048,7 +4049,7 @@ const db = [
   },
   {
     id: 314,
-    theme: "ECAM / Displays",
+    theme: "31 : Indicating/Recording Systems",
     question:
       "Which of the following color codings is correct for the pushbutton switches?",
     options: [
@@ -4063,7 +4064,7 @@ const db = [
   },
   {
     id: 315,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question:
       "What does an amber line across the last two digits of the fuel quantity on the fuel page mean?",
     options: [
@@ -4078,7 +4079,7 @@ const db = [
   },
   {
     id: 316,
-    theme: "APU",
+    theme: "49 : APU",
     question:
       "It is the first flight of the day. Before performing the APU fire test, you have to check that...",
     options: [
@@ -4093,7 +4094,7 @@ const db = [
   },
   {
     id: 317,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       "The flight maneuvering load acceleration limits in clean configuration are -1 g to +2.5 g",
     options: ["False", "True", "Only in Alternate Law", "Only in Direct Law"],
@@ -4103,7 +4104,7 @@ const db = [
   },
   {
     id: 318,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       "A-LOCK (alpha lock) is annunciated below the Slat/Flap indicator on the E/WD. Which of the following would cause this condition, and how would you recover?",
     options: [
@@ -4118,7 +4119,7 @@ const db = [
   },
   {
     id: 319,
-    theme: "ECAM / Displays",
+    theme: "31 : Indicating/Recording Systems",
     question: "Regarding the PFD, which of the following statements is true?",
     options: [
       "The bottom left corner of the PFD displays the MACH number at all times.",
@@ -4132,7 +4133,7 @@ const db = [
   },
   {
     id: 320,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question:
       "What is the standard way for the flight crew to disengage the autopilot?",
     options: [
@@ -4147,7 +4148,7 @@ const db = [
   },
   {
     id: 321,
-    theme: "ECAM / Displays",
+    theme: "31 : Indicating/Recording Systems",
     question: "On ECAM SD, what does an amber door indication mean?",
     options: [
       "The door is fully open",
@@ -4161,7 +4162,7 @@ const db = [
   },
   {
     id: 322,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question: "What is the minimum fuel quantity for takeoff?",
     options: ["2,400 kg", "1,500 kg", "15,400 kg", "There is no limitation"],
     correct: 1,
@@ -4170,7 +4171,7 @@ const db = [
   },
   {
     id: 323,
-    theme: "ECAM / Displays",
+    theme: "34 : Navigation",
     question:
       "When approaching to land, with FLAPS 3 on a fully serviceable aircraft, what is the correct action on the GPWS panel?",
     options: [
@@ -4185,7 +4186,7 @@ const db = [
   },
   {
     id: 324,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question:
       "Which of the following correctly completes this statement? 'The MAN V/S CTL switch on the CABIN PRESS panel is...",
     options: [
@@ -4200,7 +4201,7 @@ const db = [
   },
   {
     id: 325,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question:
       "From which HYD system is the BRAKE & ACCU PRESS indicator (Triple BRAKE indicator located on the center instrument panel) indicating pressure?",
     options: ["Green", "Yellow", "Blue", "Amber"],
@@ -4220,7 +4221,7 @@ const db = [
   },
   {
     id: 327,
-    theme: "APU",
+    theme: "49 : APU",
     question:
       "What is the maximum APU rotor speed (% N on ECAM) above which the APU shuts down automatically?",
     options: ["100 %.", "117 %.", "107 %.", "97 %."],
@@ -4230,7 +4231,7 @@ const db = [
   },
   {
     id: 328,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       "The message F/CTL FLAPS LOCKED appears on the E/WD. What does it mean?",
     options: [
@@ -4245,7 +4246,7 @@ const db = [
   },
   {
     id: 329,
-    theme: "ECAM / Displays",
+    theme: "34 : Navigation",
     question:
       "When set to TA/RA, the TCAS system provides traffic and resolution advice with regard to:",
     options: [
@@ -4260,7 +4261,7 @@ const db = [
   },
   {
     id: 330,
-    theme: "Systems - Elec",
+    theme: "24 : Electrical",
     question:
       "What is the function of the GEN 1 LINE pb located on the EMER ELEC PWR panel?",
     options: [
@@ -4275,7 +4276,7 @@ const db = [
   },
   {
     id: 331,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question:
       "The lavatory and galley areas are ventilated using re-circulated cabin air. How is the system switched on?",
     options: [
@@ -4298,7 +4299,7 @@ const db = [
   },
   {
     id: 333,
-    theme: "Fire Protection",
+    theme: "26 : Fire Protection",
     question:
       "With reference to the engine fire system, which statement is correct?",
     options: [
@@ -4313,7 +4314,7 @@ const db = [
   },
   {
     id: 334,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question:
       "What happens in the event of failure of a cabin pressure controller?",
     options: [
@@ -4328,7 +4329,7 @@ const db = [
   },
   {
     id: 335,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question: "Regarding an Auto Start, which of the following is correct?",
     options: [
       "Loss of the N2 grey (highlight) background signifies start valve closure.",
@@ -4342,7 +4343,7 @@ const db = [
   },
   {
     id: 336,
-    theme: "Ice & Rain Protection",
+    theme: "30 : Ice and Rain Protection",
     question:
       "What is the default situation if electrical control to the Wing Anti-Ice and Engine Anti-Ice is lost?",
     options: [
@@ -4357,7 +4358,7 @@ const db = [
   },
   {
     id: 337,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question:
       "At the beginning of the takeoff roll, what will be the condition of the A/THR?",
     options: [
@@ -4372,7 +4373,7 @@ const db = [
   },
   {
     id: 338,
-    theme: "Systems - Elec",
+    theme: "24 : Electrical",
     question:
       "In the event of an AC BUS 1 fault, how could the AC ESS BUS be powered?",
     options: [
@@ -4387,7 +4388,7 @@ const db = [
   },
   {
     id: 339,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question: "What is true about SRS during the takeoff phase?",
     options: [
       "SRS mode will provide guidance to maintain V2 + 10 kts (minimum) as a speed reference up to the acceleration altitude",
@@ -4401,7 +4402,7 @@ const db = [
   },
   {
     id: 340,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "What happens in the event of SFCC 1 total failure?",
     options: [
       "SLATS will be inoperative.",
@@ -4415,7 +4416,7 @@ const db = [
   },
   {
     id: 341,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "Takeoff using FLEX thrust is permitted on contaminated runways...",
     options: ["Above ISA -5°C", "False", "Only in CONF 1+F", "True"],
@@ -4425,7 +4426,7 @@ const db = [
   },
   {
     id: 342,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question:
       "What happens when the first inner tank level reaches the low level (about 750 Kg)?",
     options: [
@@ -4440,7 +4441,7 @@ const db = [
   },
   {
     id: 343,
-    theme: "ECAM / Displays",
+    theme: "23 : Communications",
     question:
       "Pushing the CABIN CALLS EMER pushbutton switch causes which of the following to occur?",
     options: [
@@ -4455,7 +4456,7 @@ const db = [
   },
   {
     id: 344,
-    theme: "Communications",
+    theme: "23 : Communications",
     question: "Regarding the ACP, which of the following statements is true?",
     options: [
       "The PA TRANSMISSION key operates in the same way at the other transmission keys.",
@@ -4469,7 +4470,7 @@ const db = [
   },
   {
     id: 345,
-    theme: "Navigation",
+    theme: "34 : Navigation",
     question:
       "Regarding the ADIRS panel, which of the following statements is true?",
     options: [
@@ -4484,7 +4485,7 @@ const db = [
   },
   {
     id: 346,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question:
       "At what cabin altitude will the passenger oxygen masks automatically deploy?",
     options: [
@@ -4499,7 +4500,7 @@ const db = [
   },
   {
     id: 347,
-    theme: "Other",
+    theme: "20 : Aircraft General",
     question: "The A320 fuselage has:",
     options: [
       "Two passenger doors",
@@ -4513,7 +4514,7 @@ const db = [
   },
   {
     id: 348,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question:
       "During the landing roll, a few seconds after selecting reverse, the amber REV indication changes to green. What does this mean?",
     options: [
@@ -4528,7 +4529,7 @@ const db = [
   },
   {
     id: 349,
-    theme: "Navigation",
+    theme: "34 : Navigation",
     question: "What do amber boxes on a MCDU page indicate?",
     options: [
       "An optional data entry",
@@ -4542,7 +4543,7 @@ const db = [
   },
   {
     id: 350,
-    theme: "ECAM / Displays",
+    theme: "31 : Indicating/Recording Systems",
     question: "What would cause TCAS: REDUCE RANGE to appear on the ND?",
     options: [
       "It will be displayed only for a resolution advisory, and ND range is above 80NM.",
@@ -4556,7 +4557,7 @@ const db = [
   },
   {
     id: 351,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question: "When the PACK FLOW selector is positioned to HI, airflow is:",
     options: [
       "100% of normal",
@@ -4570,7 +4571,7 @@ const db = [
   },
   {
     id: 352,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question:
       "Regarding ALPHA FLOOR, which of the following statements is true?",
     options: [
@@ -4585,7 +4586,7 @@ const db = [
   },
   {
     id: 353,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       "After a takeoff in CONFIG 1+F, what would happen if FLAP 0 is not selected as the aircraft accelerates?",
     options: [
@@ -4600,7 +4601,7 @@ const db = [
   },
   {
     id: 354,
-    theme: "Communications",
+    theme: "23 : Communications",
     question: "What is the cockpit handset typically used for?",
     options: [
       "To transmit to ATC via HF",
@@ -4614,7 +4615,7 @@ const db = [
   },
   {
     id: 355,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       "Which of the following statements best describes bank angle protection?",
     options: [
@@ -4629,7 +4630,7 @@ const db = [
   },
   {
     id: 356,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question:
       "What impact does a HYD G+Y SYS LO PR alert have on the braking system?",
     options: [
@@ -4644,7 +4645,7 @@ const db = [
   },
   {
     id: 357,
-    theme: "Other",
+    theme: "31 : Indicating/Recording Systems",
     question: "How is an armed slide indicated on the DOOR/OXY page?",
     options: [
       "The word SLIDE appears in GREEN next to the associated door",
@@ -4658,7 +4659,7 @@ const db = [
   },
   {
     id: 358,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "Roll control is provided by:",
     options: [
       "Ailerons and spoilers 2, 3 and 4",
@@ -4672,7 +4673,7 @@ const db = [
   },
   {
     id: 359,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "Speed brakes are provided by spoilers:",
     options: ["1, 2, 3, 4", "2, 3, 4", "2, 3, 4, 5", "3, 4, 5"],
     correct: 1,
@@ -4681,7 +4682,7 @@ const db = [
   },
   {
     id: 360,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question:
       "If AP 2 is engaged, which FMGC is master and controls the A/THR?",
     options: [
@@ -4696,7 +4697,7 @@ const db = [
   },
   {
     id: 361,
-    theme: "ECAM / Displays",
+    theme: "31 : Indicating/Recording Systems",
     question: "What is the significance of the triple click aural warning?",
     options: [
       "It is used to highlight all FMA mode changes",
@@ -4710,7 +4711,7 @@ const db = [
   },
   {
     id: 362,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question:
       "What is the take-off and go around EGT limit for the CFM engine?",
     options: ["950°C", "725°C", "915°C", "625°C"],
@@ -4719,7 +4720,7 @@ const db = [
   },
   {
     id: 363,
-    theme: "ECAM / Displays",
+    theme: "31 : Indicating/Recording Systems",
     question:
       "What is the meaning of a BLUE light in a flight deck pushbutton?",
     options: [
@@ -4734,7 +4735,7 @@ const db = [
   },
   {
     id: 364,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question: "During final approach, when is LAND annunciated on the FMA?",
     options: [
       "It engages at MDA, and can be disengaged by setting TOGA thrust",
@@ -4748,7 +4749,7 @@ const db = [
   },
   {
     id: 365,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question: "Where is the LP ground air supply connector located?",
     options: [
       "On the left hand side of the fuselage belly fairing, just ahead of the wing leading edge",
@@ -4762,7 +4763,7 @@ const db = [
   },
   {
     id: 366,
-    theme: "Systems - Elec",
+    theme: "24 : Electrical",
     question: "When does the generator load turn amber on the ELEC SD page?",
     options: [
       "The engine generator load is above 105%",
@@ -4776,7 +4777,7 @@ const db = [
   },
   {
     id: 367,
-    theme: "Fire Protection",
+    theme: "26 : Fire Protection",
     question:
       "Which of the following statements is true regarding the APU Fire Extinguishing system (select the most complete answer)?",
     options: [
@@ -4791,7 +4792,7 @@ const db = [
   },
   {
     id: 368,
-    theme: "Other",
+    theme: "52 : Doors",
     question:
       "What is the significance of a flashing red light on a cabin door?",
     options: [
@@ -4806,7 +4807,7 @@ const db = [
   },
   {
     id: 369,
-    theme: "Systems - Elec",
+    theme: "24 : Electrical",
     question: "If a C/B trips what action should the flight crew take?",
     options: [
       "Consult the C/B Tripped procedure in the QRH for guidance. On the ground a C/B can be reengaged on the direction of maintenance. In flight a C/B should not be reengaged under any circumstances.",
@@ -4820,7 +4821,7 @@ const db = [
   },
   {
     id: 370,
-    theme: "Navigation",
+    theme: "34 : Navigation",
     question: "How can the secondary flight plan be activated in flight?",
     options: [
       "When HDG or TRK lateral guidance modes are engaged, select the ACTIVATE SECONDARY prompt on the SEC INDEX page of the MCDU. This prompt will not be available in NAV unless the active leg in the primary and secondary are the same.",
@@ -4834,7 +4835,7 @@ const db = [
   },
   {
     id: 371,
-    theme: "Landing Gear",
+    theme: "32 : Landing Gear",
     question: "Which LGCIU normally controls the retraction cycle?",
     options: [
       "LGCIU 1 is the master, and LGCIU 2 is the slave if LGCIU 1 fails. LGCIU 2 takes over all functions automatically",
@@ -4848,7 +4849,7 @@ const db = [
   },
   {
     id: 372,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question:
       "During an automatic start sequence on the ground when does the ignition start and stop?",
     options: [
@@ -4863,7 +4864,7 @@ const db = [
   },
   {
     id: 373,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question:
       "When the low level sensors detect that the centre tank is empty, the pumps will run for an additional ______ min, and then stop",
     options: ["10", "1", "5", "2"],
@@ -4873,7 +4874,7 @@ const db = [
   },
   {
     id: 374,
-    theme: "Systems - Elec",
+    theme: "24 : Electrical",
     question: "Can you reset an IDG in flight?",
     options: [
       "Yes, push and hold the IDG pb until the GEN fault light is no longer illuminated",
@@ -4887,7 +4888,7 @@ const db = [
   },
   {
     id: 375,
-    theme: "Fire Protection",
+    theme: "26 : Fire Protection",
     question:
       "How many fire extinguisher bottles are there for the engines and APU?",
     options: [
@@ -4901,7 +4902,7 @@ const db = [
   },
   {
     id: 376,
-    theme: "Auto Flight / FMS",
+    theme: "31 : Indicating/Recording Systems",
     question: "Below what height do the FWCs generate height announcements?",
     options: ["2,500 ft", "3,000 ft", "1,500 ft", "2,000 ft"],
     correct: 0,
@@ -4910,11 +4911,11 @@ const db = [
   },
   {
     id: 377,
-    theme: "Navigation",
+    theme: "34 : Navigation",
     question: "When the ND is set to the PLAN mode, how is the map orientated?",
     options: [
       "To true north",
-      "Corrected along the flight plan track",
+      "Oriented along the flight plan track",
       "To the current true track",
       "To the current magnetic track",
     ],
@@ -4924,7 +4925,7 @@ const db = [
   },
   {
     id: 378,
-    theme: "ECAM / Displays",
+    theme: "31 : Indicating/Recording Systems",
     question:
       "What has happened if the ELEC system page appears automatically on the lower ECAM DU, and there are no accompanying ECAM alerts?",
     options: [
@@ -4939,7 +4940,7 @@ const db = [
   },
   {
     id: 379,
-    theme: "Landing Gear",
+    theme: "32 : Landing Gear",
     question:
       "If the FO fully deflects the hand wheel while manoeuvring on the ground, what angle will the nose wheel be at?",
     options: ["95°", "70°", "75°", "80°"],
@@ -4949,7 +4950,7 @@ const db = [
   },
   {
     id: 380,
-    theme: "Other",
+    theme: "33 : Lights",
     question:
       "The NAV and LOGO switch has two positions, 1 and 2. What is the difference between the two positions?",
     options: [
@@ -4964,7 +4965,7 @@ const db = [
   },
   {
     id: 381,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question:
       "What impact does selecting engine and or wing anti-ice have on the engines?",
     options: [
@@ -4979,7 +4980,7 @@ const db = [
   },
   {
     id: 382,
-    theme: "APU",
+    theme: "49 : APU",
     question:
       "What is the maximum altitude that the APU can be used for electrical power?",
     options: [
@@ -4994,7 +4995,7 @@ const db = [
   },
   {
     id: 383,
-    theme: "Communications",
+    theme: "23 : Communications",
     question: "All communications radios can be controlled:",
     options: [
       "From any one of the three radio management panels (RMPs)",
@@ -5008,7 +5009,7 @@ const db = [
   },
   {
     id: 384,
-    theme: "Fire Protection",
+    theme: "26 : Fire Protection",
     question:
       "Select the correct statement about the FIRE detection and fault logic for the ENG and APU (select the most complete answer)",
     options: [
@@ -5023,7 +5024,7 @@ const db = [
   },
   {
     id: 385,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question:
       "Is this alert HYD G ENG 1 PUMP LO PR a primary, secondary or independent failure? (PTU is operative, and hydraulic pressures are normal)",
     options: [
@@ -5038,7 +5039,7 @@ const db = [
   },
   {
     id: 386,
-    theme: "Landing Gear",
+    theme: "32 : Landing Gear",
     question:
       "What happens when the landing gear is selected down on approach?",
     options: [
@@ -5053,7 +5054,7 @@ const db = [
   },
   {
     id: 387,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question: "When is auto-start abort and automatic dry cranking available?",
     options: [
       "During any engine start (manual or automatic) on the ground. However when in flight auto start abort is only available during automatic starts",
@@ -5067,7 +5068,7 @@ const db = [
   },
   {
     id: 388,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "When will the ground spoilers fully extend?",
     options: [
       "If the ground spoilers are armed, the wheel speed exceeds 72 kt and both thrust levers are reset to idle.",
@@ -5081,7 +5082,7 @@ const db = [
   },
   {
     id: 389,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question:
       "Which hydraulic system is used for landing gear retraction and extension?",
     options: ["Green", "Blue", "Yellow", "Green or yellow"],
@@ -5090,7 +5091,7 @@ const db = [
   },
   {
     id: 390,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question:
       "Select the most complete statement about the APPR pushbutton on the FCU.",
     options: [
@@ -5105,7 +5106,7 @@ const db = [
   },
   {
     id: 391,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question:
       "How is an altitude constraint, that the FMGS predicts will not be met, indicated?",
     options: [
@@ -5120,7 +5121,7 @@ const db = [
   },
   {
     id: 392,
-    theme: "ECAM / Displays",
+    theme: "28 : Fuel",
     question:
       "What do two dashes across the last two digits of the fuel quantity indication mean?",
     options: [
@@ -5135,7 +5136,7 @@ const db = [
   },
   {
     id: 393,
-    theme: "Systems - Elec",
+    theme: "24 : Electrical",
     question:
       "What is the normal voltage and frequency for the AC and DC systems on the A320?",
     options: [
@@ -5149,7 +5150,7 @@ const db = [
   },
   {
     id: 394,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question: "What is the normal operating pressure of the hydraulic systems?",
     options: [
       "3000PSI including when powered by the RAT",
@@ -5163,7 +5164,7 @@ const db = [
   },
   {
     id: 395,
-    theme: "Systems - Elec",
+    theme: "24 : Electrical",
     question: "Where can the battery voltage be checked?",
     options: [
       "On the ELEC overhead panel and ECAM ELEC page",
@@ -5177,7 +5178,7 @@ const db = [
   },
   {
     id: 396,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question:
       "When all 6 fuel pumps are selected ON (MODE SEL auto), which fuel tank(s) will preferentially feed each engine? (assume that all tanks contain useable fuel)",
     options: [
@@ -5192,7 +5193,7 @@ const db = [
   },
   {
     id: 397,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question:
       "What impact does a single hydraulic failure have on the slats and flaps?",
     options: [
@@ -5207,7 +5208,7 @@ const db = [
   },
   {
     id: 398,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       "The sidestick is pulled fully aft during a terrain escape manoeuvre. What does this pitch input demand from the flight control computers?",
     options: [
@@ -5222,7 +5223,7 @@ const db = [
   },
   {
     id: 399,
-    theme: "Auto Flight / FMS",
+    theme: "27 : Flight Controls",
     question: "In normal law, when does flight mode change to the flare mode?",
     options: ["At 100 ft RA", "At 30 ft RA", "At 20 ft RA", "At 50 ft RA"],
     correct: 3,
@@ -5231,7 +5232,7 @@ const db = [
   },
   {
     id: 400,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question:
       "If the Engine Interface Unit (EIU) fails, what information does the FADEC lose access to?",
     options: [
@@ -5246,7 +5247,7 @@ const db = [
   },
   {
     id: 401,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question:
       "Which hydraulic system(s) are used to actuate engine reverser thrust?",
     options: [
@@ -5270,7 +5271,7 @@ const db = [
   },
   {
     id: 403,
-    theme: "Systems - Elec",
+    theme: "24 : Electrical",
     question: "Which busses can be powered from the emergency generator?",
     options: [
       "AC ESS and DC ESS via ESS TR only",
@@ -5284,7 +5285,7 @@ const db = [
   },
   {
     id: 404,
-    theme: "ECAM / Displays",
+    theme: "31 : Indicating/Recording Systems",
     question:
       "For routine access into the cockpit by the cabin crew, the buzzer sounds:",
     options: [
@@ -5299,7 +5300,7 @@ const db = [
   },
   {
     id: 405,
-    theme: "ECAM / Displays",
+    theme: "31 : Indicating/Recording Systems",
     question:
       "If the FWC detects a failure it will trigger an ECAM alert, provided no flight phase inhibition is active. How many flight phases are there?",
     options: ["6", "7", "10", "8"],
@@ -5309,7 +5310,7 @@ const db = [
   },
   {
     id: 406,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question:
       "Below what altitude does the vacuum generator produce the necessary pressure differential to force waste from the toilet bowls into the waste storage tank?",
     options: ["18,000 ft", "14,000 ft", "16,000 ft", "20,000 ft"],
@@ -5319,7 +5320,7 @@ const db = [
   },
   {
     id: 407,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "Select the most complete statement about mechanical backup",
     options: [
       "Mechanical backup allows the flight crew to manage a temporary loss of 5 flight control computers. The THS and rudder are mechanically controlled, and hydraulically actuated. MAN PITCH TRIM ONLY (RED) is displayed on the PFD",
@@ -5333,7 +5334,7 @@ const db = [
   },
   {
     id: 408,
-    theme: "Ice & Rain Protection",
+    theme: "30 : Ice and Rain Protection",
     question: "What areas of the aircraft are anti-iced with hot air?",
     options: [
       "Engine air intakes, the three outboard leading edge slats of each wing, the THS and rudder leading edge",
@@ -5347,7 +5348,7 @@ const db = [
   },
   {
     id: 409,
-    theme: "ECAM / Displays",
+    theme: "31 : Indicating/Recording Systems",
     question:
       "What supporting evidence would you expect to see following an EIS DMC 1(2)(3) FAULT alert?",
     options: [
@@ -5362,7 +5363,7 @@ const db = [
   },
   {
     id: 410,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question:
       "Which unit is used as a short-term interface between the flight crew and FMGC?",
     options: ["ADIRU control panel", "FCU", "EFIS control panel", "MCDU"],
@@ -5372,7 +5373,7 @@ const db = [
   },
   {
     id: 411,
-    theme: "Ice & Rain Protection",
+    theme: "30 : Ice and Rain Protection",
     question:
       "Where do the wing anti-ice indications appear on the ECAM screens?",
     options: [
@@ -5387,7 +5388,7 @@ const db = [
   },
   {
     id: 412,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question:
       "During cruise flight, how are the cockpit panels and avionics compartment cooled?",
     options: [
@@ -5402,7 +5403,7 @@ const db = [
   },
   {
     id: 413,
-    theme: "Other",
+    theme: "52 : Doors",
     question: "If power to the cockpit door fails:",
     options: [
       "The evacuation panel in the door is released",
@@ -5416,7 +5417,7 @@ const db = [
   },
   {
     id: 414,
-    theme: "APU",
+    theme: "49 : APU",
     question:
       "What would happen if the APU master switch was turned off immediately following the use of APU bleed?",
     options: [
@@ -5430,7 +5431,7 @@ const db = [
   },
   {
     id: 415,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "What protections are available in alternate law?",
     options: [
       "Load factor limitation, pitch attitude, bank angle, angle of attack, and high speed",
@@ -5444,7 +5445,7 @@ const db = [
   },
   {
     id: 416,
-    theme: "Navigation",
+    theme: "34 : Navigation",
     question: "Select the correct statement about the ADIRS panel.",
     options: [
       "If an IR is turned off by mistake in flight, it can be recovered provided it is switched back on within 5 min",
@@ -5458,7 +5459,7 @@ const db = [
   },
   {
     id: 417,
-    theme: "Communications",
+    theme: "23 : Communications",
     question:
       "Which ACP transmission key will illuminate if the cabin attendants are calling the cockpit?",
     options: ["CAB", "ALERT", "VHF3", "PA"],
@@ -5468,7 +5469,7 @@ const db = [
   },
   {
     id: 418,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "Where is the flap/slat position displayed?",
     options: [
       "On the SD",
@@ -5499,7 +5500,7 @@ const db = [
   },
   {
     id: 421,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question: "How long can you remain in TOGA thrust?",
     options: [
       "10 min during single engine operations",
@@ -5554,7 +5555,7 @@ const db = [
   },
   {
     id: 426,
-    theme: "Auto Flight / FMS",
+    theme: "27 : Flight Controls",
     question:
       "Which of the following statements best describes high speed protection?",
     options: [
@@ -5569,7 +5570,7 @@ const db = [
   },
   {
     id: 427,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question:
       "If both autopilots are engaged, which FMGC is master and controls the A/THR?",
     options: [
@@ -5584,7 +5585,7 @@ const db = [
   },
   {
     id: 428,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       "What colour will the secondary flight plan be when it is displayed on the ND?",
     options: ["Green", "White", "Blue", "Amber"],
@@ -5593,7 +5594,7 @@ const db = [
   },
   {
     id: 429,
-    theme: "ECAM / Displays",
+    theme: "31 : Indicating/Recording Systems",
     question:
       "What does a green arrow on the bottom of the ECAM status page indicate?",
     options: [
@@ -5608,7 +5609,7 @@ const db = [
   },
   {
     id: 430,
-    theme: "Communications",
+    theme: "23 : Communications",
     question:
       "Only ______ is functional in the emergency electrical configuration:",
     options: ["RMP 1 and 3", "RMP 1 AND 2", "RMP 1", "RMP 3"],
@@ -5618,7 +5619,7 @@ const db = [
   },
   {
     id: 431,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question:
       "Which units make up the Flight Management Guidance System (FMGS)?",
     options: [
@@ -5633,7 +5634,7 @@ const db = [
   },
   {
     id: 432,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question: "How is the outflow valve actuated?",
     options: [
       "Three electric motors, all automatic",
@@ -5647,7 +5648,7 @@ const db = [
   },
   {
     id: 433,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question: "Which compartments are unpressurised?",
     options: [
       "Nose gear bay, main gear bay, the tail cone, and bulk cargo compartment",
@@ -5661,7 +5662,7 @@ const db = [
   },
   {
     id: 434,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question: "Select the correct starter limitation for the CFM engine:",
     options: [
       "A 15 minute cooling period is required following 4 failed start cycles",
@@ -5675,7 +5676,7 @@ const db = [
   },
   {
     id: 435,
-    theme: "ECAM / Displays",
+    theme: "31 : Indicating/Recording Systems",
     question: "Regarding speed symbols on the PFD, which statement is true?",
     options: [
       "The yellow speed trend arrow indicates the speed the aircraft will reach in 15 sec",
@@ -5689,7 +5690,7 @@ const db = [
   },
   {
     id: 436,
-    theme: "ECAM / Displays",
+    theme: "31 : Indicating/Recording Systems",
     question:
       "What information is always available on the permanent data section of the SD?",
     options: [
@@ -5704,7 +5705,7 @@ const db = [
   },
   {
     id: 437,
-    theme: "Fire Protection",
+    theme: "26 : Fire Protection",
     question: "What impact does a FWS FWC 1+2 FAULT have?",
     options: [
       "All SD pages except for the status page are lost",
@@ -5718,7 +5719,7 @@ const db = [
   },
   {
     id: 438,
-    theme: "Landing Gear",
+    theme: "32 : Landing Gear",
     question: "What is the function of the landing gear SAFETY VALVE?",
     options: [
       "The safety valve prevents the landing gear from extending too quickly causing damage to the down locks",
@@ -5732,7 +5733,7 @@ const db = [
   },
   {
     id: 439,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question:
       "Regarding an autoland approach, with both autopilots engaged, which FMGC is master?",
     options: ["Both", "FMGC 2", "Neither", "FMGC 1"],
@@ -5742,7 +5743,7 @@ const db = [
   },
   {
     id: 440,
-    theme: "Other",
+    theme: "52 : Doors",
     question: "When opened in an emergency, the passenger entry doors:",
     options: [
       "Are electrically assisted into the open position",
@@ -5756,7 +5757,7 @@ const db = [
   },
   {
     id: 441,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question: "ALPHA-FLOOR is available from:",
     options: [
       "Liftoff until touchdown",
@@ -5770,7 +5771,7 @@ const db = [
   },
   {
     id: 442,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question: "How can armed FMA modes be identified on the PFD?",
     options: [
       "Armed FMA modes are displayed in blue (selected) or green (managed)",
@@ -5784,7 +5785,7 @@ const db = [
   },
   {
     id: 443,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question:
       "Which valves can the flight crew control via the ENG1 (ENG2) MASTER switches?",
     options: [
@@ -5799,7 +5800,7 @@ const db = [
   },
   {
     id: 444,
-    theme: "Other",
+    theme: "22 : Auto Flight",
     question: "What is cost index (CI)?",
     options: [
       "The ratio of fuel cost (CF) to flight time cost (CT)",
@@ -5813,7 +5814,7 @@ const db = [
   },
   {
     id: 445,
-    theme: "Communications",
+    theme: "23 : Communications",
     question: "When will the SEL light illuminate on each RMP?",
     options: [
       "If VHF1 is tuned by RMP2, the SEL light will be illuminated on all RMPs",
@@ -5827,7 +5828,7 @@ const db = [
   },
   {
     id: 446,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question:
       "The FAULT (amber) light is illuminated in the ENG 1 pump pushbutton, when will this light extinguish?",
     options: [
@@ -5842,7 +5843,7 @@ const db = [
   },
   {
     id: 447,
-    theme: "Navigation",
+    theme: "34 : Navigation",
     question: "How is a temporary flight plan indicated on the ND?",
     options: [
       "A solid amber line",
@@ -5856,7 +5857,7 @@ const db = [
   },
   {
     id: 448,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question: "What speed will the FMGS use in an expedite climb?",
     options: [
       "The target speed is Green Dot, which is maintained with pitch control",
@@ -5870,7 +5871,7 @@ const db = [
   },
   {
     id: 449,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question:
       "Above what cabin altitude will the cabin oxygen masks be deploy automatically?",
     options: ["12,000 ft", "16,000 ft", "9,550 ft", "14,000 ft"],
@@ -5880,7 +5881,7 @@ const db = [
   },
   {
     id: 450,
-    theme: "Systems - Elec",
+    theme: "24 : Electrical",
     question: "Is it possible to parallel AC generators on the same BUS?",
     options: [
       "Only with the RAT deployed",
@@ -5894,7 +5895,7 @@ const db = [
   },
   {
     id: 451,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "How many flight control computers are there?",
     options: [
       "7: 3 x ELACs, 2 x SECs, 2 x FACs",
@@ -5908,7 +5909,7 @@ const db = [
   },
   {
     id: 452,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "Which statement about the FAC is true?",
     options: [
       "When the AP is engaged, the rudder trim knob is inoperative, and the master FMGC sends rudder trim orders to the FACs. In addition the FAC flight envelope function performs the alpha protection in normal law",
@@ -5922,7 +5923,7 @@ const db = [
   },
   {
     id: 453,
-    theme: "Other",
+    theme: "22 : Auto Flight",
     question: "How do you adjust the brightness of the FCU displays?",
     options: [
       "On the MCDU",
@@ -5936,7 +5937,7 @@ const db = [
   },
   {
     id: 454,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question:
       "During cockpit preparation, what is the significance of an amber half box around the oxygen pressure indication on the DOOR/OXY page?",
     options: [
@@ -5951,7 +5952,7 @@ const db = [
   },
   {
     id: 455,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question: "What are the two main functions of the FMGC?",
     options: [
       "Flight management and flight guidance",
@@ -5965,7 +5966,7 @@ const db = [
   },
   {
     id: 456,
-    theme: "Auto Flight / FMS",
+    theme: "31 : Indicating/Recording Systems",
     question:
       "Which of the following statements regarding the FWC, ELAC and FAC is true (select the most complete answer)?",
     options: [
@@ -5980,7 +5981,7 @@ const db = [
   },
   {
     id: 457,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question: "How can the flight crew dry crank an engine?",
     options: [
       "Dry cranking (engine ventilation) is always performed automatically by the FADEC when the residual EGT temperature is too high",
@@ -6002,7 +6003,7 @@ const db = [
   },
   {
     id: 459,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       "Which flight control computers receive inputs from the sidestick?",
     options: ["ELAC, SEC and FAC", "ELAC and SEC", "SEC only", "ELAC only"],
@@ -6012,7 +6013,7 @@ const db = [
   },
   {
     id: 460,
-    theme: "Navigation",
+    theme: "34 : Navigation",
     question:
       "What happens to the avionics ventilation system if both the BLOWER and EXTRACT push buttons are set to override?",
     options: [
@@ -6027,7 +6028,7 @@ const db = [
   },
   {
     id: 461,
-    theme: "ECAM / Displays",
+    theme: "31 : Indicating/Recording Systems",
     question:
       "Which of the following statements best describes a level 3 ECAM alert?",
     options: [
@@ -6041,7 +6042,7 @@ const db = [
   },
   {
     id: 462,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question: "What impact does a CAB PR SYS 1+2 FAULT alert have?",
     options: [
       "The pressurisation system will automatically select manual mode. The flight crew can take immediate control of the outflow valve using the MAN V/S CTL switch",
@@ -6055,7 +6056,7 @@ const db = [
   },
   {
     id: 463,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question:
       "During a single engine taxi, engine 1 is running and engine 2 is off. What happens when the ENG MODE selector is moved from NORM to IGN/START?",
     options: [
@@ -6070,7 +6071,7 @@ const db = [
   },
   {
     id: 464,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "All flight control surfaces are:",
     options: [
       "Hydraulically controlled",
@@ -6084,7 +6085,7 @@ const db = [
   },
   {
     id: 465,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question:
       "The thrust levers are moved to the TOGA detent during takeoff. Which configuration would you expect the avionics ventilation system to select if the OAT is 40°C?",
     options: ["Closed", "Normal", "Intermediate", "Open"],
@@ -6094,7 +6095,7 @@ const db = [
   },
   {
     id: 466,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "In which configuration will green dot be displayed on the PFD?",
     options: [
       "All answers are correct",
@@ -6108,7 +6109,7 @@ const db = [
   },
   {
     id: 467,
-    theme: "ECAM / Displays",
+    theme: "31 : Indicating/Recording Systems",
     question: "Which computer generates amber cautions?",
     options: ["DU", "FWC", "DMC", "SDAC"],
     correct: 1,
@@ -6117,7 +6118,7 @@ const db = [
   },
   {
     id: 468,
-    theme: "ECAM / Displays",
+    theme: "31 : Indicating/Recording Systems",
     question: "When is T.O. INHIBIT displayed on the EWD?",
     options: [
       "1st engine started to 80 kt (phases 2 and 3)",
@@ -6131,7 +6132,7 @@ const db = [
   },
   {
     id: 469,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question: "What impact does a CAB PR SYS 1 FAULT alert have?",
     options: [
       "If CPC 1 was active at the time of the failure, CPC 2 will need to be selected manually by the flight crew",
@@ -6145,7 +6146,7 @@ const db = [
   },
   {
     id: 470,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question: "When will the approach phase activate?",
     options: [
       "At the FAF altitude when on a precision approach",
@@ -6159,7 +6160,7 @@ const db = [
   },
   {
     id: 471,
-    theme: "Ice & Rain Protection",
+    theme: "30 : Ice and Rain Protection",
     question: "Can wing anti-ice be used when one engine is inoperative?",
     options: [
       "Yes, provided the x-bleed is selected open, one pack is selected off and the fire push button has not been pushed",
@@ -6173,7 +6174,7 @@ const db = [
   },
   {
     id: 472,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       "How many independent channels are there in a Flight Augmentation Computer?",
     options: [
@@ -6188,7 +6189,7 @@ const db = [
   },
   {
     id: 473,
-    theme: "Landing Gear",
+    theme: "32 : Landing Gear",
     question:
       "When will the autobrake system activate following a rejected takeoff?",
     options: [
@@ -6203,7 +6204,7 @@ const db = [
   },
   {
     id: 474,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question: "When will the FADEC select the modulated idle mode?",
     options: [
       "Whenever the flaps are retracted (FLAPS at zero position)",
@@ -6217,7 +6218,7 @@ const db = [
   },
   {
     id: 475,
-    theme: "Navigation",
+    theme: "34 : Navigation",
     question: "Which DMCs can receive information from ADIRU 3?",
     options: [
       "DMC 1 or 3. Following the failure of ADIRU1, ADIRU3 will automatically connect to the Captain's PFD",
@@ -6230,7 +6231,7 @@ const db = [
   },
   {
     id: 476,
-    theme: "Navigation",
+    theme: "34 : Navigation",
     question:
       "Which computer controls all datalink communications between the aircraft and the ground (Airline and or ATC)?",
     options: ["RMP", "FMGC", "MCDU", "ATSU"],
@@ -6240,7 +6241,7 @@ const db = [
   },
   {
     id: 477,
-    theme: "ECAM / Displays",
+    theme: "31 : Indicating/Recording Systems",
     question:
       "After an ND failure, which of the following statements is correct?",
     options: [
@@ -6255,7 +6256,7 @@ const db = [
   },
   {
     id: 478,
-    theme: "Communications",
+    theme: "23 : Communications",
     question: "Which VHF antenna is located on the lower fuselage?",
     options: [
       "VHF 3",
@@ -6269,7 +6270,7 @@ const db = [
   },
   {
     id: 479,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       "In Normal Law, what are the limits of the Pitch Attitude protection with flaps Full?",
     options: [
@@ -6283,7 +6284,7 @@ const db = [
   },
   {
     id: 480,
-    theme: "ECAM / Displays",
+    theme: "31 : Indicating/Recording Systems",
     question:
       "On the ECAM E/WD, when does the LDG INHIBIT (magenta) memo appear?",
     options: [
@@ -6298,7 +6299,7 @@ const db = [
   },
   {
     id: 481,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "Select the correct statement about the wingtip brakes (WTB):",
     options: [
       "The WTBs activate in case of an uncommanded movement of the slats or flaps, such as runaway, asymmetry or overspeed. If the slat WTB is on, the flaps will still operate",
@@ -6312,7 +6313,7 @@ const db = [
   },
   {
     id: 482,
-    theme: "ECAM / Displays",
+    theme: "31 : Indicating/Recording Systems",
     question:
       "On the ECAM display, which colour is used to make the crew aware of an abnormal configuration or failure, and no immediate action is required?",
     options: ["Red", "Blue", "Amber", "White"],
@@ -6322,7 +6323,7 @@ const db = [
   },
   {
     id: 483,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question: "When does the PTU operate?",
     options: [
       "At any time that there is more than a 500 PSI pressure difference between the green and yellow systems",
@@ -6336,7 +6337,7 @@ const db = [
   },
   {
     id: 484,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question: "What is maximum value of Approach Correction?",
     options: ["5 kt", "15 kt", "10 kt"],
     correct: 1,
@@ -6345,7 +6346,7 @@ const db = [
   },
   {
     id: 485,
-    theme: "Navigation",
+    theme: "34 : Navigation",
     question: "On which display(s) can the ground speed and TAS be viewed?",
     options: [
       "In the top right hand corner of the ND in only the ARC or NAV modes",
@@ -6359,7 +6360,7 @@ const db = [
   },
   {
     id: 486,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question: "What is the function of the hydraulic priority valves?",
     options: [
       "They prioritise hydraulic power to the heavy load users",
@@ -6373,7 +6374,7 @@ const db = [
   },
   {
     id: 487,
-    theme: "Landing Gear",
+    theme: "32 : Landing Gear",
     question: "Select the statement that best describes the parking brake:",
     options: [
       "If the parking brake fails, the parking brake must be selected off before the normal braking system can be applied via the brake pedals",
@@ -6387,7 +6388,7 @@ const db = [
   },
   {
     id: 488,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question:
       "After a cockpit oxygen mask has been used, how can the mask microphone be cut-off and boom microphone be re-activated?",
     options: [
@@ -6402,7 +6403,7 @@ const db = [
   },
   {
     id: 489,
-    theme: "Communications",
+    theme: "23 : Communications",
     question:
       "What is the primary method of communication for datalink messages controlled via the ATSU?",
     options: [
@@ -6417,7 +6418,7 @@ const db = [
   },
   {
     id: 490,
-    theme: "Fire Protection",
+    theme: "26 : Fire Protection",
     question:
       "Select the correct statement about the AGENT pushbuttons on the FIRE panel:",
     options: [
@@ -6432,7 +6433,7 @@ const db = [
   },
   {
     id: 491,
-    theme: "Auto Flight / FMS",
+    theme: "31 : Indicating/Recording Systems",
     question:
       "With the ATT HDG switch set to CAPT 3, and AIR DATA switch set to NORM: which computer(s) will be providing air, attitude and heading data to the Captain's PFD?",
     options: [
@@ -6447,7 +6448,7 @@ const db = [
   },
   {
     id: 492,
-    theme: "Communications",
+    theme: "23 : Communications",
     question:
       "Which of the following communication methods are used for datalink messages?",
     options: [
@@ -6461,7 +6462,7 @@ const db = [
   },
   {
     id: 493,
-    theme: "Fire Protection",
+    theme: "26 : Fire Protection",
     question:
       "Select the correct statement about the AGENT pushbuttons on the FIRE panel:",
     options: [
@@ -6476,7 +6477,7 @@ const db = [
   },
   {
     id: 494,
-    theme: "Communications",
+    theme: "23 : Communications",
     question: "On the RMP, the ON/OFF switch controls:",
     options: [
       "Only the COM function of the RMP",
@@ -6490,7 +6491,7 @@ const db = [
   },
   {
     id: 495,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question:
       "How can the flight crew arm the LOC and GS modes in order to fly an ILS approach?",
     options: [
@@ -6505,7 +6506,7 @@ const db = [
   },
   {
     id: 496,
-    theme: "APU",
+    theme: "36 : Pneumatic",
     question:
       "Both engines and the APU are running, what must the flight crew do before selecting APU bleed? (X-BLEED set to AUTO)",
     options: [
@@ -6520,7 +6521,7 @@ const db = [
   },
   {
     id: 497,
-    theme: "APU",
+    theme: "49 : APU",
     question:
       "When does the green AVAIL light illuminate on the APU start push button?",
     options: [
@@ -6535,7 +6536,7 @@ const db = [
   },
   {
     id: 498,
-    theme: "ECAM / Displays",
+    theme: "31 : Indicating/Recording Systems",
     question:
       "Which ECAM alert level signifies a dangerous configuration, flight condition or a system failure that alters flight safety?",
     options: ["Level 3", "Advisory", "Level 2", "Level 1"],
@@ -6545,7 +6546,7 @@ const db = [
   },
   {
     id: 499,
-    theme: "Landing Gear",
+    theme: "32 : Landing Gear",
     question:
       "During gravity gear extension, in which direction should the GRAVITY GEAR EXTENSION handle be rotated, and what happens during each turn?",
     options: [
@@ -6560,7 +6561,7 @@ const db = [
   },
   {
     id: 500,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question: "How many igniters are used during an automatic engine start?",
     options: [
       "Both igniters are used for all engines starts, unless a circuit breaker for an individual igniter has been pulled",
@@ -6574,7 +6575,7 @@ const db = [
   },
   {
     id: 501,
-    theme: "Fire Protection",
+    theme: "26 : Fire Protection",
     question:
       "In which areas of the engine are the fire detection loops located?",
     options: [
@@ -6589,7 +6590,7 @@ const db = [
   },
   {
     id: 502,
-    theme: "Landing Gear",
+    theme: "32 : Landing Gear",
     question: "What is the significance of a NW STRG DISC memo?",
     options: [
       "The memo appears when the nose wheel steering selector is in the towing position. It is always GREEN",
@@ -6603,7 +6604,7 @@ const db = [
   },
   {
     id: 503,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "If a SEC fails, what happens to the spoiler(s) it controls?",
     options: [
       "The effected spoiler retains the deflection it has at the time of the loss, this may lead to asymmetrical deployment of the spoilers",
@@ -6617,7 +6618,7 @@ const db = [
   },
   {
     id: 504,
-    theme: "APU",
+    theme: "49 : APU",
     question:
       "Which of the following statements about the use of APU bleed air is correct?",
     options: [
@@ -6632,7 +6633,7 @@ const db = [
   },
   {
     id: 505,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question: "Select the correct statement about an engine relight in flight:",
     options: [
       "APU bleed can be used to assist with an engine start throughout the entire flight envelope",
@@ -6646,7 +6647,7 @@ const db = [
   },
   {
     id: 506,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question:
       "What happens if you take off without V2 being entered on the PERF page?",
     options: [
@@ -6661,7 +6662,7 @@ const db = [
   },
   {
     id: 507,
-    theme: "ECAM / Displays",
+    theme: "31 : Indicating/Recording Systems",
     question:
       "What is the meaning of a AMBER light in a flight deck pushbutton?",
     options: [
@@ -6676,7 +6677,7 @@ const db = [
   },
   {
     id: 508,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question:
       "When is pack flow automatically increased to HIGH, regardless of the position of the PACK FLOW control knob?",
     options: [
@@ -6691,7 +6692,7 @@ const db = [
   },
   {
     id: 509,
-    theme: "Navigation",
+    theme: "34 : Navigation",
     question:
       "Following a double FMGC failure how can the navigation radios be tuned?",
     options: [
@@ -6706,7 +6707,7 @@ const db = [
   },
   {
     id: 510,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question: "What is the normal mode of operation of the FMGS?",
     options: [
       "Backup navigation mode",
@@ -6720,7 +6721,7 @@ const db = [
   },
   {
     id: 511,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question: "Select the correct statement about the potable water system:",
     options: [
       "A vacuum generator is used to distribute potable water around the aircraft",
@@ -6734,7 +6735,7 @@ const db = [
   },
   {
     id: 512,
-    theme: "Navigation",
+    theme: "34 : Navigation",
     question: "Frequency selection on each RMP is done by concentric knobs:",
     options: [
       "The outer knob controls voice frequencies and the inner knob controls NAV aid frequencies",
@@ -6748,7 +6749,7 @@ const db = [
   },
   {
     id: 513,
-    theme: "Ice & Rain Protection",
+    theme: "30 : Ice and Rain Protection",
     question:
       "When does the window (windshield) heating come on automatically?",
     options: [
@@ -6763,7 +6764,7 @@ const db = [
   },
   {
     id: 514,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question: "What are the basic modes of the AP/FD?",
     options: ["HDG and V/S", "SPD and HDG", "ALT and NAV", "Pitch and roll"],
     correct: 0,
@@ -6772,7 +6773,7 @@ const db = [
   },
   {
     id: 515,
-    theme: "Landing Gear",
+    theme: "32 : Landing Gear",
     question:
       "If the rudder pedals are at full deflection at normal taxi speed what will the NWS angle be? (Degrees)",
     options: ["75°", "70°", "6°", "7°"],
@@ -6782,7 +6783,7 @@ const db = [
   },
   {
     id: 516,
-    theme: "Ice & Rain Protection",
+    theme: "30 : Ice and Rain Protection",
     question:
       "What happens to the wing and engine anti-ice valves when the hot air supply is unavailable?",
     options: [
@@ -6797,7 +6798,7 @@ const db = [
   },
   {
     id: 517,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question:
       "During a successful manual engine start when does the start valve close, and ignition cut off?",
     options: [
@@ -6812,7 +6813,7 @@ const db = [
   },
   {
     id: 518,
-    theme: "Ice & Rain Protection",
+    theme: "30 : Ice and Rain Protection",
     question: "How can you check that engine anti-ice has been selected on?",
     options: [
       "ENG A ICE will be displayed on the status page",
@@ -6826,7 +6827,7 @@ const db = [
   },
   {
     id: 519,
-    theme: "ECAM / Displays",
+    theme: "34 : Navigation",
     question: "Where does the air data displayed on the ISIS come from?",
     options: [
       "ADIRU 1, ADIRU 3, or from its own internal transducers connected to the standby pitot probe and static ports",
@@ -6840,7 +6841,7 @@ const db = [
   },
   {
     id: 520,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question: "What is considered to be a 'forward' CG at landing?",
     options: [
       "less than 29%",
@@ -6854,7 +6855,7 @@ const db = [
   },
   {
     id: 521,
-    theme: "Performance / EFB",
+    theme: "EFB / Performances",
     question: "What is considered to be a 'standard' CG at landing?",
     options: [
       "more than 30%",
@@ -6867,7 +6868,7 @@ const db = [
   },
   {
     id: 522,
-    theme: "Landing Gear",
+    theme: "32 : Landing Gear",
     question:
       "While the aircraft is on the ground with engines running, the T.O. CONFIG TEST pushbutton is:",
     options: [
@@ -6882,7 +6883,7 @@ const db = [
   },
   {
     id: 523,
-    theme: "Aircraft General",
+    theme: "20 : Aircraft General",
     question:
       "What cargo compartment can handle containers if the aircraft has that option?",
     options: [
@@ -6897,7 +6898,7 @@ const db = [
   },
   {
     id: 524,
-    theme: "Aircraft General",
+    theme: "20 : Aircraft General",
     question: "Where is the external power receptacle located?",
     options: [
       "At the r/h refueling connector",
@@ -6911,7 +6912,7 @@ const db = [
   },
   {
     id: 525,
-    theme: "Aircraft General",
+    theme: "20 : Aircraft General",
     question: "What is the total length of the A320?",
     options: ["34.5m", "38.7m", "37.57m", "34.1m"],
     correct: 2,
@@ -6920,7 +6921,7 @@ const db = [
   },
   {
     id: 526,
-    theme: "Indicating and Recording",
+    theme: "31 : Indicating/Recording Systems",
     question:
       "In normal operation, what displays are receiving information from DMC 1?",
     options: [
@@ -6935,7 +6936,7 @@ const db = [
   },
   {
     id: 527,
-    theme: "Indicating and Recording",
+    theme: "31 : Indicating/Recording Systems",
     question:
       "The ECAM display uses a colour code that indicates the importance of the failure or the indication. What colour indicates crew should be aware but need not take immediate action?",
     options: ["Red", "White", "Blue", "Amber"],
@@ -6945,7 +6946,7 @@ const db = [
   },
   {
     id: 528,
-    theme: "Indicating and Recording",
+    theme: "31 : Indicating/Recording Systems",
     question: "How are Primary and Secondary failures indicated?",
     options: [
       "Displayed in Amber only",
@@ -6959,7 +6960,7 @@ const db = [
   },
   {
     id: 529,
-    theme: "Indicating and Recording",
+    theme: "31 : Indicating/Recording Systems",
     question: "What happens if the upper ECAM display fails?",
     options: [
       "E/WD is lost for the rest of the flight",
@@ -6973,7 +6974,7 @@ const db = [
   },
   {
     id: 530,
-    theme: "Indicating and Recording",
+    theme: "31 : Indicating/Recording Systems",
     question: "Where is the Flap/Slat position displayed?",
     options: [
       "On the Flap/Slat indicator",
@@ -6987,7 +6988,7 @@ const db = [
   },
   {
     id: 531,
-    theme: "Systems - Elec",
+    theme: "24 : Electrical",
     question:
       "In normal configuration, what sources can supply power to the AC system when the aircraft is on ground?",
     options: [
@@ -7002,7 +7003,7 @@ const db = [
   },
   {
     id: 532,
-    theme: "Systems - Elec",
+    theme: "24 : Electrical",
     question: "What happens if GEN 1 is inoperative?",
     options: [
       "AC BUS 1 receives power from AC BUS 2 automatically",
@@ -7016,7 +7017,7 @@ const db = [
   },
   {
     id: 533,
-    theme: "Systems - Elec",
+    theme: "24 : Electrical",
     question: "What's the purpose of the TR's?",
     options: [
       "To limit the current from the batteries",
@@ -7030,7 +7031,7 @@ const db = [
   },
   {
     id: 534,
-    theme: "Systems - Elec",
+    theme: "24 : Electrical",
     question: "Why are some Circuit Breakers (C/Bs) green instead of black?",
     options: [
       "Different manufacturers",
@@ -7044,7 +7045,7 @@ const db = [
   },
   {
     id: 535,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question: "How many legs can a flight plan contain?",
     options: ["125", "200", "150", "250"],
     correct: 1,
@@ -7053,7 +7054,7 @@ const db = [
   },
   {
     id: 536,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question: "What unit is used for short-term interface?",
     options: ["ADIRU control panel", "EFIS control panel", "FCU", "MCDU"],
     correct: 2,
@@ -7062,7 +7063,7 @@ const db = [
   },
   {
     id: 537,
-    theme: "Auto Flight / FMS",
+    theme: "31 : Indicating/Recording Systems",
     question: "How is a temporary Flight Plan indicated on the ND?",
     options: [
       "A dotted magenta line",
@@ -7076,7 +7077,7 @@ const db = [
   },
   {
     id: 538,
-    theme: "Auto Flight / FMS",
+    theme: "31 : Indicating/Recording Systems",
     question: "What color indicates a secondary flight plan in PLAN mode?",
     options: ["Green", "White", "Amber", "Blue"],
     correct: 1,
@@ -7085,7 +7086,7 @@ const db = [
   },
   {
     id: 539,
-    theme: "Auto Flight / FMS",
+    theme: "22 : Auto Flight",
     question:
       "If AP 2 is engaged, which FMGC is master and controls the A/THR?",
     options: [
@@ -7100,7 +7101,7 @@ const db = [
   },
   {
     id: 540,
-    theme: "Navigation",
+    theme: "34 : Navigation",
     question:
       "With the Predictive Windshear (PWS) switch in AUTO, below what height is data displayed on the ND?",
     options: ["1500 feet RA", "2000 feet RA", "2300 feet RA", "2500 feet RA"],
@@ -7110,7 +7111,7 @@ const db = [
   },
   {
     id: 541,
-    theme: "Navigation",
+    theme: "34 : Navigation",
     question:
       "If ALL / N is selected on the ATC/TCAS panel, what is the altitude range of intruders that are displayed?",
     options: [
@@ -7125,7 +7126,7 @@ const db = [
   },
   {
     id: 542,
-    theme: "Navigation",
+    theme: "34 : Navigation",
     question: "Below what height do the FWC's generate height announcements?",
     options: ["2500 feet", "1500 feet", "3000 feet", "2000 feet"],
     correct: 0,
@@ -7134,7 +7135,7 @@ const db = [
   },
   {
     id: 543,
-    theme: "Navigation",
+    theme: "34 : Navigation",
     question:
       "How long must the RESET p/b on the ISIS be pressed to reset the attitude indication?",
     options: [
@@ -7149,7 +7150,7 @@ const db = [
   },
   {
     id: 544,
-    theme: "Navigation",
+    theme: "34 : Navigation",
     question:
       "How many GPS receivers are connected to the IR part of the ADIRUs?",
     options: [
@@ -7164,7 +7165,7 @@ const db = [
   },
   {
     id: 545,
-    theme: "APU",
+    theme: "49 : APU",
     question: "Which fuel feed line supplies the APU?",
     options: [
       "The Right fuel feed line supplies the APU",
@@ -7178,7 +7179,7 @@ const db = [
   },
   {
     id: 546,
-    theme: "APU",
+    theme: "49 : APU",
     question: "What causes amber XX in the BLEED indication on APU SD page?",
     options: [
       "ADIRS 1 or 2 are not available or selected OFF, or the data from the ECB are invalid or not transmitted",
@@ -7192,7 +7193,7 @@ const db = [
   },
   {
     id: 547,
-    theme: "APU",
+    theme: "49 : APU",
     question: "What is the ECB in the APU system?",
     options: [
       "The Electronic Control Box (ECB) is used to control the cabin pressure in case of emergency",
@@ -7206,7 +7207,7 @@ const db = [
   },
   {
     id: 548,
-    theme: "Systems - Air/Press",
+    theme: "36 : Pneumatic",
     question: "What controls and monitors the Pneumatic system?",
     options: [
       "Three Bleed Monitoring Computers",
@@ -7220,7 +7221,7 @@ const db = [
   },
   {
     id: 549,
-    theme: "Systems - Air/Press",
+    theme: "36 : Pneumatic",
     question:
       "What happens when the pressure and temperature are not sufficient to supply the corresponding engine bleed valve?",
     options: [
@@ -7235,7 +7236,7 @@ const db = [
   },
   {
     id: 550,
-    theme: "Systems - Air/Press",
+    theme: "36 : Pneumatic",
     question:
       "The air bleed system supplies the aircraft with high pressure air, and uses it for:",
     options: [
@@ -7250,7 +7251,7 @@ const db = [
   },
   {
     id: 551,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question: "The Pressurization system is normally controlled in what way?",
     options: [
       "Fully automatic",
@@ -7264,7 +7265,7 @@ const db = [
   },
   {
     id: 552,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question:
       "How are the Pack Flow Control valves controlled during engine start?",
     options: [
@@ -7279,7 +7280,7 @@ const db = [
   },
   {
     id: 553,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question: "How many air condition zones do we have on an Airbus A320?",
     options: [
       "One for the whole aircraft",
@@ -7293,7 +7294,7 @@ const db = [
   },
   {
     id: 554,
-    theme: "Systems - Air/Press",
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
     question: "When does the hot air valve close automatically?",
     options: [
       "When the temperature in the cockpit is okay",
@@ -7307,7 +7308,7 @@ const db = [
   },
   {
     id: 555,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question: "When does the Blue electrical pump operate automatically?",
     options: [
       "If AC power is available and in flight, or on the ground, if one engine is running",
@@ -7321,7 +7322,7 @@ const db = [
   },
   {
     id: 556,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question:
       "Which hydraulic systems have a pump that is driven by an engine?",
     options: ["Green and yellow", "Blue only", "Green only", "Yellow only"],
@@ -7331,7 +7332,7 @@ const db = [
   },
   {
     id: 557,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question: "What is the normal operating hydraulic pressure?",
     options: [
       "2900 PSI from all pumps, including RAT",
@@ -7345,7 +7346,7 @@ const db = [
   },
   {
     id: 558,
-    theme: "Hydraulics",
+    theme: "29 : Hydraulic",
     question:
       "Can the PTU operate and pressurize the Green system without an engine running?",
     options: [
@@ -7360,7 +7361,7 @@ const db = [
   },
   {
     id: 559,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "Which Flight Control Computer normally operates the ailerons?",
     options: ["SEC 3", "SEC 1", "ELAC 2", "ELAC 1"],
     correct: 3,
@@ -7369,7 +7370,7 @@ const db = [
   },
   {
     id: 560,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question: "Is mechanical control of the THS always available?",
     options: [
       "Yes, if both green and yellow hydraulic systems are functioning",
@@ -7383,7 +7384,7 @@ const db = [
   },
   {
     id: 561,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       "Side Stick control orders are sent to which flight control computer?",
     options: ["ELAC only", "SEC only", "ELAC and SEC", "FAC only"],
@@ -7393,7 +7394,7 @@ const db = [
   },
   {
     id: 562,
-    theme: "Flight Controls",
+    theme: "27 : Flight Controls",
     question:
       "In normal law, what happens if the pilot holds full lateral side stick deflection?",
     options: [
@@ -7408,7 +7409,7 @@ const db = [
   },
   {
     id: 563,
-    theme: "Water and Waste",
+    theme: "38 : Water/Waste",
     question: "Where will you find the water and waste control panel?",
     options: [
       "On the forward attendant control panel",
@@ -7422,7 +7423,7 @@ const db = [
   },
   {
     id: 564,
-    theme: "Water and Waste",
+    theme: "38 : Water/Waste",
     question:
       "On the ground and below 16,000 ft, how is the necessary differential pressure produced to force waste from the toilet bowls into the storage tank?",
     options: [
@@ -7437,7 +7438,7 @@ const db = [
   },
   {
     id: 565,
-    theme: "Aircraft General",
+    theme: "20 : Aircraft General",
     question: "Which statement is correct regarding the STROBE switch in AUTO?",
     options: [
       "The strobe lights come on automatically when both engines are started",
@@ -7451,7 +7452,7 @@ const db = [
   },
   {
     id: 566,
-    theme: "Aircraft General",
+    theme: "20 : Aircraft General",
     question:
       "How is the NO SMOKING sign controlled when the switch is in AUTO position?",
     options: [
@@ -7466,7 +7467,7 @@ const db = [
   },
   {
     id: 567,
-    theme: "Aircraft General",
+    theme: "20 : Aircraft General",
     question:
       "The NAV & LOGO switch has two positions, 1 and 2. What is the difference between the two positions?",
     options: [
@@ -7481,7 +7482,7 @@ const db = [
   },
   {
     id: 568,
-    theme: "Aircraft General",
+    theme: "20 : Aircraft General",
     question: "How many passenger doors are fitted on an A320?",
     options: ["2", "3", "4", "1"],
     correct: 2,
@@ -7490,7 +7491,7 @@ const db = [
   },
   {
     id: 569,
-    theme: "Aircraft General",
+    theme: "20 : Aircraft General",
     question:
       'What is the purpose of the white "SLIDE ARMED" light installed on the passenger doors?',
     options: [
@@ -7505,7 +7506,7 @@ const db = [
   },
   {
     id: 570,
-    theme: "Aircraft General",
+    theme: "20 : Aircraft General",
     question: "What is true regarding the cockpit sliding windows?",
     options: [
       "The sliding windows are for ventilation only",
@@ -7519,7 +7520,7 @@ const db = [
   },
   {
     id: 571,
-    theme: "Communications",
+    theme: "23 : Communications",
     question: "Which VHF transceiver functions in EMER ELEC CONFIG?",
     options: ["2", "None", "3", "1"],
     correct: 3,
@@ -7528,7 +7529,7 @@ const db = [
   },
   {
     id: 572,
-    theme: "Communications",
+    theme: "23 : Communications",
     question: "What does the SEL indicator on the RMP indicate?",
     options: [
       "Only selected frequencies are available",
@@ -7542,7 +7543,7 @@ const db = [
   },
   {
     id: 573,
-    theme: "Communications",
+    theme: "23 : Communications",
     question:
       "What Interphone system is used for the ground mechanic jack on the external power panel?",
     options: [
@@ -7557,7 +7558,7 @@ const db = [
   },
   {
     id: 574,
-    theme: "Communications",
+    theme: "23 : Communications",
     question: "Which panel is used to select a VHF transceiver?",
     options: ["RMP", "AMU", "ACP", "ACARS"],
     correct: 2,
@@ -7566,7 +7567,7 @@ const db = [
   },
   {
     id: 575,
-    theme: "Fire Protection",
+    theme: "26 : Fire Protection",
     question:
       "How many smoke detectors, in total, are installed in FWD and AFT cargo compartment?",
     options: ["12", "9", "6", "3"],
@@ -7576,7 +7577,7 @@ const db = [
   },
   {
     id: 576,
-    theme: "Fire Protection",
+    theme: "26 : Fire Protection",
     question: "Can an engine fire be detected if one loop is faulty?",
     options: [
       "Yes, but only if the aircraft is airborne",
@@ -7590,7 +7591,7 @@ const db = [
   },
   {
     id: 577,
-    theme: "Fire Protection",
+    theme: "26 : Fire Protection",
     question:
       "How many engine fire extinguisher bottles are totally installed on an Airbus 320?",
     options: ["5", "6", "2", "4"],
@@ -7600,7 +7601,7 @@ const db = [
   },
   {
     id: 578,
-    theme: "Fire Protection",
+    theme: "26 : Fire Protection",
     question:
       "If the system detects an APU fire while the aircraft is on the ground, what happens?",
     options: [
@@ -7615,7 +7616,7 @@ const db = [
   },
   {
     id: 579,
-    theme: "Fire Protection",
+    theme: "26 : Fire Protection",
     question: 'On the ENG FIRE PANEL, what does amber "DISCH" indication mean?',
     options: [
       "Discharge inhibit due to a bad squib",
@@ -7629,7 +7630,7 @@ const db = [
   },
   {
     id: 580,
-    theme: "Oxygen",
+    theme: "35 : Oxygen",
     question:
       "When the masks in the cabin are released, the passenger address system automatically broadcasts pre-recorded instructions for their use",
     options: [
@@ -7644,7 +7645,7 @@ const db = [
   },
   {
     id: 581,
-    theme: "Oxygen",
+    theme: "35 : Oxygen",
     question:
       "On the overhead maintenance panel what is the function of the TMR RESET pushbutton?",
     options: [
@@ -7659,7 +7660,7 @@ const db = [
   },
   {
     id: 582,
-    theme: "Oxygen",
+    theme: "35 : Oxygen",
     question:
       "HI ALT SET memo id displayed on the ECAM, what does it indicate?",
     options: [
@@ -7674,7 +7675,7 @@ const db = [
   },
   {
     id: 583,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question:
       "Some of the fuel flowing out of the Hydromechanical Unit (HMU) cools the oil systems of the IDG and:",
     options: [
@@ -7689,7 +7690,7 @@ const db = [
   },
   {
     id: 584,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question:
       "When should the ENG MODE selector be set to NORM during a Manual Engine Start?",
     options: [
@@ -7704,7 +7705,7 @@ const db = [
   },
   {
     id: 585,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question: "Regarding FADEC, which statement is true:",
     options: [
       "Each FADEC has only 1 channel",
@@ -7718,7 +7719,7 @@ const db = [
   },
   {
     id: 586,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question: "Single engine, what is the maximum time limit in TOGA power?",
     options: [
       "Time limitation varies according Operator policy",
@@ -7732,7 +7733,7 @@ const db = [
   },
   {
     id: 587,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question:
       "If the ENG1 or ENG 2 MASTER switch are set to OFF, which fuel shut off valves are affected?",
     options: [
@@ -7747,7 +7748,7 @@ const db = [
   },
   {
     id: 588,
-    theme: "Powerplant",
+    theme: "70 : Power Plant",
     question:
       "If the ENG MODE SEL is selected to IGN/START and the MAN START pushbutton is pressed, the START valve opens:",
     options: [
@@ -7762,7 +7763,7 @@ const db = [
   },
   {
     id: 589,
-    theme: "Ice & Rain Protection",
+    theme: "30 : Ice and Rain Protection",
     question: "Is it possible to select Wing-Anti-Ice on ground?",
     options: [
       "No",
@@ -7776,7 +7777,7 @@ const db = [
   },
   {
     id: 590,
-    theme: "Ice & Rain Protection",
+    theme: "30 : Ice and Rain Protection",
     question: "Which surfaces are protected with hot air?",
     options: [
       "Sensors, pitot probes and static ports",
@@ -7790,7 +7791,7 @@ const db = [
   },
   {
     id: 591,
-    theme: "Ice & Rain Protection",
+    theme: "30 : Ice and Rain Protection",
     question: "How many sections of the Slat system are anti-iced?",
     options: [
       "All sections",
@@ -7804,7 +7805,7 @@ const db = [
   },
   {
     id: 592,
-    theme: "Ice & Rain Protection",
+    theme: "30 : Ice and Rain Protection",
     question:
       "How many PHC's (Probe Heat Computers) are installed on an Airbus 320?",
     options: ["2", "4", "6", "3"],
@@ -7814,7 +7815,7 @@ const db = [
   },
   {
     id: 593,
-    theme: "Fuel",
+    theme: "28 : Fuel",
     question:
       "When will fuel automatically transfer from the outer to the inner wing tanks?",
     options: [
@@ -7829,7 +7830,7 @@ const db = [
   },
   {
     id: 594,
-    theme: "Fuel",
+    theme: "28 : Fuel",
     question: "What is the purpose of the Fuel Recirculation System?",
     options: [
       "To mix old fuel with new",
@@ -7843,7 +7844,7 @@ const db = [
   },
   {
     id: 595,
-    theme: "Fuel",
+    theme: "28 : Fuel",
     question: "Where is the external refueling panel located?",
     options: [
       "On the side of the fuselage beneath the AFT cargo door",
@@ -7857,7 +7858,7 @@ const db = [
   },
   {
     id: 596,
-    theme: "Fuel",
+    theme: "28 : Fuel",
     question: "When is the LO LVL warning displayed on the ECAM?",
     options: [
       "When the fuel quantity in one wing tank goes below 700 kg",
@@ -7871,7 +7872,7 @@ const db = [
   },
   {
     id: 597,
-    theme: "Fuel",
+    theme: "28 : Fuel",
     question:
       "Will the center pumps, if commanded ON, operate if slats are extended?",
     options: [
@@ -7886,7 +7887,7 @@ const db = [
   },
   {
     id: 598,
-    theme: "Landing Gear",
+    theme: "32 : Landing Gear",
     question:
       "What would be the consequence if the pilots'respective handwheels were turned in the same direction but a different rates?",
     options: [
@@ -7901,7 +7902,7 @@ const db = [
   },
   {
     id: 599,
-    theme: "Landing Gear",
+    theme: "32 : Landing Gear",
     question:
       "What is the maximum deflection of the nose wheel if controlled by the rudder pedals?",
     options: ["3 deg.", "12 deg.", "6 deg", "75 deg."],
@@ -7911,7 +7912,7 @@ const db = [
   },
   {
     id: 600,
-    theme: "Landing Gear",
+    theme: "32 : Landing Gear",
     question: "Which hydraulic system is used for gear retraction/extension?",
     options: ["Yellow", "Green", "Green and Yellow as a backup", "Blue"],
     correct: 1,
@@ -7920,7 +7921,7 @@ const db = [
   },
   {
     id: 601,
-    theme: "Landing Gear",
+    theme: "32 : Landing Gear",
     question:
       "What is the purpose of the red DOWN arrow located next to the landing gear lever?",
     options: [
@@ -7935,12 +7936,198 @@ const db = [
   },
   {
     id: 602,
-    theme: "Landing Gear",
+    theme: "32 : Landing Gear",
     question:
       "Which computer controls the Landing Gear indicator panel lights?",
     options: ["LGCIU 1 and 2", "LGCIU 2 only", "DMC 3", "LGCIU 1 only"],
     correct: 3,
     explanation:
       "FCOM DSC-32-10-20: Unlike the ECAM wheel page which uses both LGCIUs, the hardwired indicator panel receives signals strictly from LGCIU 1.",
+  },
+  {
+    id: 603,
+    theme: "22 : Auto Flight",
+    question: "What are the different types of flight guidance?",
+    options: [
+      "Automatic and selected",
+      "Managed and manual",
+      "Automatic and manual",
+      "Managed and selected",
+    ],
+    correct: 3,
+    explanation:
+      "FCOM DSC-22_30-10: Flight guidance operates in two modes. 'Managed' guidance is computed by the FMGC along the programmed flight plan, while 'Selected' guidance is manually set by the crew via the FCU knobs.",
+  },
+  {
+    id: 604,
+    theme: "27 : Flight Controls",
+    question: "What protections are available in alternate law?",
+    options: [
+      "Load factor limitation, pitch attitude, bank angle, angle of attack, and high speed",
+      "Load factor limitation, pitch attitude, bank angle, low speed, and high speed",
+      "Load factor limitation is the only protection available in alternate law. High speed and low speed stabilities may be available",
+      "There are no protections in alternate law. High speed and low speed stabilities may be available",
+    ],
+    correct: 2,
+    explanation:
+      "FCOM DSC-27-20-20: In Alternate Law, pitch, bank, and AoA protections are lost. Only the Load Factor limitation remains active. High and low speed stabilities replace their respective protections.",
+  },
+  {
+    id: 605,
+    theme: "25 : Equipment/Furnishings",
+    question: "The aircraft is fitted with emergency evacuation slides at:",
+    options: [
+      "The overwing exits",
+      "The four entry doors",
+      "The overwing exits and cockpit windows",
+      "The four entry doors and overwing exits",
+    ],
+    correct: 3,
+    explanation:
+      "FCOM DSC-25-30-20: The A320 is equipped with slide rafts at the four main passenger doors (FWD and AFT) and single-lane ramp slides at the overwing emergency exits.",
+  },
+  {
+    id: 606,
+    theme: "31 : Indicating/Recording Systems",
+    question:
+      "What is the meaning of a GREEN light in a flight deck pushbutton?",
+    options: [
+      "Normal system operation",
+      "An abnormal pushbutton position",
+      "Normal operation of a system used temporarily",
+      "A test result or maintenance information",
+    ],
+    correct: 0,
+    explanation:
+      "FCOM DSC-31-15: A GREEN light indicates 'Normal system operation' or availability (e.g., AVAIL). By contrast, a BLUE light indicates 'Normal operation of a system used temporarily' (like Anti-Ice or EXT PWR).",
+  },
+  {
+    id: 607,
+    theme: "29 : Hydraulic",
+    question: "The cargo doors are powered by:",
+    options: [
+      "The blue hydraulic system before engine start, and the green hydraulic system after engine start",
+      "The blue electric pump",
+      "The yellow hydraulic system",
+      "The yellow hydraulic system before engine start, and the green hydraulic system after engine start",
+    ],
+    correct: 2,
+    explanation:
+      "FCOM DSC-29-10-30: The cargo doors are operated by the Yellow hydraulic system. On the ground, the Yellow electric pump can be used to pressurize the system without starting the engines.",
+  },
+  {
+    id: 608,
+    theme: "28 : Fuel",
+    question: "What is the normal fuel feed sequence?",
+    options: [
+      "Centre tank, outer tank, inner tank",
+      "Inner tank, outer tank, centre tank",
+      "Centre tank, inner tank, outer tank",
+      "Outer tank, inner tank, centre tank",
+    ],
+    correct: 2,
+    explanation:
+      "FCOM DSC-28-10-40: To reduce wing bending moments during flight, fuel is consumed from the center tank first, then the inner tanks, and finally the outer tanks.",
+  },
+  {
+    id: 609,
+    theme: "24 : Electrical",
+    question:
+      "The aircraft is on the ground with external power plugged into the aircraft, and the APU running. How can the APU generator be connected to the electrical system?",
+    options: [
+      "The pushing the APU MASTER SW pb-sw",
+      "By pushing the EXT PWR pb when the blue ON light is illuminated",
+      "By pushing the APU START pb-sw",
+      "By pushing the EXT PWR pb when the green AVAIL light is illuminated",
+    ],
+    correct: 1,
+    explanation:
+      "FCOM DSC-24-10-30: External power has priority over the APU generator. If EXT PWR is powering the network (blue ON light is illuminated), you must deselect EXT PWR to allow the APU generator to take over the electrical load.",
+  },
+  {
+    id: 610,
+    theme: "30 : Ice and Rain Protection",
+    question: "Which probes are not heated on the ground?",
+    options: ["Static ports", "Pitot probes", "TAT probes", "AoA probes"],
+    correct: 2,
+    explanation:
+      "FCOM DSC-30-30-10: TAT (Total Air Temperature) probes are not heated on the ground to prevent damage from overheating in still air. Pitot, Static, and AoA probes are heated at a lower (reduced) level on the ground.",
+  },
+  {
+    id: 611,
+    theme: "52 : Doors",
+    question:
+      "If an emergency access procedure has been initiated by a cabin crew member, the buzzer in the cockpit will sound for:",
+    options: ["Continuously", "9 sec", "90 sec", "9 times every 19 sec"],
+    correct: 0,
+    explanation:
+      "FCOM DSC-52-10-30: When the emergency access code is entered on the cabin keypad, the cockpit buzzer sounds continuously for a set duration (typically 3 seconds, but treated as 'continuously' in this context until unlocked or denied by the crew).",
+  },
+  {
+    id: 612,
+    theme: "32 : Landing Gear",
+    question:
+      "What impact does a HYD G SYS LO PR alert have on the braking system?",
+    options: [
+      "Normal braking will be lost To recover brakes, the flight crew must manually select alternate brakes by moving the A/SKID and N/W STRG switch to OFF",
+      "The system will automatically select alternate brakes with anti-skid, using the yellow hydraulic system",
+      "Normal braking will continue to operate using the yellow hydraulic system",
+      "The system will automatically select alternate brakes without anti-skid, using the yellow hydraulic system",
+    ],
+    correct: 1,
+    explanation:
+      "FCOM DSC-32-30-10: Normal braking is powered by the Green hydraulic system. If Green pressure is lost, the system automatically switches to Alternate Braking powered by the Yellow hydraulic system. Anti-skid remains available as long as the BSCU is functioning.",
+  },
+  {
+    id: 613,
+    theme: "Limitations",
+    question: "What is the starter limitation for the APU?",
+    options: [
+      "A 3 min cooling period is required following each start attempt",
+      "A 45 min cooling period is required following four consecutive start attempts",
+      "A 60 min cooling period is required following three consecutive start attempts",
+      "A 30 min cooling period is required following three consecutive start attempts",
+    ],
+    correct: 2,
+    explanation:
+      "FCOM LIM-APU-10: The APU starter motor duty cycle is limited to 3 consecutive start attempts. After the third attempt, a 60-minute cooling period is required before any further attempt.",
+  },
+  {
+    id: 614,
+    theme: "28 : Fuel",
+    question:
+      "When the fuel tanks are completely filled, an allowance of up to ____ total capacity is provided within the system to allow for expansion due to temperature rise",
+    options: ["2%", "1%", "5%", "3%"],
+    correct: 0,
+    explanation:
+      "FCOM DSC-28-10-10: The fuel tanks are designed with surge tanks and an expansion space that provides an allowance of about 2% of the total capacity for thermal expansion without spilling fuel overboard.",
+  },
+  {
+    id: 615,
+    theme: "28 : Fuel",
+    question: "What does an amber half box around the FOB on the EWD indicate?",
+    options: [
+      "The fuel quantity indicated is unreliable",
+      "The indicated fuel quantity is less than 1,500 kg",
+      "The fuel quantity indicated is inaccurate",
+      "Not all of the displayed fuel quantity is usable",
+    ],
+    correct: 3,
+    explanation:
+      "FCOM DSC-28-20: An amber half-box appears around the FOB (Fuel On Board) indication on the E/WD when not all of the indicated fuel is usable (for example, if center tank pumps fail while there is still fuel in the center tank).",
+  },
+  {
+    id: 616,
+    theme: "24 : Electrical",
+    question: "What is output power of each of the AC generators?",
+    options: [
+      "IDG 115KVA, APU 115KVA, emergency generator 15KVA, Static Inverter 1KVA",
+      "IDG 90 KVA, APU 90 KVA, emergency generator 5 KVA, Static Inverter 1 KVA",
+      "IDG 90KVA, APU 90KVA, emergency generator 23KVA, Static Inverter 5KVA",
+      "IDG 100KVA, APU 100KVA, emergency generator 5KVA, Static Inverter 1KVA",
+    ],
+    correct: 1,
+    explanation:
+      "FCOM DSC-24-10-20: The two main engine-driven generators (IDGs) and the APU generator each supply 90 kVA. The Constant Speed Motor Generator (Emergency Generator) supplies 5 kVA, and the Static Inverter supplies 1 kVA.",
   },
 ];
