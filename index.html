@@ -33,6 +33,7 @@
         --history-bg: #f8f9fa;
         --search-bg: #f8f9fa;
         --search-border: #ecf0f1;
+        --chart-fill: rgba(52, 152, 219, 0.2);
         --postit-bg: #fffa90;
         --postit-text: #333333;
         --postit-border: #f1c40f;
@@ -65,6 +66,7 @@
         --history-bg: #2c2c2c;
         --search-bg: #2c2c2c;
         --search-border: #444444;
+        --chart-fill: rgba(100, 181, 246, 0.2);
         --postit-bg: #3b3a1d;
         --postit-text: #e0e0e0;
         --postit-border: #c0ca33;
@@ -416,6 +418,8 @@
         padding: 12px;
         border-radius: 6px;
         border: 2px solid var(--search-border);
+        background-color: var(--search-bg);
+        color: var(--text-main);
         font-size: 16px;
         box-sizing: border-box;
         margin-bottom: 20px;
@@ -1125,7 +1129,7 @@
                   label: "Score Achieved (%)",
                   data: dataScores,
                   borderColor: getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#3498db",
-                  backgroundColor: getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() ? "rgba(52, 152, 219, 0.2)" : "rgba(52, 152, 219, 0.2)",
+                  backgroundColor: getComputedStyle(document.documentElement).getPropertyValue("--chart-fill").trim() || "rgba(52, 152, 219, 0.2)",
                   fill: true,
                   tension: 0.3,
                   pointBackgroundColor: getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#2980b9",
@@ -1164,7 +1168,12 @@
           )
         ) {
           Object.keys(localStorage)
-            .filter((key) => key.startsWith("a320_") && key !== "a320_user_id")
+            .filter(
+              (key) =>
+                key.startsWith("a320_") &&
+                key !== "a320_user_id" &&
+                key !== "a320_dark_mode",
+            )
             .forEach((key) => localStorage.removeItem(key));
 
           location.reload();
