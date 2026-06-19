@@ -16,6 +16,60 @@
         --correct: #2ecc71;
         --incorrect: #e74c3c;
         --text-main: #333333;
+        --border-color: #ecf0f1;
+        --hover-bg: #ecf0f1;
+        --input-bg: #ffffff;
+        --input-border: #ccc;
+        --badge-bg: #e1f0fa;
+        --badge-text: var(--accent);
+        --unpinned-color: #bdc3c7;
+        --pinned-color: #f1c40f;
+        --option-bg: #f8f9fa;
+        --option-border: #e9ecef;
+        --expl-bg: #fff3cd;
+        --expl-border: #ffc107;
+        --nav-circle-border: #bdc3c7;
+        --text-muted: #7f8c8d;
+        --history-bg: #f8f9fa;
+        --search-bg: #f8f9fa;
+        --search-border: #ecf0f1;
+        --postit-bg: #fffa90;
+        --postit-text: #333333;
+        --postit-border: #f1c40f;
+        --shadow-color: rgba(0, 0, 0, 0.1);
+        --warning-color: #f39c12;
+      }
+
+      [data-theme="dark"] {
+        --bg-color: #121212;
+        --card-bg: #1e1e1e;
+        --primary: #90caf9;
+        --accent: #64b5f6;
+        --correct: #81c784;
+        --incorrect: #e57373;
+        --text-main: #e0e0e0;
+        --border-color: #333333;
+        --hover-bg: #2c2c2c;
+        --input-bg: #2c2c2c;
+        --input-border: #555555;
+        --badge-bg: #153856;
+        --badge-text: #90caf9;
+        --unpinned-color: #666666;
+        --pinned-color: #fbc02d;
+        --option-bg: #2c2c2c;
+        --option-border: #444444;
+        --expl-bg: #332b10;
+        --expl-border: #fbc02d;
+        --nav-circle-border: #555555;
+        --text-muted: #aaaaaa;
+        --history-bg: #2c2c2c;
+        --search-bg: #2c2c2c;
+        --search-border: #444444;
+        --postit-bg: #3b3a1d;
+        --postit-text: #e0e0e0;
+        --postit-border: #c0ca33;
+        --shadow-color: rgba(0, 0, 0, 0.5);
+        --warning-color: #ffb74d;
       }
       body {
         font-family:
@@ -37,7 +91,7 @@
         max-width: 600px;
         padding: 30px;
         border-radius: 12px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 10px 20px var(--shadow-color);
       }
       h1,
       h2 {
@@ -53,7 +107,7 @@
         display: flex;
         gap: 10px;
         margin-bottom: 25px;
-        border-bottom: 2px solid #ecf0f1;
+        border-bottom: 2px solid var(--border-color);
         padding-bottom: 15px;
       }
       .nav-btn {
@@ -68,7 +122,7 @@
         transition: 0.2s;
       }
       .nav-btn:hover {
-        background: #ecf0f1;
+        background: var(--hover-bg);
       }
       .nav-btn.active {
         background: var(--primary);
@@ -116,7 +170,7 @@
 
       input[type="range"].monkey-slider::-webkit-slider-runnable-track {
         height: 8px;
-        background: #dfe6e9;
+        background: var(--border-color);
         border-radius: 999px;
       }
 
@@ -137,7 +191,7 @@
 
       input[type="range"].monkey-slider::-moz-range-track {
         height: 8px;
-        background: #dfe6e9;
+        background: var(--border-color);
         border-radius: 999px;
       }
 
@@ -156,10 +210,11 @@
         width: 100%;
         padding: 10px;
         border-radius: 6px;
-        border: 1px solid #ccc;
+        border: 1px solid var(--input-border);
+        color: var(--text-main);
         font-size: 16px;
         font-family: inherit;
-        background-color: #fff;
+        background-color: var(--input-bg);
         cursor: pointer;
       }
       .checkbox-group {
@@ -179,8 +234,8 @@
       }
       .theme-badge {
         display: inline-block;
-        background: #e1f0fa;
-        color: var(--accent);
+        background: var(--badge-bg);
+        color: var(--badge-text);
         padding: 4px 8px;
         border-radius: 4px;
         font-size: 12px;
@@ -188,7 +243,7 @@
       }
       .question-id-badge {
         font-size: 12px;
-        color: #bdc3c7;
+        color: var(--unpinned-color);
         margin-left: 10px;
         font-weight: bold;
       }
@@ -203,18 +258,18 @@
         padding: 0 10px;
       }
       .pin-btn.pinned {
-        color: #f1c40f;
+        color: var(--pinned-color);
       }
       .pin-btn.unpinned {
-        color: #bdc3c7;
+        color: var(--unpinned-color);
       }
       .pin-btn:hover {
         transform: scale(1.2);
       }
 
       .option {
-        background: #f8f9fa;
-        border: 2px solid #e9ecef;
+        background: var(--option-bg);
+        border: 2px solid var(--option-border);
         padding: 12px;
         margin: 8px 0;
         border-radius: 6px;
@@ -242,8 +297,8 @@
       .explanation-box {
         margin-top: 15px;
         padding: 15px;
-        background: #fff3cd;
-        border-left: 4px solid #ffc107;
+        background: var(--expl-bg);
+        border-left: 4px solid var(--expl-border);
         border-radius: 4px;
         font-size: 14px;
         line-height: 1.4;
@@ -270,8 +325,8 @@
         font-size: 14px;
         font-weight: bold;
         cursor: pointer;
-        border: 2px solid #bdc3c7;
-        color: #7f8c8d;
+        border: 2px solid var(--nav-circle-border);
+        color: var(--text-muted);
         background: transparent;
         transition: 0.2s;
         padding: 0;
@@ -280,7 +335,7 @@
         border-color: var(--primary);
         color: var(--primary);
         transform: scale(1.1);
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 5px var(--shadow-color);
       }
       .nav-circle.correct {
         background-color: var(--correct);
@@ -330,15 +385,15 @@
       td {
         padding: 12px 8px;
         text-align: left;
-        border-bottom: 1px solid #ecf0f1;
+        border-bottom: 1px solid var(--border-color);
       }
       th {
-        color: #7f8c8d;
+        color: var(--text-muted);
         font-size: 14px;
       }
 
       .history-card {
-        background: #f8f9fa;
+        background: var(--option-bg);
         margin-bottom: 10px;
         padding: 15px;
         border-radius: 6px;
@@ -360,7 +415,7 @@
         width: 100%;
         padding: 12px;
         border-radius: 6px;
-        border: 2px solid #ecf0f1;
+        border: 2px solid var(--search-border);
         font-size: 16px;
         box-sizing: border-box;
         margin-bottom: 20px;
@@ -371,8 +426,8 @@
         outline: none;
       }
       .search-item {
-        background: #f8f9fa;
-        border: 2px solid #ecf0f1;
+        background: var(--option-bg);
+        border: 2px solid var(--search-border);
         padding: 12px;
         margin: 8px 0;
         border-radius: 6px;
@@ -389,7 +444,7 @@
       }
       .search-item-theme {
         font-size: 12px;
-        color: #7f8c8d;
+        color: var(--text-muted);
         margin-left: 10px;
       }
       .search-item-text {
@@ -401,21 +456,21 @@
       .keyboard-help {
         text-align: center;
         font-size: 12px;
-        color: #bdc3c7;
+        color: var(--unpinned-color);
         margin-top: 20px;
       }
 
       .postit {
-        background: #fffa90; /* Jaune post-it */
+        background: var(--postit-bg); /* Jaune post-it */
         padding: 15px;
         margin: 15px auto;
         width: 90%;
         border-radius: 2px;
-        box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.1);
+        box-shadow: 5px 5px 7px var(--shadow-color);
         position: relative;
         transform: rotate(-1deg); /* Petit effet penché */
-        color: #333;
-        border-left: 5px solid #f1c40f;
+        color: var(--postit-text);
+        border-left: 5px solid var(--postit-border);
       }
 
       .close-postit {
@@ -426,11 +481,11 @@
         border: none;
         font-size: 20px;
         cursor: pointer;
-        color: #999;
+        color: var(--text-muted);
       }
 
       .close-postit:hover {
-        color: #333;
+        color: var(--postit-text);
       }
     </style>
     <script src="questions.js"></script>
@@ -444,6 +499,7 @@
         <button class="nav-btn" onclick="switchTab('stats')">Statistics</button>
         <button class="nav-btn" onclick="switchTab('history')">History</button>
         <button class="nav-btn" onclick="switchTab('search')">Search</button>
+        <button class="nav-btn" id="dark-mode-btn" onclick="toggleDarkMode()" style="flex: 0 0 auto; padding: 10px; font-size: 18px;" title="Toggle Dark Mode">🌙</button>
       </div>
 
       <div id="tab-setup">
@@ -497,15 +553,17 @@
           style="
             text-align: center;
             font-size: 12px;
-            color: #7f8c8d;
+            color: var(--text-muted);
             margin-top: 20px;
           "
         >
           <span id="seen-stats">0</span> questions seen |
-          <span id="pinned-stats">0</span> questions pinned <br /><br /><a
+          <span id="pinned-stats">0</span> questions pinned <br /><br />
+          <span style="color: var(--text-muted); font-size: 11px;">Progress is saved locally on this browser. It will not sync across devices or in incognito mode.</span><br /><br />
+          <a
             href="#"
             onclick="resetProgress()"
-            style="color: #e74c3c; text-decoration: none"
+            style="color: var(--incorrect); text-decoration: none"
             >Reset all my progress</a
           >
         </p>
@@ -539,7 +597,7 @@
       <div id="tab-question-view" class="hidden">
         <button
           class="action-btn"
-          style="margin-top: 0; margin-bottom: 15px; background-color: #7f8c8d"
+          style="margin-top: 0; margin-bottom: 15px; background-color: var(--text-muted)"
           onclick="backToSearch()"
         >
           ← Back to Results
@@ -581,7 +639,7 @@
             </button>
             <span
               id="progress-text"
-              style="font-size: 14px; color: #7f8c8d; margin-left: 5px"
+              style="font-size: 14px; color: var(--text-muted); margin-left: 5px"
               >1/5</span
             >
           </div>
@@ -621,7 +679,7 @@
             id="save-exit-btn"
             onclick="saveQuiz()"
             style="
-              color: #f39c12;
+              color: var(--warning-color);
               font-size: 14px;
               text-decoration: none;
               font-weight: bold;
@@ -632,7 +690,7 @@
             href="#"
             id="end-quiz-btn"
             onclick="endQuiz()"
-            style="color: #e74c3c; font-size: 14px; text-decoration: none"
+            style="color: var(--incorrect); font-size: 14px; text-decoration: none"
             >⏹ End training and see results</a
           >
         </div>
@@ -666,6 +724,38 @@
         userId = "user_" + Math.random().toString(36).substr(2, 9);
         localStorage.setItem("a320_user_id", userId);
       }
+
+      // --- DARK MODE LOGIC ---
+      function initDarkMode() {
+        const isDark = localStorage.getItem("a320_dark_mode") === "true";
+        if (isDark) {
+          document.documentElement.setAttribute("data-theme", "dark");
+          const btn = document.getElementById("dark-mode-btn");
+          if(btn) btn.innerText = "☀️";
+        }
+      }
+
+      function toggleDarkMode() {
+        const html = document.documentElement;
+        const isDark = html.getAttribute("data-theme") === "dark";
+        const btn = document.getElementById("dark-mode-btn");
+        if (isDark) {
+          html.removeAttribute("data-theme");
+          localStorage.setItem("a320_dark_mode", "false");
+          if(btn) btn.innerText = "🌙";
+        } else {
+          html.setAttribute("data-theme", "dark");
+          localStorage.setItem("a320_dark_mode", "true");
+          if(btn) btn.innerText = "☀️";
+        }
+
+        // Refresh charts if we are in history tab
+        if (!document.getElementById("tab-history").classList.contains("hidden")) {
+            renderHistory();
+        }
+      }
+
+      initDarkMode();
 
       // --- DEVICE DETECTION ---
       function getDeviceType() {
@@ -994,7 +1084,7 @@
               ? "var(--correct)"
               : "var(--incorrect)";
           const statusBadge = isSaved
-            ? `<span style="background:#f39c12; color:white; padding:2px 6px; border-radius:4px; font-size:10px; margin-left:5px;">PAUSED</span>`
+            ? `<span style="background:var(--warning-color); color:white; padding:2px 6px; border-radius:4px; font-size:10px; margin-left:5px;">PAUSED</span>`
             : "";
 
           let actionBtn = "";
@@ -1009,7 +1099,7 @@
           html += `<div class="history-card">
                 <div style="flex: 1;">
                     <strong>Test from ${test.date}</strong> ${statusBadge}<br>
-                    <span style="font-size: 12px; color: #7f8c8d;">${test.score} / ${test.total} correct</span>
+                    <span style="font-size: 12px; color: var(--text-muted);">${test.score} / ${test.total} correct</span>
                 </div>
                 <div style="margin-right: 15px; font-size: 20px; font-weight: bold; color: ${color};">${isSaved ? "--" : test.percentage}%</div>
                 <div>${actionBtn}</div>
@@ -1034,16 +1124,16 @@
                 {
                   label: "Score Achieved (%)",
                   data: dataScores,
-                  borderColor: "#3498db",
-                  backgroundColor: "rgba(52, 152, 219, 0.2)",
+                  borderColor: getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#3498db",
+                  backgroundColor: getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() ? "rgba(52, 152, 219, 0.2)" : "rgba(52, 152, 219, 0.2)",
                   fill: true,
                   tension: 0.3,
-                  pointBackgroundColor: "#2980b9",
+                  pointBackgroundColor: getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#2980b9",
                 },
                 {
                   label: "Passing Threshold (75%)",
                   data: thresholdLine,
-                  borderColor: "#e74c3c",
+                  borderColor: getComputedStyle(document.documentElement).getPropertyValue("--incorrect").trim() || "#e74c3c",
                   borderDash: [5, 5],
                   borderWidth: 2,
                   pointRadius: 0,
