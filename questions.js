@@ -284,7 +284,7 @@ const db = [
     theme: "EFB / Performances",
     question:
       "If a runway is wet and NOTAMed 'slippery when wet', what is the correct EFB to PERF input for RWY COND?",
-    options: ['WATER 1/4"', "DRY", "ICY", "WET"],
+    options: ['WATER 1/2"', "DRY", "ICY", "WET"],
     correct: 0,
     explanation:
       "FCOM PRO-NOR-SOP-01-20: Runway condition is downgraded in EFB for safety.",
@@ -8129,5 +8129,68 @@ const db = [
     correct: 1,
     explanation:
       "FCOM DSC-24-10-20: The two main engine-driven generators (IDGs) and the APU generator each supply 90 kVA. The Constant Speed Motor Generator (Emergency Generator) supplies 5 kVA, and the Static Inverter supplies 1 kVA.",
+  },
+  {
+    id: 617,
+    theme: "EFB / Performances",
+    question:
+      "Where is the correct place to find RWY COND EFB entry at landing dispatch?",
+    options: ["Operational Quick Access", "QRH", "OM-B", "OM-A"],
+    correct: 0,
+    explanation:
+      "FCOM PERF-LDG (Standard EFB Procedure): The Runway Condition (RWY COND) entry for landing dispatch calculations on the EFB is typically found in the Operational Quick Access menu.",
+  },
+  {
+    id: 618,
+    theme: "38 : Water/Waste",
+    question: "How many shut-off valves are there to isolate the toilets?",
+    options: [
+      "One per toilet",
+      "There is no way to isolate the toilets",
+      "Two per toilet",
+      "One for the whole aircraft",
+    ],
+    correct: 0,
+    explanation:
+      "FCOM DSC-38-20-20: The toilet system can be isolated in case of malfunction. There is one water shut-off valve provided per toilet to safely isolate it from the potable water supply.",
+  },
+  {
+    id: 619,
+    theme: "35 : Oxygen",
+    question: "Select the correct statement about the cockpit oxygen masks:",
+    options: [
+      "The masks should be stowed with the EMERGENCY pressure selector set to provide a permanent overpressure. This is to prevent smoke, smell or ash from entering the mask",
+      "The masks are stowed with the N/100% select set to N (normal position)",
+      "Pressing the EMERGENCY pressure selector on the mask generates an overpressure for a few sec. This is used to eliminate condensation/fogging of the mask. The mask can only be pressurised if the N/100% selector is set to 100%",
+      "If the N/100% selector is set to N (normal) the mask will, under all conditions, supply a fixed ratio of cabin air to oxygen",
+    ],
+    correct: 2,
+    explanation:
+      "FCOM DSC-35-10-30: Pressing the EMERGENCY pressure selector creates a temporary overpressure to clear condensation or fogging. For continuous overpressure, the N/100% selector must be set to 100%.",
+  },
+  {
+    id: 620,
+    theme: "21 : Air Conditioning, Pressurization, Ventilation",
+    question:
+      "What happens to the avionics ventilation system if only the EXTRACT push button is set to override?",
+    options: [
+      "Open configuration is selected, both fan remain running. This improves ventilation following a duct overheat",
+      "The system enters the intermediate configuration, and air is added from the air conditioning system. This configuration may be selected to help exhaust smoke or fumes overboard",
+      "The extract fan will stop and the skin heat exchanger is bypassed. The open configuration will be selected on the ground, and intermediate in flight",
+      "The system enters closed circuit configuration, and air is added from the air conditioning system. This is a useful configuration to consider during heavy rain on the ground",
+    ],
+    correct: 3,
+    explanation:
+      "FCOM DSC-21-30-20: Setting the EXTRACT pb to OVRD places the avionics ventilation in the closed-circuit configuration and adds air from the air conditioning system. This isolates the system from the outside and is the standard procedure to prevent water ingress during heavy rain on the ground.",
+  },
+  {
+    id: 621,
+    theme: "34 : Navigation",
+    question:
+      "Which system/computer provides the predictive windshear function?",
+    options: ["ADIRU 1", "The weather radar", "FAC", "SDAC"],
+    correct: 1,
+    explanation:
+      "FCOM DSC-34-40-10: The Predictive Windshear System (PWS) function is provided by the Weather Radar system, which scans the airspace ahead of the aircraft. Note: The FAC provides the Reactive windshear function, not the predictive one.",
   },
 ];
