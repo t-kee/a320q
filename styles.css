@@ -374,7 +374,7 @@ h2 {
 }
 
 .flow-builder-metadata {
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(200px, 1fr) 220px minmax(240px, 1fr);
 }
 
 .flow-builder-toolbar label,
@@ -435,7 +435,7 @@ h2 {
 .flow-builder-step {
   display: grid;
   grid-template-columns:
-    40px 72px 76px minmax(180px, 1fr) minmax(120px, 0.55fr)
+    40px 72px minmax(180px, 1fr) minmax(120px, 0.55fr)
     auto 38px;
   align-items: center;
   gap: 8px;
@@ -475,11 +475,40 @@ h2 {
 }
 
 .flow-step-controls {
-  grid-column: 4 / -1;
+  grid-column: 3 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  min-height: 22px;
+}
+
+.flow-control-logic {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding-right: 8px;
+  border-right: 1px solid var(--input-border);
+}
+
+.flow-control-logic > span {
+  color: var(--text-muted);
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.flow-control-logic .flow-step-mode {
+  min-height: 30px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.flow-control-chips {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  min-height: 22px;
 }
 
 .flow-control-chip {

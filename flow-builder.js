@@ -36,18 +36,45 @@ function getFlowDefinition(flowId) {
 }
 
 function getFlowCatalogEntries() {
-  const entries = [...flowCatalog];
-  Object.values(userFlows).forEach((flow) => {
-    if (!entries.some(([id]) => id === flow.id)) {
-      entries.push([flow.id, flow.name]);
-    }
-  });
+  const entries = new Map(
+    flowCatalog.map(([id, name, category = "normal"]) => [
+      id,
+      [id, name, category],
+    ]),
+  );
   Object.values(bundledUserFlows).forEach((flow) => {
-    if (!entries.some(([id]) => id === flow.id)) {
-      entries.push([flow.id, flow.name]);
-    }
+    const previous = entries.get(flow.id);
+    entries.set(flow.id, [
+      flow.id,
+      flow.name,
+      flow.category || previous?.[2] || "normal",
+    ]);
   });
-  return entries;
+  Object.values(userFlows).forEach((flow) => {
+    const previous = entries.get(flow.id);
+    entries.set(flow.id, [
+      flow.id,
+      flow.name,
+      flow.category || previous?.[2] || "normal",
+    ]);
+  });
+  return [...entries.values()];
+}
+
+function renderGroupedFlowOptions(entries, optionRenderer) {
+  const categories = [
+    ["normal", "Normal Procedures"],
+    ["abnormal", "Abnormal / Emergency"],
+  ];
+  return categories
+    .map(([category, label]) => {
+      const options = entries
+        .filter(([, , entryCategory]) => entryCategory === category)
+        .map(optionRenderer)
+        .join("");
+      return options ? `<optgroup label="${label}">${options}</optgroup>` : "";
+    })
+    .join("");
 }
 
 function slugifyFlowName(name) {
@@ -89,6 +116,7 @@ function normalizeFlowForBuilder(definition) {
   return {
     id: definition.id,
     name: definition.name,
+    category: definition.category || "normal",
     trigger: definition.trigger || "",
     initialPanel: definition.initialPanel || "glareshield",
     steps: (definition.steps || []).map((step) => {
@@ -139,12 +167,13 @@ function renderFlowBuilderSelect() {
   const select = document.getElementById("flow-builder-select");
   if (!select) return;
   const currentValue = flowBuilderDraft?.id || selectedFlowId;
-  select.innerHTML = getFlowCatalogEntries()
-    .map(([id, name]) => {
+  select.innerHTML = renderGroupedFlowOptions(
+    getFlowCatalogEntries(),
+    ([id, name]) => {
       const local = userFlows[id] ? " · local version" : "";
       return `<option value="${id}">${name}${local}</option>`;
-    })
-    .join("");
+    },
+  );
   if (Array.from(select.options).some((option) => option.value === currentValue)) {
     select.value = currentValue;
   }
@@ -158,11 +187,14 @@ function loadFlowIntoBuilder(flowId) {
   const definition = getFlowDefinition(flowId);
   const catalogName =
     getFlowCatalogEntries().find(([id]) => id === flowId)?.[1] || "New Flow";
+  const catalogCategory =
+    getFlowCatalogEntries().find(([id]) => id === flowId)?.[2] || "normal";
   flowBuilderDraft = definition
     ? normalizeFlowForBuilder(definition)
     : {
         id: flowId,
         name: catalogName,
+        category: catalogCategory,
         trigger: "",
         initialPanel: "glareshield",
         steps: [],
@@ -179,6 +211,7 @@ function createNewFlowDraft() {
   flowBuilderDraft = {
     id: "",
     name: "",
+    category: "normal",
     trigger: "",
     initialPanel: "glareshield",
     steps: [],
@@ -194,6 +227,8 @@ function syncFlowBuilderMetadata() {
     document.getElementById("flow-builder-name").value.trim();
   flowBuilderDraft.trigger =
     document.getElementById("flow-builder-trigger").value.trim();
+  flowBuilderDraft.category =
+    document.getElementById("flow-builder-category").value;
 }
 
 function renderFlowBuilderDraft() {
@@ -202,6 +237,8 @@ function renderFlowBuilderDraft() {
     flowBuilderDraft.name || "";
   document.getElementById("flow-builder-trigger").value =
     flowBuilderDraft.trigger || "";
+  document.getElementById("flow-builder-category").value =
+    flowBuilderDraft.category || "normal";
 
   const steps = document.getElementById("flow-builder-steps");
   steps.innerHTML = flowBuilderDraft.steps.length
@@ -245,15 +282,6 @@ function renderFlowBuilderStep(step, index) {
         <option value="PF"${step.actor === "PF" ? " selected" : ""}>PF</option>
         <option value="PM"${step.actor === "PM" ? " selected" : ""}>PM</option>
       </select>
-      <select
-        class="flow-step-mode"
-        aria-label="Control logic for line ${index + 1}"
-        onchange="updateFlowBuilderStep(${index}, 'mode', this.value)"
-        title="AND requires every selected control. OR accepts any one control."
-      >
-        <option value="AND"${step.mode !== "OR" ? " selected" : ""}>AND</option>
-        <option value="OR"${step.mode === "OR" ? " selected" : ""}>OR</option>
-      </select>
       <input
         class="flow-step-action"
         type="text"
@@ -285,7 +313,21 @@ function renderFlowBuilderStep(step, index) {
       >
         ×
       </button>
-      <div class="flow-step-controls">${controlChips}</div>
+      <div class="flow-step-controls">
+        <label class="flow-control-logic">
+          <span>Selected controls</span>
+          <select
+            class="flow-step-mode"
+            aria-label="Control logic for line ${index + 1}"
+            onchange="updateFlowBuilderStep(${index}, 'mode', this.value)"
+            title="AND requires every selected control. OR accepts any one control."
+          >
+            <option value="AND"${step.mode !== "OR" ? " selected" : ""}>AND</option>
+            <option value="OR"${step.mode === "OR" ? " selected" : ""}>OR</option>
+          </select>
+        </label>
+        <div class="flow-control-chips">${controlChips}</div>
+      </div>
     </article>
   `;
 }

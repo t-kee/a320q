@@ -1,16 +1,19 @@
 {
   "version": 1,
-  "exportedAt": "2026-07-23T14:46:53.276Z",
+  "exportedAt": "2026-07-23T15:40:23.456Z",
   "flows": {
     "after-landing": {
       "id": "after-landing",
       "name": "After Landing",
+      "category": "normal",
       "trigger": "When vacating the runway",
       "initialPanel": "glareshield",
       "steps": [
         {
-          "role": "PF",
-          "instruction": "GND SPLRS — DISARM",
+          "actor": "PF",
+          "mode": "AND",
+          "action": "GND SPLRS",
+          "state": "DISARM",
           "controls": [
             {
               "panel": "pedestal",
@@ -20,8 +23,10 @@
           ]
         },
         {
-          "role": "PF",
-          "instruction": "STROBE — OFF",
+          "actor": "PF",
+          "mode": "AND",
+          "action": "STROBE",
+          "state": "OFF",
           "controls": [
             {
               "panel": "overhead",
@@ -31,8 +36,10 @@
           ]
         },
         {
-          "role": "PF",
-          "instruction": "LAND LIGHT — OFF",
+          "actor": "PF",
+          "mode": "AND",
+          "action": "LAND LIGHT",
+          "state": "OFF",
           "controls": [
             {
               "panel": "overhead",
@@ -47,8 +54,10 @@
           ]
         },
         {
-          "role": "PF",
-          "instruction": "NOSE LIGHT — TAXI",
+          "actor": "PF",
+          "mode": "AND",
+          "action": "NOSE LIGHT",
+          "state": "TAXI",
           "controls": [
             {
               "panel": "overhead",
@@ -58,8 +67,10 @@
           ]
         },
         {
-          "role": "PM",
-          "instruction": "WX RADAR / PREDICTIVE WINDSHEAR — OFF",
+          "actor": "PM",
+          "mode": "AND",
+          "action": "WX RADAR / PREDICTIVE WINDSHEAR",
+          "state": "OFF",
           "controls": [
             {
               "panel": "pedestal",
@@ -69,8 +80,10 @@
           ]
         },
         {
-          "role": "PM",
-          "instruction": "ENG MODE SELECTOR — NORM",
+          "actor": "PM",
+          "mode": "AND",
+          "action": "ENG MODE SELECTOR",
+          "state": "NORM",
           "controls": [
             {
               "panel": "pedestal",
@@ -80,8 +93,10 @@
           ]
         },
         {
-          "role": "PM",
-          "instruction": "FLAPS — RETRACT",
+          "actor": "PM",
+          "mode": "AND",
+          "action": "FLAPS",
+          "state": "RETRACT",
           "controls": [
             {
               "panel": "pedestal",
@@ -91,8 +106,10 @@
           ]
         },
         {
-          "role": "PM",
-          "instruction": "TCAS — STBY / XPNDR",
+          "actor": "PM",
+          "mode": "AND",
+          "action": "TCAS",
+          "state": "STBY / XPNDR",
           "controls": [
             {
               "panel": "pedestal",
@@ -102,8 +119,10 @@
           ]
         },
         {
-          "role": "PM",
-          "instruction": "ANTI-ICE — AS RQRD",
+          "actor": "PM",
+          "mode": "OR",
+          "action": "ANTI-ICE",
+          "state": "AS RQRD",
           "controls": [
             {
               "panel": "overhead",
@@ -118,8 +137,10 @@
           ]
         },
         {
-          "role": "PM",
-          "instruction": "PACK 2 — AS RQRD",
+          "actor": "PM",
+          "mode": "AND",
+          "action": "PACK 2",
+          "state": "AS RQRD",
           "controls": [
             {
               "panel": "overhead",
@@ -129,8 +150,10 @@
           ]
         },
         {
-          "role": "PM",
-          "instruction": "GPWS LDG FLAP 3 — OFF",
+          "actor": "PM",
+          "mode": "AND",
+          "action": "GPWS LDG FLAP 3",
+          "state": "OFF",
           "controls": [
             {
               "panel": "overhead",
@@ -140,8 +163,10 @@
           ]
         },
         {
-          "role": "PM",
-          "instruction": "APU MASTER — ON WHEN APPROPRIATE",
+          "actor": "PM",
+          "mode": "AND",
+          "action": "APU MASTER",
+          "state": "ON WHEN APPROPRIATE",
           "controls": [
             {
               "panel": "overhead",
@@ -151,8 +176,10 @@
           ]
         },
         {
-          "role": "PM",
-          "instruction": "APU START — START",
+          "actor": "PM",
+          "mode": "AND",
+          "action": "APU START",
+          "state": "START",
           "controls": [
             {
               "panel": "overhead",
@@ -162,8 +189,10 @@
           ]
         },
         {
-          "role": "PM",
-          "instruction": "FCU PB — DESELECT LS PBS",
+          "actor": "PM",
+          "mode": "AND",
+          "action": "FCU PB",
+          "state": "DESELECT LS PBS",
           "controls": [
             {
               "panel": "glareshield",
@@ -178,8 +207,10 @@
           ]
         },
         {
-          "role": "PM",
-          "instruction": "TERR ON ND — OFF",
+          "actor": "PM",
+          "mode": "OR",
+          "action": "TERR ON ND",
+          "state": "OFF",
           "controls": [
             {
               "panel": "glareshield",
@@ -194,19 +225,23 @@
           ]
         },
         {
-          "role": "PM",
-          "instruction": "BRAKE TEMP — MONITOR",
+          "actor": "PM",
+          "mode": "AND",
+          "action": "BRAKE TEMP",
+          "state": "MONITOR",
           "controls": [
             {
-              "panel": "pedestal",
-              "controlId": "ecam-lower-display-controls",
-              "label": "ECAM lower display control panel"
+              "panel": "glareshield",
+              "controlId": "lower-ecam-screen",
+              "label": "Lower ECAM display"
             }
           ]
         },
         {
-          "role": "PM",
-          "instruction": "BRAKE FAN — AS RQRD",
+          "actor": "PM",
+          "mode": "AND",
+          "action": "BRAKE FAN",
+          "state": "AS RQRD",
           "controls": [
             {
               "panel": "glareshield",

@@ -383,6 +383,13 @@
                 <input id="flow-builder-name" type="text" placeholder="After Landing" />
               </label>
               <label>
+                <span>Category</span>
+                <select id="flow-builder-category">
+                  <option value="normal">Normal Procedures</option>
+                  <option value="abnormal">Abnormal / Emergency</option>
+                </select>
+              </label>
+              <label>
                 <span>Trigger / context</span>
                 <input
                   id="flow-builder-trigger"
@@ -423,7 +430,7 @@
                 onchange="importUserFlows(event)"
               />
               <button class="danger" type="button" onclick="deleteFlowOverride()">
-                Delete local version
+                Reset to default
               </button>
             </div>
             <output id="flow-builder-status"></output>

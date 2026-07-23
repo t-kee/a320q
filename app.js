@@ -67,12 +67,13 @@ function initializeFlowSetup() {
   const select = document.getElementById("flow-select");
   if (!select || typeof flowCatalog === "undefined") return;
 
-  select.innerHTML = getFlowCatalogEntries()
-    .map(([id, name]) => {
+  select.innerHTML = renderGroupedFlowOptions(
+    getFlowCatalogEntries(),
+    ([id, name]) => {
       const suffix = getFlowDefinition(id) ? "" : " — coming soon";
       return `<option value="${id}">${name}${suffix}</option>`;
-    })
-    .join("");
+    },
+  );
   select.value = selectedFlowId;
   selectFlow(selectedFlowId);
 }
