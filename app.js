@@ -37,10 +37,6 @@ let selectedFlowId = "after-landing";
 let activeFlowSession = null;
 let flowRunToken = 0;
 
-function otherFlowSeat(seat) {
-  return seat === "CM1" ? "CM2" : "CM1";
-}
-
 function selectFlowSeat(seat) {
   selectedFlowSeat = seat;
   document.querySelectorAll("[data-flow-seat]").forEach((button) => {
@@ -114,6 +110,7 @@ function startFlow(flowId, seat, role) {
     stepIndex: 0,
     demoInProgress: false,
     paused: false,
+    guidedMode: false,
     timer: null,
     demoHotspots: [],
     completedControlKeys: new Set(),
@@ -123,6 +120,16 @@ function startFlow(flowId, seat, role) {
   restoreFlowPlaybackButtons();
   renderFlowSessionHeader();
   openCockpitPanel(definition.initialPanel);
+  document.getElementById("flow-action-actor").innerText = "READY";
+  document.getElementById("flow-action-instruction").innerText =
+    "Flow starting…";
+  document.getElementById("flow-action-progress").innerText =
+    `0 / ${definition.steps.length}`;
+  document.getElementById("flow-action-play").disabled = true;
+  document.getElementById("flow-action-guided").innerText = "Guided: Off";
+  document
+    .getElementById("flow-action-guided")
+    .setAttribute("aria-pressed", "false");
   const token = activeFlowSession.token;
   activeFlowSession.timer = window.setTimeout(
     () => advanceFlow(token),
@@ -151,11 +158,14 @@ function renderFlowSessionHeader() {
   restoreFlowPlaybackButtons();
 }
 
-function getFlowStepSeat(stepRole) {
-  if (!activeFlowSession) return "";
-  return stepRole === activeFlowSession.role
-    ? activeFlowSession.seat
-    : otherFlowSeat(activeFlowSession.seat);
+function getFlowStepActor(step) {
+  return step.actor || step.role || "PF";
+}
+
+function isFlowStepForUser(step) {
+  if (!activeFlowSession) return false;
+  const actor = getFlowStepActor(step);
+  return actor === activeFlowSession.seat || actor === activeFlowSession.role;
 }
 
 function getFlowStepControls(step) {
@@ -166,10 +176,15 @@ function getFlowStepControls(step) {
     }));
   }
   if (step.controlIdBySeat) {
+    const actor = getFlowStepActor(step);
+    const seat =
+      actor === "CM1" || actor === "CM2"
+        ? actor
+        : activeFlowSession?.seat || "CM2";
     return [
       {
         panel: step.panel,
-        controlId: step.controlIdBySeat[getFlowStepSeat(step.role)],
+        controlId: step.controlIdBySeat[seat],
       },
     ];
   }
@@ -196,13 +211,21 @@ function updateFlowActionBar(step, mode, message) {
   const session = activeFlowSession;
   if (!session) return;
   const bar = document.getElementById("flow-action-bar");
-  const stepSeat = getFlowStepSeat(step.role);
-  const instruction = message || getFlowStepInstruction(step);
+  const actor = getFlowStepActor(step);
+  const guidedInstruction = message || getFlowStepInstruction(step);
+  const blindInstruction =
+    mode === "demo"
+      ? "Other crew member action"
+      : message
+        ? "Incorrect control — restart the flow"
+        : "Your turn — choose the correct control";
+  const instruction = session.guidedMode
+    ? guidedInstruction
+    : blindInstruction;
 
   bar.classList.toggle("demo", mode === "demo");
   bar.classList.remove("complete");
-  document.getElementById("flow-action-actor").innerText =
-    `${stepSeat} · ${step.role}`;
+  document.getElementById("flow-action-actor").innerText = actor;
   document.getElementById("flow-action-instruction").innerText = instruction;
   document.getElementById("flow-action-progress").innerText =
     `${session.stepIndex + 1} / ${session.definition.steps.length}`;
@@ -210,17 +233,29 @@ function updateFlowActionBar(step, mode, message) {
     mode !== "demo";
   document.getElementById("flow-action-play").innerText =
     session.paused ? "▶" : "❚❚";
+  const guidedButton = document.getElementById("flow-action-guided");
+  guidedButton.innerText = session.guidedMode ? "Guided: On" : "Guided: Off";
+  guidedButton.setAttribute(
+    "aria-pressed",
+    session.guidedMode ? "true" : "false",
+  );
 }
 
 function refreshFlowPanelGuidance() {
   document.querySelectorAll(".cockpit-panel-switch").forEach((button) => {
     button.classList.remove("flow-panel-target");
   });
-  if (!activeFlowSession || activeFlowSession.demoInProgress) return;
+  if (
+    !activeFlowSession ||
+    activeFlowSession.demoInProgress ||
+    !activeFlowSession.guidedMode
+  ) {
+    return;
+  }
 
   const step =
     activeFlowSession.definition.steps[activeFlowSession.stepIndex];
-  if (!step || step.role !== activeFlowSession.role) return;
+  if (!step || !isFlowStepForUser(step)) return;
   const targetPanels = new Set(
     getFlowStepControls(step)
       .filter(
@@ -277,7 +312,7 @@ function advanceFlow(token) {
     return;
   }
 
-  if (step.role === session.role) {
+  if (isFlowStepForUser(step)) {
     session.demoInProgress = false;
     updateFlowActionBar(step, "user");
     refreshFlowPanelGuidance();
@@ -361,7 +396,7 @@ function handleFlowHotspotClick(controlId) {
     ),
   );
   if (
-    step.role !== session.role ||
+    !isFlowStepForUser(step) ||
     !expectedKeys.has(clickedKey)
   ) {
     hotspot?.classList.add("flow-incorrect");
@@ -410,6 +445,25 @@ function flowPlaybackPrevious() {
   advanceFlow(session.token);
 }
 
+function restartActiveFlow() {
+  const session = activeFlowSession;
+  if (!session) return;
+  clearFlowTimer(true);
+  session.stepIndex = 0;
+  session.demoInProgress = false;
+  session.paused = false;
+  session.completedControlKeys = new Set();
+  openCockpitPanel(session.definition.initialPanel || "glareshield");
+  document.getElementById("flow-action-actor").innerText = "RESTART";
+  document.getElementById("flow-action-instruction").innerText =
+    "Flow restarting…";
+  document.getElementById("flow-action-progress").innerText =
+    `0 / ${session.definition.steps.length}`;
+  document.getElementById("flow-action-play").disabled = true;
+  document.getElementById("flow-action-play").innerText = "❚❚";
+  session.timer = window.setTimeout(() => advanceFlow(session.token), 650);
+}
+
 function flowPlaybackNext() {
   const session = activeFlowSession;
   if (!session) return;
@@ -420,6 +474,20 @@ function flowPlaybackNext() {
   );
   session.demoInProgress = false;
   advanceFlow(session.token);
+}
+
+function toggleFlowGuidedMode() {
+  const session = activeFlowSession;
+  if (!session) return;
+  session.guidedMode = !session.guidedMode;
+  const step = session.definition.steps[session.stepIndex];
+  if (step) {
+    updateFlowActionBar(
+      step,
+      session.demoInProgress ? "demo" : "user",
+    );
+  }
+  refreshFlowPanelGuidance();
 }
 
 function toggleFlowPlayback() {

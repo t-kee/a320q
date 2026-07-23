@@ -512,6 +512,16 @@
 
               <div id="flow-action-bar" class="flow-action-bar hidden">
                 <button
+                  id="flow-action-restart"
+                  class="flow-playback-btn"
+                  type="button"
+                  onclick="restartActiveFlow()"
+                  aria-label="Restart flow"
+                  title="Restart flow"
+                >
+                  ↺
+                </button>
+                <button
                   id="flow-action-previous"
                   class="flow-playback-btn"
                   type="button"
@@ -539,6 +549,15 @@
                   aria-label="Next flow action"
                 >
                   ›
+                </button>
+                <button
+                  id="flow-action-guided"
+                  class="flow-guided-btn"
+                  type="button"
+                  onclick="toggleFlowGuidedMode()"
+                  aria-pressed="false"
+                >
+                  Guided: Off
                 </button>
                 <span id="flow-action-progress"></span>
                 <button

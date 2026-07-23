@@ -93,7 +93,7 @@ function normalizeFlowForBuilder(definition) {
       }
 
       return {
-        role: step.role || "PF",
+        actor: step.actor || step.role || "PF",
         mode: step.mode === "OR" ? "OR" : "AND",
         instruction:
           step.instruction ||
@@ -222,11 +222,13 @@ function renderFlowBuilderStep(step, index) {
     <article class="flow-builder-step">
       <span class="flow-step-number">${String(index + 1).padStart(2, "0")}</span>
       <select
-        aria-label="Role for line ${index + 1}"
-        onchange="updateFlowBuilderStep(${index}, 'role', this.value)"
+        aria-label="Crew member or role for line ${index + 1}"
+        onchange="updateFlowBuilderStep(${index}, 'actor', this.value)"
       >
-        <option value="PF"${step.role === "PF" ? " selected" : ""}>PF</option>
-        <option value="PM"${step.role === "PM" ? " selected" : ""}>PM</option>
+        <option value="CM1"${step.actor === "CM1" ? " selected" : ""}>CM1</option>
+        <option value="CM2"${step.actor === "CM2" ? " selected" : ""}>CM2</option>
+        <option value="PF"${step.actor === "PF" ? " selected" : ""}>PF</option>
+        <option value="PM"${step.actor === "PM" ? " selected" : ""}>PM</option>
       </select>
       <select
         class="flow-step-mode"
@@ -276,7 +278,7 @@ function addFlowBuilderStep() {
   if (!flowBuilderDraft) createNewFlowDraft();
   syncFlowBuilderMetadata();
   flowBuilderDraft.steps.push({
-    role: "PF",
+    actor: "PF",
     mode: "AND",
     instruction: "",
     controls: [],
@@ -333,14 +335,16 @@ function renderFlowBuilderCaptureHeader() {
 
   const bar = document.getElementById("flow-action-bar");
   bar.classList.remove("hidden", "demo", "complete");
-  document.getElementById("flow-action-actor").innerText = step.role;
+  document.getElementById("flow-action-actor").innerText = step.actor;
   document.getElementById("flow-action-instruction").innerText =
     step.instruction || "Unnamed action";
   document.getElementById("flow-action-progress").innerText =
     `${step.controls.length} selected`;
+  document.getElementById("flow-action-restart").classList.add("hidden");
   document.getElementById("flow-action-previous").classList.add("hidden");
   document.getElementById("flow-action-play").classList.add("hidden");
   document.getElementById("flow-action-next").classList.add("hidden");
+  document.getElementById("flow-action-guided").classList.add("hidden");
   document.getElementById("flow-capture-done").classList.remove("hidden");
   refreshFlowBuilderCapture();
 }
@@ -403,9 +407,11 @@ function cancelFlowBuilderCapture() {
 }
 
 function restoreFlowPlaybackButtons() {
+  document.getElementById("flow-action-restart")?.classList.remove("hidden");
   document.getElementById("flow-action-previous")?.classList.remove("hidden");
   document.getElementById("flow-action-play")?.classList.remove("hidden");
   document.getElementById("flow-action-next")?.classList.remove("hidden");
+  document.getElementById("flow-action-guided")?.classList.remove("hidden");
   document.getElementById("flow-capture-done")?.classList.add("hidden");
 }
 
