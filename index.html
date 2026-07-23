@@ -278,13 +278,33 @@
             <div id="cockpit-panel-cards" class="cockpit-panel-cards"></div>
           </div>
 
-          <div id="cockpit-panel-viewer" class="hidden">
-            <div class="cockpit-toolbar">
-              <button class="cockpit-tool-btn" onclick="closeCockpitPanel()">
-                ← Panels
+          <div
+            id="cockpit-panel-viewer"
+            class="cockpit-modal hidden"
+            onclick="handleCockpitModalBackdrop(event)"
+          >
+            <div
+              class="cockpit-modal-dialog"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="cockpit-panel-title"
+            >
+              <button
+                class="cockpit-modal-close"
+                onclick="closeCockpitPanel()"
+                aria-label="Close cockpit panel"
+              >
+                ×
               </button>
-              <strong id="cockpit-panel-title">Panel</strong>
-              <div class="cockpit-zoom-controls">
+
+              <div class="cockpit-toolbar">
+                <nav
+                  id="cockpit-panel-switcher"
+                  class="cockpit-panel-switcher"
+                  aria-label="Cockpit panels"
+                ></nav>
+                <strong id="cockpit-panel-title">Panel</strong>
+                <div class="cockpit-zoom-controls">
                 <button
                   class="cockpit-tool-btn"
                   onclick="changeCockpitZoom(-0.25)"
@@ -308,48 +328,53 @@
                   Labels
                 </button>
                 <button
-                  class="cockpit-tool-btn cockpit-edit-toggle"
+                  class="cockpit-tool-btn cockpit-edit-toggle hidden"
                   id="cockpit-edit-toggle"
                   onclick="toggleCockpitEditor()"
                 >
                   Edit zones
                 </button>
+                </div>
               </div>
-            </div>
 
-            <p class="cockpit-help">
-              Tap a highlighted control for its name. Pinch or use the buttons
-              to zoom, then drag to move around the panel.
-            </p>
+              <p class="cockpit-help">
+                Tap a highlighted control for its name. Pinch or use the
+                buttons to zoom, then drag to move around the panel.
+              </p>
 
-            <div id="cockpit-editor-bar" class="cockpit-editor-bar hidden">
-              <span>
-                Drag a zone to move it. Drag its bottom-right handle to resize.
-              </span>
-              <div>
-                <button class="cockpit-tool-btn" onclick="saveCockpitMapping()">
-                  Save locally
-                </button>
-                <button
-                  class="cockpit-tool-btn"
-                  onclick="exportCockpitMapping()"
-                >
-                  Export JSON
-                </button>
-                <button
-                  class="cockpit-tool-btn"
-                  onclick="resetCockpitPanelMapping()"
-                >
-                  Reset panel
-                </button>
+              <div id="cockpit-editor-bar" class="cockpit-editor-bar hidden">
+                <span>
+                  Drag a zone to move it. Drag its bottom-right handle to
+                  resize.
+                </span>
+                <div>
+                  <button
+                    class="cockpit-tool-btn"
+                    onclick="saveCockpitMapping()"
+                  >
+                    Save locally
+                  </button>
+                  <button
+                    class="cockpit-tool-btn"
+                    onclick="exportCockpitMapping()"
+                  >
+                    Export JSON
+                  </button>
+                  <button
+                    class="cockpit-tool-btn"
+                    onclick="resetCockpitPanelMapping()"
+                  >
+                    Reset panel
+                  </button>
+                </div>
+                <output id="cockpit-editor-status">No unsaved changes</output>
               </div>
-              <output id="cockpit-editor-status">No unsaved changes</output>
-            </div>
 
-            <div id="cockpit-viewport" class="cockpit-viewport">
-              <div id="cockpit-canvas" class="cockpit-canvas">
-                <img id="cockpit-image" alt="" draggable="false" />
-                <div id="cockpit-hotspots" class="cockpit-hotspots"></div>
+              <div id="cockpit-viewport" class="cockpit-viewport">
+                <div id="cockpit-canvas" class="cockpit-canvas">
+                  <img id="cockpit-image" alt="" draggable="false" />
+                  <div id="cockpit-hotspots" class="cockpit-hotspots"></div>
+                </div>
               </div>
             </div>
           </div>

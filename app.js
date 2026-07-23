@@ -33,6 +33,7 @@ function switchStudyTab(tabId) {
 
 let activeCockpitPanel = null;
 let cockpitZoom = 1;
+let cockpitFitWidth = 0;
 let cockpitLabelsVisible = false;
 let cockpitEditMode = false;
 let cockpitEditOperation = null;
@@ -98,23 +99,40 @@ function renderCockpitPanelCards() {
   const container = document.getElementById("cockpit-panel-cards");
   if (!container || typeof cockpitPanels === "undefined") return;
 
-  container.innerHTML = Object.entries(cockpitPanels)
+  const panelOrder = ["overhead", "glareshield", "pedestal"];
+  container.innerHTML = panelOrder
     .map(
-      ([panelId, panel]) => `
+      (panelId, index) => `
         <button
           class="cockpit-panel-card"
+          type="button"
           onclick="openCockpitPanel('${panelId}')"
         >
-          <span class="cockpit-card-image">
-            <img src="${panel.image}" alt="${panel.label} panel" />
-          </span>
-          <span class="cockpit-card-copy">
-            <strong>${panel.label}</strong>
-            <span>${panel.hotspots.length} mapped controls →</span>
-          </span>
+          <span class="cockpit-card-order">${String(index + 1).padStart(2, "0")}</span>
+          <strong>${cockpitPanels[panelId].label}</strong>
+          <span aria-hidden="true">Open →</span>
         </button>
       `,
     )
+    .join("");
+
+  renderCockpitPanelSwitcher();
+}
+
+function renderCockpitPanelSwitcher() {
+  const switcher = document.getElementById("cockpit-panel-switcher");
+  if (!switcher) return;
+
+  switcher.innerHTML = ["overhead", "glareshield", "pedestal"]
+    .map((panelId) => {
+      const activeClass = panelId === activeCockpitPanel ? " active" : "";
+      return `
+        <button class="cockpit-panel-switch${activeClass}" type="button"
+          onclick="openCockpitPanel('${panelId}')">
+          ${cockpitPanels[panelId].label}
+        </button>
+      `;
+    })
     .join("");
 }
 
@@ -124,11 +142,12 @@ function openCockpitPanel(panelId) {
 
   activeCockpitPanel = panelId;
   cockpitZoom = 1;
-  document.getElementById("cockpit-panel-picker").classList.add("hidden");
   document.getElementById("cockpit-panel-viewer").classList.remove("hidden");
+  document.body.classList.add("cockpit-modal-open");
   document.getElementById("cockpit-panel-title").innerText = panel.label;
 
   const image = document.getElementById("cockpit-image");
+  image.onload = fitCockpitPanelToViewport;
   image.src = panel.image;
   image.alt = `${panel.label} panel`;
 
@@ -154,18 +173,35 @@ function openCockpitPanel(panelId) {
     .join("");
   hotspots.classList.toggle("show-labels", cockpitLabelsVisible);
 
-  updateCockpitZoom();
-  const viewport = document.getElementById("cockpit-viewport");
-  viewport.scrollTop = 0;
-  viewport.scrollLeft = 0;
+  renderCockpitPanelSwitcher();
+  if (image.complete) requestAnimationFrame(fitCockpitPanelToViewport);
 }
 
 function closeCockpitPanel() {
   if (cockpitEditMode) toggleCockpitEditor();
   activeCockpitPanel = null;
   document.getElementById("cockpit-panel-viewer").classList.add("hidden");
-  document.getElementById("cockpit-panel-picker").classList.remove("hidden");
+  document.body.classList.remove("cockpit-modal-open");
   closeCockpitControl();
+}
+
+function handleCockpitModalBackdrop(event) {
+  if (event.target === event.currentTarget) closeCockpitPanel();
+}
+
+function fitCockpitPanelToViewport() {
+  if (!activeCockpitPanel) return;
+  const viewport = document.getElementById("cockpit-viewport");
+  const panel = cockpitPanels[activeCockpitPanel];
+  const availableWidth = Math.max(1, viewport.clientWidth - 2);
+  const availableHeight = Math.max(1, viewport.clientHeight - 2);
+  cockpitFitWidth = Math.min(
+    availableWidth,
+    availableHeight * panel.aspectRatio,
+  );
+  cockpitZoom = 1;
+  updateCockpitZoom();
+  viewport.scrollTo(0, 0);
 }
 
 function handleCockpitHotspotClick(event, controlId) {
@@ -179,9 +215,11 @@ function handleCockpitHotspotClick(event, controlId) {
 function updateCockpitZoom(anchorX, anchorY, previousZoom = cockpitZoom) {
   const canvas = document.getElementById("cockpit-canvas");
   const viewport = document.getElementById("cockpit-viewport");
-  canvas.style.width = `${cockpitZoom * 100}%`;
+  if (!cockpitFitWidth) cockpitFitWidth = viewport.clientWidth;
+  canvas.style.width = `${cockpitFitWidth * cockpitZoom}px`;
   document.getElementById("cockpit-zoom-value").value =
     `${Math.round(cockpitZoom * 100)}%`;
+  viewport.classList.toggle("is-zoomed", cockpitZoom > 1.001);
 
   if (anchorX !== undefined && anchorY !== undefined) {
     const ratio = cockpitZoom / previousZoom;
@@ -477,11 +515,28 @@ setupCockpitHotspotEditor();
 async function initializeCockpitMapping() {
   await applyBundledCockpitMapping();
   defaultCockpitHotspots = JSON.parse(JSON.stringify(cockpitPanels));
-  applySavedCockpitMapping();
   renderCockpitPanelCards();
 }
 
 initializeCockpitMapping();
+
+window.addEventListener("resize", () => {
+  const viewer = document.getElementById("cockpit-panel-viewer");
+  if (activeCockpitPanel && viewer && !viewer.classList.contains("hidden")) {
+    fitCockpitPanelToViewport();
+  }
+});
+
+window.addEventListener("keydown", (event) => {
+  const viewer = document.getElementById("cockpit-panel-viewer");
+  if (
+    event.key === "Escape" &&
+    viewer &&
+    !viewer.classList.contains("hidden")
+  ) {
+    closeCockpitPanel();
+  }
+});
 
 // --- USER ID GENERATION ---
 let userId = localStorage.getItem("a320_user_id");
