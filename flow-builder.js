@@ -304,6 +304,7 @@ function renderFlowBuilderStep(step, index) {
         <option value="CM2"${step.actor === "CM2" ? " selected" : ""}>CM2</option>
         <option value="PF"${step.actor === "PF" ? " selected" : ""}>PF</option>
         <option value="PM"${step.actor === "PM" ? " selected" : ""}>PM</option>
+        <option value="BOTH"${step.actor === "BOTH" ? " selected" : ""}>BOTH</option>
       </select>
       <input
         class="flow-step-action"

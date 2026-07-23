@@ -111,6 +111,7 @@ function startFlow(flowId, seat, role) {
     stepIndex: 0,
     demoInProgress: false,
     automaticStepType: null,
+    automaticStep: null,
     paused: false,
     guidedMode: false,
     timer: null,
@@ -167,7 +168,11 @@ function getFlowStepActor(step) {
 function isFlowStepForUser(step) {
   if (!activeFlowSession) return false;
   const actor = getFlowStepActor(step);
-  return actor === activeFlowSession.seat || actor === activeFlowSession.role;
+  return (
+    actor === "BOTH" ||
+    actor === activeFlowSession.seat ||
+    actor === activeFlowSession.role
+  );
 }
 
 function getFlowStepControls(step) {
@@ -357,6 +362,7 @@ function advanceFlow(token) {
   if (isFlowStepForUser(step)) {
     session.demoInProgress = false;
     session.automaticStepType = null;
+    session.automaticStep = null;
     updateFlowActionBar(step, "user");
     refreshFlowPanelGuidance();
     return;
@@ -370,6 +376,7 @@ function playFlowDemoStep(step, token) {
   if (!session || session.token !== token) return;
   session.demoInProgress = true;
   session.automaticStepType = "demo";
+  session.automaticStep = step;
   updateFlowActionBar(step, "demo");
   const controls = getFlowPlaybackControls(step);
   const panels = [...new Set(controls.map(({ panel }) => panel))];
@@ -381,6 +388,7 @@ function playFlowCalloutStep(step, token) {
   if (!session || session.token !== token) return;
   session.demoInProgress = true;
   session.automaticStepType = "callout";
+  session.automaticStep = step;
   updateFlowActionBar(step, "callout");
   if (!session.paused) scheduleFlowCalloutCompletion(token);
 }
@@ -506,6 +514,29 @@ function handleFlowHotspotClick(controlId) {
   window.setTimeout(() => {
     if (!activeFlowSession || activeFlowSession.token !== session.token) return;
     clearFlowHotspotFeedback(hotspot, "flow-correct");
+    if (getFlowStepActor(step) === "BOTH") {
+      const repeatedControls = getFlowStepControls(step).filter(
+        ({ panel, controlId: expectedId }) =>
+          activeFlowSession.completedControlKeys.has(
+            getFlowControlKey(panel, expectedId),
+          ),
+      );
+      document
+        .querySelectorAll(".cockpit-hotspot.flow-correct")
+        .forEach((control) =>
+          clearFlowHotspotFeedback(control, "flow-correct"),
+        );
+      activeFlowSession.completedControlKeys = new Set();
+      playFlowDemoStep(
+        {
+          ...step,
+          mode: "AND",
+          controls: repeatedControls,
+        },
+        session.token,
+      );
+      return;
+    }
     activeFlowSession.stepIndex += 1;
     advanceFlow(session.token);
   }, 650);
@@ -556,7 +587,9 @@ function toggleFlowGuidedMode() {
   const session = activeFlowSession;
   if (!session) return;
   session.guidedMode = !session.guidedMode;
-  const step = session.definition.steps[session.stepIndex];
+  const step =
+    session.automaticStep ||
+    session.definition.steps[session.stepIndex];
   if (step) {
     updateFlowActionBar(
       step,
@@ -584,7 +617,9 @@ function toggleFlowPlayback() {
     clearFlowTimer(false);
     return;
   }
-  const step = session.definition.steps[session.stepIndex];
+  const step =
+    session.automaticStep ||
+    session.definition.steps[session.stepIndex];
   if (session.automaticStepType === "callout") {
     scheduleFlowCalloutCompletion(session.token);
   } else if (session.demoHotspots.length) {
