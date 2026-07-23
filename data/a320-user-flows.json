@@ -1,257 +1,7 @@
 {
   "version": 1,
-  "exportedAt": "2026-07-23T17:00:12.880Z",
+  "exportedAt": "2026-07-23T18:59:32.279Z",
   "flows": {
-    "after-landing": {
-      "id": "after-landing",
-      "name": "After Landing",
-      "category": "normal",
-      "trigger": "When vacating the runway",
-      "initialPanel": "glareshield",
-      "steps": [
-        {
-          "actor": "PF",
-          "mode": "AND",
-          "action": "GND SPLRS",
-          "state": "DISARM",
-          "controls": [
-            {
-              "panel": "pedestal",
-              "controlId": "speed-brake",
-              "label": "Speed brake lever"
-            }
-          ]
-        },
-        {
-          "actor": "PF",
-          "mode": "AND",
-          "action": "STROBE",
-          "state": "OFF",
-          "controls": [
-            {
-              "panel": "overhead",
-              "controlId": "strobe",
-              "label": "STROBE switch"
-            }
-          ]
-        },
-        {
-          "actor": "PF",
-          "mode": "AND",
-          "action": "LAND LIGHT",
-          "state": "OFF",
-          "controls": [
-            {
-              "panel": "overhead",
-              "controlId": "landing-light-left",
-              "label": "Left LAND light switch"
-            },
-            {
-              "panel": "overhead",
-              "controlId": "landing-light-right",
-              "label": "Right LAND light switch"
-            }
-          ]
-        },
-        {
-          "actor": "PF",
-          "mode": "AND",
-          "action": "NOSE LIGHT",
-          "state": "TAXI",
-          "controls": [
-            {
-              "panel": "overhead",
-              "controlId": "nose-light",
-              "label": "NOSE light switch"
-            }
-          ]
-        },
-        {
-          "actor": "PM",
-          "mode": "AND",
-          "action": "WX RADAR / PREDICTIVE WINDSHEAR",
-          "state": "OFF",
-          "controls": [
-            {
-              "panel": "pedestal",
-              "controlId": "weather-radar",
-              "label": "Weather radar panel"
-            }
-          ]
-        },
-        {
-          "actor": "PM",
-          "mode": "AND",
-          "action": "ENG MODE SELECTOR",
-          "state": "NORM",
-          "controls": [
-            {
-              "panel": "pedestal",
-              "controlId": "engine-mode",
-              "label": "ENG MODE selector"
-            }
-          ]
-        },
-        {
-          "actor": "PM",
-          "mode": "AND",
-          "action": "FLAPS",
-          "state": "RETRACT",
-          "controls": [
-            {
-              "panel": "pedestal",
-              "controlId": "flaps",
-              "label": "Flaps lever"
-            }
-          ]
-        },
-        {
-          "actor": "PM",
-          "mode": "AND",
-          "action": "TCAS",
-          "state": "STBY / XPNDR",
-          "controls": [
-            {
-              "panel": "pedestal",
-              "controlId": "tcas-traffic",
-              "label": "TCAS traffic selector"
-            }
-          ]
-        },
-        {
-          "actor": "PM",
-          "mode": "OR",
-          "action": "ANTI-ICE",
-          "state": "AS RQRD",
-          "controls": [
-            {
-              "panel": "overhead",
-              "controlId": "eng-1-anti-ice",
-              "label": "ENG 1 anti-ice pushbutton"
-            },
-            {
-              "panel": "overhead",
-              "controlId": "eng-2-anti-ice",
-              "label": "ENG 2 anti-ice pushbutton"
-            }
-          ]
-        },
-        {
-          "actor": "PM",
-          "mode": "AND",
-          "action": "PACK 2",
-          "state": "AS RQRD",
-          "controls": [
-            {
-              "panel": "overhead",
-              "controlId": "pack-2",
-              "label": "PACK 2 pushbutton"
-            }
-          ]
-        },
-        {
-          "actor": "PM",
-          "mode": "AND",
-          "action": "GPWS LDG FLAP 3",
-          "state": "OFF",
-          "controls": [
-            {
-              "panel": "overhead",
-              "controlId": "gpws-ldg-flap-3",
-              "label": "GPWS LDG FLAP 3 pushbutton"
-            }
-          ]
-        },
-        {
-          "actor": "PM",
-          "mode": "AND",
-          "action": "APU MASTER",
-          "state": "ON WHEN APPROPRIATE",
-          "controls": [
-            {
-              "panel": "overhead",
-              "controlId": "apu-master",
-              "label": "APU MASTER SW pushbutton"
-            }
-          ]
-        },
-        {
-          "actor": "PM",
-          "mode": "AND",
-          "action": "APU START",
-          "state": "START",
-          "controls": [
-            {
-              "panel": "overhead",
-              "controlId": "apu-start",
-              "label": "APU START pushbutton"
-            }
-          ]
-        },
-        {
-          "actor": "PM",
-          "mode": "AND",
-          "action": "FCU PB",
-          "state": "DESELECT LS PBS",
-          "controls": [
-            {
-              "panel": "glareshield",
-              "controlId": "fo-efis-ls",
-              "label": "First Officer LS pushbutton"
-            },
-            {
-              "panel": "glareshield",
-              "controlId": "capt-efis-ls",
-              "label": "Captain LS pushbutton"
-            }
-          ]
-        },
-        {
-          "actor": "PM",
-          "mode": "OR",
-          "action": "TERR ON ND",
-          "state": "OFF",
-          "controls": [
-            {
-              "panel": "glareshield",
-              "controlId": "fo-terrain",
-              "label": "First Officer TERR ON ND pushbutton"
-            },
-            {
-              "panel": "glareshield",
-              "controlId": "capt-terrain",
-              "label": "Captain TERR ON ND pushbutton"
-            }
-          ]
-        },
-        {
-          "actor": "PM",
-          "mode": "AND",
-          "action": "BRAKE TEMP",
-          "state": "MONITOR",
-          "controls": [
-            {
-              "panel": "glareshield",
-              "controlId": "lower-ecam-screen",
-              "label": "Lower ECAM display"
-            }
-          ]
-        },
-        {
-          "actor": "PM",
-          "mode": "AND",
-          "action": "BRAKE FAN",
-          "state": "AS RQRD",
-          "controls": [
-            {
-              "panel": "glareshield",
-              "controlId": "brake-fan",
-              "label": "BRK FAN pushbutton"
-            }
-          ]
-        }
-      ]
-    },
     "preliminary-cockpit-preparation": {
       "id": "preliminary-cockpit-preparation",
       "name": "Preliminary Cockpit Preparation",
@@ -564,6 +314,2766 @@
               "label": "RCDR GND CTL pushbutton"
             }
           ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "SIGNS",
+          "state": "SET",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "seat-belts",
+              "label": "SEAT BELTS switch"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "no-smoking",
+              "label": "NO SMOKING switch"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "PACK FLOW",
+          "state": "AS RQRD",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "pack-flow",
+              "label": "PACK FLOW selector"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "OR",
+          "action": "PACK 1 AND 2",
+          "state": "AS RQRD",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "pack-1",
+              "label": "PACK 1 pushbutton"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "pack-2",
+              "label": "PACK 2 pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "FUEL MODE SEL",
+          "state": "CHECK AUTO",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "fuel-mode-sel",
+              "label": "CTR TK MODE SEL pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "ISIS",
+          "state": "CHECK",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "isis",
+              "label": "Integrated Standby Instrument System"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "CLOCK",
+          "state": "CHECK/SET",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "clock",
+              "label": "Clock"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "A/SKID & N/W STRG",
+          "state": "ON",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "anti-skid",
+              "label": "A/SKID & N/W STRG switch"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "OR",
+          "action": "THRUST LEVERS",
+          "state": "IDLE",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "thrust-lever-1",
+              "label": "Thrust lever 1"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "thrust-lever-2",
+              "label": "Thrust lever 2"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "ENG 1, 2 MASTER LEVERS",
+          "state": "OFF",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "engine-master-1",
+              "label": "ENG MASTER 1 switch"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "engine-master-2",
+              "label": "ENG MASTER 2 switch"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "ENG MODE SEL",
+          "state": "NORM",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "engine-mode",
+              "label": "ENG MODE selector"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "PARKING BRAKE",
+          "state": "CHECK ON",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "parking-brake",
+              "label": "Parking brake handle"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "TRANSPONDER",
+          "state": "STBY",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "xpndr-mode",
+              "label": "XPNDR mode selector"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "OR",
+          "action": "FMS PREPARATION",
+          "state": "PERFORM",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "capt-mcdu",
+              "label": "Captain MCDU"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "fo-mcdu",
+              "label": "First Officer MCDU"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "OR",
+          "action": "FMS PREPARATION",
+          "state": "CROSSCHECK",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "capt-mcdu",
+              "label": "Captain MCDU"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "fo-mcdu",
+              "label": "First Officer MCDU"
+            }
+          ]
+        },
+        {
+          "actor": "BOTH",
+          "mode": "OR",
+          "action": "BARO REF",
+          "state": "SET/CROSSCHECK",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "capt-baro-ref",
+              "label": "Captain BARO reference control"
+            },
+            {
+              "panel": "glareshield",
+              "controlId": "fo-baro-ref",
+              "label": "First Officer BARO reference control"
+            }
+          ]
+        },
+        {
+          "actor": "BOTH",
+          "mode": "OR",
+          "action": "ALTIMETERS",
+          "state": "CHECK",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "fo-pfd-screen",
+              "label": "First Officer PFD screen"
+            },
+            {
+              "panel": "glareshield",
+              "controlId": "isis",
+              "label": "Integrated Standby Instrument System"
+            },
+            {
+              "panel": "glareshield",
+              "controlId": "capt-pfd-screen",
+              "label": "Captain PFD screen"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "FD",
+          "state": "ON",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "fo-efis-fd",
+              "label": "First Officer FD pushbutton"
+            },
+            {
+              "panel": "glareshield",
+              "controlId": "capt-efis-fd",
+              "label": "Captain FD pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "ALTITUDE",
+          "state": "SET INITIAL",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "fcu-altitude",
+              "label": "FCU altitude selector"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "OR",
+          "action": "IRS ALIGN",
+          "state": "CHECK <5nm",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "capt-mcdu",
+              "label": "Captain MCDU"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "fo-mcdu",
+              "label": "First Officer MCDU"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "OR",
+          "action": "LDG ELEV (ECAM)",
+          "state": "CHECK LDG ELEV AUTO",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "lower-ecam-screen",
+              "label": "Lower ECAM display"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "ecam-lower-display-controls",
+              "label": "ECAM lower display control panel"
+            }
+          ]
+        },
+        {
+          "actor": "BOTH",
+          "mode": "AND",
+          "action": "FOB",
+          "state": "CHECK",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "upper-ecam-screen",
+              "label": "Upper ECAM display"
+            }
+          ]
+        }
+      ]
+    },
+    "cockpit-preparation-first-flight": {
+      "id": "cockpit-preparation-first-flight",
+      "name": "Cockpit Preparation - First Flight",
+      "category": "normal",
+      "trigger": "First flight of the day. PM is doing walkaround.",
+      "initialPanel": "glareshield",
+      "steps": [
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "RCDR GND CTL",
+          "state": "ON",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "recorder-gnd-ctl",
+              "label": "RCDR GND CTL pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "CVR TEST",
+          "state": "PRESS",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "recorder-cvr-test",
+              "label": "CVR TEST pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "SIGNS",
+          "state": "SET",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "seat-belts",
+              "label": "SEAT BELTS switch"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "no-smoking",
+              "label": "NO SMOKING switch"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "EVAC sw",
+          "state": "CAPT",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "evac-capt-purs",
+              "label": "EVAC CAPT & PURS selector"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "OR",
+          "action": "EXTERIOR LIGHTS",
+          "state": "SET",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "nav-logo",
+              "label": "NAV & LOGO switch"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "wing-light",
+              "label": "WING light switch"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "strobe",
+              "label": "STROBE switch"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "PROBE/WINDOW HEAT",
+          "state": "AUTO",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "probe-window-heat",
+              "label": "PROBE/WINDOW HEAT pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "LDG ELEV",
+          "state": "AUTO",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "landing-elevation",
+              "label": "LDG ELEV selector"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "PACK FLOW",
+          "state": "AS RQRD",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "pack-flow",
+              "label": "PACK FLOW selector"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "OR",
+          "action": "PACK 1 AND 2",
+          "state": "AS RQRD",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "pack-1",
+              "label": "PACK 1 pushbutton"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "pack-2",
+              "label": "PACK 2 pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "OR",
+          "action": "BAT",
+          "state": "CHECK",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "battery-1",
+              "label": "BAT 1 pushbutton"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "battery-2",
+              "label": "BAT 2 pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "FUEL MODE SEL",
+          "state": "CHECK AUTO",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "fuel-mode-sel",
+              "label": "CTR TK MODE SEL pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "ENG FIRE",
+          "state": "CHECK/TEST",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "eng-1-fire-test",
+              "label": "ENG 1 FIRE TEST pushbutton"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "eng-2-fire-test",
+              "label": "ENG 2 FIRE TEST pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "ISIS",
+          "state": "CHECK",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "isis",
+              "label": "Integrated Standby Instrument System"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "CLOCK",
+          "state": "CHECK/SET",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "clock",
+              "label": "Clock"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "A/SKID & N/W STRG",
+          "state": "ON",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "anti-skid",
+              "label": "A/SKID & N/W STRG switch"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "OR",
+          "action": "SWITCHING SELECTORS",
+          "state": "ALL NORM",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "switch-att-hdg",
+              "label": "ATT HDG switching selector"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "switch-air-data",
+              "label": "AIR DATA switching selector"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "switch-eis-dmc",
+              "label": "EIS DMC switching selector"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "switch-ecam-nd",
+              "label": "ECAM/ND XFR switching selector"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "OR",
+          "action": "THRUST LEVERS",
+          "state": "IDLE",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "thrust-lever-1",
+              "label": "Thrust lever 1"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "thrust-lever-2",
+              "label": "Thrust lever 2"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "ENG 1, 2 MASTER LEVERS",
+          "state": "OFF",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "engine-master-1",
+              "label": "ENG MASTER 1 switch"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "engine-master-2",
+              "label": "ENG MASTER 2 switch"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "ENG MODE SEL",
+          "state": "NORM",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "engine-mode",
+              "label": "ENG MODE selector"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "PARKING BRAKE",
+          "state": "CHECK ON",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "parking-brake",
+              "label": "Parking brake handle"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "TRANSPONDER",
+          "state": "STBY",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "xpndr-mode",
+              "label": "XPNDR mode selector"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "OR",
+          "action": "FMS PREPARATION",
+          "state": "PERFORM",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "capt-mcdu",
+              "label": "Captain MCDU"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "fo-mcdu",
+              "label": "First Officer MCDU"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "OR",
+          "action": "FMS PREPARATION",
+          "state": "CROSSCHECK",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "capt-mcdu",
+              "label": "Captain MCDU"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "fo-mcdu",
+              "label": "First Officer MCDU"
+            }
+          ]
+        },
+        {
+          "actor": "BOTH",
+          "mode": "OR",
+          "action": "BARO REF",
+          "state": "SET/CROSSCHECK",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "capt-baro-ref",
+              "label": "Captain BARO reference control"
+            },
+            {
+              "panel": "glareshield",
+              "controlId": "fo-baro-ref",
+              "label": "First Officer BARO reference control"
+            }
+          ]
+        },
+        {
+          "actor": "BOTH",
+          "mode": "OR",
+          "action": "ALTIMETERS",
+          "state": "CHECK",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "fo-pfd-screen",
+              "label": "First Officer PFD screen"
+            },
+            {
+              "panel": "glareshield",
+              "controlId": "isis",
+              "label": "Integrated Standby Instrument System"
+            },
+            {
+              "panel": "glareshield",
+              "controlId": "capt-pfd-screen",
+              "label": "Captain PFD screen"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "FD",
+          "state": "ON",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "fo-efis-fd",
+              "label": "First Officer FD pushbutton"
+            },
+            {
+              "panel": "glareshield",
+              "controlId": "capt-efis-fd",
+              "label": "Captain FD pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "ALTITUDE",
+          "state": "SET INITIAL",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "fcu-altitude",
+              "label": "FCU altitude selector"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "OR",
+          "action": "IRS ALIGN",
+          "state": "CHECK <5nm",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "capt-mcdu",
+              "label": "Captain MCDU"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "fo-mcdu",
+              "label": "First Officer MCDU"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "OR",
+          "action": "LDG ELEV (ECAM)",
+          "state": "CHECK LDG ELEV AUTO",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "lower-ecam-screen",
+              "label": "Lower ECAM display"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "ecam-lower-display-controls",
+              "label": "ECAM lower display control panel"
+            }
+          ]
+        },
+        {
+          "actor": "BOTH",
+          "mode": "AND",
+          "action": "FOB",
+          "state": "CHECK",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "upper-ecam-screen",
+              "label": "Upper ECAM display"
+            }
+          ]
+        }
+      ]
+    },
+    "before-push-start": {
+      "id": "before-push-start",
+      "name": "Before Push & Start",
+      "category": "normal",
+      "trigger": "Before Push/Start Clearance.",
+      "initialPanel": "glareshield",
+      "steps": [
+        {
+          "actor": "BOTH",
+          "mode": "AND",
+          "action": "Weight & Balance and Performance",
+          "state": "COMPUTE",
+          "controls": []
+        },
+        {
+          "actor": "PF",
+          "mode": "OR",
+          "action": "MCDU",
+          "state": "PERF TO PAGE",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "capt-mcdu",
+              "label": "Captain MCDU"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "fo-mcdu",
+              "label": "First Officer MCDU"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "OR",
+          "action": "MCDU",
+          "state": "F-PLN PAGE",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "capt-mcdu",
+              "label": "Captain MCDU"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "fo-mcdu",
+              "label": "First Officer MCDU"
+            }
+          ]
+        },
+        {
+          "actor": "BOTH",
+          "mode": "AND",
+          "action": "PUSHBACK/START CLEARANCE (GROUND & ATC)",
+          "state": "OBTAIN",
+          "controls": []
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "BEACON",
+          "state": "ON",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "beacon",
+              "label": "BEACON switch"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "TRANSPONDER",
+          "state": "XPNDR",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "xpndr-mode",
+              "label": "XPNDR mode selector"
+            }
+          ]
+        },
+        {
+          "actor": "BOTH",
+          "mode": "AND",
+          "action": "BEFORE START CHECKLIST",
+          "state": "COMPLETE",
+          "controls": []
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "PARKING BRAKE",
+          "state": "OFF",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "parking-brake",
+              "label": "Parking brake handle"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "ELAPSED TIME",
+          "state": "START",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "clock",
+              "label": "Clock"
+            }
+          ]
+        }
+      ]
+    },
+    "first-engine-start": {
+      "id": "first-engine-start",
+      "name": "First Engine Start",
+      "category": "normal",
+      "trigger": "Usually ENG 1 is started first.",
+      "initialPanel": "glareshield",
+      "steps": [
+        {
+          "actor": "PF",
+          "mode": "OR",
+          "action": "THRUST LEVERS",
+          "state": "IDLE",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "thrust-lever-1",
+              "label": "Thrust lever 1"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "thrust-lever-2",
+              "label": "Thrust lever 2"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "ENG MODE SELECTOR",
+          "state": "IGN/START",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "engine-mode",
+              "label": "ENG MODE selector"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "\"ENG 1 START\"",
+          "state": "ANNOUNCE",
+          "controls": []
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "ENG 1 MASTER LEVER",
+          "state": "ON",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "engine-master-1",
+              "label": "ENG MASTER 1 switch"
+            }
+          ]
+        },
+        {
+          "actor": "BOTH",
+          "mode": "OR",
+          "action": "ENG PARAMETERS",
+          "state": "MONITOR/CHECK",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "upper-ecam-screen",
+              "label": "Upper ECAM display"
+            },
+            {
+              "panel": "glareshield",
+              "controlId": "lower-ecam-screen",
+              "label": "Lower ECAM display"
+            }
+          ]
+        }
+      ]
+    },
+    "after-start-aetd": {
+      "id": "after-start-aetd",
+      "name": "After Start (AETD)",
+      "category": "normal",
+      "trigger": "Both engines started before taxi.",
+      "initialPanel": "glareshield",
+      "steps": [
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "ENG MODE SEL",
+          "state": "NORM",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "engine-mode",
+              "label": "ENG MODE selector"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "APU BLEED",
+          "state": "OFF",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "apu-bleed",
+              "label": "APU BLEED pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "OR",
+          "action": "ANTI ICE",
+          "state": "AS RQRD",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "wing-anti-ice",
+              "label": "WING anti-ice pushbutton"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "eng-1-anti-ice",
+              "label": "ENG 1 anti-ice pushbutton"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "eng-2-anti-ice",
+              "label": "ENG 2 anti-ice pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "APU MASTER SW",
+          "state": "AS RQRD",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "apu-master",
+              "label": "APU MASTER SW pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "NW STRG DISC MEMO & THRUST SETTING",
+          "state": "CHECK",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "upper-ecam-screen",
+              "label": "Upper ECAM display"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "GND SPOILERS",
+          "state": "ARM",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "speed-brake",
+              "label": "Speed brake lever"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "RUD TRIM",
+          "state": "NEUTRAL",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "rudder-trim-reset",
+              "label": "Rudder trim RESET pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "FLAPS",
+          "state": "SET",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "flaps",
+              "label": "Flaps lever"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "OR",
+          "action": "PITCH TRIM",
+          "state": "SET",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "pitch-trim-right",
+              "label": "Right pitch trim wheel"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "pitch-trim-left",
+              "label": "Left pitch trim wheel"
+            }
+          ]
+        },
+        {
+          "actor": "BOTH",
+          "mode": "OR",
+          "action": "ECAM STATUS",
+          "state": "CHECK",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "upper-ecam-screen",
+              "label": "Upper ECAM display"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "ecam-lower-display-controls",
+              "label": "ECAM lower display control panel"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "\"CLEAR TO DISCONNECT\"",
+          "state": "ANNOUNCE",
+          "controls": []
+        },
+        {
+          "actor": "BOTH",
+          "mode": "AND",
+          "action": "AFTER START CHECKLIST",
+          "state": "COMPLETE",
+          "controls": []
+        }
+      ]
+    },
+    "after-start-oetd": {
+      "id": "after-start-oetd",
+      "name": "After Start (OETD)",
+      "category": "normal",
+      "trigger": "One Engine Taxi at Departure.",
+      "initialPanel": "glareshield",
+      "steps": [
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "ENG MODE SEL",
+          "state": "NORM",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "engine-mode",
+              "label": "ENG MODE selector"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "YELLOW ELEC PUMP",
+          "state": "ON",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "yellow-elec-pump",
+              "label": "YELLOW ELEC PUMP pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "APU BLEED",
+          "state": "OFF",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "apu-bleed",
+              "label": "APU BLEED pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "NW STRG DISC MEMO & THRUST SETTING",
+          "state": "CHECK",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "upper-ecam-screen",
+              "label": "Upper ECAM display"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "GND SPOILERS",
+          "state": "ARM",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "speed-brake",
+              "label": "Speed brake lever"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "RUD TRIM",
+          "state": "NEUTRAL",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "rudder-trim-reset",
+              "label": "Rudder trim RESET pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "FLAPS",
+          "state": "SET",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "flaps",
+              "label": "Flaps lever"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "OR",
+          "action": "PITCH TRIM",
+          "state": "SET",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "pitch-trim-left",
+              "label": "Left pitch trim wheel"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "pitch-trim-right",
+              "label": "Right pitch trim wheel"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "\"CLEAR TO DISCONNECT\"",
+          "state": "ANNOUNCE",
+          "controls": []
+        }
+      ]
+    },
+    "aetd-all-engine-taxi-at-departure": {
+      "id": "aetd-all-engine-taxi-at-departure",
+      "name": "AETD (All Engine Taxi at Departure)",
+      "category": "normal",
+      "trigger": "Taxi with 2 engines started.",
+      "initialPanel": "glareshield",
+      "steps": [
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "EXTERIOR LIGHTS",
+          "state": "SET",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "nose-light",
+              "label": "NOSE light switch"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "rwy-turnoff-left",
+              "label": "RWY TURN OFF switch"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "PARK BRAKE",
+          "state": "OFF",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "parking-brake",
+              "label": "Parking brake handle"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "BRAKES",
+          "state": "CHECK",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "brake-pressure-indicator",
+              "label": "Brake pressure indicator"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "BRK FAN",
+          "state": "AS RQRD",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "brake-fan",
+              "label": "BRK FAN pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "BOTH",
+          "mode": "AND",
+          "action": "FLIGHT CONTROLS",
+          "state": "CHECK",
+          "controls": []
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "AUTO BRK MAX",
+          "state": "ON",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "autobrake-max",
+              "label": "AUTO BRK MAX pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "BOTH",
+          "mode": "OR",
+          "action": "TERR ON ND",
+          "state": "AS RQRD",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "fo-terrain",
+              "label": "First Officer TERR ON ND pushbutton"
+            },
+            {
+              "panel": "glareshield",
+              "controlId": "capt-terrain",
+              "label": "Captain TERR ON ND pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "OR",
+          "action": "TRANSPONDER CODE/MODE",
+          "state": "CONFIRM",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "atc-code",
+              "label": "ATC code keypad and display"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "xpndr-mode",
+              "label": "XPNDR mode selector"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "tcas-mode",
+              "label": "ALT RPTG selector"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "atc-mode",
+              "label": "ATC mode selector"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "ENG MODE SEL",
+          "state": "AS RQRD",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "engine-mode",
+              "label": "ENG MODE selector"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "WEATHER RADAR & PWS",
+          "state": "ON/AUTO",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "weather-radar",
+              "label": "Weather radar panel"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "T.O CONFIG pb",
+          "state": "TEST",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "ecam-lower-display-controls",
+              "label": "ECAM lower display control panel"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "T.O MEMO",
+          "state": "CHECK NO BLUE",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "upper-ecam-screen",
+              "label": "Upper ECAM display"
+            }
+          ]
+        },
+        {
+          "actor": "BOTH",
+          "mode": "AND",
+          "action": "SLIDING TABLE",
+          "state": "STOW",
+          "controls": []
+        },
+        {
+          "actor": "BOTH",
+          "mode": "AND",
+          "action": "TAXI CHECKLIST",
+          "state": "COMPLETE",
+          "controls": []
+        }
+      ]
+    },
+    "oetd-one-engine-taxi-at-departure": {
+      "id": "oetd-one-engine-taxi-at-departure",
+      "name": "OETD (One Engine Taxi at Departure)",
+      "category": "normal",
+      "trigger": "Taxi with only engine 1 started. APU is OFF as this is preferred by company.",
+      "initialPanel": "glareshield",
+      "steps": [
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "EXTERIOR LIGHTS",
+          "state": "SET",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "nose-light",
+              "label": "NOSE light switch"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "rwy-turnoff-left",
+              "label": "RWY TURN OFF switch"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "PARK BRAKE",
+          "state": "OFF",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "parking-brake",
+              "label": "Parking brake handle"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "BRAKES",
+          "state": "CHECK",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "brake-pressure-indicator",
+              "label": "Brake pressure indicator"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "BRK FAN",
+          "state": "AS RQRD",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "brake-fan",
+              "label": "BRK FAN pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "\"ENG 2 START\"",
+          "state": "ORDER",
+          "controls": []
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "YELLOW ELEC PUMP",
+          "state": "OFF",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "yellow-elec-pump",
+              "label": "YELLOW ELEC PUMP pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "ENG 2 BLEED",
+          "state": "OFF",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "eng-2-bleed",
+              "label": "ENG 2 BLEED pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "X BLEED",
+          "state": "OPEN",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "crossbleed",
+              "label": "X BLEED selector"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "ENG MODE SEL",
+          "state": "IGN/START",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "engine-mode",
+              "label": "ENG MODE selector"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "THRUST LEVER (ENG 1)",
+          "state": "ADJUST FOR BLEED PRESS (>25psi)",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "thrust-lever-1",
+              "label": "Thrust lever 1"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "\"ENGINE 2 START\"",
+          "state": "ANNOUNCE",
+          "controls": []
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "ENG 2 MASTER LEVER",
+          "state": "ON",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "engine-master-2",
+              "label": "ENG MASTER 2 switch"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "OR",
+          "action": "THRUST LEVER",
+          "state": "AS RQRD",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "thrust-lever-1",
+              "label": "Thrust lever 1"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "thrust-lever-2",
+              "label": "Thrust lever 2"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "CHRONO",
+          "state": "START",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "clock",
+              "label": "Clock"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "ENG MODE SEL",
+          "state": "NORM",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "engine-mode",
+              "label": "ENG MODE selector"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "X BLEED",
+          "state": "AUTO",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "crossbleed",
+              "label": "X BLEED selector"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "ENG 2 BLEED",
+          "state": "ON",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "eng-2-bleed",
+              "label": "ENG 2 BLEED pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "BOTH",
+          "mode": "AND",
+          "action": "AFTER START CHECKLIST",
+          "state": "COMPLETE",
+          "controls": []
+        },
+        {
+          "actor": "BOTH",
+          "mode": "AND",
+          "action": "FLIGHT CONTROLS",
+          "state": "CHECK",
+          "controls": []
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "AUTO BRK MAX",
+          "state": "ON",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "autobrake-max",
+              "label": "AUTO BRK MAX pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "BOTH",
+          "mode": "OR",
+          "action": "TERR ON ND",
+          "state": "AS RQRD",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "fo-terrain",
+              "label": "First Officer TERR ON ND pushbutton"
+            },
+            {
+              "panel": "glareshield",
+              "controlId": "capt-terrain",
+              "label": "Captain TERR ON ND pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "OR",
+          "action": "TRANSPONDER CODE/MODE",
+          "state": "CONFIRM",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "atc-code",
+              "label": "ATC code keypad and display"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "xpndr-mode",
+              "label": "XPNDR mode selector"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "tcas-mode",
+              "label": "ALT RPTG selector"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "atc-mode",
+              "label": "ATC mode selector"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "ENG MODE SEL",
+          "state": "AS RQRD",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "engine-mode",
+              "label": "ENG MODE selector"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "WEATHER RADAR & PWS",
+          "state": "ON/AUTO",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "weather-radar",
+              "label": "Weather radar panel"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "T.O CONFIG pb",
+          "state": "TEST",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "ecam-lower-display-controls",
+              "label": "ECAM lower display control panel"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "T.O MEMO",
+          "state": "CHECK NO BLUE",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "upper-ecam-screen",
+              "label": "Upper ECAM display"
+            }
+          ]
+        },
+        {
+          "actor": "BOTH",
+          "mode": "AND",
+          "action": "SLIDING TABLE",
+          "state": "STOW",
+          "controls": []
+        },
+        {
+          "actor": "BOTH",
+          "mode": "AND",
+          "action": "TAXI CHECKLIST",
+          "state": "COMPLETE",
+          "controls": []
+        }
+      ]
+    },
+    "before-takeoff": {
+      "id": "before-takeoff",
+      "name": "Before Takeoff",
+      "category": "normal",
+      "trigger": "Cabin is ready, taxi checklist completed, line-up clearance is being given.",
+      "initialPanel": "glareshield",
+      "steps": [
+        {
+          "actor": "PM",
+          "mode": "OR",
+          "action": "BRAKE TEMP",
+          "state": "CHECK",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "upper-ecam-screen",
+              "label": "Upper ECAM display"
+            },
+            {
+              "panel": "glareshield",
+              "controlId": "lower-ecam-screen",
+              "label": "Lower ECAM display"
+            },
+            {
+              "panel": "glareshield",
+              "controlId": "brake-fan",
+              "label": "BRK FAN pushbutton"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "ecam-lower-display-controls",
+              "label": "ECAM lower display control panel"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "BRAKE FANS",
+          "state": "OFF (if running)",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "brake-fan",
+              "label": "BRK FAN pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "TCAS",
+          "state": "TA/RA",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "tcas-traffic",
+              "label": "TCAS traffic selector"
+            }
+          ]
+        },
+        {
+          "actor": "BOTH",
+          "mode": "AND",
+          "action": "POSITION VALIDATION & APPROACH PATH",
+          "state": "PERFORM/CLEAR OF TRAFFIC",
+          "controls": []
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "EXTERIOR LIGHTS",
+          "state": "SET",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "strobe",
+              "label": "STROBE switch"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "nose-light",
+              "label": "NOSE light switch"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "landing-light-right",
+              "label": "Right LAND light switch"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "landing-light-left",
+              "label": "Left LAND light switch"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "OR",
+          "action": "ANTI-ICE",
+          "state": "AS RQRD",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "wing-anti-ice",
+              "label": "WING anti-ice pushbutton"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "eng-1-anti-ice",
+              "label": "ENG 1 anti-ice pushbutton"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "eng-2-anti-ice",
+              "label": "ENG 2 anti-ice pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "PACKS 1+2",
+          "state": "OFF",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "pack-1",
+              "label": "PACK 1 pushbutton"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "pack-2",
+              "label": "PACK 2 pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "BOTH",
+          "mode": "AND",
+          "action": "LINE UP CHECKLIST",
+          "state": "COMPLETE",
+          "controls": []
+        }
+      ]
+    },
+    "takeoff-after-rotation": {
+      "id": "takeoff-after-rotation",
+      "name": "Takeoff (after rotation)",
+      "category": "normal",
+      "trigger": "Aircraft at V2.",
+      "initialPanel": "glareshield",
+      "steps": [
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "\"POSITIVE CLIMB\"",
+          "state": "ANNOUNCE",
+          "controls": []
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "\"GEAR UP\"",
+          "state": "ORDER",
+          "controls": []
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "L/G LEVER",
+          "state": "UP",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "gear-lever",
+              "label": "Landing gear lever"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "THRUST RED ALT",
+          "state": "FLASHING ON FMA",
+          "controls": []
+        },
+        {
+          "actor": "PF",
+          "mode": "OR",
+          "action": "THRUST LEVERS",
+          "state": "CL",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "thrust-lever-1",
+              "label": "Thrust lever 1"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "thrust-lever-2",
+              "label": "Thrust lever 2"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "PACK 1 THEN 2",
+          "state": "ON",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "pack-1",
+              "label": "PACK 1 pushbutton"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "pack-2",
+              "label": "PACK 2 pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "[...] S SPEED : \"FLAPS 0\"",
+          "state": "ORDER",
+          "controls": []
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "FLAPS 0",
+          "state": "SELECT",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "flaps",
+              "label": "Flaps lever"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "GND SPLRS",
+          "state": "DISARM",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "speed-brake",
+              "label": "Speed brake lever"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "L/G",
+          "state": "CHECK UP",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "gear-lever",
+              "label": "Landing gear lever"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "OR",
+          "action": "EXT LIGHTS",
+          "state": "SET",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "strobe",
+              "label": "STROBE switch"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "rwy-turnoff-left",
+              "label": "RWY TURN OFF switch"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "nose-light",
+              "label": "NOSE light switch"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "OR",
+          "action": "LDG LIGHTS",
+          "state": "RETRACT",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "landing-light-left",
+              "label": "Left LAND light switch"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "landing-light-right",
+              "label": "Right LAND light switch"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "SEAT BELTS SIGNS",
+          "state": "CYCLE",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "seat-belts",
+              "label": "SEAT BELTS switch"
+            }
+          ]
+        }
+      ]
+    },
+    "after-landing": {
+      "id": "after-landing",
+      "name": "After Landing",
+      "category": "normal",
+      "trigger": "When vacating the runway",
+      "initialPanel": "glareshield",
+      "steps": [
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "GND SPLRS",
+          "state": "DISARM",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "speed-brake",
+              "label": "Speed brake lever"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "STROBE",
+          "state": "OFF",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "strobe",
+              "label": "STROBE switch"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "LAND LIGHT",
+          "state": "OFF",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "landing-light-left",
+              "label": "Left LAND light switch"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "landing-light-right",
+              "label": "Right LAND light switch"
+            }
+          ]
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "NOSE LIGHT",
+          "state": "TAXI",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "nose-light",
+              "label": "NOSE light switch"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "WX RADAR / PREDICTIVE WINDSHEAR",
+          "state": "OFF",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "weather-radar",
+              "label": "Weather radar panel"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "ENG MODE SELECTOR",
+          "state": "NORM",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "engine-mode",
+              "label": "ENG MODE selector"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "FLAPS",
+          "state": "RETRACT",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "flaps",
+              "label": "Flaps lever"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "TCAS",
+          "state": "STBY / XPNDR",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "tcas-traffic",
+              "label": "TCAS traffic selector"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "OR",
+          "action": "ANTI-ICE",
+          "state": "AS RQRD",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "eng-1-anti-ice",
+              "label": "ENG 1 anti-ice pushbutton"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "eng-2-anti-ice",
+              "label": "ENG 2 anti-ice pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "PACK 2",
+          "state": "AS RQRD",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "pack-2",
+              "label": "PACK 2 pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "GPWS LDG FLAP 3",
+          "state": "OFF",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "gpws-ldg-flap-3",
+              "label": "GPWS LDG FLAP 3 pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "APU MASTER",
+          "state": "ON WHEN APPROPRIATE",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "apu-master",
+              "label": "APU MASTER SW pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "APU START",
+          "state": "START",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "apu-start",
+              "label": "APU START pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "FCU PB",
+          "state": "DESELECT LS PBS",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "fo-efis-ls",
+              "label": "First Officer LS pushbutton"
+            },
+            {
+              "panel": "glareshield",
+              "controlId": "capt-efis-ls",
+              "label": "Captain LS pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "OR",
+          "action": "TERR ON ND",
+          "state": "OFF",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "fo-terrain",
+              "label": "First Officer TERR ON ND pushbutton"
+            },
+            {
+              "panel": "glareshield",
+              "controlId": "capt-terrain",
+              "label": "Captain TERR ON ND pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "BRAKE TEMP",
+          "state": "MONITOR",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "lower-ecam-screen",
+              "label": "Lower ECAM display"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "BRAKE FAN",
+          "state": "AS RQRD",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "brake-fan",
+              "label": "BRK FAN pushbutton"
+            }
+          ]
+        }
+      ]
+    },
+    "oeta-one-engine-taxi-at-arrival": {
+      "id": "oeta-one-engine-taxi-at-arrival",
+      "name": "OETA (One Engine Taxi at Arrival)",
+      "category": "normal",
+      "trigger": "After 3min of high thrust operations.",
+      "initialPanel": "glareshield",
+      "steps": [
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "COOLING TIME ELAPSED",
+          "state": "ANNOUNCE",
+          "controls": []
+        },
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "\"ENG 2 SHUTDOWN\"",
+          "state": "ORDER",
+          "controls": []
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "APU START",
+          "state": "CHECK AVAIL AS RQRD",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "apu-start",
+              "label": "APU START pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "ENG 2 ANTI ICE",
+          "state": "OFF",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "eng-2-anti-ice",
+              "label": "ENG 2 anti-ice pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "ENG 2 MASTER SWITCH",
+          "state": "OFF",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "engine-master-2",
+              "label": "ENG MASTER 2 switch"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "YELLOW ELEC PUMP",
+          "state": "ON",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "yellow-elec-pump",
+              "label": "YELLOW ELEC PUMP pushbutton"
+            }
+          ]
+        }
+      ]
+    },
+    "parking": {
+      "id": "parking",
+      "name": "Parking",
+      "category": "normal",
+      "trigger": "CM1 takes control for parking.",
+      "initialPanel": "glareshield",
+      "steps": [
+        {
+          "actor": "CM2",
+          "mode": "AND",
+          "action": "PA",
+          "state": "\"CABIN CREW DISARM DOORS FOR ARRIVAL\"",
+          "controls": []
+        },
+        {
+          "actor": "CM1",
+          "mode": "OR",
+          "action": "TAXI LIGHTS",
+          "state": "OFF (AS RQRD)",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "rwy-turnoff-left",
+              "label": "RWY TURN OFF switch"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "nose-light",
+              "label": "NOSE light switch"
+            }
+          ]
+        },
+        {
+          "actor": "CM1",
+          "mode": "OR",
+          "action": "ACCU PRESS & PARKING BRAKE",
+          "state": "CHECK/ON",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "brake-pressure-indicator",
+              "label": "Brake pressure indicator"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "parking-brake",
+              "label": "Parking brake handle"
+            }
+          ]
+        },
+        {
+          "actor": "CM2",
+          "mode": "OR",
+          "action": "ANTI-ICE",
+          "state": "OFF",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "eng-2-anti-ice",
+              "label": "ENG 2 anti-ice pushbutton"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "eng-1-anti-ice",
+              "label": "ENG 1 anti-ice pushbutton"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "wing-anti-ice",
+              "label": "WING anti-ice pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "CM1",
+          "mode": "AND",
+          "action": "YELLOW ELEC PUMP",
+          "state": "OFF",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "yellow-elec-pump",
+              "label": "YELLOW ELEC PUMP pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "CM1",
+          "mode": "AND",
+          "action": "BOTH ENG MASTER LEVERS",
+          "state": "OFF",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "engine-master-1",
+              "label": "ENG MASTER 1 switch"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "engine-master-2",
+              "label": "ENG MASTER 2 switch"
+            }
+          ]
+        },
+        {
+          "actor": "CM1",
+          "mode": "OR",
+          "action": "SLIDES",
+          "state": "CHECK DISARMED",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "lower-ecam-screen",
+              "label": "Lower ECAM display"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "ecam-lower-display-controls",
+              "label": "ECAM lower display control panel"
+            }
+          ]
+        },
+        {
+          "actor": "CM1",
+          "mode": "AND",
+          "action": "SEAT BELTS",
+          "state": "OFF",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "seat-belts",
+              "label": "SEAT BELTS switch"
+            }
+          ]
+        },
+        {
+          "actor": "CM1",
+          "mode": "AND",
+          "action": "BEACON (& WING IF ON)",
+          "state": "OFF",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "beacon",
+              "label": "BEACON switch"
+            }
+          ]
+        },
+        {
+          "actor": "CM2",
+          "mode": "AND",
+          "action": "ELAPSED TIME",
+          "state": "STOP",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "clock",
+              "label": "Clock"
+            }
+          ]
+        },
+        {
+          "actor": "CM2",
+          "mode": "AND",
+          "action": "TRANSPONDER",
+          "state": "STBY/CODE 2000",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "xpndr-mode",
+              "label": "XPNDR mode selector"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "atc-code",
+              "label": "ATC code keypad and display"
+            }
+          ]
+        },
+        {
+          "actor": "CM2",
+          "mode": "AND",
+          "action": "PACKS 1+2",
+          "state": "OFF",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "pack-1",
+              "label": "PACK 1 pushbutton"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "pack-2",
+              "label": "PACK 2 pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "CM2",
+          "mode": "AND",
+          "action": "CTR TK PUMPS/CTR XFR VALVES",
+          "state": "OFF",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "center-tank-left",
+              "label": "CTR TK L XFR pushbutton"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "center-tank-right",
+              "label": "CTR TK R XFR pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "BOTH",
+          "mode": "AND",
+          "action": "PARKING CHECKLIST",
+          "state": "COMPLETE",
+          "controls": []
         }
       ]
     }

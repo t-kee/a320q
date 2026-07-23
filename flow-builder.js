@@ -49,8 +49,17 @@ function getFlowCatalogEntries() {
     ]),
   );
   const entries = new Map();
+  Object.values(bundledUserFlows).forEach((flow) => {
+    if (!isUsableFlow(flow)) return;
+    const metadata = catalogMetadata.get(flow.id);
+    entries.set(flow.id, [
+      flow.id,
+      flow.name,
+      flow.category || metadata?.category || "normal",
+    ]);
+  });
   Object.values(implementedFlows)
-    .filter(isUsableFlow)
+    .filter((flow) => isUsableFlow(flow) && !entries.has(flow.id))
     .forEach((flow) => {
       const metadata = catalogMetadata.get(flow.id);
       entries.set(flow.id, [
@@ -59,15 +68,6 @@ function getFlowCatalogEntries() {
         flow.category || metadata?.category || "normal",
       ]);
     });
-  Object.values(bundledUserFlows).forEach((flow) => {
-    if (!isUsableFlow(flow)) return;
-    const previous = entries.get(flow.id);
-    entries.set(flow.id, [
-      flow.id,
-      flow.name,
-      flow.category || previous?.[2] || "normal",
-    ]);
-  });
   Object.values(userFlows).forEach((flow) => {
     if (!isUsableFlow(flow)) return;
     const previous = entries.get(flow.id);
