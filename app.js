@@ -57,12 +57,13 @@ function selectFlowRole(role) {
 
 function selectFlow(flowId) {
   selectedFlowId = flowId;
-  const available = Boolean(implementedFlows[flowId]);
+  const definition = getFlowDefinition(flowId);
+  const available = Boolean(definition);
   const startButton = document.getElementById("flow-start-btn");
   const status = document.getElementById("flow-setup-status");
   startButton.disabled = !available;
   status.innerText = available
-    ? `${implementedFlows[flowId].name} is available for this first test.`
+    ? `${definition.name} is ready to train.`
     : "This flow is listed from the OM-B and will be implemented later.";
 }
 
@@ -70,9 +71,9 @@ function initializeFlowSetup() {
   const select = document.getElementById("flow-select");
   if (!select || typeof flowCatalog === "undefined") return;
 
-  select.innerHTML = flowCatalog
+  select.innerHTML = getFlowCatalogEntries()
     .map(([id, name]) => {
-      const suffix = implementedFlows[id] ? "" : " — coming soon";
+      const suffix = getFlowDefinition(id) ? "" : " — coming soon";
       return `<option value="${id}">${name}${suffix}</option>`;
     })
     .join("");
@@ -85,7 +86,9 @@ function startSelectedFlow() {
 }
 
 function startRandomFlow() {
-  const availableFlowIds = Object.keys(implementedFlows);
+  const availableFlowIds = getFlowCatalogEntries()
+    .map(([id]) => id)
+    .filter((id) => getFlowDefinition(id));
   const flowId =
     availableFlowIds[Math.floor(Math.random() * availableFlowIds.length)];
   const seat = Math.random() < 0.5 ? "CM1" : "CM2";
@@ -100,7 +103,7 @@ function startRandomFlow() {
 }
 
 function startFlow(flowId, seat, role) {
-  const definition = implementedFlows[flowId];
+  const definition = getFlowDefinition(flowId);
   if (!definition) return;
 
   flowRunToken += 1;
@@ -110,12 +113,21 @@ function startFlow(flowId, seat, role) {
     role,
     stepIndex: 0,
     demoInProgress: false,
+    paused: false,
+    timer: null,
+    demoHotspots: [],
+    completedControlKeys: new Set(),
     token: flowRunToken,
   };
 
+  restoreFlowPlaybackButtons();
   renderFlowSessionHeader();
   openCockpitPanel(definition.initialPanel);
-  window.setTimeout(() => advanceFlow(activeFlowSession.token), 850);
+  const token = activeFlowSession.token;
+  activeFlowSession.timer = window.setTimeout(
+    () => advanceFlow(token),
+    850,
+  );
 }
 
 function renderFlowSessionHeader() {
@@ -136,6 +148,7 @@ function renderFlowSessionHeader() {
     definition.trigger;
   document.getElementById("flow-session-header").classList.remove("hidden");
   document.getElementById("flow-action-bar").classList.remove("hidden");
+  restoreFlowPlaybackButtons();
 }
 
 function getFlowStepSeat(stepRole) {
@@ -145,11 +158,33 @@ function getFlowStepSeat(stepRole) {
     : otherFlowSeat(activeFlowSession.seat);
 }
 
-function getFlowStepControlId(step) {
-  if (step.controlIdBySeat) {
-    return step.controlIdBySeat[getFlowStepSeat(step.role)];
+function getFlowStepControls(step) {
+  if (Array.isArray(step.controls)) {
+    return step.controls.map(({ panel, controlId }) => ({
+      panel,
+      controlId,
+    }));
   }
-  return step.controlId;
+  if (step.controlIdBySeat) {
+    return [
+      {
+        panel: step.panel,
+        controlId: step.controlIdBySeat[getFlowStepSeat(step.role)],
+      },
+    ];
+  }
+  return [{ panel: step.panel, controlId: step.controlId }];
+}
+
+function getFlowStepInstruction(step) {
+  return (
+    step.instruction ||
+    [step.action, step.state].filter(Boolean).join(" — ")
+  );
+}
+
+function getFlowControlKey(panel, controlId) {
+  return `${panel}:${controlId}`;
 }
 
 function updateFlowActionBar(step, mode, message) {
@@ -157,7 +192,7 @@ function updateFlowActionBar(step, mode, message) {
   if (!session) return;
   const bar = document.getElementById("flow-action-bar");
   const stepSeat = getFlowStepSeat(step.role);
-  const instruction = message || `${step.action} — ${step.state}`;
+  const instruction = message || getFlowStepInstruction(step);
 
   bar.classList.toggle("demo", mode === "demo");
   bar.classList.remove("complete");
@@ -166,6 +201,10 @@ function updateFlowActionBar(step, mode, message) {
   document.getElementById("flow-action-instruction").innerText = instruction;
   document.getElementById("flow-action-progress").innerText =
     `${session.stepIndex + 1} / ${session.definition.steps.length}`;
+  document.getElementById("flow-action-play").disabled =
+    mode !== "demo";
+  document.getElementById("flow-action-play").innerText =
+    session.paused ? "▶" : "❚❚";
 }
 
 function refreshFlowPanelGuidance() {
@@ -177,18 +216,56 @@ function refreshFlowPanelGuidance() {
   const step =
     activeFlowSession.definition.steps[activeFlowSession.stepIndex];
   if (!step || step.role !== activeFlowSession.role) return;
-  const targetButton = Array.from(
-    document.querySelectorAll(".cockpit-panel-switch"),
-  ).find(
-    (button) =>
-      button.innerText.trim() === cockpitPanels[step.panel]?.label,
+  const targetPanels = new Set(
+    getFlowStepControls(step)
+      .filter(
+        ({ panel, controlId }) =>
+          !activeFlowSession.completedControlKeys.has(
+            getFlowControlKey(panel, controlId),
+          ),
+      )
+      .map(({ panel }) => panel),
   );
-  targetButton?.classList.add("flow-panel-target");
+  document.querySelectorAll(".cockpit-panel-switch").forEach((button) => {
+    const panelId = button.dataset.panelId;
+    button.classList.toggle("flow-panel-target", targetPanels.has(panelId));
+  });
+  document.querySelectorAll(".cockpit-hotspot").forEach((hotspot) => {
+    const key = getFlowControlKey(
+      activeCockpitPanel,
+      hotspot.dataset.controlId,
+    );
+    hotspot.classList.toggle(
+      "flow-correct",
+      activeFlowSession.completedControlKeys.has(key),
+    );
+  });
+}
+
+function clearFlowTimer(removeHighlights = false) {
+  const session = activeFlowSession;
+  if (!session) return;
+  if (session.timer) window.clearTimeout(session.timer);
+  session.timer = null;
+  if (removeHighlights) {
+    session.demoHotspots.forEach((hotspot) =>
+      hotspot?.classList.remove("flow-demo"),
+    );
+    session.demoHotspots = [];
+  }
 }
 
 function advanceFlow(token) {
   const session = activeFlowSession;
   if (!session || session.token !== token) return;
+  clearFlowTimer(true);
+  document
+    .querySelectorAll(".cockpit-hotspot.flow-correct, .cockpit-hotspot.flow-incorrect")
+    .forEach((hotspot) =>
+      hotspot.classList.remove("flow-correct", "flow-incorrect"),
+    );
+  session.completedControlKeys = new Set();
+  session.paused = false;
 
   const step = session.definition.steps[session.stepIndex];
   if (!step) {
@@ -210,24 +287,57 @@ function playFlowDemoStep(step, token) {
   const session = activeFlowSession;
   if (!session || session.token !== token) return;
   session.demoInProgress = true;
-  updateFlowActionBar(step, "demo", `${step.action} — ${step.state}`);
-  openCockpitPanel(step.panel);
+  updateFlowActionBar(step, "demo");
+  const controls = getFlowStepControls(step);
+  const panels = [...new Set(controls.map(({ panel }) => panel))];
+  playFlowDemoPanel(step, panels, 0, token);
+}
 
-  window.setTimeout(() => {
+function playFlowDemoPanel(step, panels, panelIndex, token) {
+  const session = activeFlowSession;
+  if (!session || session.token !== token) return;
+  const panel = panels[panelIndex];
+  openCockpitPanel(panel);
+
+  session.timer = window.setTimeout(() => {
     if (!activeFlowSession || activeFlowSession.token !== token) return;
-    const controlId = getFlowStepControlId(step);
-    const hotspot = document.querySelector(
-      `.cockpit-hotspot[data-control-id="${controlId}"]`,
+    const controlsOnPanel = getFlowStepControls(step).filter(
+      (control) => control.panel === panel,
     );
-    hotspot?.classList.add("flow-demo");
-
-    window.setTimeout(() => {
-      if (!activeFlowSession || activeFlowSession.token !== token) return;
-      hotspot?.classList.remove("flow-demo");
-      activeFlowSession.stepIndex += 1;
-      advanceFlow(token);
-    }, 1000);
+    activeFlowSession.demoHotspots = controlsOnPanel.map(({ controlId }) =>
+      document.querySelector(
+        `.cockpit-hotspot[data-control-id="${controlId}"]`,
+      ),
+    );
+    activeFlowSession.demoHotspots.forEach((hotspot) =>
+      hotspot?.classList.add("flow-demo"),
+    );
+    activeFlowSession.demoPanelIndex = panelIndex;
+    activeFlowSession.demoPanels = panels;
+    if (!activeFlowSession.paused) scheduleFlowDemoCompletion(step, token);
   }, 180);
+}
+
+function scheduleFlowDemoCompletion(step, token) {
+  const session = activeFlowSession;
+  if (!session || session.token !== token) return;
+  clearFlowTimer(false);
+  session.timer = window.setTimeout(() => {
+    if (!activeFlowSession || activeFlowSession.token !== token) return;
+    clearFlowTimer(true);
+    const nextPanelIndex = activeFlowSession.demoPanelIndex + 1;
+    if (nextPanelIndex < activeFlowSession.demoPanels.length) {
+      playFlowDemoPanel(
+        step,
+        activeFlowSession.demoPanels,
+        nextPanelIndex,
+        token,
+      );
+      return;
+    }
+    activeFlowSession.stepIndex += 1;
+    advanceFlow(token);
+  }, 1000);
 }
 
 function handleFlowHotspotClick(controlId) {
@@ -239,12 +349,23 @@ function handleFlowHotspotClick(controlId) {
   const hotspot = document.querySelector(
     `.cockpit-hotspot[data-control-id="${controlId}"]`,
   );
+  const expectedControls = getFlowStepControls(step);
+  const clickedKey = getFlowControlKey(activeCockpitPanel, controlId);
+  const expectedKeys = new Set(
+    expectedControls.map(({ panel, controlId: expectedId }) =>
+      getFlowControlKey(panel, expectedId),
+    ),
+  );
   if (
     step.role !== session.role ||
-    controlId !== getFlowStepControlId(step)
+    !expectedKeys.has(clickedKey)
   ) {
     hotspot?.classList.add("flow-incorrect");
-    updateFlowActionBar(step, "user", `Not yet — ${step.action} · ${step.state}`);
+    updateFlowActionBar(
+      step,
+      "user",
+      `Not yet — ${getFlowStepInstruction(step)}`,
+    );
     window.setTimeout(
       () => hotspot?.classList.remove("flow-incorrect"),
       450,
@@ -252,7 +373,18 @@ function handleFlowHotspotClick(controlId) {
     return true;
   }
 
+  session.completedControlKeys.add(clickedKey);
   hotspot?.classList.add("flow-correct");
+  const isComplete = [...expectedKeys].every((key) =>
+    session.completedControlKeys.has(key),
+  );
+  if (!isComplete) {
+    document.getElementById("flow-action-progress").innerText =
+      `${session.completedControlKeys.size}/${expectedKeys.size} controls · ${session.stepIndex + 1}/${session.definition.steps.length}`;
+    refreshFlowPanelGuidance();
+    return true;
+  }
+
   window.setTimeout(() => {
     if (!activeFlowSession || activeFlowSession.token !== session.token) return;
     hotspot?.classList.remove("flow-correct");
@@ -260,6 +392,49 @@ function handleFlowHotspotClick(controlId) {
     advanceFlow(session.token);
   }, 320);
   return true;
+}
+
+function flowPlaybackPrevious() {
+  const session = activeFlowSession;
+  if (!session) return;
+  clearFlowTimer(true);
+  session.stepIndex = Math.max(0, session.stepIndex - 1);
+  session.demoInProgress = false;
+  advanceFlow(session.token);
+}
+
+function flowPlaybackNext() {
+  const session = activeFlowSession;
+  if (!session) return;
+  clearFlowTimer(true);
+  session.stepIndex = Math.min(
+    session.definition.steps.length,
+    session.stepIndex + 1,
+  );
+  session.demoInProgress = false;
+  advanceFlow(session.token);
+}
+
+function toggleFlowPlayback() {
+  const session = activeFlowSession;
+  if (!session || !session.demoInProgress) return;
+  session.paused = !session.paused;
+  const button = document.getElementById("flow-action-play");
+  button.innerText = session.paused ? "▶" : "❚❚";
+  button.setAttribute(
+    "aria-label",
+    session.paused ? "Resume automatic playback" : "Pause automatic playback",
+  );
+  if (session.paused) {
+    clearFlowTimer(false);
+    return;
+  }
+  const step = session.definition.steps[session.stepIndex];
+  if (session.demoHotspots.length) {
+    scheduleFlowDemoCompletion(step, session.token);
+  } else {
+    playFlowDemoStep(step, session.token);
+  }
 }
 
 function finishFlow() {
@@ -272,12 +447,14 @@ function finishFlow() {
     `${activeFlowSession.definition.name} flow complete`;
   document.getElementById("flow-action-progress").innerText =
     `${activeFlowSession.definition.steps.length} / ${activeFlowSession.definition.steps.length}`;
+  document.getElementById("flow-action-play").disabled = true;
   document
     .querySelectorAll(".cockpit-panel-switch")
     .forEach((button) => button.classList.remove("flow-panel-target"));
 }
 
 function cancelFlowSession() {
+  clearFlowTimer(true);
   flowRunToken += 1;
   activeFlowSession = null;
   document.getElementById("flow-session-header")?.classList.add("hidden");
@@ -384,6 +561,7 @@ function renderCockpitPanelSwitcher() {
       return `
         <button class="cockpit-panel-switch${activeClass}" type="button"
           aria-label="${cockpitPanels[panelId].label}"
+          data-panel-id="${panelId}"
           onclick="openCockpitPanel('${panelId}')">
           ${cockpitPanels[panelId].label}
         </button>
@@ -431,11 +609,13 @@ function openCockpitPanel(panelId) {
 
   renderCockpitPanelSwitcher();
   refreshFlowPanelGuidance();
+  refreshFlowBuilderCapture();
   if (image.complete) requestAnimationFrame(fitCockpitPanelToViewport);
 }
 
 function closeCockpitPanel() {
   if (cockpitEditMode) toggleCockpitEditor();
+  if (isFlowBuilderCapturing()) cancelFlowBuilderCapture();
   cancelFlowSession();
   activeCockpitPanel = null;
   document.getElementById("cockpit-panel-viewer").classList.add("hidden");
@@ -464,6 +644,10 @@ function fitCockpitPanelToViewport() {
 
 function handleCockpitHotspotClick(event, controlId) {
   if (cockpitEditMode) {
+    event.preventDefault();
+    return;
+  }
+  if (handleFlowBuilderHotspotClick(controlId)) {
     event.preventDefault();
     return;
   }
@@ -777,9 +961,11 @@ setupCockpitHotspotEditor();
 async function initializeCockpitMapping() {
   await applyBundledCockpitMapping();
   defaultCockpitHotspots = JSON.parse(JSON.stringify(cockpitPanels));
+  applySavedCockpitMapping();
   renderCockpitPanelCards();
 }
 
+initializeFlowBuilder();
 initializeCockpitMapping();
 initializeFlowSetup();
 

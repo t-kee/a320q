@@ -342,7 +342,87 @@
             <p id="flow-setup-status" class="flow-setup-status">
               After Landing is available for this first test.
             </p>
+            <button
+              class="flow-builder-open-btn"
+              type="button"
+              onclick="toggleFlowBuilder()"
+            >
+              Create or edit flows
+            </button>
           </div>
+
+          <section id="flow-builder" class="flow-builder hidden">
+            <div class="flow-builder-heading">
+              <div>
+                <span class="flow-builder-kicker">FLOW AUTHORING</span>
+                <h2>Create or modify a flow</h2>
+                <p>
+                  Write each action, then attach one or more cockpit controls.
+                </p>
+              </div>
+              <button type="button" onclick="toggleFlowBuilder()">×</button>
+            </div>
+
+            <div class="flow-builder-toolbar">
+              <label>
+                <span>Flow to edit</span>
+                <select id="flow-builder-select"></select>
+              </label>
+              <button type="button" onclick="loadSelectedFlowIntoBuilder()">
+                Load
+              </button>
+              <button type="button" onclick="createNewFlowDraft()">
+                New flow
+              </button>
+            </div>
+
+            <div class="flow-builder-metadata">
+              <label>
+                <span>Flow name</span>
+                <input id="flow-builder-name" type="text" placeholder="After Landing" />
+              </label>
+              <label>
+                <span>Trigger / context</span>
+                <input
+                  id="flow-builder-trigger"
+                  type="text"
+                  placeholder="When vacating the runway"
+                />
+              </label>
+            </div>
+
+            <div id="flow-builder-steps" class="flow-builder-steps"></div>
+            <button
+              class="flow-add-step-btn"
+              type="button"
+              onclick="addFlowBuilderStep()"
+            >
+              + Add a line
+            </button>
+
+            <div class="flow-builder-actions">
+              <button class="primary" type="button" onclick="saveFlowDraft()">
+                Save flow locally
+              </button>
+              <button type="button" onclick="exportUserFlows()">
+                Export flows JSON
+              </button>
+              <button type="button" onclick="openFlowImportPicker()">
+                Import flows JSON
+              </button>
+              <input
+                id="flow-import-input"
+                class="hidden"
+                type="file"
+                accept="application/json"
+                onchange="importUserFlows(event)"
+              />
+              <button class="danger" type="button" onclick="deleteFlowOverride()">
+                Delete local version
+              </button>
+            </div>
+            <output id="flow-builder-status"></output>
+          </section>
 
           <div id="cockpit-panel-picker" class="cockpit-panel-picker">
             <div class="panel-explorer-heading">
@@ -412,7 +492,7 @@
                   Labels
                 </button>
                 <button
-                  class="cockpit-tool-btn cockpit-edit-toggle hidden"
+                  class="cockpit-tool-btn cockpit-edit-toggle"
                   id="cockpit-edit-toggle"
                   onclick="toggleCockpitEditor()"
                 >
@@ -427,9 +507,44 @@
               </p>
 
               <div id="flow-action-bar" class="flow-action-bar hidden">
+                <button
+                  id="flow-action-previous"
+                  class="flow-playback-btn"
+                  type="button"
+                  onclick="flowPlaybackPrevious()"
+                  aria-label="Previous flow action"
+                >
+                  ‹
+                </button>
                 <span id="flow-action-actor"></span>
                 <strong id="flow-action-instruction"></strong>
+                <button
+                  id="flow-action-play"
+                  class="flow-playback-btn"
+                  type="button"
+                  onclick="toggleFlowPlayback()"
+                  aria-label="Pause automatic playback"
+                >
+                  ❚❚
+                </button>
+                <button
+                  id="flow-action-next"
+                  class="flow-playback-btn"
+                  type="button"
+                  onclick="flowPlaybackNext()"
+                  aria-label="Next flow action"
+                >
+                  ›
+                </button>
                 <span id="flow-action-progress"></span>
+                <button
+                  id="flow-capture-done"
+                  class="flow-capture-done hidden"
+                  type="button"
+                  onclick="finishFlowControlCapture()"
+                >
+                  Done selecting
+                </button>
               </div>
 
               <div id="cockpit-editor-bar" class="cockpit-editor-bar hidden">
@@ -498,6 +613,7 @@
     </div>
     <script src="cockpit-data.js"></script>
     <script src="flows-data.js"></script>
+    <script src="flow-builder.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
