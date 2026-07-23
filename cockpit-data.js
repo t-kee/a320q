@@ -31,6 +31,7 @@ const cockpitPanels = {
       ["left-tank-pump-2", "L TK PUMP 2 pushbutton", 33.4, 39.0, 4.2, 4.9, "Fuel"],
       ["center-tank-left", "CTR TK L XFR pushbutton", 42.7, 39.0, 4.2, 4.9, "Fuel"],
       ["crossfeed", "X FEED pushbutton", 47.5, 34.0, 5.1, 5.1, "Fuel"],
+      ["fuel-mode-sel", "CTR TK MODE SEL pushbutton", 47.5, 39.0, 4.2, 4.9, "Fuel"],
       ["center-tank-right", "CTR TK R XFR pushbutton", 52.0, 39.0, 4.2, 4.9, "Fuel"],
       ["right-tank-pump-1", "R TK PUMP 1 pushbutton", 63.8, 39.0, 4.2, 4.9, "Fuel"],
       ["right-tank-pump-2", "R TK PUMP 2 pushbutton", 68.8, 39.0, 4.2, 4.9, "Fuel"],

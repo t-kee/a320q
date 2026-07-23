@@ -165,6 +165,12 @@
         "width": 5.1,
         "height": 5.1
       },
+      "fuel-mode-sel": {
+        "x": 46.75,
+        "y": 38.7,
+        "width": 4.2,
+        "height": 4.9
+      },
       "center-tank-right": {
         "x": 51.483,
         "y": 38.715,
