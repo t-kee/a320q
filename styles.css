@@ -71,7 +71,7 @@ body {
   color: var(--text-main);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   min-height: 100vh;
   margin: 0;
   padding: 20px;
@@ -100,6 +100,9 @@ h2 {
 
 /* Main product navigation */
 .meta-nav {
+  position: sticky;
+  top: 0;
+  z-index: 15;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 6px;
@@ -107,6 +110,7 @@ h2 {
   padding: 6px;
   border-radius: 10px;
   background: var(--bg-color);
+  box-shadow: 0 4px 12px var(--shadow-color);
 }
 
 .meta-nav-btn {
