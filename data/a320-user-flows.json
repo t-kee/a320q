@@ -545,28 +545,6 @@
         }
       ]
     },
-    "cockpit-preparation": {
-      "id": "cockpit-preparation",
-      "name": "Cockpit Preparation - First Flight",
-      "category": "normal",
-      "trigger": "First flight of the day, PM is doing walkaround.",
-      "initialPanel": "glareshield",
-      "steps": [
-        {
-          "actor": "PF",
-          "mode": "AND",
-          "action": "RCDR GND CTL",
-          "state": "ON",
-          "controls": [
-            {
-              "panel": "overhead",
-              "controlId": "recorder-gnd-ctl",
-              "label": "RCDR GND CTL pushbutton"
-            }
-          ]
-        }
-      ]
-    },
     "cockpit-preparation-transit": {
       "id": "cockpit-preparation-transit",
       "name": "Cockpit Preparation - Transit",
