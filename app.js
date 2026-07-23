@@ -38,7 +38,7 @@ let cockpitEditMode = false;
 let cockpitEditOperation = null;
 let cockpitMappingDirty = false;
 const cockpitMappingStorageKey = "a320_cockpit_hotspot_overrides_v1";
-const defaultCockpitHotspots = JSON.parse(JSON.stringify(cockpitPanels));
+let defaultCockpitHotspots = null;
 const cockpitPointers = new Map();
 let cockpitDragStart = null;
 let cockpitPinchStart = null;
@@ -57,23 +57,38 @@ function getCockpitMappingSnapshot() {
   );
 }
 
+function applyCockpitMapping(mapping) {
+  Object.entries(mapping || {}).forEach(([panelId, controls]) => {
+    const panel = cockpitPanels[panelId];
+    if (!panel || !controls) return;
+    panel.hotspots.forEach((hotspot) => {
+      const override = controls[hotspot[0]];
+      if (!override) return;
+      hotspot[2] = override.x;
+      hotspot[3] = override.y;
+      hotspot[4] = override.width;
+      hotspot[5] = override.height;
+    });
+  });
+}
+
+async function applyBundledCockpitMapping() {
+  try {
+    const response = await fetch("data/a320-cockpit-hotspots.json");
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const mapping = await response.json();
+    applyCockpitMapping(mapping.panels);
+  } catch (error) {
+    console.warn("Could not load bundled cockpit mapping", error);
+  }
+}
+
 function applySavedCockpitMapping() {
   try {
     const saved = JSON.parse(
       localStorage.getItem(cockpitMappingStorageKey) || "{}",
     );
-    Object.entries(saved).forEach(([panelId, controls]) => {
-      const panel = cockpitPanels[panelId];
-      if (!panel || !controls) return;
-      panel.hotspots.forEach((hotspot) => {
-        const override = controls[hotspot[0]];
-        if (!override) return;
-        hotspot[2] = override.x;
-        hotspot[3] = override.y;
-        hotspot[4] = override.width;
-        hotspot[5] = override.height;
-      });
-    });
+    applyCockpitMapping(saved);
   } catch (error) {
     console.warn("Could not load cockpit mapping overrides", error);
   }
@@ -280,7 +295,7 @@ function exportCockpitMapping() {
 }
 
 function resetCockpitPanelMapping() {
-  const defaults = defaultCockpitHotspots[activeCockpitPanel];
+  const defaults = defaultCockpitHotspots?.[activeCockpitPanel];
   if (!defaults) return;
   cockpitPanels[activeCockpitPanel].hotspots = JSON.parse(
     JSON.stringify(defaults.hotspots),
@@ -456,10 +471,17 @@ function setupCockpitGestures() {
   );
 }
 
-applySavedCockpitMapping();
-renderCockpitPanelCards();
 setupCockpitGestures();
 setupCockpitHotspotEditor();
+
+async function initializeCockpitMapping() {
+  await applyBundledCockpitMapping();
+  defaultCockpitHotspots = JSON.parse(JSON.stringify(cockpitPanels));
+  applySavedCockpitMapping();
+  renderCockpitPanelCards();
+}
+
+initializeCockpitMapping();
 
 // --- USER ID GENERATION ---
 let userId = localStorage.getItem("a320_user_id");
