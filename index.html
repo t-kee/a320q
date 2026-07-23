@@ -618,15 +618,106 @@
           </aside>
         </div>
 
-        <div id="study-flashcards" class="study-placeholder hidden">
-          <h1>Flash-cards</h1>
-          <p>This study tool will be added in the next step.</p>
+        <div id="study-flashcards" class="flashcards-tool hidden">
+          <section id="flashcard-setup" class="flashcard-setup">
+            <div class="study-heading">
+              <div>
+                <h1>Flash-cards</h1>
+                <p>
+                  Choose a theme, then work through every matching card without
+                  repetition.
+                </p>
+              </div>
+            </div>
+            <div class="flashcard-setup-card">
+              <label for="flashcard-theme">
+                <span>Theme</span>
+                <select
+                  id="flashcard-theme"
+                  onchange="updateFlashcardPoolSummary()"
+                >
+                  <option value="all">All themes</option>
+                </select>
+              </label>
+              <p id="flashcard-pool-summary"></p>
+              <button
+                class="flashcard-start-btn"
+                type="button"
+                onclick="startFlashcards()"
+              >
+                Start flash-cards
+              </button>
+            </div>
+          </section>
+
+          <section id="flashcard-session" class="flashcard-session hidden">
+            <header class="flashcard-session-header">
+              <button type="button" onclick="closeFlashcardSession()">
+                ×
+              </button>
+              <div>
+                <span id="flashcard-session-theme"></span>
+                <strong id="flashcard-progress"></strong>
+              </div>
+              <button type="button" onclick="restartFlashcards()">
+                Restart
+              </button>
+            </header>
+
+            <button
+              id="flashcard-card"
+              class="flashcard"
+              type="button"
+              aria-label="Show answer"
+              aria-pressed="false"
+              onclick="flipFlashcard()"
+            >
+              <span class="flashcard-inner">
+                <span class="flashcard-face flashcard-front">
+                  <span class="flashcard-label">Question</span>
+                  <strong id="flashcard-question"></strong>
+                  <span class="flashcard-hint">Tap to reveal the answer</span>
+                </span>
+                <span class="flashcard-face flashcard-back">
+                  <span class="flashcard-label">Answer</span>
+                  <strong id="flashcard-answer"></strong>
+                  <span id="flashcard-explanation"></span>
+                  <span class="flashcard-hint">Tap to see the question</span>
+                </span>
+              </span>
+            </button>
+
+            <button
+              id="flashcard-next"
+              class="flashcard-next-btn"
+              type="button"
+              onclick="nextFlashcard()"
+              disabled
+            >
+              Next card →
+            </button>
+          </section>
+
+          <section id="flashcard-complete" class="flashcard-complete hidden">
+            <span aria-hidden="true">✓</span>
+            <h1>Deck complete</h1>
+            <p id="flashcard-complete-summary"></p>
+            <div>
+              <button type="button" onclick="restartFlashcards()">
+                Study again
+              </button>
+              <button type="button" onclick="closeFlashcardSession()">
+                Change theme
+              </button>
+            </div>
+          </section>
         </div>
       </section>
     </div>
     <script src="cockpit-data.js"></script>
     <script src="flows-data.js"></script>
     <script src="flow-builder.js"></script>
+    <script src="flashcards.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
