@@ -267,13 +267,87 @@
         </div>
 
         <div id="study-flows">
-          <div id="cockpit-panel-picker">
+          <div id="flow-setup" class="flow-setup">
             <div class="study-heading">
               <div>
                 <h1>Flows Trainer</h1>
-                <p>Select a flight deck area to explore its controls.</p>
+                <p>Choose your seat, role and flow, or let the trainer decide.</p>
               </div>
-              <span class="touch-hint">Tap a panel to open it</span>
+              <button
+                class="flow-random-btn"
+                type="button"
+                onclick="startRandomFlow()"
+              >
+                Random flow
+              </button>
+            </div>
+
+            <div class="flow-setup-grid">
+              <fieldset class="flow-choice-group">
+                <legend>Seat</legend>
+                <div class="flow-segmented">
+                  <button
+                    class="active"
+                    type="button"
+                    data-flow-seat="CM1"
+                    onclick="selectFlowSeat('CM1')"
+                  >
+                    CM1
+                  </button>
+                  <button
+                    type="button"
+                    data-flow-seat="CM2"
+                    onclick="selectFlowSeat('CM2')"
+                  >
+                    CM2
+                  </button>
+                </div>
+              </fieldset>
+
+              <fieldset class="flow-choice-group">
+                <legend>Role</legend>
+                <div class="flow-segmented">
+                  <button
+                    class="active"
+                    type="button"
+                    data-flow-role="PF"
+                    onclick="selectFlowRole('PF')"
+                  >
+                    PF
+                  </button>
+                  <button
+                    type="button"
+                    data-flow-role="PM"
+                    onclick="selectFlowRole('PM')"
+                  >
+                    PM
+                  </button>
+                </div>
+              </fieldset>
+
+              <label class="flow-select-field">
+                <span>Flow</span>
+                <select id="flow-select" onchange="selectFlow(this.value)"></select>
+              </label>
+
+              <button
+                id="flow-start-btn"
+                class="flow-start-btn"
+                type="button"
+                onclick="startSelectedFlow()"
+              >
+                Start flow
+              </button>
+            </div>
+            <p id="flow-setup-status" class="flow-setup-status">
+              After Landing is available for this first test.
+            </p>
+          </div>
+
+          <div id="cockpit-panel-picker" class="cockpit-panel-picker">
+            <div class="panel-explorer-heading">
+              <strong>Explore the cockpit freely</strong>
+              <span>Open a panel without starting a flow.</span>
             </div>
             <div id="cockpit-panel-cards" class="cockpit-panel-cards"></div>
           </div>
@@ -289,6 +363,16 @@
               aria-modal="true"
               aria-labelledby="cockpit-panel-title"
             >
+              <div id="flow-session-header" class="flow-session-header hidden">
+                <div id="flow-user-left" class="flow-user-position"></div>
+                <div class="flow-session-title">
+                  <small>ACTIVE FLOW</small>
+                  <strong id="flow-session-name">After Landing</strong>
+                  <span id="flow-session-trigger"></span>
+                </div>
+                <div id="flow-user-right" class="flow-user-position"></div>
+              </div>
+
               <button
                 class="cockpit-modal-close"
                 onclick="closeCockpitPanel()"
@@ -341,6 +425,12 @@
                 Tap a highlighted control for its name. Pinch or use the
                 buttons to zoom, then drag to move around the panel.
               </p>
+
+              <div id="flow-action-bar" class="flow-action-bar hidden">
+                <span id="flow-action-actor"></span>
+                <strong id="flow-action-instruction"></strong>
+                <span id="flow-action-progress"></span>
+              </div>
 
               <div id="cockpit-editor-bar" class="cockpit-editor-bar hidden">
                 <span>
@@ -407,6 +497,7 @@
       </section>
     </div>
     <script src="cockpit-data.js"></script>
+    <script src="flows-data.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
