@@ -266,9 +266,82 @@
           </button>
         </div>
 
-        <div id="study-flows" class="study-placeholder">
-          <h1>Flows Trainer</h1>
-          <p>This training tool will be added in the next step.</p>
+        <div id="study-flows">
+          <div id="cockpit-panel-picker">
+            <div class="study-heading">
+              <div>
+                <h1>Flows Trainer</h1>
+                <p>Select a flight deck area to explore its controls.</p>
+              </div>
+              <span class="touch-hint">Tap a panel to open it</span>
+            </div>
+            <div id="cockpit-panel-cards" class="cockpit-panel-cards"></div>
+          </div>
+
+          <div id="cockpit-panel-viewer" class="hidden">
+            <div class="cockpit-toolbar">
+              <button class="cockpit-tool-btn" onclick="closeCockpitPanel()">
+                ← Panels
+              </button>
+              <strong id="cockpit-panel-title">Panel</strong>
+              <div class="cockpit-zoom-controls">
+                <button
+                  class="cockpit-tool-btn"
+                  onclick="changeCockpitZoom(-0.25)"
+                  aria-label="Zoom out"
+                >
+                  −
+                </button>
+                <output id="cockpit-zoom-value">100%</output>
+                <button
+                  class="cockpit-tool-btn"
+                  onclick="changeCockpitZoom(0.25)"
+                  aria-label="Zoom in"
+                >
+                  +
+                </button>
+                <button
+                  class="cockpit-tool-btn cockpit-label-toggle active"
+                  id="cockpit-label-toggle"
+                  onclick="toggleCockpitLabels()"
+                >
+                  Labels
+                </button>
+              </div>
+            </div>
+
+            <p class="cockpit-help">
+              Tap a highlighted control for its name. Pinch or use the buttons
+              to zoom, then drag to move around the panel.
+            </p>
+
+            <div id="cockpit-viewport" class="cockpit-viewport">
+              <div id="cockpit-canvas" class="cockpit-canvas">
+                <img id="cockpit-image" alt="" draggable="false" />
+                <div id="cockpit-hotspots" class="cockpit-hotspots"></div>
+              </div>
+            </div>
+          </div>
+
+          <aside
+            id="cockpit-control-sheet"
+            class="cockpit-control-sheet hidden"
+            aria-live="polite"
+          >
+            <button
+              class="close-control-sheet"
+              onclick="closeCockpitControl()"
+              aria-label="Close control details"
+            >
+              ×
+            </button>
+            <span id="cockpit-control-group" class="control-group"></span>
+            <h2 id="cockpit-control-name"></h2>
+            <p>
+              This control is mapped and ready for its operational description
+              and flow references.
+            </p>
+          </aside>
         </div>
 
         <div id="study-flashcards" class="study-placeholder hidden">
@@ -277,6 +350,7 @@
         </div>
       </section>
     </div>
+    <script src="cockpit-data.js"></script>
     <script src="app.js"></script>
   </body>
 </html>

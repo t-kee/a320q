@@ -15,6 +15,7 @@ function switchMetaTab(tabId) {
   studySection.classList.toggle("hidden", showExam);
   examButton.classList.toggle("active", showExam);
   studyButton.classList.toggle("active", !showExam);
+  document.getElementById("app").classList.toggle("study-mode", !showExam);
 }
 
 function switchStudyTab(tabId) {
@@ -29,6 +30,224 @@ function switchStudyTab(tabId) {
     button.classList.toggle("active", button.dataset.studyTab === tabId);
   });
 }
+
+let activeCockpitPanel = null;
+let cockpitZoom = 1;
+let cockpitLabelsVisible = true;
+const cockpitPointers = new Map();
+let cockpitDragStart = null;
+let cockpitPinchStart = null;
+
+function renderCockpitPanelCards() {
+  const container = document.getElementById("cockpit-panel-cards");
+  if (!container || typeof cockpitPanels === "undefined") return;
+
+  container.innerHTML = Object.entries(cockpitPanels)
+    .map(
+      ([panelId, panel]) => `
+        <button
+          class="cockpit-panel-card"
+          onclick="openCockpitPanel('${panelId}')"
+        >
+          <span class="cockpit-card-image">
+            <img src="${panel.image}" alt="${panel.label} panel" />
+          </span>
+          <span class="cockpit-card-copy">
+            <strong>${panel.label}</strong>
+            <span>${panel.hotspots.length} mapped controls →</span>
+          </span>
+        </button>
+      `,
+    )
+    .join("");
+}
+
+function openCockpitPanel(panelId) {
+  const panel = cockpitPanels[panelId];
+  if (!panel) return;
+
+  activeCockpitPanel = panelId;
+  cockpitZoom = 1;
+  document.getElementById("cockpit-panel-picker").classList.add("hidden");
+  document.getElementById("cockpit-panel-viewer").classList.remove("hidden");
+  document.getElementById("cockpit-panel-title").innerText = panel.label;
+
+  const image = document.getElementById("cockpit-image");
+  image.src = panel.image;
+  image.alt = `${panel.label} panel`;
+
+  const hotspots = document.getElementById("cockpit-hotspots");
+  hotspots.innerHTML = panel.hotspots
+    .map(([id, label, x, y, width, height, group]) => {
+      const style = `left:${x}%;top:${y}%;width:${width}%;height:${height}%;`;
+      return `
+        <button
+          class="cockpit-hotspot"
+          style="${style}"
+          aria-label="${label}"
+          title="${label}"
+          onclick="showCockpitControl('${id}')"
+          data-control-id="${id}"
+          data-control-name="${label}"
+          data-control-group="${group}"
+        ></button>
+      `;
+    })
+    .join("");
+  hotspots.classList.toggle("show-labels", cockpitLabelsVisible);
+
+  updateCockpitZoom();
+  const viewport = document.getElementById("cockpit-viewport");
+  viewport.scrollTop = 0;
+  viewport.scrollLeft = 0;
+}
+
+function closeCockpitPanel() {
+  activeCockpitPanel = null;
+  document.getElementById("cockpit-panel-viewer").classList.add("hidden");
+  document.getElementById("cockpit-panel-picker").classList.remove("hidden");
+  closeCockpitControl();
+}
+
+function updateCockpitZoom(anchorX, anchorY, previousZoom = cockpitZoom) {
+  const canvas = document.getElementById("cockpit-canvas");
+  const viewport = document.getElementById("cockpit-viewport");
+  canvas.style.width = `${cockpitZoom * 100}%`;
+  document.getElementById("cockpit-zoom-value").value =
+    `${Math.round(cockpitZoom * 100)}%`;
+
+  if (anchorX !== undefined && anchorY !== undefined) {
+    const ratio = cockpitZoom / previousZoom;
+    viewport.scrollLeft = (viewport.scrollLeft + anchorX) * ratio - anchorX;
+    viewport.scrollTop = (viewport.scrollTop + anchorY) * ratio - anchorY;
+  }
+}
+
+function changeCockpitZoom(delta, anchorX, anchorY) {
+  const previousZoom = cockpitZoom;
+  cockpitZoom = Math.min(4, Math.max(1, cockpitZoom + delta));
+  updateCockpitZoom(anchorX, anchorY, previousZoom);
+}
+
+function toggleCockpitLabels() {
+  cockpitLabelsVisible = !cockpitLabelsVisible;
+  document
+    .getElementById("cockpit-hotspots")
+    .classList.toggle("show-labels", cockpitLabelsVisible);
+  document
+    .getElementById("cockpit-label-toggle")
+    .classList.toggle("active", cockpitLabelsVisible);
+}
+
+function showCockpitControl(controlId) {
+  const hotspot = document.querySelector(
+    `.cockpit-hotspot[data-control-id="${controlId}"]`,
+  );
+  if (!hotspot) return;
+
+  document
+    .querySelectorAll(".cockpit-hotspot.selected")
+    .forEach((button) => button.classList.remove("selected"));
+  hotspot.classList.add("selected");
+
+  document.getElementById("cockpit-control-group").innerText =
+    hotspot.dataset.controlGroup;
+  document.getElementById("cockpit-control-name").innerText =
+    hotspot.dataset.controlName;
+  document.getElementById("cockpit-control-sheet").classList.remove("hidden");
+}
+
+function closeCockpitControl() {
+  document.getElementById("cockpit-control-sheet").classList.add("hidden");
+  document
+    .querySelectorAll(".cockpit-hotspot.selected")
+    .forEach((button) => button.classList.remove("selected"));
+}
+
+function cockpitPointerDistance() {
+  const points = Array.from(cockpitPointers.values());
+  if (points.length < 2) return 0;
+  return Math.hypot(points[0].x - points[1].x, points[0].y - points[1].y);
+}
+
+function setupCockpitGestures() {
+  const viewport = document.getElementById("cockpit-viewport");
+  if (!viewport) return;
+
+  viewport.addEventListener("pointerdown", (event) => {
+    if (event.target.closest(".cockpit-hotspot")) return;
+    viewport.setPointerCapture(event.pointerId);
+    cockpitPointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+
+    if (cockpitPointers.size === 1) {
+      cockpitDragStart = {
+        x: event.clientX,
+        y: event.clientY,
+        left: viewport.scrollLeft,
+        top: viewport.scrollTop,
+      };
+    } else if (cockpitPointers.size === 2) {
+      cockpitPinchStart = {
+        distance: cockpitPointerDistance(),
+        zoom: cockpitZoom,
+      };
+    }
+  });
+
+  viewport.addEventListener("pointermove", (event) => {
+    if (!cockpitPointers.has(event.pointerId)) return;
+    cockpitPointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+
+    if (cockpitPointers.size === 2 && cockpitPinchStart) {
+      const points = Array.from(cockpitPointers.values());
+      const centerX =
+        (points[0].x + points[1].x) / 2 - viewport.getBoundingClientRect().left;
+      const centerY =
+        (points[0].y + points[1].y) / 2 - viewport.getBoundingClientRect().top;
+      const previousZoom = cockpitZoom;
+      cockpitZoom = Math.min(
+        4,
+        Math.max(
+          1,
+          cockpitPinchStart.zoom *
+            (cockpitPointerDistance() / cockpitPinchStart.distance),
+        ),
+      );
+      updateCockpitZoom(centerX, centerY, previousZoom);
+    } else if (cockpitPointers.size === 1 && cockpitDragStart) {
+      viewport.scrollLeft =
+        cockpitDragStart.left - (event.clientX - cockpitDragStart.x);
+      viewport.scrollTop =
+        cockpitDragStart.top - (event.clientY - cockpitDragStart.y);
+    }
+  });
+
+  const finishPointer = (event) => {
+    cockpitPointers.delete(event.pointerId);
+    if (cockpitPointers.size < 2) cockpitPinchStart = null;
+    if (cockpitPointers.size === 0) cockpitDragStart = null;
+  };
+
+  viewport.addEventListener("pointerup", finishPointer);
+  viewport.addEventListener("pointercancel", finishPointer);
+  viewport.addEventListener(
+    "wheel",
+    (event) => {
+      if (!event.ctrlKey && !event.metaKey) return;
+      event.preventDefault();
+      const rect = viewport.getBoundingClientRect();
+      changeCockpitZoom(
+        event.deltaY < 0 ? 0.25 : -0.25,
+        event.clientX - rect.left,
+        event.clientY - rect.top,
+      );
+    },
+    { passive: false },
+  );
+}
+
+renderCockpitPanelCards();
+setupCockpitGestures();
 
 // --- USER ID GENERATION ---
 let userId = localStorage.getItem("a320_user_id");
