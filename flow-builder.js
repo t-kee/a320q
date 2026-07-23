@@ -279,6 +279,23 @@ function renderFlowBuilderStep(step, index) {
         )
         .join("")
     : `<span class="flow-no-controls">No cockpit control attached</span>`;
+  const logicSelector =
+    step.controls.length >= 3
+      ? `
+        <label class="flow-control-logic">
+          <span>Selected controls</span>
+          <select
+            class="flow-step-mode"
+            aria-label="Control logic for line ${index + 1}"
+            onchange="updateFlowBuilderStep(${index}, 'mode', this.value)"
+            title="AND requires every selected control. OR accepts any one control."
+          >
+            <option value="AND"${step.mode !== "OR" ? " selected" : ""}>AND</option>
+            <option value="OR"${step.mode === "OR" ? " selected" : ""}>OR</option>
+          </select>
+        </label>
+      `
+      : "";
 
   return `
     <article class="flow-builder-step">
@@ -324,18 +341,7 @@ function renderFlowBuilderStep(step, index) {
         ×
       </button>
       <div class="flow-step-controls">
-        <label class="flow-control-logic">
-          <span>Selected controls</span>
-          <select
-            class="flow-step-mode"
-            aria-label="Control logic for line ${index + 1}"
-            onchange="updateFlowBuilderStep(${index}, 'mode', this.value)"
-            title="AND requires every selected control. OR accepts any one control."
-          >
-            <option value="AND"${step.mode !== "OR" ? " selected" : ""}>AND</option>
-            <option value="OR"${step.mode === "OR" ? " selected" : ""}>OR</option>
-          </select>
-        </label>
+        ${logicSelector}
         <div class="flow-control-chips">${controlChips}</div>
       </div>
     </article>
