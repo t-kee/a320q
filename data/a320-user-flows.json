@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "exportedAt": "2026-07-23T15:40:23.456Z",
+  "exportedAt": "2026-07-23T17:00:12.880Z",
   "flows": {
     "after-landing": {
       "id": "after-landing",
@@ -247,6 +247,343 @@
               "panel": "glareshield",
               "controlId": "brake-fan",
               "label": "BRK FAN pushbutton"
+            }
+          ]
+        }
+      ]
+    },
+    "preliminary-cockpit-preparation": {
+      "id": "preliminary-cockpit-preparation",
+      "name": "Preliminary Cockpit Preparation",
+      "category": "normal",
+      "trigger": "Before applying electrical power to the aircraft",
+      "initialPanel": "glareshield",
+      "steps": [
+        {
+          "actor": "CM2",
+          "mode": "AND",
+          "action": "RADAR & PWS",
+          "state": "CHECK OFF",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "weather-radar",
+              "label": "Weather radar panel"
+            }
+          ]
+        },
+        {
+          "actor": "CM2",
+          "mode": "AND",
+          "action": "ENG MODE SEL",
+          "state": "NORM",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "engine-mode",
+              "label": "ENG MODE selector"
+            }
+          ]
+        },
+        {
+          "actor": "CM2",
+          "mode": "AND",
+          "action": "ENG 1, 2 MASTER LEVERS",
+          "state": "CHECK OFF",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "engine-master-1",
+              "label": "ENG MASTER 1 switch"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "engine-master-2",
+              "label": "ENG MASTER 2 switch"
+            }
+          ]
+        },
+        {
+          "actor": "CM2",
+          "mode": "AND",
+          "action": "L/G LEVER",
+          "state": "CHECK DOWN",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "gear-lever",
+              "label": "Landing gear lever"
+            }
+          ]
+        },
+        {
+          "actor": "CM2",
+          "mode": "AND",
+          "action": "WIPERS",
+          "state": "OFF",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "capt-wiper",
+              "label": "Captain WIPER selector"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "fo-wiper",
+              "label": "First Officer WIPER selector"
+            }
+          ]
+        },
+        {
+          "actor": "CM2",
+          "mode": "AND",
+          "action": "BAT 1+2",
+          "state": "CHECK >25.5V then AUTO",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "battery-1",
+              "label": "BAT 1 pushbutton"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "battery-2",
+              "label": "BAT 2 pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "CM2",
+          "mode": "OR",
+          "action": "RMP",
+          "state": "TUNE / SET",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "capt-rmp",
+              "label": "Captain RMP"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "fo-rmp",
+              "label": "First Officer RMP"
+            }
+          ]
+        },
+        {
+          "actor": "CM2",
+          "mode": "OR",
+          "action": "ACP",
+          "state": "SET",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "capt-acp",
+              "label": "Captain ACP"
+            },
+            {
+              "panel": "pedestal",
+              "controlId": "fo-acp",
+              "label": "First Officer ACP"
+            }
+          ]
+        },
+        {
+          "actor": "CM2",
+          "mode": "AND",
+          "action": "APU FIRE TEST",
+          "state": "PRESS <3s",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "apu-fire-test",
+              "label": "APU FIRE TEST pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "CM2",
+          "mode": "AND",
+          "action": "EXT POWER",
+          "state": "ON (if avail)",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "ext-pwr",
+              "label": "EXT PWR pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "CM2",
+          "mode": "OR",
+          "action": "AC",
+          "state": "AS RQRD",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "pack-flow",
+              "label": "PACK FLOW selector"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "crossbleed",
+              "label": "X BLEED selector"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "apu-bleed",
+              "label": "APU BLEED pushbutton"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "pack-1",
+              "label": "PACK 1 pushbutton"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "pack-2",
+              "label": "PACK 2 pushbutton"
+            }
+          ]
+        },
+        {
+          "actor": "CM2",
+          "mode": "AND",
+          "action": "ADIRS",
+          "state": "NAV",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "ir-1",
+              "label": "IR 1 selector"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "ir-3",
+              "label": "IR 3 selector"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "ir-2",
+              "label": "IR 2 selector"
+            }
+          ]
+        },
+        {
+          "actor": "CM2",
+          "mode": "AND",
+          "action": "COCKPIT SECURITY SEARCH",
+          "state": "AS RQRD",
+          "controls": []
+        },
+        {
+          "actor": "BOTH",
+          "mode": "AND",
+          "action": "EFB & A/C ACCEPTANCE",
+          "state": "CHECK / PERFORM",
+          "controls": []
+        },
+        {
+          "actor": "BOTH",
+          "mode": "AND",
+          "action": "PRELIM PERF DETERMINATION",
+          "state": "COMPUTE",
+          "controls": []
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "NAV&LOGO LIGHTS",
+          "state": "ON",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "nav-logo",
+              "label": "NAV & LOGO switch"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "ACCU/BRAKE PRESS",
+          "state": "CHECK",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "brake-pressure-indicator",
+              "label": "Brake pressure indicator"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "FLAPS",
+          "state": "CHECK POSITION",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "flaps",
+              "label": "Flaps lever"
+            }
+          ]
+        },
+        {
+          "actor": "PM",
+          "mode": "AND",
+          "action": "PARKING BRAKE",
+          "state": "ON",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "parking-brake",
+              "label": "Parking brake handle"
+            }
+          ]
+        }
+      ]
+    },
+    "cockpit-preparation": {
+      "id": "cockpit-preparation",
+      "name": "Cockpit Preparation - First Flight",
+      "category": "normal",
+      "trigger": "First flight of the day, PM is doing walkaround.",
+      "initialPanel": "glareshield",
+      "steps": [
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "RCDR GND CTL",
+          "state": "ON",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "recorder-gnd-ctl",
+              "label": "RCDR GND CTL pushbutton"
+            }
+          ]
+        }
+      ]
+    },
+    "cockpit-preparation-transit": {
+      "id": "cockpit-preparation-transit",
+      "name": "Cockpit Preparation - Transit",
+      "category": "normal",
+      "trigger": "Transit stop, same crew & aircraft. PM is doing walkaround.",
+      "initialPanel": "glareshield",
+      "steps": [
+        {
+          "actor": "PF",
+          "mode": "AND",
+          "action": "RCDR GND CTL",
+          "state": "ON",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "recorder-gnd-ctl",
+              "label": "RCDR GND CTL pushbutton"
             }
           ]
         }

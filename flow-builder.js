@@ -26,23 +26,40 @@ function loadUserFlows() {
   }
 }
 
+function isUsableFlow(flow) {
+  return Boolean(flow && Array.isArray(flow.steps) && flow.steps.length);
+}
+
 function getFlowDefinition(flowId) {
   return (
-    userFlows[flowId] ||
-    bundledUserFlows[flowId] ||
-    implementedFlows[flowId] ||
-    null
+    [
+      userFlows[flowId],
+      bundledUserFlows[flowId],
+      implementedFlows[flowId],
+    ].find(isUsableFlow) || null
   );
 }
 
 function getFlowCatalogEntries() {
-  const entries = new Map(
+  const catalogMetadata = new Map(
     flowCatalog.map(([id, name, category = "normal"]) => [
       id,
-      [id, name, category],
+      { name, category },
     ]),
   );
+  const entries = new Map();
+  Object.values(implementedFlows)
+    .filter(isUsableFlow)
+    .forEach((flow) => {
+      const metadata = catalogMetadata.get(flow.id);
+      entries.set(flow.id, [
+        flow.id,
+        flow.name || metadata?.name || flow.id,
+        flow.category || metadata?.category || "normal",
+      ]);
+    });
   Object.values(bundledUserFlows).forEach((flow) => {
+    if (!isUsableFlow(flow)) return;
     const previous = entries.get(flow.id);
     entries.set(flow.id, [
       flow.id,
@@ -51,6 +68,7 @@ function getFlowCatalogEntries() {
     ]);
   });
   Object.values(userFlows).forEach((flow) => {
+    if (!isUsableFlow(flow)) return;
     const previous = entries.get(flow.id);
     entries.set(flow.id, [
       flow.id,

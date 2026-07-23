@@ -547,6 +547,7 @@ function flowPlaybackPrevious() {
   const session = activeFlowSession;
   if (!session) return;
   clearFlowTimer(true);
+  session.paused = true;
   session.stepIndex = Math.max(0, session.stepIndex - 1);
   session.demoInProgress = false;
   advanceFlow(session.token);
