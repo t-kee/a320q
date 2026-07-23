@@ -1815,6 +1815,17 @@ select {
   background: var(--option-bg);
 }
 
+.flashcard-count-summary {
+  margin: -8px 0 12px;
+  padding: 10px 12px;
+  border-radius: 7px;
+  background: var(--badge-bg);
+  color: var(--badge-text);
+  font-size: 13px;
+  font-weight: 800;
+  text-align: center;
+}
+
 .monkey-mode-row > div {
   display: grid;
   gap: 3px;

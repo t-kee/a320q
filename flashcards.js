@@ -10,6 +10,9 @@ function toggleMonkeyMode() {
   document
     .getElementById("question-count-group")
     .classList.toggle("hidden", !monkeyMode);
+  document
+    .getElementById("flashcard-count-summary")
+    .classList.toggle("hidden", monkeyMode);
   document.getElementById("training-mode-description").innerText = monkeyMode
     ? "Multiple-choice training"
     : "Question and answer flashcards";
@@ -19,6 +22,16 @@ function toggleMonkeyMode() {
   document.getElementById("start-training-btn").innerText = monkeyMode
     ? "Start Training"
     : "Start Flashcards";
+  if (!monkeyMode && typeof updateSliderMax === "function") {
+    updateSliderMax();
+  }
+}
+
+function updateFlashcardCountSummary(count) {
+  const summary = document.getElementById("flashcard-count-summary");
+  if (!summary) return;
+  summary.innerText =
+    `${count} question${count === 1 ? "" : "s"} match these filters`;
 }
 
 function startTraining() {

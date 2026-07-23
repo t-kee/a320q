@@ -56,14 +56,14 @@
           </ul>
         </div>
 
-        <div id="question-count-group" class="setup-group">
+        <div class="setup-group">
           <label for="theme-select">Select Theme:</label>
           <select id="theme-select">
             <option value="all">All Themes</option>
           </select>
         </div>
 
-        <div class="setup-group">
+        <div id="question-count-group" class="setup-group">
           <label for="question-count"
             >Number of questions: <span id="count-display">10</span></label
           >
@@ -99,6 +99,10 @@
             <span aria-hidden="true"></span>
           </label>
         </div>
+
+        <p id="flashcard-count-summary" class="flashcard-count-summary hidden">
+          0 questions match these filters
+        </p>
 
         <button
           id="start-training-btn"
