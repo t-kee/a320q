@@ -14,7 +14,7 @@ function toggleMonkeyMode() {
     ? "Multiple-choice training"
     : "Question and answer flashcards";
   document.getElementById("training-title").innerText = monkeyMode
-    ? "A320 Monkey Training"
+    ? "A320 Monkey Clicking"
     : "A320 Theoretical Exam Flashcards";
   document.getElementById("start-training-btn").innerText = monkeyMode
     ? "Start Training"
