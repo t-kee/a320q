@@ -4,6 +4,7 @@ let bundledUserFlows = {};
 let flowBuilderDraft = null;
 let flowBuilderCaptureStepIndex = null;
 let flowBuilderCaptureActive = false;
+let flowBuilderStepDrag = null;
 
 async function loadBundledUserFlows() {
   try {
@@ -245,6 +246,27 @@ function createNewFlowDraft() {
   setFlowBuilderStatus("New flow — add a name and at least one line.");
 }
 
+function duplicateFlowDraft() {
+  if (!flowBuilderDraft) return;
+  syncFlowBuilderMetadata();
+  const originalName = flowBuilderDraft.name.trim() || "Untitled Flow";
+  let copyName = `${originalName} Copy`;
+  let copyNumber = 2;
+  while (getFlowDefinition(slugifyFlowName(copyName))) {
+    copyName = `${originalName} Copy ${copyNumber}`;
+    copyNumber += 1;
+  }
+  flowBuilderDraft = JSON.parse(JSON.stringify(flowBuilderDraft));
+  flowBuilderDraft.id = "";
+  flowBuilderDraft.name = copyName;
+  renderFlowBuilderDraft();
+  document.getElementById("flow-builder-name").focus();
+  document.getElementById("flow-builder-name").select();
+  setFlowBuilderStatus(
+    `Duplicated ${originalName}. Rename it if needed, then save the copy locally.`,
+  );
+}
+
 function syncFlowBuilderMetadata() {
   if (!flowBuilderDraft) return;
   flowBuilderDraft.name =
@@ -312,8 +334,17 @@ function renderFlowBuilderStep(step, index) {
       : "";
 
   return `
-    <article class="flow-builder-step">
-      <span class="flow-step-number">${String(index + 1).padStart(2, "0")}</span>
+    <article class="flow-builder-step" data-step-index="${index}">
+      <div class="flow-step-order">
+        <button
+          class="flow-step-drag-handle"
+          type="button"
+          aria-label="Drag to reorder line ${index + 1}"
+          title="Drag to reorder"
+          onpointerdown="startFlowBuilderStepDrag(event, ${index})"
+        >⠿</button>
+        <span class="flow-step-number">${String(index + 1).padStart(2, "0")}</span>
+      </div>
       <select
         aria-label="Crew member or role for line ${index + 1}"
         onchange="updateFlowBuilderStep(${index}, 'actor', this.value)"
@@ -391,6 +422,66 @@ function addFlowBuilderStep() {
 function updateFlowBuilderStep(index, key, value) {
   if (!flowBuilderDraft?.steps[index]) return;
   flowBuilderDraft.steps[index][key] = value;
+}
+
+function startFlowBuilderStepDrag(event, index) {
+  if (!flowBuilderDraft?.steps[index] || event.button > 0) return;
+  event.preventDefault();
+  syncFlowBuilderMetadata();
+  const item = event.currentTarget.closest(".flow-builder-step");
+  if (!item) return;
+  flowBuilderStepDrag = { item, pointerId: event.pointerId };
+  item.classList.add("dragging");
+  event.currentTarget.setPointerCapture(event.pointerId);
+  event.currentTarget.addEventListener(
+    "pointermove",
+    moveFlowBuilderStepDrag,
+  );
+  event.currentTarget.addEventListener(
+    "pointerup",
+    finishFlowBuilderStepDrag,
+    { once: true },
+  );
+  event.currentTarget.addEventListener(
+    "pointercancel",
+    finishFlowBuilderStepDrag,
+    { once: true },
+  );
+}
+
+function moveFlowBuilderStepDrag(event) {
+  if (!flowBuilderStepDrag || event.pointerId !== flowBuilderStepDrag.pointerId) {
+    return;
+  }
+  event.preventDefault();
+  const container = document.getElementById("flow-builder-steps");
+  const target = document
+    .elementFromPoint(event.clientX, event.clientY)
+    ?.closest(".flow-builder-step");
+  const dragged = flowBuilderStepDrag.item;
+  if (!target || target === dragged || target.parentElement !== container) return;
+  const targetBox = target.getBoundingClientRect();
+  const insertAfter = event.clientY > targetBox.top + targetBox.height / 2;
+  container.insertBefore(
+    dragged,
+    insertAfter ? target.nextElementSibling : target,
+  );
+}
+
+function finishFlowBuilderStepDrag(event) {
+  if (!flowBuilderStepDrag || event.pointerId !== flowBuilderStepDrag.pointerId) {
+    return;
+  }
+  const container = document.getElementById("flow-builder-steps");
+  const orderedIndexes = [...container.querySelectorAll(".flow-builder-step")]
+    .map((item) => Number(item.dataset.stepIndex));
+  flowBuilderDraft.steps = orderedIndexes.map(
+    (index) => flowBuilderDraft.steps[index],
+  );
+  flowBuilderStepDrag.item.classList.remove("dragging");
+  flowBuilderStepDrag = null;
+  renderFlowBuilderDraft();
+  setFlowBuilderStatus("Line order updated. Save the flow to keep it.");
 }
 
 function deleteFlowBuilderStep(index) {

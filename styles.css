@@ -376,6 +376,10 @@ h2 {
   grid-template-columns: minmax(200px, 1fr) 220px minmax(240px, 1fr);
 }
 
+.flow-builder-toolbar {
+  grid-template-columns: minmax(240px, 1fr) auto auto;
+}
+
 .flow-builder-toolbar label,
 .flow-builder-metadata label {
   display: grid;
@@ -460,6 +464,36 @@ h2 {
   font-size: 12px;
   font-weight: 900;
   text-align: center;
+}
+
+.flow-step-order {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+}
+
+.flow-step-drag-handle {
+  width: 30px;
+  min-height: 25px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: grab;
+  font-size: 20px;
+  line-height: 1;
+  touch-action: none;
+}
+
+.flow-step-drag-handle:active {
+  cursor: grabbing;
+}
+
+.flow-builder-step.dragging {
+  z-index: 2;
+  border-color: var(--accent);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+  opacity: 0.82;
 }
 
 .flow-pick-controls-btn,
