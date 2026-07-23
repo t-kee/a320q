@@ -197,10 +197,34 @@ function getFlowPlaybackControls(step) {
 }
 
 function getFlowStepInstruction(step) {
-  return (
-    step.instruction ||
-    [step.action, step.state].filter(Boolean).join(" — ")
-  );
+  return [getFlowStepAction(step), getFlowStepState(step)]
+    .filter(Boolean)
+    .join(" — ");
+}
+
+function getFlowStepAction(step) {
+  if (step.action) return step.action;
+  const parts = String(step.instruction || "").split(/\s+[—–-]\s+/);
+  return parts.shift()?.trim() || "";
+}
+
+function getFlowStepState(step) {
+  if (step.state) return step.state;
+  const parts = String(step.instruction || "").split(/\s+[—–-]\s+/);
+  parts.shift();
+  return parts.join(" — ").trim();
+}
+
+function setFlowHotspotFeedback(hotspot, className, state) {
+  if (!hotspot) return;
+  hotspot.classList.add(className);
+  if (state) hotspot.dataset.flowState = state;
+}
+
+function clearFlowHotspotFeedback(hotspot, className) {
+  if (!hotspot) return;
+  hotspot.classList.remove(className);
+  delete hotspot.dataset.flowState;
 }
 
 function getFlowControlKey(panel, controlId) {
@@ -279,6 +303,11 @@ function refreshFlowPanelGuidance() {
       "flow-correct",
       activeFlowSession.completedControlKeys.has(key),
     );
+    if (activeFlowSession.completedControlKeys.has(key)) {
+      hotspot.dataset.flowState = getFlowStepState(step);
+    } else if (!hotspot.classList.contains("flow-demo")) {
+      delete hotspot.dataset.flowState;
+    }
   });
 }
 
@@ -289,7 +318,7 @@ function clearFlowTimer(removeHighlights = false) {
   session.timer = null;
   if (removeHighlights) {
     session.demoHotspots.forEach((hotspot) =>
-      hotspot?.classList.remove("flow-demo"),
+      clearFlowHotspotFeedback(hotspot, "flow-demo"),
     );
     session.demoHotspots = [];
   }
@@ -301,9 +330,10 @@ function advanceFlow(token) {
   clearFlowTimer(true);
   document
     .querySelectorAll(".cockpit-hotspot.flow-correct, .cockpit-hotspot.flow-incorrect")
-    .forEach((hotspot) =>
-      hotspot.classList.remove("flow-correct", "flow-incorrect"),
-    );
+    .forEach((hotspot) => {
+      hotspot.classList.remove("flow-correct", "flow-incorrect");
+      delete hotspot.dataset.flowState;
+    });
   session.completedControlKeys = new Set();
 
   const step = session.definition.steps[session.stepIndex];
@@ -349,7 +379,11 @@ function playFlowDemoPanel(step, panels, panelIndex, token) {
       ),
     );
     activeFlowSession.demoHotspots.forEach((hotspot) =>
-      hotspot?.classList.add("flow-demo"),
+      setFlowHotspotFeedback(
+        hotspot,
+        "flow-demo",
+        getFlowStepState(step),
+      ),
     );
     activeFlowSession.demoPanelIndex = panelIndex;
     activeFlowSession.demoPanels = panels;
@@ -376,7 +410,7 @@ function scheduleFlowDemoCompletion(step, token) {
     }
     activeFlowSession.stepIndex += 1;
     advanceFlow(token);
-  }, 1000);
+  }, 1500);
 }
 
 function handleFlowHotspotClick(controlId) {
@@ -399,21 +433,29 @@ function handleFlowHotspotClick(controlId) {
     !isFlowStepForUser(step) ||
     !expectedKeys.has(clickedKey)
   ) {
-    hotspot?.classList.add("flow-incorrect");
+    setFlowHotspotFeedback(
+      hotspot,
+      "flow-incorrect",
+      getFlowStepState(step),
+    );
     updateFlowActionBar(
       step,
       "user",
       `Not yet — ${getFlowStepInstruction(step)}`,
     );
     window.setTimeout(
-      () => hotspot?.classList.remove("flow-incorrect"),
+      () => clearFlowHotspotFeedback(hotspot, "flow-incorrect"),
       450,
     );
     return true;
   }
 
   session.completedControlKeys.add(clickedKey);
-  hotspot?.classList.add("flow-correct");
+  setFlowHotspotFeedback(
+    hotspot,
+    "flow-correct",
+    getFlowStepState(step),
+  );
   const isComplete =
     step.mode === "OR"
       ? session.completedControlKeys.size > 0
@@ -429,10 +471,10 @@ function handleFlowHotspotClick(controlId) {
 
   window.setTimeout(() => {
     if (!activeFlowSession || activeFlowSession.token !== session.token) return;
-    hotspot?.classList.remove("flow-correct");
+    clearFlowHotspotFeedback(hotspot, "flow-correct");
     activeFlowSession.stepIndex += 1;
     advanceFlow(session.token);
-  }, 320);
+  }, 650);
   return true;
 }
 

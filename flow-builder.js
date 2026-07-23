@@ -70,6 +70,21 @@ function findCockpitControl(panelId, controlId) {
     : { panel: panelId, controlId, label: controlId };
 }
 
+function splitFlowInstruction(step) {
+  if (step.action || step.state) {
+    return {
+      action: step.action || "",
+      state: step.state || "",
+    };
+  }
+  const instruction = step.instruction || "";
+  const parts = instruction.split(/\s+[—–-]\s+/);
+  return {
+    action: parts.shift()?.trim() || instruction.trim(),
+    state: parts.join(" — ").trim(),
+  };
+}
+
 function normalizeFlowForBuilder(definition) {
   return {
     id: definition.id,
@@ -92,12 +107,12 @@ function normalizeFlowForBuilder(definition) {
         controls = [findCockpitControl(step.panel, representativeId)];
       }
 
+      const text = splitFlowInstruction(step);
       return {
         actor: step.actor || step.role || "PF",
         mode: step.mode === "OR" ? "OR" : "AND",
-        instruction:
-          step.instruction ||
-          [step.action, step.state].filter(Boolean).join(" — "),
+        action: text.action,
+        state: text.state,
         controls,
       };
     }),
@@ -240,11 +255,20 @@ function renderFlowBuilderStep(step, index) {
         <option value="OR"${step.mode === "OR" ? " selected" : ""}>OR</option>
       </select>
       <input
+        class="flow-step-action"
         type="text"
-        value="${escapeFlowBuilderHtml(step.instruction)}"
-        placeholder="e.g. Landing lights — OFF"
-        aria-label="Instruction for line ${index + 1}"
-        oninput="updateFlowBuilderStep(${index}, 'instruction', this.value)"
+        value="${escapeFlowBuilderHtml(step.action)}"
+        placeholder="Control / action, e.g. LAND LIGHT"
+        aria-label="Control or action for line ${index + 1}"
+        oninput="updateFlowBuilderStep(${index}, 'action', this.value)"
+      />
+      <input
+        class="flow-step-state"
+        type="text"
+        value="${escapeFlowBuilderHtml(step.state)}"
+        placeholder="Position, e.g. OFF"
+        aria-label="Position for line ${index + 1}"
+        oninput="updateFlowBuilderStep(${index}, 'state', this.value)"
       />
       <button
         class="flow-pick-controls-btn"
@@ -280,12 +304,13 @@ function addFlowBuilderStep() {
   flowBuilderDraft.steps.push({
     actor: "PF",
     mode: "AND",
-    instruction: "",
+    action: "",
+    state: "",
     controls: [],
   });
   renderFlowBuilderDraft();
   const inputs = document.querySelectorAll(
-    '.flow-builder-step input[type="text"]',
+    ".flow-builder-step .flow-step-action",
   );
   inputs[inputs.length - 1]?.focus();
 }
@@ -337,7 +362,7 @@ function renderFlowBuilderCaptureHeader() {
   bar.classList.remove("hidden", "demo", "complete");
   document.getElementById("flow-action-actor").innerText = step.actor;
   document.getElementById("flow-action-instruction").innerText =
-    step.instruction || "Unnamed action";
+    [step.action, step.state].filter(Boolean).join(" — ") || "Unnamed action";
   document.getElementById("flow-action-progress").innerText =
     `${step.controls.length} selected`;
   document.getElementById("flow-action-restart").classList.add("hidden");
@@ -420,7 +445,10 @@ function saveFlowDraft() {
   syncFlowBuilderMetadata();
   const name = flowBuilderDraft.name;
   const validSteps = flowBuilderDraft.steps.filter(
-    (step) => step.instruction.trim() && step.controls.length,
+    (step) =>
+      step.action.trim() &&
+      step.state.trim() &&
+      step.controls.length,
   );
   if (!name) {
     setFlowBuilderStatus("Add a flow name before saving.", true);
@@ -428,7 +456,7 @@ function saveFlowDraft() {
   }
   if (!validSteps.length) {
     setFlowBuilderStatus(
-      "Add at least one line with an instruction and cockpit controls.",
+      "Add at least one line with an action, a position and cockpit controls.",
       true,
     );
     return;

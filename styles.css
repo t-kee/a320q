@@ -434,7 +434,9 @@ h2 {
 
 .flow-builder-step {
   display: grid;
-  grid-template-columns: 40px 72px 76px minmax(220px, 1fr) auto 38px;
+  grid-template-columns:
+    40px 72px 76px minmax(180px, 1fr) minmax(120px, 0.55fr)
+    auto 38px;
   align-items: center;
   gap: 8px;
   padding: 10px;
@@ -1051,6 +1053,39 @@ body.cockpit-modal-open {
   border: 3px solid #9b59b6;
   background: rgba(155, 89, 182, 0.46);
   box-shadow: 0 0 0 5px rgba(155, 89, 182, 0.2);
+}
+
+.cockpit-hotspot[data-flow-state]::before {
+  position: absolute;
+  bottom: calc(100% + 5px);
+  left: 50%;
+  z-index: 12;
+  display: block;
+  width: max-content;
+  max-width: 150px;
+  padding: 4px 7px;
+  border: 1px solid currentColor;
+  border-radius: 5px;
+  background: rgba(8, 17, 25, 0.92);
+  content: attr(data-flow-state);
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1.1;
+  text-align: center;
+  white-space: normal;
+  transform: translateX(-50%);
+}
+
+.cockpit-hotspot.flow-demo[data-flow-state]::before {
+  color: #f1c40f;
+}
+
+.cockpit-hotspot.flow-correct[data-flow-state]::before {
+  color: var(--correct);
+}
+
+.cockpit-hotspot.flow-incorrect[data-flow-state]::before {
+  color: var(--incorrect);
 }
 
 @keyframes flow-demo-pulse {
