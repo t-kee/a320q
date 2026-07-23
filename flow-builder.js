@@ -1,8 +1,21 @@
 const userFlowsStorageKey = "a320_user_flows_v1";
 let userFlows = {};
+let bundledUserFlows = {};
 let flowBuilderDraft = null;
 let flowBuilderCaptureStepIndex = null;
 let flowBuilderCaptureActive = false;
+
+async function loadBundledUserFlows() {
+  try {
+    const response = await fetch("data/a320-user-flows.json");
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const payload = await response.json();
+    bundledUserFlows = payload.flows || {};
+  } catch (error) {
+    console.warn("Could not load bundled user flows", error);
+    bundledUserFlows = {};
+  }
+}
 
 function loadUserFlows() {
   try {
@@ -14,12 +27,22 @@ function loadUserFlows() {
 }
 
 function getFlowDefinition(flowId) {
-  return userFlows[flowId] || implementedFlows[flowId] || null;
+  return (
+    userFlows[flowId] ||
+    bundledUserFlows[flowId] ||
+    implementedFlows[flowId] ||
+    null
+  );
 }
 
 function getFlowCatalogEntries() {
   const entries = [...flowCatalog];
   Object.values(userFlows).forEach((flow) => {
+    if (!entries.some(([id]) => id === flow.id)) {
+      entries.push([flow.id, flow.name]);
+    }
+  });
+  Object.values(bundledUserFlows).forEach((flow) => {
     if (!entries.some(([id]) => id === flow.id)) {
       entries.push([flow.id, flow.name]);
     }
@@ -71,6 +94,7 @@ function normalizeFlowForBuilder(definition) {
 
       return {
         role: step.role || "PF",
+        mode: step.mode === "OR" ? "OR" : "AND",
         instruction:
           step.instruction ||
           [step.action, step.state].filter(Boolean).join(" — "),
@@ -204,6 +228,15 @@ function renderFlowBuilderStep(step, index) {
         <option value="PF"${step.role === "PF" ? " selected" : ""}>PF</option>
         <option value="PM"${step.role === "PM" ? " selected" : ""}>PM</option>
       </select>
+      <select
+        class="flow-step-mode"
+        aria-label="Control logic for line ${index + 1}"
+        onchange="updateFlowBuilderStep(${index}, 'mode', this.value)"
+        title="AND requires every selected control. OR accepts any one control."
+      >
+        <option value="AND"${step.mode !== "OR" ? " selected" : ""}>AND</option>
+        <option value="OR"${step.mode === "OR" ? " selected" : ""}>OR</option>
+      </select>
       <input
         type="text"
         value="${escapeFlowBuilderHtml(step.instruction)}"
@@ -244,6 +277,7 @@ function addFlowBuilderStep() {
   syncFlowBuilderMetadata();
   flowBuilderDraft.steps.push({
     role: "PF",
+    mode: "AND",
     instruction: "",
     controls: [],
   });
@@ -482,7 +516,8 @@ function setFlowBuilderStatus(message, isError = false) {
   status.classList.toggle("error", isError);
 }
 
-function initializeFlowBuilder() {
+async function initializeFlowBuilder() {
+  await loadBundledUserFlows();
   loadUserFlows();
   renderFlowBuilderSelect();
 }

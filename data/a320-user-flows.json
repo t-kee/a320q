@@ -1,0 +1,221 @@
+{
+  "version": 1,
+  "exportedAt": "2026-07-23T14:46:53.276Z",
+  "flows": {
+    "after-landing": {
+      "id": "after-landing",
+      "name": "After Landing",
+      "trigger": "When vacating the runway",
+      "initialPanel": "glareshield",
+      "steps": [
+        {
+          "role": "PF",
+          "instruction": "GND SPLRS — DISARM",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "speed-brake",
+              "label": "Speed brake lever"
+            }
+          ]
+        },
+        {
+          "role": "PF",
+          "instruction": "STROBE — OFF",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "strobe",
+              "label": "STROBE switch"
+            }
+          ]
+        },
+        {
+          "role": "PF",
+          "instruction": "LAND LIGHT — OFF",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "landing-light-left",
+              "label": "Left LAND light switch"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "landing-light-right",
+              "label": "Right LAND light switch"
+            }
+          ]
+        },
+        {
+          "role": "PF",
+          "instruction": "NOSE LIGHT — TAXI",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "nose-light",
+              "label": "NOSE light switch"
+            }
+          ]
+        },
+        {
+          "role": "PM",
+          "instruction": "WX RADAR / PREDICTIVE WINDSHEAR — OFF",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "weather-radar",
+              "label": "Weather radar panel"
+            }
+          ]
+        },
+        {
+          "role": "PM",
+          "instruction": "ENG MODE SELECTOR — NORM",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "engine-mode",
+              "label": "ENG MODE selector"
+            }
+          ]
+        },
+        {
+          "role": "PM",
+          "instruction": "FLAPS — RETRACT",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "flaps",
+              "label": "Flaps lever"
+            }
+          ]
+        },
+        {
+          "role": "PM",
+          "instruction": "TCAS — STBY / XPNDR",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "tcas-traffic",
+              "label": "TCAS traffic selector"
+            }
+          ]
+        },
+        {
+          "role": "PM",
+          "instruction": "ANTI-ICE — AS RQRD",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "eng-1-anti-ice",
+              "label": "ENG 1 anti-ice pushbutton"
+            },
+            {
+              "panel": "overhead",
+              "controlId": "eng-2-anti-ice",
+              "label": "ENG 2 anti-ice pushbutton"
+            }
+          ]
+        },
+        {
+          "role": "PM",
+          "instruction": "PACK 2 — AS RQRD",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "pack-2",
+              "label": "PACK 2 pushbutton"
+            }
+          ]
+        },
+        {
+          "role": "PM",
+          "instruction": "GPWS LDG FLAP 3 — OFF",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "gpws-ldg-flap-3",
+              "label": "GPWS LDG FLAP 3 pushbutton"
+            }
+          ]
+        },
+        {
+          "role": "PM",
+          "instruction": "APU MASTER — ON WHEN APPROPRIATE",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "apu-master",
+              "label": "APU MASTER SW pushbutton"
+            }
+          ]
+        },
+        {
+          "role": "PM",
+          "instruction": "APU START — START",
+          "controls": [
+            {
+              "panel": "overhead",
+              "controlId": "apu-start",
+              "label": "APU START pushbutton"
+            }
+          ]
+        },
+        {
+          "role": "PM",
+          "instruction": "FCU PB — DESELECT LS PBS",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "fo-efis-ls",
+              "label": "First Officer LS pushbutton"
+            },
+            {
+              "panel": "glareshield",
+              "controlId": "capt-efis-ls",
+              "label": "Captain LS pushbutton"
+            }
+          ]
+        },
+        {
+          "role": "PM",
+          "instruction": "TERR ON ND — OFF",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "fo-terrain",
+              "label": "First Officer TERR ON ND pushbutton"
+            },
+            {
+              "panel": "glareshield",
+              "controlId": "capt-terrain",
+              "label": "Captain TERR ON ND pushbutton"
+            }
+          ]
+        },
+        {
+          "role": "PM",
+          "instruction": "BRAKE TEMP — MONITOR",
+          "controls": [
+            {
+              "panel": "pedestal",
+              "controlId": "ecam-lower-display-controls",
+              "label": "ECAM lower display control panel"
+            }
+          ]
+        },
+        {
+          "role": "PM",
+          "instruction": "BRAKE FAN — AS RQRD",
+          "controls": [
+            {
+              "panel": "glareshield",
+              "controlId": "brake-fan",
+              "label": "BRK FAN pushbutton"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "exportedAt": "2026-07-23T13:43:34.215Z",
+  "exportedAt": "2026-07-23T14:39:32.244Z",
   "panels": {
     "overhead": {
       "ir-1": {
@@ -246,8 +246,8 @@
       "idg-2": {
         "x": 68.865,
         "y": 55.169,
-        "width": 5.2,
-        "height": 6.2
+        "width": 4.569,
+        "height": 5.553
       },
       "pack-1": {
         "x": 27.121,
@@ -690,40 +690,40 @@
         "height": 2.2
       },
       "fcu-loc": {
-        "x": 46.7,
-        "y": 26.2,
-        "width": 1,
-        "height": 2
+        "x": 46.624,
+        "y": 26.403,
+        "width": 1.189,
+        "height": 2.356
       },
       "fcu-ap1": {
-        "x": 49.003,
-        "y": 22.52,
-        "width": 1,
-        "height": 1.958
+        "x": 48.907,
+        "y": 22.469,
+        "width": 1.055,
+        "height": 2.668
       },
       "fcu-ap2": {
-        "x": 50.133,
-        "y": 22.549,
-        "width": 1,
-        "height": 2
+        "x": 50.076,
+        "y": 22.446,
+        "width": 1.074,
+        "height": 2.558
       },
       "fcu-athr": {
         "x": 49.4,
-        "y": 26.3,
-        "width": 1.1,
-        "height": 2
+        "y": 26.146,
+        "width": 1.232,
+        "height": 2.305
       },
       "fcu-exped": {
         "x": 52.2,
-        "y": 26.3,
-        "width": 1.1,
-        "height": 2
+        "y": 26.503,
+        "width": 1.195,
+        "height": 2.305
       },
       "fcu-appr": {
-        "x": 55.6,
-        "y": 26.3,
-        "width": 1.1,
-        "height": 2
+        "x": 55.523,
+        "y": 26.351,
+        "width": 1.232,
+        "height": 2.254
       },
       "fo-efis-arpt": {
         "x": 58.309,
@@ -870,14 +870,14 @@
         "height": 4.2
       },
       "capt-baro-ref": {
-        "x": 33.3,
+        "x": 33.052,
         "y": 16,
         "width": 2.8,
         "height": 10.2
       },
       "fo-baro-ref": {
-        "x": 64,
-        "y": 16,
+        "x": 64.17,
+        "y": 15.846,
         "width": 2.8,
         "height": 10.2
       },
@@ -898,6 +898,42 @@
         "y": 73.4,
         "width": 4,
         "height": 9.2
+      },
+      "capt-pfd-screen": {
+        "x": 12.8,
+        "y": 39.8,
+        "width": 10.5,
+        "height": 26.5
+      },
+      "capt-nd-screen": {
+        "x": 23.4,
+        "y": 39.8,
+        "width": 10.6,
+        "height": 26.5
+      },
+      "upper-ecam-screen": {
+        "x": 45,
+        "y": 40.9,
+        "width": 9.884,
+        "height": 24.747
+      },
+      "lower-ecam-screen": {
+        "x": 44.9,
+        "y": 70.3,
+        "width": 10.117,
+        "height": 25.843
+      },
+      "fo-nd-screen": {
+        "x": 65.9,
+        "y": 39.1,
+        "width": 10.5,
+        "height": 26.5
+      },
+      "fo-pfd-screen": {
+        "x": 76.5,
+        "y": 39.1,
+        "width": 10.5,
+        "height": 26.5
       },
       "capt-oxygen-mask": {
         "x": 4,

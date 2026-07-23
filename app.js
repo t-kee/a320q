@@ -176,6 +176,11 @@ function getFlowStepControls(step) {
   return [{ panel: step.panel, controlId: step.controlId }];
 }
 
+function getFlowPlaybackControls(step) {
+  const controls = getFlowStepControls(step);
+  return step.mode === "OR" ? controls.slice(0, 1) : controls;
+}
+
 function getFlowStepInstruction(step) {
   return (
     step.instruction ||
@@ -265,7 +270,6 @@ function advanceFlow(token) {
       hotspot.classList.remove("flow-correct", "flow-incorrect"),
     );
   session.completedControlKeys = new Set();
-  session.paused = false;
 
   const step = session.definition.steps[session.stepIndex];
   if (!step) {
@@ -288,7 +292,7 @@ function playFlowDemoStep(step, token) {
   if (!session || session.token !== token) return;
   session.demoInProgress = true;
   updateFlowActionBar(step, "demo");
-  const controls = getFlowStepControls(step);
+  const controls = getFlowPlaybackControls(step);
   const panels = [...new Set(controls.map(({ panel }) => panel))];
   playFlowDemoPanel(step, panels, 0, token);
 }
@@ -301,7 +305,7 @@ function playFlowDemoPanel(step, panels, panelIndex, token) {
 
   session.timer = window.setTimeout(() => {
     if (!activeFlowSession || activeFlowSession.token !== token) return;
-    const controlsOnPanel = getFlowStepControls(step).filter(
+    const controlsOnPanel = getFlowPlaybackControls(step).filter(
       (control) => control.panel === panel,
     );
     activeFlowSession.demoHotspots = controlsOnPanel.map(({ controlId }) =>
@@ -375,9 +379,12 @@ function handleFlowHotspotClick(controlId) {
 
   session.completedControlKeys.add(clickedKey);
   hotspot?.classList.add("flow-correct");
-  const isComplete = [...expectedKeys].every((key) =>
-    session.completedControlKeys.has(key),
-  );
+  const isComplete =
+    step.mode === "OR"
+      ? session.completedControlKeys.size > 0
+      : [...expectedKeys].every((key) =>
+          session.completedControlKeys.has(key),
+        );
   if (!isComplete) {
     document.getElementById("flow-action-progress").innerText =
       `${session.completedControlKeys.size}/${expectedKeys.size} controls · ${session.stepIndex + 1}/${session.definition.steps.length}`;
@@ -965,9 +972,12 @@ async function initializeCockpitMapping() {
   renderCockpitPanelCards();
 }
 
-initializeFlowBuilder();
-initializeCockpitMapping();
-initializeFlowSetup();
+async function initializeStudyTools() {
+  await Promise.all([initializeFlowBuilder(), initializeCockpitMapping()]);
+  initializeFlowSetup();
+}
+
+initializeStudyTools();
 
 window.addEventListener("resize", () => {
   const viewer = document.getElementById("cockpit-panel-viewer");
