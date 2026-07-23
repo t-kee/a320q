@@ -148,9 +148,17 @@ function normalizeFlowForBuilder(definition) {
 }
 
 function toggleFlowBuilder() {
+  const opening = document
+    .getElementById("flow-builder")
+    .classList.contains("hidden");
+  setFlowBuilderView(opening);
+}
+
+function setFlowBuilderView(opening) {
   const builder = document.getElementById("flow-builder");
-  const opening = builder.classList.contains("hidden");
+  const setup = document.getElementById("flow-setup");
   builder.classList.toggle("hidden", !opening);
+  setup.classList.toggle("hidden", opening);
   if (opening) {
     renderFlowBuilderSelect();
     if (!flowBuilderDraft) {
@@ -160,6 +168,8 @@ function toggleFlowBuilder() {
       loadFlowIntoBuilder(selectedId);
     }
     builder.scrollIntoView({ behavior: "smooth", block: "start" });
+  } else {
+    setup.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 }
 
@@ -519,7 +529,9 @@ function saveFlowDraft() {
   initializeFlowSetup();
   document.getElementById("flow-select").value = id;
   selectFlow(id);
-  setFlowBuilderStatus(`${name} saved locally and ready to test.`);
+  document.getElementById("flow-setup-status").innerText =
+    `${name} saved locally and ready to test.`;
+  setFlowBuilderView(false);
 }
 
 function deleteFlowOverride() {
