@@ -459,11 +459,26 @@ h2 {
   background: var(--option-bg);
 }
 
-.flow-step-number {
+.flow-builder .flow-step-number {
+  box-sizing: border-box;
+  width: 34px;
+  height: 26px;
+  min-height: 26px;
+  padding: 2px 3px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: transparent;
   color: var(--text-muted);
   font-size: 12px;
   font-weight: 900;
   text-align: center;
+}
+
+.flow-builder .flow-step-number:focus {
+  border-color: var(--accent);
+  background: var(--input-bg);
+  color: var(--text-main);
+  outline: none;
 }
 
 .flow-step-order {

@@ -343,7 +343,17 @@ function renderFlowBuilderStep(step, index) {
           title="Drag to reorder"
           onpointerdown="startFlowBuilderStepDrag(event, ${index})"
         >⠿</button>
-        <span class="flow-step-number">${String(index + 1).padStart(2, "0")}</span>
+        <input
+          class="flow-step-number"
+          type="number"
+          min="1"
+          max="${flowBuilderDraft.steps.length}"
+          value="${index + 1}"
+          aria-label="Position of line ${index + 1}"
+          title="Enter a new position"
+          onchange="moveFlowBuilderStepTo(${index}, this.value)"
+          onkeydown="if (event.key === 'Enter') this.blur()"
+        />
       </div>
       <select
         aria-label="Crew member or role for line ${index + 1}"
@@ -425,28 +435,24 @@ function updateFlowBuilderStep(index, key, value) {
 }
 
 function startFlowBuilderStepDrag(event, index) {
-  if (!flowBuilderDraft?.steps[index] || event.button > 0) return;
+  if (
+    flowBuilderStepDrag ||
+    !flowBuilderDraft?.steps[index] ||
+    event.button > 0
+  ) {
+    return;
+  }
   event.preventDefault();
   syncFlowBuilderMetadata();
   const item = event.currentTarget.closest(".flow-builder-step");
   if (!item) return;
   flowBuilderStepDrag = { item, pointerId: event.pointerId };
   item.classList.add("dragging");
-  event.currentTarget.setPointerCapture(event.pointerId);
-  event.currentTarget.addEventListener(
-    "pointermove",
-    moveFlowBuilderStepDrag,
-  );
-  event.currentTarget.addEventListener(
-    "pointerup",
-    finishFlowBuilderStepDrag,
-    { once: true },
-  );
-  event.currentTarget.addEventListener(
-    "pointercancel",
-    finishFlowBuilderStepDrag,
-    { once: true },
-  );
+  window.addEventListener("pointermove", moveFlowBuilderStepDrag, {
+    passive: false,
+  });
+  window.addEventListener("pointerup", finishFlowBuilderStepDrag);
+  window.addEventListener("pointercancel", finishFlowBuilderStepDrag);
 }
 
 function moveFlowBuilderStepDrag(event) {
@@ -455,16 +461,30 @@ function moveFlowBuilderStepDrag(event) {
   }
   event.preventDefault();
   const container = document.getElementById("flow-builder-steps");
-  const target = document
-    .elementFromPoint(event.clientX, event.clientY)
-    ?.closest(".flow-builder-step");
   const dragged = flowBuilderStepDrag.item;
-  if (!target || target === dragged || target.parentElement !== container) return;
-  const targetBox = target.getBoundingClientRect();
-  const insertAfter = event.clientY > targetBox.top + targetBox.height / 2;
-  container.insertBefore(
-    dragged,
-    insertAfter ? target.nextElementSibling : target,
+  const nextItem = [...container.querySelectorAll(".flow-builder-step")]
+    .filter((item) => item !== dragged)
+    .find(
+      (item) =>
+        event.clientY <
+        item.getBoundingClientRect().top +
+          item.getBoundingClientRect().height / 2,
+    );
+  container.insertBefore(dragged, nextItem || null);
+}
+
+function moveFlowBuilderStepTo(index, requestedPosition) {
+  if (!flowBuilderDraft?.steps[index]) return;
+  syncFlowBuilderMetadata();
+  const position = Math.min(
+    flowBuilderDraft.steps.length,
+    Math.max(1, Number.parseInt(requestedPosition, 10) || index + 1),
+  );
+  const [step] = flowBuilderDraft.steps.splice(index, 1);
+  flowBuilderDraft.steps.splice(position - 1, 0, step);
+  renderFlowBuilderDraft();
+  setFlowBuilderStatus(
+    `Line moved to position ${position}. Save the flow to keep it.`,
   );
 }
 
@@ -480,6 +500,9 @@ function finishFlowBuilderStepDrag(event) {
   );
   flowBuilderStepDrag.item.classList.remove("dragging");
   flowBuilderStepDrag = null;
+  window.removeEventListener("pointermove", moveFlowBuilderStepDrag);
+  window.removeEventListener("pointerup", finishFlowBuilderStepDrag);
+  window.removeEventListener("pointercancel", finishFlowBuilderStepDrag);
   renderFlowBuilderDraft();
   setFlowBuilderStatus("Line order updated. Save the flow to keep it.");
 }
