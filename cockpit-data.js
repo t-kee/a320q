@@ -159,6 +159,7 @@ const cockpitPanels = {
       ["capt-baro-ref", "Captain BARO reference control", 33.3, 16.0, 2.8, 10.2, "EFIS"],
       ["fo-baro-ref", "First Officer BARO reference control", 64.0, 16.0, 2.8, 10.2, "EFIS"],
       ["brake-fan", "BRK FAN pushbutton", 62.2, 38.5, 1.8, 5.2, "Brakes"],
+      ["anti-skid", "A/SKID & N/W STRG switch", 62.3, 43.8, 1.6, 7.0, "Brakes"],
       ["isis", "Integrated Standby Instrument System", 38.7, 53.3, 5.0, 13.2, "Standby instruments"],
       ["brake-pressure-indicator", "Brake pressure indicator", 60.5, 73.4, 4.0, 9.2, "Brakes"],
       ["capt-pfd-screen", "Captain PFD screen", 12.8, 39.8, 10.5, 26.5, "Displays"],
