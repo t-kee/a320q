@@ -24,7 +24,7 @@
           id="meta-study-btn"
           onclick="switchMetaTab('study')"
         >
-          A320 Study
+          A320T
         </button>
       </nav>
 
@@ -161,6 +161,7 @@
             <span class="flashcard-face flashcard-front">
               <span class="flashcard-label">Question</span>
               <strong id="flashcard-question"></strong>
+              <span id="flashcard-options"></span>
               <span class="flashcard-hint">Tap to reveal the answer</span>
             </span>
             <span class="flashcard-face flashcard-back">
@@ -364,13 +365,6 @@
                 <h1>Flows Trainer</h1>
                 <p>Choose your seat, role and flow, or let the trainer decide.</p>
               </div>
-              <button
-                class="flow-random-btn"
-                type="button"
-                onclick="startRandomFlow()"
-              >
-                Random flow
-              </button>
             </div>
 
             <div class="flow-setup-grid">
@@ -421,6 +415,8 @@
                 <select id="flow-select" onchange="selectFlow(this.value)"></select>
               </label>
 
+            </div>
+            <div class="flow-setup-actions">
               <button
                 id="flow-start-btn"
                 class="flow-start-btn"
@@ -429,17 +425,24 @@
               >
                 Start flow
               </button>
+              <button
+                class="flow-random-btn"
+                type="button"
+                onclick="startRandomFlow()"
+              >
+                Random flow
+              </button>
+              <button
+                class="flow-builder-open-btn"
+                type="button"
+                onclick="toggleFlowBuilder()"
+              >
+                Create or edit flows
+              </button>
             </div>
             <p id="flow-setup-status" class="flow-setup-status">
               After Landing is available for this first test.
             </p>
-            <button
-              class="flow-builder-open-btn"
-              type="button"
-              onclick="toggleFlowBuilder()"
-            >
-              Create or edit flows
-            </button>
           </div>
 
           <section id="flow-builder" class="flow-builder hidden">
@@ -632,6 +635,14 @@
                   ›
                 </button>
                 <button
+                  id="flow-action-hint"
+                  class="flow-guided-btn"
+                  type="button"
+                  onclick="showFlowHint()"
+                >
+                  Hint
+                </button>
+                <button
                   id="flow-action-guided"
                   class="flow-guided-btn"
                   type="button"
@@ -684,6 +695,10 @@
                   <img id="cockpit-image" alt="" draggable="false" />
                   <div id="cockpit-hotspots" class="cockpit-hotspots"></div>
                 </div>
+                <div id="flow-auto-overlay" class="flow-auto-overlay hidden">
+                  <span id="flow-auto-actor"></span>
+                  <strong id="flow-auto-instruction"></strong>
+                </div>
               </div>
             </div>
           </div>
@@ -728,6 +743,7 @@
                   <option value="all">All categories</option>
                   <option value="operations">Operations</option>
                   <option value="tips">Tips</option>
+                  <option value="limitations">Limitations</option>
                   <option value="abnormals-emergency">Abnormals / Emergency</option>
                 </select>
               </label>
@@ -754,6 +770,7 @@
               <select id="study-card-new-category">
                 <option value="operations">Operations</option>
                 <option value="tips">Tips</option>
+                <option value="limitations">Limitations</option>
                 <option value="abnormals-emergency">Abnormals / Emergency</option>
               </select>
             </label>

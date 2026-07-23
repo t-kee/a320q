@@ -30,6 +30,7 @@ function getStudyCategoryLabel(category) {
   return {
     operations: "Operations",
     tips: "Tips",
+    limitations: "Limitations",
     "abnormals-emergency": "Abnormals / Emergency",
   }[category] || category;
 }

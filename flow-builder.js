@@ -546,6 +546,7 @@ function renderFlowBuilderCaptureHeader() {
   document.getElementById("flow-session-header").classList.remove("hidden");
 
   const bar = document.getElementById("flow-action-bar");
+  document.getElementById("flow-auto-overlay")?.classList.add("hidden");
   bar.classList.remove("hidden", "demo", "complete");
   document.getElementById("flow-action-actor").innerText = step.actor;
   document.getElementById("flow-action-instruction").innerText =
@@ -556,6 +557,7 @@ function renderFlowBuilderCaptureHeader() {
   document.getElementById("flow-action-previous").classList.add("hidden");
   document.getElementById("flow-action-play").classList.add("hidden");
   document.getElementById("flow-action-next").classList.add("hidden");
+  document.getElementById("flow-action-hint").classList.add("hidden");
   document.getElementById("flow-action-guided").classList.add("hidden");
   document.getElementById("flow-capture-done").classList.remove("hidden");
   refreshFlowBuilderCapture();
@@ -623,6 +625,7 @@ function restoreFlowPlaybackButtons() {
   document.getElementById("flow-action-previous")?.classList.remove("hidden");
   document.getElementById("flow-action-play")?.classList.remove("hidden");
   document.getElementById("flow-action-next")?.classList.remove("hidden");
+  document.getElementById("flow-action-hint")?.classList.remove("hidden");
   document.getElementById("flow-action-guided")?.classList.remove("hidden");
   document.getElementById("flow-capture-done")?.classList.add("hidden");
 }

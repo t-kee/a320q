@@ -117,6 +117,7 @@ function startFlow(flowId, seat, role) {
     timer: null,
     demoHotspots: [],
     completedControlKeys: new Set(),
+    errorCount: 0,
     token: flowRunToken,
   };
 
@@ -228,7 +229,11 @@ function getFlowStepState(step) {
 function setFlowHotspotFeedback(hotspot, className, state) {
   if (!hotspot) return;
   hotspot.classList.add(className);
-  if (state) hotspot.dataset.flowState = state;
+  if (state) {
+    hotspot.dataset.flowState = state;
+  } else {
+    delete hotspot.dataset.flowState;
+  }
 }
 
 function clearFlowHotspotFeedback(hotspot, className) {
@@ -275,6 +280,46 @@ function updateFlowActionBar(step, mode, message) {
     "aria-pressed",
     session.guidedMode ? "true" : "false",
   );
+  document.getElementById("flow-action-hint").disabled = mode !== "user";
+  updateFlowAutoOverlay(step, mode);
+}
+
+function updateFlowAutoOverlay(step, mode) {
+  const overlay = document.getElementById("flow-auto-overlay");
+  const automatic = mode === "demo" || mode === "callout";
+  overlay.classList.toggle("hidden", !automatic);
+  if (!automatic) return;
+  document.getElementById("flow-auto-actor").innerText =
+    mode === "callout" ? "INFO" : getFlowStepActor(step);
+  document.getElementById("flow-auto-instruction").innerText =
+    getFlowStepInstruction(step);
+}
+
+function clearFlowHint() {
+  document
+    .querySelectorAll(".cockpit-hotspot.flow-hint")
+    .forEach((hotspot) => hotspot.classList.remove("flow-hint"));
+}
+
+function showFlowHint() {
+  const session = activeFlowSession;
+  if (!session || session.demoInProgress) return;
+  const step = session.definition.steps[session.stepIndex];
+  if (!step || !isFlowStepForUser(step)) return;
+  const target = getFlowStepControls(step).find(
+    ({ panel, controlId }) =>
+      !session.completedControlKeys.has(
+        getFlowControlKey(panel, controlId),
+      ),
+  );
+  if (!target) return;
+  openCockpitPanel(target.panel);
+  clearFlowHint();
+  document
+    .querySelector(
+      `.cockpit-hotspot[data-control-id="${target.controlId}"]`,
+    )
+    ?.classList.add("flow-hint");
 }
 
 function refreshFlowPanelGuidance() {
@@ -340,6 +385,7 @@ function advanceFlow(token) {
   const session = activeFlowSession;
   if (!session || session.token !== token) return;
   clearFlowTimer(true);
+  clearFlowHint();
   document
     .querySelectorAll(".cockpit-hotspot.flow-correct, .cockpit-hotspot.flow-incorrect")
     .forEach((hotspot) => {
@@ -347,6 +393,7 @@ function advanceFlow(token) {
       delete hotspot.dataset.flowState;
     });
   session.completedControlKeys = new Set();
+  session.errorCount = 0;
 
   const step = session.definition.steps[session.stepIndex];
   if (!step) {
@@ -475,11 +522,8 @@ function handleFlowHotspotClick(controlId) {
     !isFlowStepForUser(step) ||
     !expectedKeys.has(clickedKey)
   ) {
-    setFlowHotspotFeedback(
-      hotspot,
-      "flow-incorrect",
-      getFlowStepState(step),
-    );
+    setFlowHotspotFeedback(hotspot, "flow-incorrect");
+    session.errorCount += 1;
     updateFlowActionBar(
       step,
       "user",
@@ -489,9 +533,11 @@ function handleFlowHotspotClick(controlId) {
       () => clearFlowHotspotFeedback(hotspot, "flow-incorrect"),
       450,
     );
+    if (session.errorCount >= 3) showFlowHint();
     return true;
   }
 
+  clearFlowHint();
   session.completedControlKeys.add(clickedKey);
   setFlowHotspotFeedback(
     hotspot,
@@ -561,6 +607,7 @@ function restartActiveFlow() {
   session.demoInProgress = false;
   session.paused = false;
   session.completedControlKeys = new Set();
+  document.getElementById("flow-auto-overlay").classList.add("hidden");
   openCockpitPanel(session.definition.initialPanel || "glareshield");
   document.getElementById("flow-action-actor").innerText = "RESTART";
   document.getElementById("flow-action-instruction").innerText =
@@ -635,6 +682,7 @@ function finishFlow() {
   const bar = document.getElementById("flow-action-bar");
   bar.classList.remove("demo", "callout");
   bar.classList.add("complete");
+  document.getElementById("flow-auto-overlay").classList.add("hidden");
   document.getElementById("flow-action-actor").innerText = "COMPLETE";
   document.getElementById("flow-action-instruction").innerText =
     `${activeFlowSession.definition.name} flow complete`;
@@ -654,6 +702,8 @@ function cancelFlowSession() {
   const actionBar = document.getElementById("flow-action-bar");
   actionBar?.classList.add("hidden");
   actionBar?.classList.remove("demo", "callout", "complete");
+  document.getElementById("flow-auto-overlay")?.classList.add("hidden");
+  clearFlowHint();
 }
 
 let activeCockpitPanel = null;
@@ -784,7 +834,6 @@ function openCockpitPanel(panelId) {
           class="cockpit-hotspot"
           style="${style}"
           aria-label="${label}"
-          title="${label}"
           onclick="handleCockpitHotspotClick(event, '${id}')"
           data-control-id="${id}"
           data-control-name="${label}"
@@ -843,7 +892,7 @@ function handleCockpitHotspotClick(event, controlId) {
     event.preventDefault();
     return;
   }
-  showCockpitControl(controlId);
+  event.preventDefault();
 }
 
 function updateCockpitZoom(anchorX, anchorY, previousZoom = cockpitZoom) {
