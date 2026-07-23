@@ -63,13 +63,13 @@ function updateStudyFlashcardSummary() {
 }
 
 function openStudyFlashcardEditor() {
-  document.getElementById("study-flashcard-setup").classList.add("hidden");
+  document.getElementById("study-flashcard-browser").classList.add("hidden");
   document.getElementById("study-flashcard-editor").classList.remove("hidden");
 }
 
 function closeStudyFlashcardEditor() {
   document.getElementById("study-flashcard-editor").classList.add("hidden");
-  document.getElementById("study-flashcard-setup").classList.remove("hidden");
+  document.getElementById("study-flashcard-browser").classList.remove("hidden");
   document.getElementById("study-card-editor-status").innerText = "";
 }
 
@@ -82,9 +82,14 @@ function saveStudyFlashcard() {
     .value.split("\n")
     .map((reference) => reference.trim())
     .filter(Boolean);
-  if (!question || !answer) {
+  if (question.length < 5 || question.length > 99) {
     document.getElementById("study-card-editor-status").innerText =
-      "Question and answer are required.";
+      "Question must contain between 5 and 99 characters.";
+    return;
+  }
+  if (answer.length < 2 || answer.length > 499) {
+    document.getElementById("study-card-editor-status").innerText =
+      "Answer must contain between 2 and 499 characters.";
     return;
   }
   studyUserCards.push({
@@ -133,14 +138,43 @@ function renderStudyFlashcard() {
     getStudyCategoryLabel(cardData.category);
   document.getElementById("study-card-progress").innerText =
     `${studyCardIndex + 1} / ${studyCardDeck.length}`;
-  document.getElementById("study-card-question").innerText = cardData.question;
-  document.getElementById("study-card-answer").innerText = cardData.answer;
+  const question = document.getElementById("study-card-question");
+  question.innerText = cardData.question;
+  question.classList.toggle("compact", cardData.question.length > 75);
+  renderStudyCardAnswer(cardData.answer);
   document.getElementById("study-card-references").innerText =
     cardData.references.length
       ? `References: ${cardData.references.join(" · ")}`
       : "No reference provided";
   document.getElementById("study-card-next").disabled = true;
   updateStudyCardPinButton();
+}
+
+function renderStudyCardAnswer(answer) {
+  const container = document.getElementById("study-card-answer");
+  container.innerHTML = "";
+  container.classList.toggle("compact", answer.length > 220);
+  container.classList.toggle("dense", answer.length > 380);
+  let list = null;
+  answer.split("\n").forEach((rawLine) => {
+    const line = rawLine.trim();
+    if (!line) return;
+    const bullet = line.match(/^[-•*]\s*(.+)$/);
+    if (bullet) {
+      if (!list) {
+        list = document.createElement("ul");
+        container.appendChild(list);
+      }
+      const item = document.createElement("li");
+      item.innerText = bullet[1];
+      list.appendChild(item);
+      return;
+    }
+    list = null;
+    const paragraph = document.createElement("p");
+    paragraph.innerText = line;
+    container.appendChild(paragraph);
+  });
 }
 
 function saveStudyCardProgress(cardId, patch) {

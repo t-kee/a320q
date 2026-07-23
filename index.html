@@ -710,37 +710,39 @@
         </div>
 
         <div id="study-flashcards" class="study-flashcards hidden">
-          <div class="study-heading">
-            <div>
-              <h1>Flashcards</h1>
-              <p>Build and review a separate operational study bank.</p>
+          <div id="study-flashcard-browser">
+            <div class="study-heading">
+              <div>
+                <h1>Flashcards</h1>
+                <p>Build and review a separate operational study bank.</p>
+              </div>
+              <button type="button" onclick="openStudyFlashcardEditor()">
+                + Add flashcard
+              </button>
             </div>
-            <button type="button" onclick="openStudyFlashcardEditor()">
-              + Add flashcard
-            </button>
-          </div>
 
-          <section id="study-flashcard-setup" class="study-flashcard-setup">
-            <label>
-              <span>Category</span>
-              <select id="study-flashcard-category" onchange="updateStudyFlashcardSummary()">
-                <option value="all">All categories</option>
-                <option value="operations">Operations</option>
-                <option value="tips">Tips</option>
-                <option value="abnormals-emergency">Abnormals / Emergency</option>
-              </select>
-            </label>
-            <label class="checkbox-group">
-              <input id="study-flashcard-unseen" type="checkbox" onchange="setStudyFlashcardFilter('unseen')" />
-              <span>Only unseen</span>
-            </label>
-            <label class="checkbox-group">
-              <input id="study-flashcard-pinned" type="checkbox" onchange="setStudyFlashcardFilter('pinned')" />
-              <span>Only pinned (★)</span>
-            </label>
-            <p id="study-flashcard-summary"></p>
-            <button type="button" onclick="startStudyFlashcards()">Start studying</button>
-          </section>
+            <section id="study-flashcard-setup" class="study-flashcard-setup">
+              <label>
+                <span>Category</span>
+                <select id="study-flashcard-category" onchange="updateStudyFlashcardSummary()">
+                  <option value="all">All categories</option>
+                  <option value="operations">Operations</option>
+                  <option value="tips">Tips</option>
+                  <option value="abnormals-emergency">Abnormals / Emergency</option>
+                </select>
+              </label>
+              <label class="checkbox-group">
+                <input id="study-flashcard-unseen" type="checkbox" onchange="setStudyFlashcardFilter('unseen')" />
+                <span>Only unseen</span>
+              </label>
+              <label class="checkbox-group">
+                <input id="study-flashcard-pinned" type="checkbox" onchange="setStudyFlashcardFilter('pinned')" />
+                <span>Only pinned (★)</span>
+              </label>
+              <p id="study-flashcard-summary"></p>
+              <button type="button" onclick="startStudyFlashcards()">Start studying</button>
+            </section>
+          </div>
 
           <section id="study-flashcard-editor" class="study-flashcard-editor hidden">
             <header>
@@ -757,15 +759,15 @@
             </label>
             <label>
               <span>Question</span>
-              <textarea id="study-card-new-question" rows="3" placeholder="Enter the question"></textarea>
+              <textarea id="study-card-new-question" rows="3" minlength="5" maxlength="99" placeholder="Enter the question"></textarea>
             </label>
             <label>
               <span>Answer</span>
-              <textarea id="study-card-new-answer" rows="6" placeholder="Enter the answer"></textarea>
+              <textarea id="study-card-new-answer" rows="6" minlength="2" maxlength="499" placeholder="Enter the answer"></textarea>
             </label>
             <label>
               <span>Reference(s)</span>
-              <textarea id="study-card-new-references" rows="3" placeholder="One reference per line"></textarea>
+              <textarea id="study-card-new-references" rows="3" placeholder="One reference per line - please add valid references for others to study"></textarea>
             </label>
             <p id="study-card-editor-status"></p>
             <div>
@@ -792,7 +794,7 @@
                 </span>
                 <span class="flashcard-face flashcard-back">
                   <span class="flashcard-label">Answer</span>
-                  <strong id="study-card-answer"></strong>
+                  <div id="study-card-answer"></div>
                   <span id="study-card-references"></span>
                   <span class="flashcard-hint">Tap to see the question</span>
                 </span>
