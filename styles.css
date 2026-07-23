@@ -171,30 +171,6 @@ h2 {
   margin-bottom: 20px;
 }
 
-.flashcards-tool {
-  max-width: 820px;
-  margin: 0 auto;
-}
-
-.flashcard-setup-card {
-  display: grid;
-  grid-template-columns: minmax(220px, 1fr) auto;
-  align-items: end;
-  gap: 12px 18px;
-  max-width: 680px;
-  margin: 28px auto 0;
-  padding: 24px;
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  background: var(--option-bg);
-}
-
-.flashcard-setup-card label {
-  display: grid;
-  gap: 7px;
-}
-
-.flashcard-setup-card label > span,
 #flashcard-session-theme,
 .flashcard-label {
   color: var(--text-muted);
@@ -204,25 +180,6 @@ h2 {
   text-transform: uppercase;
 }
 
-.flashcard-setup-card select {
-  box-sizing: border-box;
-  min-height: 46px;
-  padding: 9px 12px;
-  border: 1px solid var(--input-border);
-  border-radius: 8px;
-  background: var(--input-bg);
-  color: var(--text-main);
-  font: inherit;
-}
-
-#flashcard-pool-summary {
-  grid-column: 1 / -1;
-  margin: 0;
-  color: var(--text-muted);
-  font-size: 13px;
-}
-
-.flashcard-start-btn,
 .flashcard-next-btn,
 .flashcard-complete button,
 .flashcard-session-header button {
@@ -237,7 +194,6 @@ h2 {
   font-weight: 850;
 }
 
-.flashcard-start-btn,
 .flashcard-next-btn {
   border-color: var(--accent);
   background: var(--accent);
@@ -247,6 +203,10 @@ h2 {
 .flashcard-session {
   max-width: 760px;
   margin: 0 auto;
+}
+
+#app.exam-flashcard-mode {
+  max-width: 840px;
 }
 
 .flashcard-session-header {
@@ -404,6 +364,50 @@ h2 {
   justify-content: center;
   gap: 10px;
   margin-top: 24px;
+}
+
+.study-flashcard-categories {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.study-flashcard-categories article {
+  display: flex;
+  min-height: 210px;
+  flex-direction: column;
+  padding: 22px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--option-bg);
+}
+
+.study-flashcard-categories article > span {
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
+
+.study-flashcard-categories h2 {
+  margin: 22px 0 8px;
+  font-size: 20px;
+  text-align: left;
+}
+
+.study-flashcard-categories p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.study-flashcard-categories strong {
+  margin-top: auto;
+  padding-top: 20px;
+  color: var(--text-muted);
+  font-size: 11px;
+  text-transform: uppercase;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1502,16 +1506,6 @@ body.cockpit-modal-open {
     margin-top: 14px;
   }
 
-  .flashcard-setup-card {
-    grid-template-columns: 1fr;
-    padding: 18px;
-  }
-
-  .flashcard-start-btn,
-  #flashcard-pool-summary {
-    grid-column: 1;
-  }
-
   .flashcard-session-header {
     grid-template-columns: 42px 1fr auto;
     gap: 7px;
@@ -1542,6 +1536,10 @@ body.cockpit-modal-open {
 
   .flashcard-complete > div {
     display: grid;
+  }
+
+  .study-flashcard-categories {
+    grid-template-columns: 1fr;
   }
 
   .flow-setup-grid {
@@ -1786,6 +1784,81 @@ select {
   gap: 10px;
   font-weight: normal;
   margin-bottom: 10px;
+}
+
+.monkey-mode-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 14px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 9px;
+  background: var(--option-bg);
+}
+
+.monkey-mode-row > div {
+  display: grid;
+  gap: 3px;
+}
+
+.monkey-mode-row strong {
+  color: var(--text-main);
+}
+
+.monkey-mode-row > div > span {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.mode-switch {
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  min-width: 52px;
+  height: 30px;
+  margin: 0;
+}
+
+.mode-switch input {
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.mode-switch > span {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: var(--input-border);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.mode-switch > span::after {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 2px 5px var(--shadow-color);
+  content: "";
+  transition: transform 0.2s;
+}
+
+.mode-switch input:checked + span {
+  background: var(--accent);
+}
+
+.mode-switch input:checked + span::after {
+  transform: translateX(22px);
+}
+
+.mode-switch input:focus-visible + span {
+  outline: 3px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  outline-offset: 2px;
 }
 
 /* Quiz & View Screens */

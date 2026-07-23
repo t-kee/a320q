@@ -1146,7 +1146,6 @@ async function initializeCockpitMapping() {
 async function initializeStudyTools() {
   await Promise.all([initializeFlowBuilder(), initializeCockpitMapping()]);
   initializeFlowSetup();
-  initializeFlashcards();
 }
 
 initializeStudyTools();

@@ -56,7 +56,7 @@
           </ul>
         </div>
 
-        <div class="setup-group">
+        <div id="question-count-group" class="setup-group">
           <label for="theme-select">Select Theme:</label>
           <select id="theme-select">
             <option value="all">All Themes</option>
@@ -84,7 +84,29 @@
           >
         </div>
 
-        <button class="action-btn" onclick="startQuiz()">Start Training</button>
+        <div class="setup-group monkey-mode-row">
+          <div>
+            <strong>🦧 Monkey mode</strong>
+            <span id="training-mode-description">Multiple-choice training</span>
+          </div>
+          <label class="mode-switch" for="monkey-mode">
+            <input
+              id="monkey-mode"
+              type="checkbox"
+              checked
+              onchange="toggleMonkeyMode()"
+            />
+            <span aria-hidden="true"></span>
+          </label>
+        </div>
+
+        <button
+          id="start-training-btn"
+          class="action-btn"
+          onclick="startTraining()"
+        >
+          Start Training
+        </button>
 
         <p
           style="
@@ -105,6 +127,64 @@
           >
         </p>
       </div>
+
+      <section id="exam-flashcard-session" class="flashcard-session hidden">
+        <header class="flashcard-session-header">
+          <button type="button" onclick="closeFlashcardSession()">×</button>
+          <div>
+            <span id="flashcard-session-theme"></span>
+            <strong id="flashcard-progress"></strong>
+          </div>
+          <button type="button" onclick="restartFlashcards()">Restart</button>
+        </header>
+
+        <button
+          id="flashcard-card"
+          class="flashcard"
+          type="button"
+          aria-label="Show answer"
+          aria-pressed="false"
+          onclick="flipFlashcard()"
+        >
+          <span class="flashcard-inner">
+            <span class="flashcard-face flashcard-front">
+              <span class="flashcard-label">Question</span>
+              <strong id="flashcard-question"></strong>
+              <span class="flashcard-hint">Tap to reveal the answer</span>
+            </span>
+            <span class="flashcard-face flashcard-back">
+              <span class="flashcard-label">Answer</span>
+              <strong id="flashcard-answer"></strong>
+              <span id="flashcard-explanation"></span>
+              <span class="flashcard-hint">Tap to see the question</span>
+            </span>
+          </span>
+        </button>
+
+        <button
+          id="flashcard-next"
+          class="flashcard-next-btn"
+          type="button"
+          onclick="nextFlashcard()"
+          disabled
+        >
+          Next card →
+        </button>
+      </section>
+
+      <section id="exam-flashcard-complete" class="flashcard-complete hidden">
+        <span aria-hidden="true">✓</span>
+        <h1>Deck complete</h1>
+        <p id="flashcard-complete-summary"></p>
+        <div>
+          <button type="button" onclick="restartFlashcards()">
+            Study again
+          </button>
+          <button type="button" onclick="closeFlashcardSession()">
+            Change filters
+          </button>
+        </div>
+      </section>
 
       <div id="tab-stats" class="hidden">
         <h2>Average Score by Theme</h2>
@@ -618,99 +698,33 @@
           </aside>
         </div>
 
-        <div id="study-flashcards" class="flashcards-tool hidden">
-          <section id="flashcard-setup" class="flashcard-setup">
-            <div class="study-heading">
-              <div>
-                <h1>Flash-cards</h1>
-                <p>
-                  Choose a theme, then work through every matching card without
-                  repetition.
-                </p>
-              </div>
-            </div>
-            <div class="flashcard-setup-card">
-              <label for="flashcard-theme">
-                <span>Theme</span>
-                <select
-                  id="flashcard-theme"
-                  onchange="updateFlashcardPoolSummary()"
-                >
-                  <option value="all">All themes</option>
-                </select>
-              </label>
-              <p id="flashcard-pool-summary"></p>
-              <button
-                class="flashcard-start-btn"
-                type="button"
-                onclick="startFlashcards()"
-              >
-                Start flash-cards
-              </button>
-            </div>
-          </section>
-
-          <section id="flashcard-session" class="flashcard-session hidden">
-            <header class="flashcard-session-header">
-              <button type="button" onclick="closeFlashcardSession()">
-                ×
-              </button>
-              <div>
-                <span id="flashcard-session-theme"></span>
-                <strong id="flashcard-progress"></strong>
-              </div>
-              <button type="button" onclick="restartFlashcards()">
-                Restart
-              </button>
-            </header>
-
-            <button
-              id="flashcard-card"
-              class="flashcard"
-              type="button"
-              aria-label="Show answer"
-              aria-pressed="false"
-              onclick="flipFlashcard()"
-            >
-              <span class="flashcard-inner">
-                <span class="flashcard-face flashcard-front">
-                  <span class="flashcard-label">Question</span>
-                  <strong id="flashcard-question"></strong>
-                  <span class="flashcard-hint">Tap to reveal the answer</span>
-                </span>
-                <span class="flashcard-face flashcard-back">
-                  <span class="flashcard-label">Answer</span>
-                  <strong id="flashcard-answer"></strong>
-                  <span id="flashcard-explanation"></span>
-                  <span class="flashcard-hint">Tap to see the question</span>
-                </span>
-              </span>
-            </button>
-
-            <button
-              id="flashcard-next"
-              class="flashcard-next-btn"
-              type="button"
-              onclick="nextFlashcard()"
-              disabled
-            >
-              Next card →
-            </button>
-          </section>
-
-          <section id="flashcard-complete" class="flashcard-complete hidden">
-            <span aria-hidden="true">✓</span>
-            <h1>Deck complete</h1>
-            <p id="flashcard-complete-summary"></p>
+        <div id="study-flashcards" class="study-flashcard-placeholder hidden">
+          <div class="study-heading">
             <div>
-              <button type="button" onclick="restartFlashcards()">
-                Study again
-              </button>
-              <button type="button" onclick="closeFlashcardSession()">
-                Change theme
-              </button>
+              <h1>Flash-cards</h1>
+              <p>A separate operational study bank will be added here.</p>
             </div>
-          </section>
+          </div>
+          <div class="study-flashcard-categories">
+            <article>
+              <span>01</span>
+              <h2>Operations</h2>
+              <p>Procedures, aircraft operation and practical knowledge.</p>
+              <strong>Coming soon</strong>
+            </article>
+            <article>
+              <span>02</span>
+              <h2>Tips</h2>
+              <p>Useful techniques, reminders and everyday cockpit tips.</p>
+              <strong>Coming soon</strong>
+            </article>
+            <article>
+              <span>03</span>
+              <h2>Abnormals / Emergency</h2>
+              <p>Abnormal procedures, emergency items and key actions.</p>
+              <strong>Coming soon</strong>
+            </article>
+          </div>
         </div>
       </section>
     </div>

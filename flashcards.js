@@ -1,44 +1,60 @@
+let flashcardSourcePool = [];
 let flashcardDeck = [];
 let flashcardIndex = 0;
 let flashcardFlipped = false;
+let flashcardMarkedSeen = false;
 let activeFlashcardTheme = "all";
 
-function initializeFlashcards() {
-  const select = document.getElementById("flashcard-theme");
-  if (!select || typeof db === "undefined") return;
-  const themes = [...new Set(db.map((question) => question.theme))]
-    .filter(Boolean)
-    .sort((left, right) => left.localeCompare(right));
-  select.innerHTML = [
-    '<option value="all">All themes</option>',
-    ...themes.map(
-      (theme) =>
-        `<option value="${escapeFlashcardHtml(theme)}">${escapeFlashcardHtml(theme)}</option>`,
-    ),
-  ].join("");
-  updateFlashcardPoolSummary();
+function toggleMonkeyMode() {
+  const monkeyMode = document.getElementById("monkey-mode").checked;
+  document
+    .getElementById("question-count-group")
+    .classList.toggle("hidden", !monkeyMode);
+  document.getElementById("training-mode-description").innerText = monkeyMode
+    ? "Multiple-choice training"
+    : "Question and answer flash-cards";
+  document.getElementById("start-training-btn").innerText = monkeyMode
+    ? "Start Training"
+    : "Start Flash-cards";
 }
 
-function escapeFlashcardHtml(value) {
-  return String(value || "")
-    .replace(/&/g, "&amp;")
-    .replace(/"/g, "&quot;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
+function startTraining() {
+  if (document.getElementById("monkey-mode").checked) {
+    startQuiz();
+    return;
+  }
+  startFlashcards();
 }
 
-function getFlashcardPool(theme) {
-  return theme === "all"
-    ? [...db]
-    : db.filter((question) => question.theme === theme);
-}
-
-function updateFlashcardPoolSummary() {
-  const select = document.getElementById("flashcard-theme");
-  const summary = document.getElementById("flashcard-pool-summary");
-  if (!select || !summary) return;
-  const count = getFlashcardPool(select.value).length;
-  summary.innerText = `${count} card${count === 1 ? "" : "s"} in this deck`;
+function getFilteredFlashcardPool() {
+  let pool = [...db];
+  activeFlashcardTheme = themeSelect.value;
+  if (activeFlashcardTheme !== "all") {
+    pool = pool.filter(
+      (question) => question.theme === activeFlashcardTheme,
+    );
+  }
+  if (unseenCheckbox.checked) {
+    pool = pool.filter(
+      (question) => !seenQuestions.includes(question.id),
+    );
+    if (!pool.length) {
+      alert("You have already seen all the questions in this selection!");
+      return [];
+    }
+  } else if (pinnedCheckbox.checked) {
+    pool = pool.filter(
+      (question) => pinnedQuestions.includes(question.id),
+    );
+    if (!pool.length) {
+      alert("You don't have any pinned questions in this selection!");
+      return [];
+    }
+  }
+  if (!pool.length) {
+    alert("No questions available for this theme.");
+  }
+  return pool;
 }
 
 function shuffleFlashcards(cards) {
@@ -54,22 +70,30 @@ function shuffleFlashcards(cards) {
 }
 
 function startFlashcards() {
-  const select = document.getElementById("flashcard-theme");
-  activeFlashcardTheme = select?.value || "all";
-  const pool = getFlashcardPool(activeFlashcardTheme);
+  const pool = getFilteredFlashcardPool();
   if (!pool.length) return;
-  flashcardDeck = shuffleFlashcards(pool);
+  flashcardSourcePool = [...pool];
+  flashcardDeck = shuffleFlashcards(flashcardSourcePool);
   flashcardIndex = 0;
   showFlashcardSession();
   renderFlashcard();
 }
 
 function showFlashcardSession() {
-  document.getElementById("flashcard-setup").classList.add("hidden");
-  document.getElementById("flashcard-complete").classList.add("hidden");
-  document.getElementById("flashcard-session").classList.remove("hidden");
+  document.getElementById("app").classList.add("exam-flashcard-mode");
+  document.getElementById("tab-setup").classList.add("hidden");
+  document.getElementById("main-nav").classList.add("hidden");
+  document.getElementById("exam-flashcard-complete").classList.add("hidden");
+  document
+    .getElementById("exam-flashcard-session")
+    .classList.remove("hidden");
+  const filterLabel = unseenCheckbox.checked
+    ? " · Unseen"
+    : pinnedCheckbox.checked
+      ? " · Pinned"
+      : "";
   document.getElementById("flashcard-session-theme").innerText =
-    activeFlashcardTheme === "all" ? "All themes" : activeFlashcardTheme;
+    `${activeFlashcardTheme === "all" ? "All themes" : activeFlashcardTheme}${filterLabel}`;
 }
 
 function renderFlashcard() {
@@ -79,6 +103,7 @@ function renderFlashcard() {
     return;
   }
   flashcardFlipped = false;
+  flashcardMarkedSeen = false;
   const card = document.getElementById("flashcard-card");
   card.classList.remove("flipped");
   card.setAttribute("aria-pressed", "false");
@@ -98,9 +123,23 @@ function renderFlashcard() {
       : "Next card →";
 }
 
+function markCurrentFlashcardSeen() {
+  if (flashcardMarkedSeen) return;
+  flashcardMarkedSeen = true;
+  const questionId = flashcardDeck[flashcardIndex]?.id;
+  if (questionId == null || seenQuestions.includes(questionId)) return;
+  seenQuestions.push(questionId);
+  localStorage.setItem(
+    "a320_seen_questions",
+    JSON.stringify(seenQuestions),
+  );
+  document.getElementById("seen-stats").innerText = seenQuestions.length;
+}
+
 function flipFlashcard() {
   if (!flashcardDeck.length) return;
   flashcardFlipped = !flashcardFlipped;
+  if (flashcardFlipped) markCurrentFlashcardSeen();
   const card = document.getElementById("flashcard-card");
   card.classList.toggle("flipped", flashcardFlipped);
   card.setAttribute("aria-pressed", flashcardFlipped ? "true" : "false");
@@ -118,17 +157,18 @@ function nextFlashcard() {
 }
 
 function restartFlashcards() {
-  const pool = getFlashcardPool(activeFlashcardTheme);
-  if (!pool.length) return;
-  flashcardDeck = shuffleFlashcards(pool);
+  if (!flashcardSourcePool.length) return;
+  flashcardDeck = shuffleFlashcards(flashcardSourcePool);
   flashcardIndex = 0;
   showFlashcardSession();
   renderFlashcard();
 }
 
 function completeFlashcards() {
-  document.getElementById("flashcard-session").classList.add("hidden");
-  document.getElementById("flashcard-complete").classList.remove("hidden");
+  document.getElementById("exam-flashcard-session").classList.add("hidden");
+  document
+    .getElementById("exam-flashcard-complete")
+    .classList.remove("hidden");
   document.getElementById("flashcard-complete-summary").innerText =
     `You reviewed all ${flashcardDeck.length} cards in ${
       activeFlashcardTheme === "all" ? "All themes" : activeFlashcardTheme
@@ -136,11 +176,16 @@ function completeFlashcards() {
 }
 
 function closeFlashcardSession() {
+  flashcardSourcePool = [];
   flashcardDeck = [];
   flashcardIndex = 0;
   flashcardFlipped = false;
-  document.getElementById("flashcard-session").classList.add("hidden");
-  document.getElementById("flashcard-complete").classList.add("hidden");
-  document.getElementById("flashcard-setup").classList.remove("hidden");
-  updateFlashcardPoolSummary();
+  document.getElementById("exam-flashcard-session").classList.add("hidden");
+  document.getElementById("exam-flashcard-complete").classList.add("hidden");
+  document.getElementById("app").classList.remove("exam-flashcard-mode");
+  document.getElementById("main-nav").classList.remove("hidden");
+  updateSliderMax();
+  switchTab("setup");
 }
+
+toggleMonkeyMode();
