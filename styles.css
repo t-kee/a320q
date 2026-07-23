@@ -384,48 +384,134 @@ h2 {
   margin-top: 24px;
 }
 
-.study-flashcard-categories {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
+.study-heading > button,
+.study-flashcard-setup > button,
+.study-flashcard-editor button {
+  min-height: 42px;
+  padding: 9px 14px;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  background: var(--input-bg);
+  color: var(--text-main);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
 }
 
-.study-flashcard-categories article {
-  display: flex;
-  min-height: 210px;
-  flex-direction: column;
+.study-heading > button,
+.study-flashcard-setup > button,
+.study-flashcard-editor button.primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: white;
+}
+
+.study-flashcard-setup {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) auto auto auto;
+  align-items: end;
+  gap: 12px;
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--option-bg);
+}
+
+.study-flashcard-setup > label:first-child,
+.study-flashcard-editor label {
+  display: grid;
+  gap: 6px;
+}
+
+.study-flashcard-setup label > span,
+.study-flashcard-editor label > span {
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+#study-flashcard-summary {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.study-flashcard-editor {
+  max-width: 720px;
+  margin: 0 auto;
   padding: 22px;
   border: 1px solid var(--border-color);
   border-radius: 12px;
   background: var(--option-bg);
 }
 
-.study-flashcard-categories article > span {
-  color: var(--accent);
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 0.1em;
+.study-flashcard-editor header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
 }
 
-.study-flashcard-categories h2 {
-  margin: 22px 0 8px;
-  font-size: 20px;
+.study-flashcard-editor h2 {
+  margin: 0;
   text-align: left;
 }
 
-.study-flashcard-categories p {
-  margin: 0;
+.study-flashcard-editor header button {
+  width: 40px;
+  padding: 0;
+  border-radius: 50%;
+  font-size: 21px;
+}
+
+.study-flashcard-editor label {
+  margin-bottom: 14px;
+}
+
+.study-flashcard-editor textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--input-border);
+  border-radius: 7px;
+  background: var(--input-bg);
+  color: var(--text-main);
+  font: inherit;
+  resize: vertical;
+}
+
+.study-flashcard-editor > div {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+#study-card-editor-status {
+  min-height: 18px;
+  color: var(--incorrect);
+  font-size: 12px;
+}
+
+#study-card-question,
+#study-card-answer {
+  max-width: 640px;
+  color: var(--primary);
+  font-size: clamp(22px, 3.4vw, 34px);
+  line-height: 1.28;
+  white-space: pre-line;
+}
+
+#study-card-answer {
+  color: var(--correct);
+}
+
+#study-card-references {
+  max-width: 620px;
   color: var(--text-muted);
   font-size: 13px;
   line-height: 1.5;
-}
-
-.study-flashcard-categories strong {
-  margin-top: auto;
-  padding-top: 20px;
-  color: var(--text-muted);
-  font-size: 11px;
-  text-transform: uppercase;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1556,8 +1642,16 @@ body.cockpit-modal-open {
     display: grid;
   }
 
-  .study-flashcard-categories {
+  .study-flashcard-setup {
     grid-template-columns: 1fr;
+  }
+
+  #study-flashcard-summary {
+    grid-column: 1;
+  }
+
+  .study-flashcard-editor > div {
+    display: grid;
   }
 
   .flow-setup-grid {

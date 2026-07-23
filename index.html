@@ -709,33 +709,107 @@
           </aside>
         </div>
 
-        <div id="study-flashcards" class="study-flashcard-placeholder hidden">
+        <div id="study-flashcards" class="study-flashcards hidden">
           <div class="study-heading">
             <div>
               <h1>Flashcards</h1>
-              <p>A separate operational study bank will be added here.</p>
+              <p>Build and review a separate operational study bank.</p>
             </div>
+            <button type="button" onclick="openStudyFlashcardEditor()">
+              + Add flashcard
+            </button>
           </div>
-          <div class="study-flashcard-categories">
-            <article>
-              <span>01</span>
-              <h2>Operations</h2>
-              <p>Procedures, aircraft operation and practical knowledge.</p>
-              <strong>Coming soon</strong>
-            </article>
-            <article>
-              <span>02</span>
-              <h2>Tips</h2>
-              <p>Useful techniques, reminders and everyday cockpit tips.</p>
-              <strong>Coming soon</strong>
-            </article>
-            <article>
-              <span>03</span>
-              <h2>Abnormals / Emergency</h2>
-              <p>Abnormal procedures, emergency items and key actions.</p>
-              <strong>Coming soon</strong>
-            </article>
-          </div>
+
+          <section id="study-flashcard-setup" class="study-flashcard-setup">
+            <label>
+              <span>Category</span>
+              <select id="study-flashcard-category" onchange="updateStudyFlashcardSummary()">
+                <option value="all">All categories</option>
+                <option value="operations">Operations</option>
+                <option value="tips">Tips</option>
+                <option value="abnormals-emergency">Abnormals / Emergency</option>
+              </select>
+            </label>
+            <label class="checkbox-group">
+              <input id="study-flashcard-unseen" type="checkbox" onchange="setStudyFlashcardFilter('unseen')" />
+              <span>Only unseen</span>
+            </label>
+            <label class="checkbox-group">
+              <input id="study-flashcard-pinned" type="checkbox" onchange="setStudyFlashcardFilter('pinned')" />
+              <span>Only pinned (★)</span>
+            </label>
+            <p id="study-flashcard-summary"></p>
+            <button type="button" onclick="startStudyFlashcards()">Start studying</button>
+          </section>
+
+          <section id="study-flashcard-editor" class="study-flashcard-editor hidden">
+            <header>
+              <h2>Add a flashcard</h2>
+              <button type="button" onclick="closeStudyFlashcardEditor()">×</button>
+            </header>
+            <label>
+              <span>Category</span>
+              <select id="study-card-new-category">
+                <option value="operations">Operations</option>
+                <option value="tips">Tips</option>
+                <option value="abnormals-emergency">Abnormals / Emergency</option>
+              </select>
+            </label>
+            <label>
+              <span>Question</span>
+              <textarea id="study-card-new-question" rows="3" placeholder="Enter the question"></textarea>
+            </label>
+            <label>
+              <span>Answer</span>
+              <textarea id="study-card-new-answer" rows="6" placeholder="Enter the answer"></textarea>
+            </label>
+            <label>
+              <span>Reference(s)</span>
+              <textarea id="study-card-new-references" rows="3" placeholder="One reference per line"></textarea>
+            </label>
+            <p id="study-card-editor-status"></p>
+            <div>
+              <button type="button" onclick="closeStudyFlashcardEditor()">Cancel</button>
+              <button class="primary" type="button" onclick="saveStudyFlashcard()">Save locally</button>
+            </div>
+          </section>
+
+          <section id="study-flashcard-session" class="flashcard-session hidden">
+            <header class="flashcard-session-header">
+              <button type="button" onclick="closeStudyFlashcardSession()">×</button>
+              <div>
+                <span id="study-card-session-category"></span>
+                <strong id="study-card-progress"></strong>
+              </div>
+              <button id="study-card-pin" class="flashcard-pin-btn unpinned" type="button" onclick="toggleStudyFlashcardPin()">☆</button>
+            </header>
+            <button id="study-card" class="flashcard" type="button" onclick="flipStudyFlashcard()" aria-pressed="false">
+              <span class="flashcard-inner">
+                <span class="flashcard-face flashcard-front">
+                  <span class="flashcard-label">Question</span>
+                  <strong id="study-card-question"></strong>
+                  <span class="flashcard-hint">Tap to reveal the answer</span>
+                </span>
+                <span class="flashcard-face flashcard-back">
+                  <span class="flashcard-label">Answer</span>
+                  <strong id="study-card-answer"></strong>
+                  <span id="study-card-references"></span>
+                  <span class="flashcard-hint">Tap to see the question</span>
+                </span>
+              </span>
+            </button>
+            <button id="study-card-next" class="flashcard-next-btn" type="button" onclick="nextStudyFlashcard()" disabled>Next card →</button>
+          </section>
+
+          <section id="study-flashcard-complete" class="flashcard-complete hidden">
+            <span>✓</span>
+            <h1>Deck complete</h1>
+            <p id="study-card-complete-summary"></p>
+            <div>
+              <button type="button" onclick="restartStudyFlashcards()">Study again</button>
+              <button type="button" onclick="closeStudyFlashcardSession()">Change filters</button>
+            </div>
+          </section>
         </div>
       </section>
     </div>
@@ -743,6 +817,8 @@
     <script src="flows-data.js"></script>
     <script src="flow-builder.js"></script>
     <script src="flashcards.js"></script>
+    <script src="study-flashcards-data.js"></script>
+    <script src="study-flashcards.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
