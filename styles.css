@@ -223,6 +223,24 @@ h2 {
   text-align: center;
 }
 
+.flashcard-session-header .flashcard-header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 7px;
+}
+
+.flashcard-pin-btn {
+  width: 42px;
+  padding: 0;
+  color: var(--unpinned-color);
+  font-size: 25px;
+}
+
+.flashcard-pin-btn.pinned {
+  color: var(--pinned-color);
+}
+
 #flashcard-progress {
   color: var(--text-main);
   font-size: 14px;

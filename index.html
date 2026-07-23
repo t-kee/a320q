@@ -40,7 +40,7 @@
       </div>
 
       <div id="tab-setup">
-        <h1>A320 Monkey Training</h1>
+        <h1 id="training-title">A320 Monkey Training</h1>
         <p style="text-align: center">
           Database: <span id="db-total">0</span> questions
         </p>
@@ -135,7 +135,19 @@
             <span id="flashcard-session-theme"></span>
             <strong id="flashcard-progress"></strong>
           </div>
-          <button type="button" onclick="restartFlashcards()">Restart</button>
+          <div class="flashcard-header-actions">
+            <button
+              id="flashcard-pin"
+              class="flashcard-pin-btn unpinned"
+              type="button"
+              onclick="toggleFlashcardPin()"
+              title="Pin this question"
+              aria-label="Pin this question"
+            >
+              ☆
+            </button>
+            <button type="button" onclick="restartFlashcards()">Restart</button>
+          </div>
         </header>
 
         <button
@@ -342,7 +354,7 @@
             data-study-tab="flashcards"
             onclick="switchStudyTab('flashcards')"
           >
-            Flash-cards
+            Flashcards
           </button>
         </div>
 
@@ -701,7 +713,7 @@
         <div id="study-flashcards" class="study-flashcard-placeholder hidden">
           <div class="study-heading">
             <div>
-              <h1>Flash-cards</h1>
+              <h1>Flashcards</h1>
               <p>A separate operational study bank will be added here.</p>
             </div>
           </div>

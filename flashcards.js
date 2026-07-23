@@ -12,10 +12,13 @@ function toggleMonkeyMode() {
     .classList.toggle("hidden", !monkeyMode);
   document.getElementById("training-mode-description").innerText = monkeyMode
     ? "Multiple-choice training"
-    : "Question and answer flash-cards";
+    : "Question and answer flashcards";
+  document.getElementById("training-title").innerText = monkeyMode
+    ? "A320 Monkey Training"
+    : "A320 Theoretical Exam Flashcards";
   document.getElementById("start-training-btn").innerText = monkeyMode
     ? "Start Training"
-    : "Start Flash-cards";
+    : "Start Flashcards";
 }
 
 function startTraining() {
@@ -115,12 +118,42 @@ function renderFlashcard() {
     question.explanation || "";
   document.getElementById("flashcard-progress").innerText =
     `${flashcardIndex + 1} / ${flashcardDeck.length}`;
+  updateFlashcardPinButton();
   const nextButton = document.getElementById("flashcard-next");
   nextButton.disabled = true;
   nextButton.innerText =
     flashcardIndex === flashcardDeck.length - 1
       ? "Finish deck →"
       : "Next card →";
+}
+
+function updateFlashcardPinButton() {
+  const button = document.getElementById("flashcard-pin");
+  const questionId = flashcardDeck[flashcardIndex]?.id;
+  const isPinned = pinnedQuestions.includes(questionId);
+  button.classList.toggle("pinned", isPinned);
+  button.classList.toggle("unpinned", !isPinned);
+  button.innerText = isPinned ? "★" : "☆";
+  button.title = isPinned ? "Unpin this question" : "Pin this question";
+  button.setAttribute("aria-label", button.title);
+}
+
+function toggleFlashcardPin() {
+  const questionId = flashcardDeck[flashcardIndex]?.id;
+  if (questionId == null) return;
+  if (pinnedQuestions.includes(questionId)) {
+    pinnedQuestions = pinnedQuestions.filter((id) => id !== questionId);
+  } else {
+    pinnedQuestions.push(questionId);
+  }
+  localStorage.setItem(
+    "a320_pinned_questions",
+    JSON.stringify(pinnedQuestions),
+  );
+  document.getElementById("pinned-stats").innerText =
+    pinnedQuestions.length;
+  updateFlashcardPinButton();
+  updateSliderMax();
 }
 
 function markCurrentFlashcardSeen() {
