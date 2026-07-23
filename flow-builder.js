@@ -274,7 +274,7 @@ function renderFlowBuilderStep(step, index) {
           `,
         )
         .join("")
-    : `<span class="flow-no-controls">No cockpit control attached</span>`;
+    : `<span class="flow-no-controls">Automatic callout — no cockpit control required</span>`;
   const logicSelector =
     step.controls.length >= 2
       ? `
@@ -501,8 +501,7 @@ function saveFlowDraft() {
   const validSteps = flowBuilderDraft.steps.filter(
     (step) =>
       step.action.trim() &&
-      step.state.trim() &&
-      step.controls.length,
+      step.state.trim(),
   );
   if (!name) {
     setFlowBuilderStatus("Add a flow name before saving.", true);
@@ -510,7 +509,7 @@ function saveFlowDraft() {
   }
   if (!validSteps.length) {
     setFlowBuilderStatus(
-      "Add at least one line with an action, a position and cockpit controls.",
+      "Add at least one line with an action and a position.",
       true,
     );
     return;

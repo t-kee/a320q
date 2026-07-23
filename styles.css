@@ -910,6 +910,11 @@ body.cockpit-modal-open {
   background: rgba(241, 196, 15, 0.14);
 }
 
+.flow-action-bar.callout {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, var(--card-bg));
+}
+
 .flow-action-bar.complete {
   border-color: var(--correct);
   background: color-mix(in srgb, var(--correct) 10%, var(--card-bg));

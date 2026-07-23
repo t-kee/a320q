@@ -110,6 +110,7 @@ function startFlow(flowId, seat, role) {
     role,
     stepIndex: 0,
     demoInProgress: false,
+    automaticStepType: null,
     paused: false,
     guidedMode: false,
     timer: null,
@@ -189,7 +190,10 @@ function getFlowStepControls(step) {
       },
     ];
   }
-  return [{ panel: step.panel, controlId: step.controlId }];
+  if (step.panel && step.controlId) {
+    return [{ panel: step.panel, controlId: step.controlId }];
+  }
+  return [];
 }
 
 function getFlowPlaybackControls(step) {
@@ -236,7 +240,8 @@ function updateFlowActionBar(step, mode, message) {
   const session = activeFlowSession;
   if (!session) return;
   const bar = document.getElementById("flow-action-bar");
-  const actor = getFlowStepActor(step);
+  const isCallout = mode === "callout";
+  const actor = isCallout ? "INFO" : getFlowStepActor(step);
   const guidedInstruction = message || getFlowStepInstruction(step);
   const blindInstruction =
     mode === "demo"
@@ -244,18 +249,19 @@ function updateFlowActionBar(step, mode, message) {
       : message
         ? "Incorrect control — restart the flow"
         : "Your turn — choose the correct control";
-  const instruction = session.guidedMode
+  const instruction = isCallout || session.guidedMode
     ? guidedInstruction
     : blindInstruction;
 
   bar.classList.toggle("demo", mode === "demo");
+  bar.classList.toggle("callout", isCallout);
   bar.classList.remove("complete");
   document.getElementById("flow-action-actor").innerText = actor;
   document.getElementById("flow-action-instruction").innerText = instruction;
   document.getElementById("flow-action-progress").innerText =
     `${session.stepIndex + 1} / ${session.definition.steps.length}`;
   document.getElementById("flow-action-play").disabled =
-    mode !== "demo";
+    mode !== "demo" && !isCallout;
   document.getElementById("flow-action-play").innerText =
     session.paused ? "▶" : "❚❚";
   const guidedButton = document.getElementById("flow-action-guided");
@@ -343,8 +349,14 @@ function advanceFlow(token) {
     return;
   }
 
+  if (getFlowStepControls(step).length === 0) {
+    playFlowCalloutStep(step, token);
+    return;
+  }
+
   if (isFlowStepForUser(step)) {
     session.demoInProgress = false;
+    session.automaticStepType = null;
     updateFlowActionBar(step, "user");
     refreshFlowPanelGuidance();
     return;
@@ -357,10 +369,31 @@ function playFlowDemoStep(step, token) {
   const session = activeFlowSession;
   if (!session || session.token !== token) return;
   session.demoInProgress = true;
+  session.automaticStepType = "demo";
   updateFlowActionBar(step, "demo");
   const controls = getFlowPlaybackControls(step);
   const panels = [...new Set(controls.map(({ panel }) => panel))];
   playFlowDemoPanel(step, panels, 0, token);
+}
+
+function playFlowCalloutStep(step, token) {
+  const session = activeFlowSession;
+  if (!session || session.token !== token) return;
+  session.demoInProgress = true;
+  session.automaticStepType = "callout";
+  updateFlowActionBar(step, "callout");
+  if (!session.paused) scheduleFlowCalloutCompletion(token);
+}
+
+function scheduleFlowCalloutCompletion(token) {
+  const session = activeFlowSession;
+  if (!session || session.token !== token) return;
+  clearFlowTimer(false);
+  session.timer = window.setTimeout(() => {
+    if (!activeFlowSession || activeFlowSession.token !== token) return;
+    activeFlowSession.stepIndex += 1;
+    advanceFlow(token);
+  }, 1500);
 }
 
 function playFlowDemoPanel(step, panels, panelIndex, token) {
@@ -527,7 +560,11 @@ function toggleFlowGuidedMode() {
   if (step) {
     updateFlowActionBar(
       step,
-      session.demoInProgress ? "demo" : "user",
+      session.automaticStepType === "callout"
+        ? "callout"
+        : session.demoInProgress
+          ? "demo"
+          : "user",
     );
   }
   refreshFlowPanelGuidance();
@@ -548,7 +585,9 @@ function toggleFlowPlayback() {
     return;
   }
   const step = session.definition.steps[session.stepIndex];
-  if (session.demoHotspots.length) {
+  if (session.automaticStepType === "callout") {
+    scheduleFlowCalloutCompletion(session.token);
+  } else if (session.demoHotspots.length) {
     scheduleFlowDemoCompletion(step, session.token);
   } else {
     playFlowDemoStep(step, session.token);
@@ -558,7 +597,7 @@ function toggleFlowPlayback() {
 function finishFlow() {
   if (!activeFlowSession) return;
   const bar = document.getElementById("flow-action-bar");
-  bar.classList.remove("demo");
+  bar.classList.remove("demo", "callout");
   bar.classList.add("complete");
   document.getElementById("flow-action-actor").innerText = "COMPLETE";
   document.getElementById("flow-action-instruction").innerText =
@@ -578,7 +617,7 @@ function cancelFlowSession() {
   document.getElementById("flow-session-header")?.classList.add("hidden");
   const actionBar = document.getElementById("flow-action-bar");
   actionBar?.classList.add("hidden");
-  actionBar?.classList.remove("demo", "complete");
+  actionBar?.classList.remove("demo", "callout", "complete");
 }
 
 let activeCockpitPanel = null;
