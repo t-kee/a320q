@@ -33,7 +33,7 @@ function switchStudyTab(tabId) {
 
 let activeCockpitPanel = null;
 let cockpitZoom = 1;
-let cockpitLabelsVisible = true;
+let cockpitLabelsVisible = false;
 const cockpitPointers = new Map();
 let cockpitDragStart = null;
 let cockpitPinchStart = null;
