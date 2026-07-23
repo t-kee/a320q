@@ -7,31 +7,9 @@ let activeFlashcardTheme = "all";
 
 function toggleMonkeyMode() {
   const monkeyMode = document.getElementById("monkey-mode").checked;
-  document
-    .getElementById("question-count-group")
-    .classList.toggle("hidden", !monkeyMode);
-  document
-    .getElementById("flashcard-count-summary")
-    .classList.toggle("hidden", monkeyMode);
-  document.getElementById("training-mode-description").innerText = monkeyMode
-    ? "Multiple-choice training"
-    : "Question and answer flashcards";
   document.getElementById("training-title").innerText = monkeyMode
     ? "A320 Monkey Clicking"
     : "A320 Theoretical Exam Flashcards";
-  document.getElementById("start-training-btn").innerText = monkeyMode
-    ? "Start Training"
-    : "Start Flashcards";
-  if (!monkeyMode && typeof updateSliderMax === "function") {
-    updateSliderMax();
-  }
-}
-
-function updateFlashcardCountSummary(count) {
-  const summary = document.getElementById("flashcard-count-summary");
-  if (!summary) return;
-  summary.innerText =
-    `${count} question${count === 1 ? "" : "s"} match these filters`;
 }
 
 function startTraining() {
@@ -88,8 +66,12 @@ function shuffleFlashcards(cards) {
 function startFlashcards() {
   const pool = getFilteredFlashcardPool();
   if (!pool.length) return;
-  flashcardSourcePool = [...pool];
-  flashcardDeck = shuffleFlashcards(flashcardSourcePool);
+  const cardCount = Math.min(
+    Number.parseInt(countSlider.value, 10),
+    pool.length,
+  );
+  flashcardSourcePool = shuffleFlashcards(pool).slice(0, cardCount);
+  flashcardDeck = [...flashcardSourcePool];
   flashcardIndex = 0;
   showFlashcardSession();
   renderFlashcard();

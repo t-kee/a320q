@@ -1351,7 +1351,6 @@ function updateSliderMax() {
   }
 
   const maxVal = pool.length;
-  updateFlashcardCountSummary(maxVal);
   countSlider.max = maxVal === 0 ? 1 : maxVal;
 
   if (parseInt(countSlider.value) > maxVal) {
