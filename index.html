@@ -307,6 +307,13 @@
                 >
                   Labels
                 </button>
+                <button
+                  class="cockpit-tool-btn cockpit-edit-toggle"
+                  id="cockpit-edit-toggle"
+                  onclick="toggleCockpitEditor()"
+                >
+                  Edit zones
+                </button>
               </div>
             </div>
 
@@ -314,6 +321,30 @@
               Tap a highlighted control for its name. Pinch or use the buttons
               to zoom, then drag to move around the panel.
             </p>
+
+            <div id="cockpit-editor-bar" class="cockpit-editor-bar hidden">
+              <span>
+                Drag a zone to move it. Drag its bottom-right handle to resize.
+              </span>
+              <div>
+                <button class="cockpit-tool-btn" onclick="saveCockpitMapping()">
+                  Save locally
+                </button>
+                <button
+                  class="cockpit-tool-btn"
+                  onclick="exportCockpitMapping()"
+                >
+                  Export JSON
+                </button>
+                <button
+                  class="cockpit-tool-btn"
+                  onclick="resetCockpitPanelMapping()"
+                >
+                  Reset panel
+                </button>
+              </div>
+              <output id="cockpit-editor-status">No unsaved changes</output>
+            </div>
 
             <div id="cockpit-viewport" class="cockpit-viewport">
               <div id="cockpit-canvas" class="cockpit-canvas">

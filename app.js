@@ -34,9 +34,50 @@ function switchStudyTab(tabId) {
 let activeCockpitPanel = null;
 let cockpitZoom = 1;
 let cockpitLabelsVisible = false;
+let cockpitEditMode = false;
+let cockpitEditOperation = null;
+let cockpitMappingDirty = false;
+const cockpitMappingStorageKey = "a320_cockpit_hotspot_overrides_v1";
+const defaultCockpitHotspots = JSON.parse(JSON.stringify(cockpitPanels));
 const cockpitPointers = new Map();
 let cockpitDragStart = null;
 let cockpitPinchStart = null;
+
+function getCockpitMappingSnapshot() {
+  return Object.fromEntries(
+    Object.entries(cockpitPanels).map(([panelId, panel]) => [
+      panelId,
+      Object.fromEntries(
+        panel.hotspots.map(([id, _label, x, y, width, height]) => [
+          id,
+          { x, y, width, height },
+        ]),
+      ),
+    ]),
+  );
+}
+
+function applySavedCockpitMapping() {
+  try {
+    const saved = JSON.parse(
+      localStorage.getItem(cockpitMappingStorageKey) || "{}",
+    );
+    Object.entries(saved).forEach(([panelId, controls]) => {
+      const panel = cockpitPanels[panelId];
+      if (!panel || !controls) return;
+      panel.hotspots.forEach((hotspot) => {
+        const override = controls[hotspot[0]];
+        if (!override) return;
+        hotspot[2] = override.x;
+        hotspot[3] = override.y;
+        hotspot[4] = override.width;
+        hotspot[5] = override.height;
+      });
+    });
+  } catch (error) {
+    console.warn("Could not load cockpit mapping overrides", error);
+  }
+}
 
 function renderCockpitPanelCards() {
   const container = document.getElementById("cockpit-panel-cards");
@@ -86,11 +127,13 @@ function openCockpitPanel(panelId) {
           style="${style}"
           aria-label="${label}"
           title="${label}"
-          onclick="showCockpitControl('${id}')"
+          onclick="handleCockpitHotspotClick(event, '${id}')"
           data-control-id="${id}"
           data-control-name="${label}"
           data-control-group="${group}"
-        ></button>
+        >
+          <span class="cockpit-resize-handle" aria-hidden="true"></span>
+        </button>
       `;
     })
     .join("");
@@ -103,10 +146,19 @@ function openCockpitPanel(panelId) {
 }
 
 function closeCockpitPanel() {
+  if (cockpitEditMode) toggleCockpitEditor();
   activeCockpitPanel = null;
   document.getElementById("cockpit-panel-viewer").classList.add("hidden");
   document.getElementById("cockpit-panel-picker").classList.remove("hidden");
   closeCockpitControl();
+}
+
+function handleCockpitHotspotClick(event, controlId) {
+  if (cockpitEditMode) {
+    event.preventDefault();
+    return;
+  }
+  showCockpitControl(controlId);
 }
 
 function updateCockpitZoom(anchorX, anchorY, previousZoom = cockpitZoom) {
@@ -162,6 +214,164 @@ function closeCockpitControl() {
   document
     .querySelectorAll(".cockpit-hotspot.selected")
     .forEach((button) => button.classList.remove("selected"));
+}
+
+function setCockpitEditorStatus(message, isDirty = false) {
+  cockpitMappingDirty = isDirty;
+  const status = document.getElementById("cockpit-editor-status");
+  status.innerText = message;
+  status.classList.toggle("unsaved", isDirty);
+}
+
+function toggleCockpitEditor() {
+  cockpitEditMode = !cockpitEditMode;
+  const viewport = document.getElementById("cockpit-viewport");
+  const toggle = document.getElementById("cockpit-edit-toggle");
+  const editorBar = document.getElementById("cockpit-editor-bar");
+
+  viewport.classList.toggle("edit-mode", cockpitEditMode);
+  toggle.classList.toggle("active", cockpitEditMode);
+  toggle.innerText = cockpitEditMode ? "Finish editing" : "Edit zones";
+  editorBar.classList.toggle("hidden", !cockpitEditMode);
+  closeCockpitControl();
+
+  if (cockpitEditMode && cockpitZoom < 1.5) {
+    changeCockpitZoom(0.5);
+  }
+}
+
+function updateCockpitHotspotFromElement(hotspotElement) {
+  const panel = cockpitPanels[activeCockpitPanel];
+  const hotspot = panel?.hotspots.find(
+    ([id]) => id === hotspotElement.dataset.controlId,
+  );
+  if (!hotspot) return;
+
+  hotspot[2] = Number.parseFloat(hotspotElement.style.left);
+  hotspot[3] = Number.parseFloat(hotspotElement.style.top);
+  hotspot[4] = Number.parseFloat(hotspotElement.style.width);
+  hotspot[5] = Number.parseFloat(hotspotElement.style.height);
+}
+
+function saveCockpitMapping() {
+  localStorage.setItem(
+    cockpitMappingStorageKey,
+    JSON.stringify(getCockpitMappingSnapshot()),
+  );
+  setCockpitEditorStatus("Saved locally in this browser");
+}
+
+function exportCockpitMapping() {
+  const payload = {
+    version: 1,
+    exportedAt: new Date().toISOString(),
+    panels: getCockpitMappingSnapshot(),
+  };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], {
+    type: "application/json",
+  });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "a320-cockpit-hotspots.json";
+  link.click();
+  URL.revokeObjectURL(url);
+  setCockpitEditorStatus("JSON mapping exported", cockpitMappingDirty);
+}
+
+function resetCockpitPanelMapping() {
+  const defaults = defaultCockpitHotspots[activeCockpitPanel];
+  if (!defaults) return;
+  cockpitPanels[activeCockpitPanel].hotspots = JSON.parse(
+    JSON.stringify(defaults.hotspots),
+  );
+  openCockpitPanel(activeCockpitPanel);
+  document.getElementById("cockpit-viewport").classList.add("edit-mode");
+  cockpitEditMode = true;
+  document.getElementById("cockpit-edit-toggle").classList.add("active");
+  document.getElementById("cockpit-edit-toggle").innerText = "Finish editing";
+  document.getElementById("cockpit-editor-bar").classList.remove("hidden");
+  setCockpitEditorStatus("Panel reset — save to keep this change", true);
+}
+
+function setupCockpitHotspotEditor() {
+  const hotspotLayer = document.getElementById("cockpit-hotspots");
+  if (!hotspotLayer) return;
+
+  hotspotLayer.addEventListener("pointerdown", (event) => {
+    if (!cockpitEditMode) return;
+    const hotspot = event.target.closest(".cockpit-hotspot");
+    if (!hotspot) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    hotspot.setPointerCapture(event.pointerId);
+
+    const canvasRect = document
+      .getElementById("cockpit-canvas")
+      .getBoundingClientRect();
+    cockpitEditOperation = {
+      pointerId: event.pointerId,
+      hotspot,
+      mode: event.target.closest(".cockpit-resize-handle")
+        ? "resize"
+        : "move",
+      startX: event.clientX,
+      startY: event.clientY,
+      x: Number.parseFloat(hotspot.style.left),
+      y: Number.parseFloat(hotspot.style.top),
+      width: Number.parseFloat(hotspot.style.width),
+      height: Number.parseFloat(hotspot.style.height),
+      canvasWidth: canvasRect.width,
+      canvasHeight: canvasRect.height,
+    };
+    hotspot.classList.add("editing");
+  });
+
+  hotspotLayer.addEventListener("pointermove", (event) => {
+    const operation = cockpitEditOperation;
+    if (!operation || operation.pointerId !== event.pointerId) return;
+
+    const dx = ((event.clientX - operation.startX) / operation.canvasWidth) * 100;
+    const dy =
+      ((event.clientY - operation.startY) / operation.canvasHeight) * 100;
+
+    if (operation.mode === "move") {
+      const x = Math.min(
+        100 - operation.width,
+        Math.max(0, operation.x + dx),
+      );
+      const y = Math.min(
+        100 - operation.height,
+        Math.max(0, operation.y + dy),
+      );
+      operation.hotspot.style.left = `${x.toFixed(3)}%`;
+      operation.hotspot.style.top = `${y.toFixed(3)}%`;
+    } else {
+      const width = Math.min(
+        100 - operation.x,
+        Math.max(0.2, operation.width + dx),
+      );
+      const height = Math.min(
+        100 - operation.y,
+        Math.max(0.2, operation.height + dy),
+      );
+      operation.hotspot.style.width = `${width.toFixed(3)}%`;
+      operation.hotspot.style.height = `${height.toFixed(3)}%`;
+    }
+  });
+
+  const finishEditingHotspot = (event) => {
+    const operation = cockpitEditOperation;
+    if (!operation || operation.pointerId !== event.pointerId) return;
+    operation.hotspot.classList.remove("editing");
+    updateCockpitHotspotFromElement(operation.hotspot);
+    cockpitEditOperation = null;
+    setCockpitEditorStatus("Unsaved changes", true);
+  };
+
+  hotspotLayer.addEventListener("pointerup", finishEditingHotspot);
+  hotspotLayer.addEventListener("pointercancel", finishEditingHotspot);
 }
 
 function cockpitPointerDistance() {
@@ -246,8 +456,10 @@ function setupCockpitGestures() {
   );
 }
 
+applySavedCockpitMapping();
 renderCockpitPanelCards();
 setupCockpitGestures();
+setupCockpitHotspotEditor();
 
 // --- USER ID GENERATION ---
 let userId = localStorage.getItem("a320_user_id");

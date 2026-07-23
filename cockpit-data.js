@@ -292,3 +292,39 @@ cockpitPanels.pedestal.hotspots = cockpitPanels.pedestal.hotspots
     ["capt-acp", "Captain ACP", 1.0, 38.8, 27.8, 11.2, "Audio"],
     ["fo-acp", "First Officer ACP", 71.2, 38.8, 27.8, 11.2, "Audio"],
   ]);
+
+// The lower ECAM controls are taught as one functional block.
+const lowerEcamControlIds = new Set([
+  "ecam-to-config",
+  "ecam-emer-cancel",
+  "ecam-eng",
+  "ecam-bleed",
+  "ecam-press",
+  "ecam-elec",
+  "ecam-hyd",
+  "ecam-fuel",
+  "ecam-apu",
+  "ecam-cond",
+  "ecam-door",
+  "ecam-wheel",
+  "ecam-fctl",
+  "ecam-all",
+  "ecam-clr-left",
+  "ecam-sts",
+  "ecam-rcl",
+  "ecam-clr-right",
+]);
+
+cockpitPanels.pedestal.hotspots = cockpitPanels.pedestal.hotspots
+  .filter(([id]) => !lowerEcamControlIds.has(id))
+  .concat([
+    [
+      "ecam-lower-display-controls",
+      "ECAM lower display control panel",
+      39.2,
+      10.3,
+      22.0,
+      10.2,
+      "ECAM",
+    ],
+  ]);
