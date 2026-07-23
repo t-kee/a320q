@@ -367,11 +367,11 @@
             <div class="flow-builder-toolbar">
               <label>
                 <span>Flow to edit</span>
-                <select id="flow-builder-select"></select>
+                <select
+                  id="flow-builder-select"
+                  onchange="loadFlowIntoBuilder(this.value)"
+                ></select>
               </label>
-              <button type="button" onclick="loadSelectedFlowIntoBuilder()">
-                Load
-              </button>
               <button type="button" onclick="createNewFlowDraft()">
                 New flow
               </button>
@@ -445,7 +445,7 @@
               class="cockpit-modal-dialog"
               role="dialog"
               aria-modal="true"
-              aria-labelledby="cockpit-panel-title"
+              aria-label="Cockpit panel"
             >
               <div id="flow-session-header" class="flow-session-header hidden">
                 <div id="flow-user-left" class="flow-user-position"></div>
@@ -471,7 +471,6 @@
                   class="cockpit-panel-switcher"
                   aria-label="Cockpit panels"
                 ></nav>
-                <strong id="cockpit-panel-title">Panel</strong>
                 <div class="cockpit-zoom-controls">
                 <button
                   class="cockpit-tool-btn"
@@ -489,13 +488,6 @@
                   +
                 </button>
                 <button
-                  class="cockpit-tool-btn cockpit-label-toggle"
-                  id="cockpit-label-toggle"
-                  onclick="toggleCockpitLabels()"
-                >
-                  Labels
-                </button>
-                <button
                   class="cockpit-tool-btn cockpit-edit-toggle"
                   id="cockpit-edit-toggle"
                   onclick="toggleCockpitEditor()"
@@ -504,11 +496,6 @@
                 </button>
                 </div>
               </div>
-
-              <p class="cockpit-help">
-                Tap a highlighted control for its name. Pinch or use the
-                buttons to zoom, then drag to move around the panel.
-              </p>
 
               <div id="flow-action-bar" class="flow-action-bar hidden">
                 <button

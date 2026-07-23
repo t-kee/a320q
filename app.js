@@ -584,7 +584,6 @@ function cancelFlowSession() {
 let activeCockpitPanel = null;
 let cockpitZoom = 1;
 let cockpitFitWidth = 0;
-let cockpitLabelsVisible = false;
 let cockpitEditMode = false;
 let cockpitEditOperation = null;
 let cockpitMappingDirty = false;
@@ -696,8 +695,6 @@ function openCockpitPanel(panelId) {
   cockpitZoom = 1;
   document.getElementById("cockpit-panel-viewer").classList.remove("hidden");
   document.body.classList.add("cockpit-modal-open");
-  document.getElementById("cockpit-panel-title").innerText = panel.label;
-
   const image = document.getElementById("cockpit-image");
   image.onload = fitCockpitPanelToViewport;
   image.src = panel.image;
@@ -723,8 +720,6 @@ function openCockpitPanel(panelId) {
       `;
     })
     .join("");
-  hotspots.classList.toggle("show-labels", cockpitLabelsVisible);
-
   renderCockpitPanelSwitcher();
   refreshFlowPanelGuidance();
   refreshFlowBuilderCapture();
@@ -796,16 +791,6 @@ function changeCockpitZoom(delta, anchorX, anchorY) {
   const previousZoom = cockpitZoom;
   cockpitZoom = Math.min(4, Math.max(1, cockpitZoom + delta));
   updateCockpitZoom(anchorX, anchorY, previousZoom);
-}
-
-function toggleCockpitLabels() {
-  cockpitLabelsVisible = !cockpitLabelsVisible;
-  document
-    .getElementById("cockpit-hotspots")
-    .classList.toggle("show-labels", cockpitLabelsVisible);
-  document
-    .getElementById("cockpit-label-toggle")
-    .classList.toggle("active", cockpitLabelsVisible);
 }
 
 function showCockpitControl(controlId) {

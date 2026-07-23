@@ -189,10 +189,6 @@ function renderFlowBuilderSelect() {
   }
 }
 
-function loadSelectedFlowIntoBuilder() {
-  loadFlowIntoBuilder(document.getElementById("flow-builder-select").value);
-}
-
 function loadFlowIntoBuilder(flowId) {
   const definition = getFlowDefinition(flowId);
   const catalogName =
