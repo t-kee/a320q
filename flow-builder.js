@@ -280,7 +280,7 @@ function renderFlowBuilderStep(step, index) {
         .join("")
     : `<span class="flow-no-controls">No cockpit control attached</span>`;
   const logicSelector =
-    step.controls.length >= 3
+    step.controls.length >= 2
       ? `
         <label class="flow-control-logic">
           <span>Selected controls</span>
