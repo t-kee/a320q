@@ -299,7 +299,6 @@ function updateFlowAutoOverlay(step, mode) {
   const isCallout = mode === "callout";
   overlay.classList.toggle("hidden", !isCallout);
   if (!isCallout) return;
-  document.getElementById("flow-auto-actor").innerText = "CALLOUT";
   const instruction = document.getElementById("flow-auto-instruction");
   instruction.innerText = getFlowChecklistInstruction(step);
   window.requestAnimationFrame(() => fitFlowCalloutText(instruction));
