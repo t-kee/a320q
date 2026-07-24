@@ -114,6 +114,7 @@ h2 {
 }
 
 .meta-nav-btn {
+  position: relative;
   min-height: 46px;
   padding: 10px 12px;
   border: 0;
@@ -124,6 +125,21 @@ h2 {
   font: inherit;
   font-weight: 700;
   transition: 0.2s;
+}
+
+.meta-beta-badge {
+  position: absolute;
+  top: -7px;
+  right: 9px;
+  padding: 2px 6px;
+  border: 2px solid var(--bg-color);
+  border-radius: 999px;
+  background: #f39c12;
+  color: #1c252c;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
 }
 
 .meta-nav-btn:hover {
@@ -1421,7 +1437,8 @@ body.cockpit-modal-open {
   left: 50%;
   z-index: 14;
   display: grid;
-  min-width: min(520px, 72%);
+  width: min(620px, 78%);
+  min-height: 92px;
   gap: 7px;
   padding: 20px 26px;
   border: 3px solid #f1c40f;
@@ -1444,8 +1461,12 @@ body.cockpit-modal-open {
 }
 
 #flow-auto-instruction {
-  font-size: clamp(20px, 3vw, 34px);
+  overflow: hidden;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: clamp(17px, 2.4vw, 28px);
   line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .cockpit-viewport.is-zoomed {
@@ -1590,7 +1611,28 @@ body.cockpit-modal-open {
 }
 
 .cockpit-hotspot.flow-demo[data-flow-state]::before {
+  top: 50%;
+  right: auto;
+  bottom: auto;
+  left: calc(100% + 8px);
+  width: 240px;
+  max-width: none;
+  min-height: 36px;
+  padding: 7px 10px;
+  border-width: 2px;
+  border-radius: 7px;
   color: #f1c40f;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 12px;
+  line-height: 18px;
+  text-align: left;
+  white-space: nowrap;
+  transform: translateY(-50%);
+}
+
+.cockpit-hotspot.flow-demo.flow-label-left[data-flow-state]::before {
+  right: calc(100% + 8px);
+  left: auto;
 }
 
 .cockpit-hotspot.flow-correct[data-flow-state]::before {

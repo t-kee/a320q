@@ -213,6 +213,12 @@ function getFlowStepInstruction(step) {
     .join(" — ");
 }
 
+function getFlowChecklistInstruction(step) {
+  const action = getFlowStepAction(step);
+  const state = getFlowStepState(step);
+  return state ? `${action}..........${state}` : action;
+}
+
 function getFlowStepAction(step) {
   if (step.action) return step.action;
   const parts = String(step.instruction || "").split(/\s+[—–-]\s+/);
@@ -239,6 +245,7 @@ function setFlowHotspotFeedback(hotspot, className, state) {
 function clearFlowHotspotFeedback(hotspot, className) {
   if (!hotspot) return;
   hotspot.classList.remove(className);
+  hotspot.classList.remove("flow-label-left");
   delete hotspot.dataset.flowState;
 }
 
@@ -286,13 +293,12 @@ function updateFlowActionBar(step, mode, message) {
 
 function updateFlowAutoOverlay(step, mode) {
   const overlay = document.getElementById("flow-auto-overlay");
-  const automatic = mode === "demo" || mode === "callout";
-  overlay.classList.toggle("hidden", !automatic);
-  if (!automatic) return;
-  document.getElementById("flow-auto-actor").innerText =
-    mode === "callout" ? "INFO" : getFlowStepActor(step);
+  const isCallout = mode === "callout";
+  overlay.classList.toggle("hidden", !isCallout);
+  if (!isCallout) return;
+  document.getElementById("flow-auto-actor").innerText = "CALLOUT";
   document.getElementById("flow-auto-instruction").innerText =
-    getFlowStepInstruction(step);
+    getFlowChecklistInstruction(step);
 }
 
 function clearFlowHint() {
@@ -467,13 +473,22 @@ function playFlowDemoPanel(step, panels, panelIndex, token) {
         `.cockpit-hotspot[data-control-id="${controlId}"]`,
       ),
     );
-    activeFlowSession.demoHotspots.forEach((hotspot) =>
+    activeFlowSession.demoHotspots.forEach((hotspot) => {
       setFlowHotspotFeedback(
         hotspot,
         "flow-demo",
-        getFlowStepState(step),
-      ),
-    );
+        getFlowChecklistInstruction(step),
+      );
+      const viewport = document.getElementById("cockpit-viewport");
+      if (hotspot && viewport) {
+        const hotspotRect = hotspot.getBoundingClientRect();
+        const viewportRect = viewport.getBoundingClientRect();
+        hotspot.classList.toggle(
+          "flow-label-left",
+          viewportRect.right - hotspotRect.right < 270,
+        );
+      }
+    });
     activeFlowSession.demoPanelIndex = panelIndex;
     activeFlowSession.demoPanels = panels;
     if (!activeFlowSession.paused) scheduleFlowDemoCompletion(step, token);
