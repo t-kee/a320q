@@ -323,28 +323,6 @@ h2 {
   line-height: 1.28;
 }
 
-#flashcard-question.compact {
-  font-size: clamp(18px, 2.7vw, 25px);
-}
-
-#flashcard-options {
-  width: 100%;
-  max-width: 650px;
-  color: var(--text-main);
-  font-size: 14px;
-  line-height: 1.4;
-  text-align: left;
-}
-
-#flashcard-options ol {
-  margin: 0;
-  padding-left: 1.8em;
-}
-
-#flashcard-options li + li {
-  margin-top: 0.55em;
-}
-
 #flashcard-answer {
   color: var(--correct);
 }
@@ -532,15 +510,6 @@ h2 {
   text-align: left;
 }
 
-#study-card-question.compact,
-#study-card-answer.compact {
-  font-size: clamp(18px, 2.7vw, 25px);
-}
-
-#study-card-answer.dense {
-  font-size: clamp(16px, 2.2vw, 20px);
-}
-
 #study-card-answer ul {
   margin: 0;
   padding-left: 1.35em;
@@ -565,6 +534,15 @@ h2 {
   color: var(--text-muted);
   font-size: 13px;
   line-height: 1.5;
+}
+
+#study-card .flashcard-face {
+  overflow: hidden;
+}
+
+#study-card .flashcard-face.content-tight {
+  gap: 10px;
+  padding: 18px 24px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -616,12 +594,19 @@ h2 {
 }
 
 .flow-random-btn {
+  border: 1px dashed var(--accent);
+  background: transparent;
+  color: var(--accent);
   white-space: nowrap;
 }
 
-.flow-random-btn:hover,
 .flow-start-btn:hover {
   filter: brightness(0.94);
+}
+
+.flow-random-btn:hover {
+  background: var(--badge-bg);
+  filter: none;
 }
 
 .flow-start-btn:disabled {

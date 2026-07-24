@@ -141,12 +141,12 @@ function renderStudyFlashcard() {
     `${studyCardIndex + 1} / ${studyCardDeck.length}`;
   const question = document.getElementById("study-card-question");
   question.innerText = cardData.question;
-  question.classList.toggle("compact", cardData.question.length > 75);
   renderStudyCardAnswer(cardData.answer);
   document.getElementById("study-card-references").innerText =
     cardData.references.length
       ? `References: ${cardData.references.join(" · ")}`
       : "No reference provided";
+  fitStudyFlashcardContent();
   document.getElementById("study-card-next").disabled = true;
   updateStudyCardPinButton();
 }
@@ -154,8 +154,6 @@ function renderStudyFlashcard() {
 function renderStudyCardAnswer(answer) {
   const container = document.getElementById("study-card-answer");
   container.innerHTML = "";
-  container.classList.toggle("compact", answer.length > 220);
-  container.classList.toggle("dense", answer.length > 380);
   let list = null;
   answer.split("\n").forEach((rawLine) => {
     const line = rawLine.trim();
@@ -176,6 +174,42 @@ function renderStudyCardAnswer(answer) {
     paragraph.innerText = line;
     container.appendChild(paragraph);
   });
+}
+
+function fitStudyFlashcardContent() {
+  const card = document.getElementById("study-card");
+  const front = card.querySelector(".flashcard-front");
+  const back = card.querySelector(".flashcard-back");
+  const question = document.getElementById("study-card-question");
+  const answer = document.getElementById("study-card-answer");
+  const references = document.getElementById("study-card-references");
+  [question, answer, references].forEach((element) => {
+    element.style.fontSize = "";
+  });
+  front.classList.remove("content-tight");
+  back.classList.remove("content-tight");
+  requestAnimationFrame(() => {
+    shrinkStudyFlashcardFace(front, [question], 14);
+    shrinkStudyFlashcardFace(back, [answer, references], 11);
+  });
+}
+
+function shrinkStudyFlashcardFace(face, elements, minimumSize) {
+  if (face.scrollHeight <= face.clientHeight) return;
+  face.classList.add("content-tight");
+  let sizes = elements.map((element) =>
+    Number.parseFloat(getComputedStyle(element).fontSize),
+  );
+  while (
+    face.scrollHeight > face.clientHeight &&
+    sizes.some((size) => size > minimumSize)
+  ) {
+    sizes = sizes.map((size, index) => {
+      const nextSize = Math.max(minimumSize, size - 1);
+      elements[index].style.fontSize = `${nextSize}px`;
+      return nextSize;
+    });
+  }
 }
 
 function saveStudyCardProgress(cardId, patch) {
@@ -244,5 +278,12 @@ function closeStudyFlashcardSession() {
   document.getElementById("study-flashcard-setup").classList.remove("hidden");
   updateStudyFlashcardSummary();
 }
+
+window.addEventListener("resize", () => {
+  const session = document.getElementById("study-flashcard-session");
+  if (!session.classList.contains("hidden") && studyCardDeck.length) {
+    fitStudyFlashcardContent();
+  }
+});
 
 updateStudyFlashcardSummary();

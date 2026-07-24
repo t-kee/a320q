@@ -106,25 +106,7 @@ function renderFlashcard() {
   card.classList.remove("flipped");
   card.setAttribute("aria-pressed", "false");
   card.setAttribute("aria-label", "Show answer");
-  const questionElement = document.getElementById("flashcard-question");
-  questionElement.innerText = question.question;
-  const optionLength = question.options.reduce(
-    (total, option) => total + String(option).length,
-    0,
-  );
-  questionElement.classList.toggle(
-    "compact",
-    question.question.length + optionLength > 260,
-  );
-  const options = document.getElementById("flashcard-options");
-  options.innerHTML = "";
-  const optionList = document.createElement("ol");
-  question.options.forEach((option) => {
-    const item = document.createElement("li");
-    item.innerHTML = option;
-    optionList.appendChild(item);
-  });
-  options.appendChild(optionList);
+  document.getElementById("flashcard-question").innerText = question.question;
   document.getElementById("flashcard-answer").innerText =
     question.options[question.correct];
   document.getElementById("flashcard-explanation").innerHTML =
