@@ -216,7 +216,10 @@ function getFlowStepInstruction(step) {
 function getFlowChecklistInstruction(step) {
   const action = getFlowStepAction(step);
   const state = getFlowStepState(step);
-  return state ? `${action}..........${state}` : action;
+  if (!state) return action;
+  const contentLength = action.length + state.length;
+  const dotCount = Math.max(3, 10 - Math.floor(contentLength / 16));
+  return `${action}${".".repeat(dotCount)}${state}`;
 }
 
 function getFlowStepAction(step) {
@@ -307,9 +310,8 @@ function fitFlowCalloutText(element) {
   let fontSize = 28;
   element.style.fontSize = `${fontSize}px`;
   while (
-    fontSize > 12 &&
-    (element.scrollWidth > element.clientWidth ||
-      element.scrollHeight > element.clientHeight)
+    fontSize > 8 &&
+    element.scrollWidth > element.clientWidth
   ) {
     fontSize -= 1;
     element.style.fontSize = `${fontSize}px`;
@@ -498,6 +500,17 @@ function playFlowDemoPanel(step, panels, panelIndex, token) {
       if (hotspot && viewport) {
         const hotspotRect = hotspot.getBoundingClientRect();
         const viewportRect = viewport.getBoundingClientRect();
+        const label = getFlowChecklistInstruction(step);
+        const availableWidth = Math.max(80, viewportRect.width * 0.46);
+        const estimatedWidthAtDefaultSize = label.length * 7.25 + 24;
+        const labelFontSize = Math.max(
+          8,
+          Math.min(12, (availableWidth / estimatedWidthAtDefaultSize) * 12),
+        );
+        hotspot.style.setProperty(
+          "--flow-label-font-size",
+          `${labelFontSize}px`,
+        );
         hotspot.classList.toggle(
           "flow-label-left",
           viewportRect.right - hotspotRect.right < 270,

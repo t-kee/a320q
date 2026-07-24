@@ -1467,8 +1467,7 @@ body.cockpit-modal-open {
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   font-size: 28px;
   line-height: 1.2;
-  overflow-wrap: anywhere;
-  white-space: normal;
+  white-space: nowrap;
 }
 
 .cockpit-viewport[data-panel="glareshield"] .flow-auto-overlay {
@@ -1634,11 +1633,10 @@ body.cockpit-modal-open {
   border-radius: 7px;
   color: #f1c40f;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-  font-size: 12px;
+  font-size: var(--flow-label-font-size, 12px);
   line-height: 18px;
-  overflow-wrap: anywhere;
   text-align: center;
-  white-space: normal;
+  white-space: nowrap;
   transform: translateY(-50%);
 }
 
