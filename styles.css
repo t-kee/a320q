@@ -1439,7 +1439,7 @@ body.cockpit-modal-open {
   display: flex;
   flex-direction: column;
   width: min(620px, 78%);
-  height: 72px;
+  height: 82px;
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
@@ -1458,8 +1458,9 @@ body.cockpit-modal-open {
 
 #flow-auto-actor {
   flex: 0 0 auto;
+  margin-bottom: 4px;
   color: #f1c40f;
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 900;
   letter-spacing: 0.12em;
   line-height: 1;
