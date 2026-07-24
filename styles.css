@@ -1437,8 +1437,9 @@ body.cockpit-modal-open {
   left: 50%;
   z-index: 14;
   display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
   width: min(620px, 78%);
-  min-height: 92px;
+  height: 108px;
   gap: 7px;
   padding: 20px 26px;
   border: 3px solid #f1c40f;
@@ -1461,12 +1462,18 @@ body.cockpit-modal-open {
 }
 
 #flow-auto-instruction {
+  align-self: stretch;
   overflow: hidden;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-  font-size: clamp(17px, 2.4vw, 28px);
+  font-size: 28px;
   line-height: 1.2;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.cockpit-viewport[data-panel="glareshield"] .flow-auto-overlay {
+  top: 14px;
+  transform: translateX(-50%);
 }
 
 .cockpit-viewport.is-zoomed {
@@ -1615,9 +1622,13 @@ body.cockpit-modal-open {
   right: auto;
   bottom: auto;
   left: calc(100% + 8px);
-  width: 240px;
-  max-width: none;
+  display: flex;
+  width: max-content;
+  max-width: min(420px, 46vw);
   min-height: 36px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
   padding: 7px 10px;
   border-width: 2px;
   border-radius: 7px;
@@ -1625,8 +1636,9 @@ body.cockpit-modal-open {
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   font-size: 12px;
   line-height: 18px;
-  text-align: left;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
+  text-align: center;
+  white-space: normal;
   transform: translateY(-50%);
 }
 

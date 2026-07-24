@@ -297,8 +297,23 @@ function updateFlowAutoOverlay(step, mode) {
   overlay.classList.toggle("hidden", !isCallout);
   if (!isCallout) return;
   document.getElementById("flow-auto-actor").innerText = "CALLOUT";
-  document.getElementById("flow-auto-instruction").innerText =
-    getFlowChecklistInstruction(step);
+  const instruction = document.getElementById("flow-auto-instruction");
+  instruction.innerText = getFlowChecklistInstruction(step);
+  window.requestAnimationFrame(() => fitFlowCalloutText(instruction));
+}
+
+function fitFlowCalloutText(element) {
+  if (!element) return;
+  let fontSize = 28;
+  element.style.fontSize = `${fontSize}px`;
+  while (
+    fontSize > 12 &&
+    (element.scrollWidth > element.clientWidth ||
+      element.scrollHeight > element.clientHeight)
+  ) {
+    fontSize -= 1;
+    element.style.fontSize = `${fontSize}px`;
+  }
 }
 
 function clearFlowHint() {
@@ -835,6 +850,7 @@ function openCockpitPanel(panelId) {
   cockpitZoom = 1;
   document.getElementById("cockpit-panel-viewer").classList.remove("hidden");
   document.body.classList.add("cockpit-modal-open");
+  document.getElementById("cockpit-viewport").dataset.panel = panelId;
   const image = document.getElementById("cockpit-image");
   image.onload = fitCockpitPanelToViewport;
   image.src = panel.image;
