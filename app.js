@@ -166,6 +166,11 @@ function getFlowStepActor(step) {
   return step.actor || step.role || "PF";
 }
 
+function getFlowStepActorLabel(step) {
+  const actor = getFlowStepActor(step);
+  return actor === "BOTH" ? "PF & PM" : actor;
+}
+
 function isFlowStepForUser(step) {
   if (!activeFlowSession) return false;
   const actor = getFlowStepActor(step);
@@ -261,7 +266,7 @@ function updateFlowActionBar(step, mode, message) {
   if (!session) return;
   const bar = document.getElementById("flow-action-bar");
   const isCallout = mode === "callout";
-  const actor = isCallout ? "INFO" : getFlowStepActor(step);
+  const actor = getFlowStepActorLabel(step);
   const guidedInstruction = message || getFlowStepInstruction(step);
   const blindInstruction =
     mode === "demo"
@@ -299,6 +304,8 @@ function updateFlowAutoOverlay(step, mode) {
   const isCallout = mode === "callout";
   overlay.classList.toggle("hidden", !isCallout);
   if (!isCallout) return;
+  document.getElementById("flow-auto-actor").innerText =
+    getFlowStepActorLabel(step);
   const instruction = document.getElementById("flow-auto-instruction");
   instruction.innerText = getFlowChecklistInstruction(step);
   window.requestAnimationFrame(() => fitFlowCalloutText(instruction));
