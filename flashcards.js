@@ -7,9 +7,9 @@ let activeFlashcardTheme = "all";
 
 function toggleMonkeyMode() {
   const monkeyMode = document.getElementById("monkey-mode").checked;
-  document.getElementById("training-title").innerText = monkeyMode
-    ? "A320 Monkey Clicking"
-    : "A320 Theoretical Exam Flashcards";
+  document.getElementById("monkey-mode-subtitle").innerText = monkeyMode
+    ? "Multiple Choice"
+    : "Flashcards";
 }
 
 function startTraining() {

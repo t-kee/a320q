@@ -176,13 +176,7 @@ h2 {
 }
 
 .brand-logo-compact .brand-wordmark {
-  font-size: 22px;
-}
-
-.brand-logo-compact .brand-subtitle {
-  margin-top: 3px;
-  font-size: 7px;
-  letter-spacing: 0.28em;
+  font-size: 20px;
 }
 
 .section-brand {
@@ -225,6 +219,25 @@ h2 {
   box-shadow:
     inset 0 -3px 0 var(--logo-burgundy),
     0 2px 8px var(--shadow-color);
+}
+
+#app:not(.study-mode) .meta-nav {
+  margin-bottom: 14px;
+}
+
+#meta-exam > .exam-nav {
+  gap: 4px;
+  margin-bottom: 17px;
+  padding-bottom: 9px;
+}
+
+#meta-exam > .exam-nav .nav-btn {
+  padding: 7px 6px;
+  font-size: 13px;
+}
+
+#meta-exam > .exam-nav.hidden + .section-brand {
+  display: none;
 }
 
 /* Navigation */
@@ -1801,12 +1814,25 @@ body.cockpit-modal-open {
     margin: -10px -10px 20px;
   }
 
+  #app:not(.study-mode) .meta-nav {
+    margin: -10px -10px 12px;
+  }
+
   .nav-bar {
     flex-wrap: wrap;
   }
 
+  #meta-exam > .exam-nav {
+    flex-wrap: nowrap;
+  }
+
   .exam-nav .nav-btn {
     flex: 1 1 40%;
+  }
+
+  #meta-exam > .exam-nav .nav-btn {
+    flex: 1 1 0;
+    font-size: 12px;
   }
 
   .study-heading {
