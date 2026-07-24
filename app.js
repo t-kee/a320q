@@ -304,6 +304,9 @@ function updateFlowAutoOverlay(step, mode) {
   const isCallout = mode === "callout";
   overlay.classList.toggle("hidden", !isCallout);
   if (!isCallout) return;
+  if (activeCockpitPanel !== "glareshield") {
+    openCockpitPanel("glareshield");
+  }
   document.getElementById("flow-auto-actor").innerText =
     getFlowStepActorLabel(step);
   const instruction = document.getElementById("flow-auto-instruction");
