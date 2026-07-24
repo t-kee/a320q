@@ -29,6 +29,9 @@
   --postit-border: #f1c40f;
   --shadow-color: rgba(0, 0, 0, 0.1);
   --warning-color: #f39c12;
+  --logo-dark: #101936;
+  --logo-blue: #145ee8;
+  --logo-burgundy: #9f1734;
 }
 
 [data-theme="dark"] {
@@ -62,6 +65,7 @@
   --postit-border: #c0ca33;
   --shadow-color: rgba(0, 0, 0, 0.5);
   --warning-color: #ffb74d;
+  --logo-dark: #edf1ff;
 }
 body {
   font-family:
@@ -127,6 +131,66 @@ h2 {
   transition: 0.2s;
 }
 
+.brand-logo {
+  --logo-letter-color: var(--logo-blue);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--logo-dark);
+  font-family:
+    "Arial Black", "Helvetica Neue", Montserrat, Eurostile, "Bank Gothic",
+    sans-serif;
+  line-height: 1;
+}
+
+.brand-logo-t {
+  --logo-letter-color: var(--logo-burgundy);
+}
+
+.brand-wordmark {
+  display: flex;
+  align-items: baseline;
+  font-size: clamp(38px, 7vw, 54px);
+  font-weight: 900;
+  letter-spacing: -0.075em;
+  transform: scaleX(1.035);
+  transform-origin: center;
+}
+
+.brand-wordmark em {
+  margin-left: 0.075em;
+  color: var(--logo-letter-color);
+  font-style: normal;
+}
+
+.brand-subtitle {
+  margin-top: 5px;
+  margin-left: 0.34em;
+  color: var(--logo-letter-color);
+  font-family: "Helvetica Neue", Montserrat, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.34em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.brand-logo-compact .brand-wordmark {
+  font-size: 22px;
+}
+
+.brand-logo-compact .brand-subtitle {
+  margin-top: 3px;
+  font-size: 7px;
+  letter-spacing: 0.28em;
+}
+
+.section-brand {
+  display: flex;
+  justify-content: center;
+  margin: -7px 0 24px;
+}
+
 .meta-beta-badge {
   position: absolute;
   top: -7px;
@@ -147,9 +211,20 @@ h2 {
 }
 
 .meta-nav-btn.active {
-  background: var(--accent);
-  color: white;
+  background: var(--card-bg);
   box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.meta-nav-q.active {
+  box-shadow:
+    inset 0 -3px 0 var(--logo-blue),
+    0 2px 8px var(--shadow-color);
+}
+
+.meta-nav-t.active {
+  box-shadow:
+    inset 0 -3px 0 var(--logo-burgundy),
+    0 2px 8px var(--shadow-color);
 }
 
 /* Navigation */

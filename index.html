@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>A320T</title>
+    <title>A320QT</title>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="styles.css" />
@@ -13,18 +13,26 @@
     <div id="app">
       <nav class="meta-nav" aria-label="Main sections">
         <button
-          class="meta-nav-btn active"
+          class="meta-nav-btn meta-nav-q active"
           id="meta-exam-btn"
           onclick="switchMetaTab('exam')"
+          aria-label="A320Q Questions"
         >
-          A320 Exam Bank
+          <span class="brand-logo brand-logo-q brand-logo-compact">
+            <span class="brand-wordmark"><span>A320</span><em>Q</em></span>
+            <span class="brand-subtitle">Questions</span>
+          </span>
         </button>
         <button
-          class="meta-nav-btn"
+          class="meta-nav-btn meta-nav-t"
           id="meta-study-btn"
           onclick="switchMetaTab('study')"
+          aria-label="A320T Training"
         >
-          A320 Study
+          <span class="brand-logo brand-logo-t brand-logo-compact">
+            <span class="brand-wordmark"><span>A320</span><em>T</em></span>
+            <span class="brand-subtitle">Training</span>
+          </span>
           <span class="meta-beta-badge">BETA</span>
         </button>
       </nav>
@@ -39,6 +47,13 @@
         <button class="nav-btn" onclick="switchTab('search')">Search</button>
         <button class="nav-btn" id="dark-mode-btn" onclick="toggleDarkMode()" style="flex: 0 0 auto; padding: 10px; font-size: 18px;" title="Toggle Dark Mode">🌙</button>
       </div>
+
+      <header class="section-brand" aria-label="A320Q Questions">
+        <span class="brand-logo brand-logo-q">
+          <span class="brand-wordmark"><span>A320</span><em>Q</em></span>
+          <span class="brand-subtitle">Questions</span>
+        </span>
+      </header>
 
       <div id="tab-setup">
         <h1 id="training-title">A320 Monkey Clicking</h1>
@@ -357,6 +372,13 @@
             Flashcards
           </button>
         </div>
+
+        <header class="section-brand" aria-label="A320T Training">
+          <span class="brand-logo brand-logo-t">
+            <span class="brand-wordmark"><span>A320</span><em>T</em></span>
+            <span class="brand-subtitle">Training</span>
+          </span>
+        </header>
 
         <div id="study-flows">
           <div id="flow-setup" class="flow-setup">
