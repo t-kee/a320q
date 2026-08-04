@@ -477,19 +477,48 @@
         border-left: 5px solid var(--postit-border);
       }
 
-      .close-postit {
-        position: absolute;
-        top: 5px;
-        right: 8px;
-        background: none;
-        border: none;
-        font-size: 20px;
-        cursor: pointer;
-        color: var(--text-muted);
+      .postit p {
+        margin: 8px 0;
+        font-size: 13px;
+        line-height: 1.45;
       }
 
-      .close-postit:hover {
-        color: var(--postit-text);
+      .postit-site-link {
+        color: inherit;
+        font-weight: bold;
+      }
+
+      .postit-transfer {
+        margin-top: 14px;
+        padding-top: 12px;
+        border-top: 1px solid var(--postit-border);
+      }
+
+      .postit-transfer button {
+        width: 100%;
+        margin-top: 5px;
+      }
+
+      .postit-transfer-output {
+        margin-top: 10px;
+      }
+
+      .postit-transfer-output textarea {
+        box-sizing: border-box;
+        width: 100%;
+        min-height: 72px;
+        padding: 8px;
+        resize: vertical;
+        border: 1px solid var(--postit-border);
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 11px;
+      }
+
+      .postit-transfer-status {
+        min-height: 18px;
+        margin: 5px 0 0;
+        font-size: 12px;
       }
     </style>
     <script src="questions.js"></script>
@@ -512,15 +541,56 @@
           Database: <span id="db-total">0</span> questions
         </p>
 
-        <div id="changelog-postit" class="postit hidden">
-          <button class="close-postit" onclick="closeChangelog()">
-            &times;
-          </button>
-          <strong>V1.4 : What's new?</strong>
-          <ul style="margin: 5px 0; padding-left: 15px; font-size: 13px">
-            <li>New keyboard shortcut : F to ☆ ⌨️</li>
-            <li>80 new questions directly from the CAE bank.</li>
-          </ul>
+        <div id="changelog-postit" class="postit">
+          <strong>V2.0 — A320QT 2.0 is now live</strong>
+          <p>
+            A new version of A320QT is available at
+            <a
+              class="postit-site-link"
+              href="https://a320qt.web.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              >a320qt.web.app</a
+            >.
+          </p>
+          <p>
+            Your viewed questions, pins and scores can be transferred easily
+            to the new site.
+          </p>
+          <p>
+            This legacy website will soon be taken offline. Please switch to
+            the new site to continue training.
+          </p>
+          <p>
+            <a
+              class="postit-site-link"
+              href="https://a320qt.web.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Go to A320QT 2.0 &rarr;</a
+            >
+          </p>
+          <div class="postit-transfer">
+            <button type="button" onclick="exportProgress()">
+              Export my progress
+            </button>
+            <div
+              id="progress-export-output"
+              class="postit-transfer-output hidden"
+            >
+              <label for="progress-export-code">Progress transfer code:</label>
+              <textarea
+                id="progress-export-code"
+                readonly
+                aria-describedby="progress-export-status"
+              ></textarea>
+            </div>
+            <p
+              id="progress-export-status"
+              class="postit-transfer-status"
+              aria-live="polite"
+            ></p>
+          </div>
         </div>
 
         <div class="setup-group">
@@ -1731,27 +1801,117 @@
         activeHistoryId = null;
       }
 
-      // Identifiant de la version du changelog
-      const CHANGELOG_VERSION = "v1.4_features";
+      function crc32(bytes) {
+        let crc = 0xffffffff;
+        for (const byte of bytes) {
+          crc ^= byte;
+          for (let bit = 0; bit < 8; bit += 1) {
+            crc = (crc >>> 1) ^ (0xedb88320 & -(crc & 1));
+          }
+        }
+        return ((crc ^ 0xffffffff) >>> 0).toString(16).padStart(8, "0");
+      }
 
-      function checkChangelog() {
-        const postit = document.getElementById("changelog-postit");
-        const hasSeen = localStorage.getItem("a320_changelog_seen");
+      function bytesToBase64Url(bytes) {
+        let binary = "";
+        for (let offset = 0; offset < bytes.length; offset += 0x8000) {
+          binary += String.fromCharCode(
+            ...bytes.subarray(offset, offset + 0x8000),
+          );
+        }
+        return btoa(binary)
+          .replaceAll("+", "-")
+          .replaceAll("/", "_")
+          .replace(/=+$/u, "");
+      }
 
-        // Si la version enregistrée est différente de la version actuelle, on l'affiche
-        if (hasSeen !== CHANGELOG_VERSION) {
-          postit.classList.remove("hidden");
+      async function compressBytes(bytes) {
+        const compressed = new Blob([bytes])
+          .stream()
+          .pipeThrough(new CompressionStream("gzip"));
+        return new Uint8Array(await new Response(compressed).arrayBuffer());
+      }
+
+      function createProgressTransferPayload() {
+        return {
+          format: "A320QT_PROGRESS",
+          version: 1,
+          exportedAt: new Date().toISOString(),
+          progress: {
+            seenQuestionIds: [...new Set(seenQuestions)],
+            pinnedQuestionIds: [...new Set(pinnedQuestions)],
+            questionMarkers: {},
+            themeStats: JSON.parse(JSON.stringify(themeStats)),
+            testHistory: JSON.parse(JSON.stringify(testHistory.slice(-50))),
+          },
+        };
+      }
+
+      function hasProgressToExport(payload) {
+        const progress = payload.progress;
+        return (
+          progress.seenQuestionIds.length > 0 ||
+          progress.pinnedQuestionIds.length > 0 ||
+          progress.testHistory.length > 0 ||
+          Object.values(progress.themeStats).some(
+            (stats) => Number(stats?.total) > 0,
+          )
+        );
+      }
+
+      async function encodeProgressTransferCode(payload) {
+        const raw = new TextEncoder().encode(JSON.stringify(payload));
+        let codec = "J";
+        let body = raw;
+        if ("CompressionStream" in window) {
+          try {
+            body = await compressBytes(raw);
+            codec = "G";
+          } catch {
+            body = raw;
+          }
+        }
+        return `A320QT1:${codec}:${bytesToBase64Url(body)}.${crc32(raw)}`;
+      }
+
+      async function exportProgress() {
+        const button = document.querySelector(
+          ".postit-transfer button",
+        );
+        const output = document.getElementById("progress-export-output");
+        const text = document.getElementById("progress-export-code");
+        const status = document.getElementById("progress-export-status");
+        const payload = createProgressTransferPayload();
+
+        if (!hasProgressToExport(payload)) {
+          output.classList.add("hidden");
+          status.innerText = "No progress to export yet.";
+          return;
+        }
+
+        button.disabled = true;
+        status.innerText = "Generating your transfer code…";
+        try {
+          const code = await encodeProgressTransferCode(payload);
+          text.value = code;
+          output.classList.remove("hidden");
+          text.focus();
+          text.select();
+          try {
+            await navigator.clipboard.writeText(code);
+            status.innerText =
+              "Code copied. Paste it into the progress import on A320QT 2.0.";
+          } catch {
+            status.innerText =
+              "Code generated. Copy it above, then paste it into A320QT 2.0.";
+          }
+        } catch (error) {
+          status.innerText = "The transfer code could not be generated.";
+          console.error("Progress export failed", error);
+        } finally {
+          button.disabled = false;
         }
       }
-
-      function closeChangelog() {
-        document.getElementById("changelog-postit").classList.add("hidden");
-        // On enregistre que cette version a été vue
-        localStorage.setItem("a320_changelog_seen", CHANGELOG_VERSION);
-      }
-
-      // Appelle checkChangelog() au chargement de la page
-      window.addEventListener("load", checkChangelog);
 
       function returnToMenu() {
         activeHistoryId = null;
